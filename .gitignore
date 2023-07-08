@@ -1,0 +1,9 @@
+node_modules/
+yarn.lock
+/npm-debug.log
+
+.cache/
+dist/
+.parcel-cache
+
+.DS_Store
