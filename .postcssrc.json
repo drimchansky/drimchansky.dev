@@ -1,0 +1,9 @@
+{
+  "plugins": {
+    "postcss-import": {},
+    "postcss-nested": {},
+    "@csstools/postcss-oklab-function": {
+      "preserve": true
+    }
+  }
+}

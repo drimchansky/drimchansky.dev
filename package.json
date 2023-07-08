@@ -1,0 +1,45 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "clear": "rm -rf dist/ .parcel-cache/",
+    "watch": "npx parcel src/index.html --target watch",
+    "build": "npm run clear && npx parcel build src/index.html --no-cache --no-autoinstall --no-source-maps --no-scope-hoist --target build",
+    "remove-modules": "rm -rf node_modules/",
+    "update-browserslist": "npx update-browserslist-db@latest"
+  },
+  "targets": {
+    "main": false,
+    "build": {
+      "includeNodeModules": true,
+      "distDir": "./dist/",
+      "publicUrl": "./"
+    },
+    "watch": {
+      "distDir": "./dist/",
+      "publicUrl": "./"
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.6",
+    "@csstools/postcss-oklab-function": "^3.0.0",
+    "@parcel/transformer-typescript-tsc": "^2.9.3",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.44.0",
+    "eslint-plugin-import": "^2.27.5",
+    "normalize.css": "^8.0.1",
+    "parcel": "2.9.3",
+    "postcss": "^8.4.24",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.1",
+    "prettier": "^3.0.0",
+    "stylelint": "^15.10.0",
+    "stylelint-config-css-modules": "^4.2.0",
+    "stylelint-config-idiomatic-order": "^9.0.0",
+    "stylelint-config-recommended": "^13.0.0",
+    "stylelint-order": "^6.0.3",
+    "typescript": "^5.1.6"
+  }
+}
