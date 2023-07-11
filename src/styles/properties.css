@@ -5,23 +5,4 @@
 
   --color-white: oklch(100% 0 0);
   --color-black: oklch(0% 0 0);
-
-  --color-blue-300: oklch(56.18% 0.123 252.47);
-  --color-blue-500: oklch(37.08% 0.173 262.12);
-  --color-gray-100: oklch(99.4% 0 0);
-  --color-gray-400: oklch(74.41% 0.01 252.47);
-  --color-gray-900: oklch(32.71% 0.061 252.47);
-  --color-dark-400: oklch(25.35% 0.024 270.32);
-
-  --color-button-bg-origin: var(--color-blue-300);
-  --color-button-bg-hover: var(--color-blue-500);
-  --color-button-bg-active: var(--color-dark-400);
-  --color-button-bg-disabled: var(--color-gray-900);
-  --color-button-text-origin: var(--color-gray-100);
-  --color-button-text-hover: var(--color-gray-400);
-  --color-button-text-active: var(--color-gray-400);
-  --color-button-text-disabled: var(--color-gray-900);
-
-  --color-background: var(--color-black);
-  --color-text: var(--color-white);
 }
