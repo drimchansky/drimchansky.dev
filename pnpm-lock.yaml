@@ -11,6 +11,9 @@ devDependencies:
   '@csstools/postcss-oklab-function':
     specifier: ^3.0.0
     version: 3.0.0(postcss@8.4.24)
+  '@parcel/config-default':
+    specifier: ^2.9.3
+    version: 2.9.3(@parcel/core@2.9.3)(postcss@8.4.24)
   '@parcel/transformer-typescript-tsc':
     specifier: ^2.9.3
     version: 2.9.3(@parcel/core@2.9.3)(typescript@5.1.6)
@@ -35,6 +38,9 @@ devDependencies:
   parcel:
     specifier: 2.9.3
     version: 2.9.3(postcss@8.4.24)
+  parcel-reporter-static-files-copy:
+    specifier: ^1.5.0
+    version: 1.5.0(@parcel/core@2.9.3)
   postcss:
     specifier: ^8.4.24
     version: 8.4.24
@@ -3421,6 +3427,15 @@ packages:
   /p-try@2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
+    dev: true
+
+  /parcel-reporter-static-files-copy@1.5.0(@parcel/core@2.9.3):
+    resolution: {integrity: sha512-dsY3MQkbYSgEqS0/22vtD2mZtel8UC0ItH0ok8LmgFeCMTsdhyOtJgvt945ODIzu9lYc/sCIzksM8C77uSE3Fg==}
+    engines: {parcel: ^2.0.0-beta.1}
+    dependencies:
+      '@parcel/plugin': 2.9.3(@parcel/core@2.9.3)
+    transitivePeerDependencies:
+      - '@parcel/core'
     dev: true
 
   /parcel@2.9.3(postcss@8.4.24):
