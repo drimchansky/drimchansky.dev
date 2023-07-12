@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf dist/ .parcel-cache/",
-    "watch": "npm run clear && npx parcel src/index.html --target watch",
+    "watch": "npm run clear && npx parcel src/index.html --target watch --port 4444",
     "build": "npm run clear && npx parcel build src/index.html --no-cache --no-autoinstall --no-source-maps --no-scope-hoist --target build",
     "remove-m": "rm -rf node_modules/",
     "update-browserslist": "npx update-browserslist-db@latest"
@@ -24,7 +24,9 @@
     "@babel/core": "^7.22.6",
     "@csstools/postcss-oklab-function": "^3.0.0",
     "@parcel/config-default": "^2.9.3",
+    "@parcel/packager-raw-url": "2.9.3",
     "@parcel/transformer-typescript-tsc": "^2.9.3",
+    "@parcel/transformer-webmanifest": "2.9.3",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
     "autoprefixer": "^10.4.14",
