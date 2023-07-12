@@ -1,6 +1,15 @@
 @font-face {
-  font-display: swap;
+  font-display: fallback;
   font-family: 'Open Sans';
-  font-style: normal;
-  src: url('../assets/fonts/OpenSans-VariableFont.ttf') format('truetype');
+  src: url('../assets/fonts/open-sans/OpenSans-VariableFont.woff2') format('woff2');
+}
+
+:root {
+  --font-family-main: 'Open Sans', sans-serif;
+  --font-size: 16px;
+  --line-height: 1.5;
+
+  @media (min-width: 1024px) {
+    --font-size: 24px;
+  }
 }

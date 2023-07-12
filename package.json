@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "clear": "rm -rf dist/ .parcel-cache/",
-    "watch": "npm run clear && npx parcel src/index.html --target watch",
+    "watch": "npm run clear && npx parcel src/index.html --target watch --port 4444",
     "build": "npm run clear && npx parcel build src/index.html --no-cache --no-autoinstall --no-source-maps --no-scope-hoist --target build",
     "remove-m": "rm -rf node_modules/",
     "update-browserslist": "npx update-browserslist-db@latest"
