@@ -1,9 +1,0 @@
-@import '../../node_modules/normalize.css/normalize.css';
-
-@import './fonts.css';
-@import './colors.css';
-
-@import './blocks/page.css';
-@import './blocks/body.css';
-@import './blocks/header.css';
-@import './blocks/icons.css';
