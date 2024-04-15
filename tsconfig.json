@@ -1,16 +1,3 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "module": "ESNext",
-    "target": "ESNext",
-    "removeComments": true,
-    "noImplicitAny": true,
-    "preserveConstEnums": true,
-    "skipLibCheck": true,
-    "allowJs": false,
-    "alwaysStrict": true,
-    "resolveJsonModule": true,
-    "typeRoots": ["node_modules/@types"]
-  }
+  "extends": "astro/tsconfigs/strict"
 }
