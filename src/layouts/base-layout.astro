@@ -1,0 +1,28 @@
+---
+import 'normalize.css'
+
+import Head from '@/components/head.astro'
+import '@/styles/fonts.css'
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <Head title={title} />
+  </head>
+  <body>
+    <slot />
+    <style is:global>
+      :root {
+      }
+      html {
+      }
+    </style>
+  </body>
+</html>
