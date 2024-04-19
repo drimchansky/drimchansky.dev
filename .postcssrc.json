@@ -1,0 +1,8 @@
+{
+  "plugins": {
+    "@csstools/postcss-oklab-function": {
+      "preserve": true
+    },
+    "postcss-preset-env": {}
+  }
+}

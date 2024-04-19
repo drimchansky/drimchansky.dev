@@ -9,13 +9,21 @@
     "astro": "astro",
     "prettier": "npx prettier --write ."
   },
+  "browserslist": [
+    "last 2 version",
+    "not dead"
+  ],
   "dependencies": {
     "@astrojs/check": "^0.5.10",
+    "@csstools/postcss-oklab-function": "^3.0.13",
+    "@nanostores/persistent": "^0.10.1",
     "astro": "^4.6.1",
+    "nanostores": "^0.10.3",
+    "normalize.css": "^8.0.1",
+    "postcss-preset-env": "^9.5.6",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "normalize.css": "^8.0.1",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0"
   }
