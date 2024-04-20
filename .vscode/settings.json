@@ -8,5 +8,11 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "eslint.validate": ["typescript"]
+  "eslint.validate": ["typescript"],
+  "files.associations": {
+    "*.css": "postcss"
+  },
+  "emmet.includeLanguages": {
+    "postcss": "css"
+  }
 }
