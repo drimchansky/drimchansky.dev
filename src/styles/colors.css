@@ -1,0 +1,30 @@
+@define-mixin colors-light-theme {
+  --color-header-background: var(--color-gray-200);
+}
+
+@define-mixin colors-dark-theme {
+  --color-header-background: var(--color-dark-900);
+}
+
+:root {
+  color-scheme: dark light;
+
+  --color-dark-900: oklch(16.86% 0.011 268.03);
+  --color-gray-200: oklch(97.52% 0.003 270.1);
+
+  @media (prefers-color-scheme: light) {
+    @mixin colors-light-theme;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    @mixin colors-dark-theme;
+  }
+}
+
+.is-light-theme {
+  @mixin colors-light-theme;
+}
+
+.is-dark-theme {
+  @mixin colors-dark-theme;
+}
