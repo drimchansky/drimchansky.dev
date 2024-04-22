@@ -1,6 +1,7 @@
 {
   "plugins": {
     "postcss-mixins": {},
+    "postcss-nested": {},
     "@csstools/postcss-oklab-function": {
       "preserve": true
     },
