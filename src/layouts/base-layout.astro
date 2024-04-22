@@ -1,8 +1,12 @@
 ---
-import 'normalize.css'
-
+import Header from '@/components/header.astro'
 import Head from '@/components/head.astro'
+
+import 'normalize.css'
+import '@/styles/global.css'
 import '@/styles/fonts.css'
+import '@/styles/colors.css'
+import '@/styles/properties.css'
 
 interface Props {
   title: string
@@ -17,12 +21,10 @@ const { title } = Astro.props
     <Head title={title} />
   </head>
   <body>
-    <slot />
-    <style is:global>
-      :root {
-      }
-      html {
-      }
-    </style>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <style></style>
   </body>
 </html>
