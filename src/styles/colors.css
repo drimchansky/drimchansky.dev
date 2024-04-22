@@ -1,16 +1,37 @@
 @define-mixin colors-light-theme {
-  --color-header-background: var(--color-gray-200);
+  --outline-color: oklch(45.2% 0.31 264.052 / 86.02%);
+
+  --c-header-bg: oklch(97.52% 0.003 270.1);
+  --c-header-line: oklch(95% 0.006 270.07);
+
+  --c-menu-bg: oklch(100% 0 0);
+  --c-menu-link-text: var(--c-text-primary);
+  --c-menu-link-bg: transparent;
+  --c-menu-link-text-hover: oklch(61.67% 0.189 252.84);
+  --c-menu-link-bg-hover: oklch(61.67% 0.189 252.84 / 6.27%);
+
+  --c-text-primary: oklch(20.97% 0.008 274.53);
+  --c-text-secondary: oklch(34.08% 0.016 269.69);
 }
 
 @define-mixin colors-dark-theme {
-  --color-header-background: var(--color-dark-900);
+  --outline-color: oklch(45.2% 0.31 264.052 / 86.02%);
+
+  --c-header-bg: oklch(16.86% 0.011 268.03);
+  --c-header-line: oklch(21.06% 0.008 269.79);
+
+  --c-menu-bg: oklch(21.06% 0.008 269.79);
+  --c-menu-link-text: var(--c-text-primary);
+  --c-menu-link-bg: transparent;
+  --c-menu-link-text-hover: oklch(77.05% 0.116631923745878 262.4314377074766);
+  --c-menu-link-bg-hover: oklch(77.05% 0.116 262.431 / 43.92%);
+
+  --c-text-primary: oklch(100% 0 0);
+  --c-text-secondary: oklch(81.63% 0.007 270.04);
 }
 
 :root {
   color-scheme: dark light;
-
-  --color-dark-900: oklch(16.86% 0.011 268.03);
-  --color-gray-200: oklch(97.52% 0.003 270.1);
 
   @media (prefers-color-scheme: light) {
     @mixin colors-light-theme;

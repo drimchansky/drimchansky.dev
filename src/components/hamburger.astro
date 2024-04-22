@@ -1,0 +1,53 @@
+---
+import HamburgerIcon from '@/icons/hamburger-icon.astro'
+import CrossIcon from '@/icons/cross-icon.astro'
+
+interface Props {
+  id?: string
+  class?: string
+}
+
+const { class: className, ...rest } = Astro.props
+---
+
+<button type="button" class:list={['hamburger', className]} {...rest}>
+  <span>Menu</span>
+  <HamburgerIcon class="icon icon-hamburger" />
+  <CrossIcon class="icon icon-cross" />
+</button>
+
+<style>
+  @import '../styles/mixins.css';
+  @import '../styles/media.css';
+
+  .hamburger {
+    @mixin focus;
+
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    z-index: 2;
+    height: 3rem;
+    background: transparent;
+    border: none;
+    padding: 0.25rem;
+
+    & .icon {
+      display: none;
+      height: 1.5rem;
+      width: 1.5rem;
+      margin-left: 4px;
+    }
+  }
+
+  .hamburger[aria-expanded='true'] .icon-cross,
+  .hamburger[aria-expanded='false'] .icon-hamburger {
+    display: block;
+  }
+
+  @media (--viewport-small) {
+    .hamburger {
+      display: none;
+    }
+  }
+</style>

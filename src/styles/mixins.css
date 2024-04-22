@@ -7,3 +7,11 @@
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+@define-mixin focus {
+  border-radius: 5px;
+  outline: none;
+  &:focus-visible {
+    box-shadow: 0 0 0 var(--outline-thickness) var(--outline-color);
+  }
+}
