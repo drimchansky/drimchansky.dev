@@ -7,10 +7,10 @@ interface Props {
   class?: string
 }
 
-const { class: className, ...rest } = Astro.props
+const { class: className, ...attributes } = Astro.props
 ---
 
-<button type="button" class:list={['hamburger', className]} {...rest}>
+<button type="button" class:list={['hamburger', className]} {...attributes}>
   <span>Menu</span>
   <HamburgerIcon class="icon icon-hamburger" />
   <CrossIcon class="icon icon-cross" />

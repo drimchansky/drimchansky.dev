@@ -1,4 +1,7 @@
-export type SocialLink = {}
+export type SocialLink = {
+  name: string
+  url: string
+}
 
 export type SiteInfo = {
   name: string
@@ -19,7 +22,12 @@ const siteInfo: SiteInfo = {
     src: '@todo',
     alt: 'Personal website of Nikita Chernov'
   },
-  socialLinks: []
+  socialLinks: [
+    { name: 'Telegram', url: 'https://t.me/drimchansky' },
+    { name: 'Instagram', url: 'https://www.instagram.com/drimchansky' },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/drimchansky' },
+    { name: 'GitHub', url: 'https://github.com/drimchansky' }
+  ]
 }
 
 export { siteInfo }
