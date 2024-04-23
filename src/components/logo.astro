@@ -4,7 +4,7 @@ import LogoIcon from '@/icons/logo-icon.astro'
 const { class: className, ...attributes } = Astro.props
 ---
 
-<a class:list={['logo', className]} {...attributes} href="/"><LogoIcon /></a>
+<a class:list={['logo', className]} {...attributes} href="/" aria-label="Home page"><LogoIcon /></a>
 
 <style>
   @import '../styles/mixins.css';
