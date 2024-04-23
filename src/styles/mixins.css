@@ -15,3 +15,10 @@
     box-shadow: 0 0 0 var(--outline-thickness) var(--outline-color);
   }
 }
+
+@define-mixin link-underline {
+  text-decoration: underline;
+  text-decoration-color: blue;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}

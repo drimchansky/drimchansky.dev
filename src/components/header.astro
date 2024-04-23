@@ -6,7 +6,7 @@ import Menu from '@/components/menu.astro'
 ---
 
 <header class="header" id="header">
-  <Container class="header__container">
+  <Container class="header-container">
     <Logo />
     <Menu id="menu" />
     <Hamburger id="hamburger-button" aria-expanded="false" />
@@ -57,24 +57,22 @@ import Menu from '@/components/menu.astro'
   @import '../styles/media.css';
 
   .header {
-    --header-height: 3.5rem;
-    --header-line-width: 1px;
-
     position: sticky;
+    z-index: 1;
     top: 0;
     height: var(--header-height);
     border-bottom: var(--header-line-width) solid var(--c-header-line);
     background: var(--c-header-bg);
   }
 
-  .header__container {
+  .header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
   @media (--viewport-small) {
-    .header__container {
+    .header-container {
       gap: 2rem;
     }
   }

@@ -11,6 +11,8 @@
   --font-size-extra: 2.625rem;
 
   /** other sizes */
+  --header-height: 3.5rem;
+  --header-line-width: 1px;
   --page-padding-x: 1rem;
   --max-width: 1440px;
   --outline-thickness: 4px;
