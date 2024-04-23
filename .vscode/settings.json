@@ -14,5 +14,6 @@
   },
   "emmet.includeLanguages": {
     "postcss": "css"
-  }
+  },
+  "stylelint.validate": ["astro"]
 }
