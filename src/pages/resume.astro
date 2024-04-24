@@ -1,8 +1,11 @@
 ---
 import Container from '@/components/container.astro'
 import BaseLayout from '@/layouts/base-layout.astro'
+import { siteInfo } from '@/data/site-info'
+
+const { name, resume } = siteInfo.localizations[Astro.currentLocale!]
 ---
 
-<BaseLayout title="Nikita Chernov – Resume">
-  <Container>Resume content</Container>
+<BaseLayout title=`${name} – ${resume}`>
+  <Container>{resume}</Container>
 </BaseLayout>

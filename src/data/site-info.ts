@@ -4,30 +4,49 @@ export type SocialLink = {
 }
 
 export type SiteInfo = {
-  name: string
   url: string
-  description: string
-  image: {
-    src: string
-    alt: string
-  }
   socialLinks: SocialLink[]
+  localizations: {
+    [key: string]: {
+      name: string
+      description: string
+      navigation: Array<{
+        title: string
+        route: string
+      }>
+      resume: string
+    }
+  }
 }
 
 const siteInfo: SiteInfo = {
-  name: 'Nikita Chernov',
   url: 'drimchansky.dev',
-  description: 'Personal website of Nikita Chernov',
-  image: {
-    src: '@todo',
-    alt: 'Personal website of Nikita Chernov'
-  },
   socialLinks: [
     { name: 'Telegram', url: 'https://t.me/drimchansky' },
     { name: 'Instagram', url: 'https://www.instagram.com/drimchansky' },
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/drimchansky' },
     { name: 'GitHub', url: 'https://github.com/drimchansky' }
-  ]
+  ],
+  localizations: {
+    en: {
+      name: 'Nikita Chernov',
+      description: 'Personal website of Nikita Chernov',
+      navigation: [
+        { title: 'Home', route: '/' },
+        { title: 'Resume', route: '/resume' }
+      ],
+      resume: 'Resume'
+    },
+    ru: {
+      name: 'Никита Чернов',
+      description: 'Личный сайт Никиты Чернова',
+      navigation: [
+        { title: 'Главная', route: '/' },
+        { title: 'Резюме', route: '/resume' }
+      ],
+      resume: 'Резюме'
+    }
+  }
 }
 
 export { siteInfo }
