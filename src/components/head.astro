@@ -1,12 +1,13 @@
 ---
 import { siteInfo } from '@/data/site-info'
+import { getLocale } from '@/utils/functions'
 
 export type Props = {
   title: string
 }
 
 const { title } = Astro.props
-const { description } = siteInfo.localizations[Astro.currentLocale!]
+const { description } = siteInfo.localizations[getLocale(Astro.currentLocale)]
 ---
 
 <meta charset="UTF-8" />

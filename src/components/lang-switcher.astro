@@ -1,7 +1,8 @@
 ---
 import GlobeIcon from '@/icons/globe-icon.astro'
+import { getLocale } from '@/utils/functions'
 
-const locale = Astro.currentLocale!
+const locale = getLocale(Astro.currentLocale)
 const toLocale = locale === 'en' ? 'ru' : 'en'
 
 const url = Astro.url.href.replace(`${locale}`, `${toLocale}`)

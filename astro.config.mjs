@@ -8,7 +8,6 @@ export default defineConfig({
   devToolbar: {
     enabled: false
   },
-  site: 'https://drimchansky.dev',
   i18n: {
     defaultLocale: 'en',
     locales: ['ru', 'en'],
