@@ -3,12 +3,14 @@ import SocialLinks from '@/components/social-links.astro'
 import Container from '@/components/container.astro'
 import BaseLayout from '@/layouts/base-layout.astro'
 import { siteInfo } from '@/data/site-info'
+
+const name = siteInfo.localizations[Astro.currentLocale!].name
 ---
 
-<BaseLayout title="Nikita Chernov">
+<BaseLayout title={name}>
   <Container class="home-container">
     <div class="home-content">
-      <h1 class="header">{siteInfo.name}</h1>
+      <h1 class="header">{name}</h1>
       <SocialLinks />
     </div>
   </Container>
