@@ -3,6 +3,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import ThemeSwitcher from '@/components/theme-switcher.astro'
 import LangSwitcher from '@/components/lang-switcher.astro'
+import { getLocale } from '@/utils/functions'
 import { siteInfo } from '@/data/site-info'
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
 }
 
 const { class: className, ...attributes } = Astro.props
-const locale = Astro.currentLocale!
+const locale = getLocale(Astro.currentLocale)
 ---
 
 <nav class:list={['menu', 'menu-closed', className]} {...attributes}>

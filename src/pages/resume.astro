@@ -2,8 +2,9 @@
 import Container from '@/components/container.astro'
 import BaseLayout from '@/layouts/base-layout.astro'
 import { siteInfo } from '@/data/site-info'
+import { getLocale } from '@/utils/functions'
 
-const { name, resume } = siteInfo.localizations[Astro.currentLocale!]
+const { name, resume } = siteInfo.localizations[getLocale(Astro.currentLocale)]
 ---
 
 <BaseLayout title=`${name} – ${resume}`>

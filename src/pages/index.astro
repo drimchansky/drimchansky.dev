@@ -3,8 +3,9 @@ import SocialLinks from '@/components/social-links.astro'
 import Container from '@/components/container.astro'
 import BaseLayout from '@/layouts/base-layout.astro'
 import { siteInfo } from '@/data/site-info'
+import { getLocale } from '@/utils/functions'
 
-const name = siteInfo.localizations[Astro.currentLocale!].name
+const name = siteInfo.localizations[getLocale(Astro.currentLocale)].name
 ---
 
 <BaseLayout title={name}>

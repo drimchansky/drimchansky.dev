@@ -1,5 +1,6 @@
 ---
 import Header from '@/components/header.astro'
+import { getLocale } from '@/utils/functions'
 import Head from '@/components/head.astro'
 
 import 'normalize.css'
@@ -13,7 +14,7 @@ interface Props {
 }
 
 const { title } = Astro.props
-const locale = Astro.currentLocale!
+const locale = getLocale(Astro.currentLocale)
 ---
 
 <!doctype html>
