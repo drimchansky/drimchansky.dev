@@ -1,15 +1,16 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n'
 import GlobeIcon from '@/icons/globe-icon.astro'
 import { getLocale } from '@/utils/functions'
 
 const locale = getLocale(Astro.currentLocale)
 const toLocale = locale === 'en' ? 'ru' : 'en'
-
-const url = Astro.url.href.replace(`${locale}`, `${toLocale}`)
 const text = locale === 'en' ? 'Русский' : 'English'
+
+const pathname = Astro.url.pathname.replace(`/${locale}`, '')
 ---
 
-<a class="link" href={url}> <GlobeIcon class="icon" name="globe" />{text}</a>
+<a class="link" href={getRelativeLocaleUrl(toLocale, pathname)}> <GlobeIcon class="icon" name="globe" />{text}</a>
 
 <style>
   @import '../styles/mixins.css';
