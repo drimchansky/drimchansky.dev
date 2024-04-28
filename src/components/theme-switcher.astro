@@ -1,27 +1,24 @@
 ---
-import { siteInfo } from '@/data/site-info'
-import { getLocale } from '@/utils/functions'
-
-const { theme, light, auto, dark } = siteInfo.localizations[getLocale(Astro.currentLocale)]
+import { t } from '@/i18n'
 ---
 
 <fieldset class="switcher">
-  <legend class="visually-hidden">{theme}</legend>
+  <legend class="visually-hidden">{t(Astro.currentLocale, 'theme')}</legend>
 
   <div class="toggle" id="theme-toggle">
     <label class="label">
       <input class="input" type="radio" name="color-theme" value="light" />
-      <span class="text">{light}</span>
+      <span class="text">{t(Astro.currentLocale, 'light')}</span>
     </label>
 
     <label class="label">
       <input class="input" type="radio" name="color-theme" value="auto" />
-      <span class="text">{auto}</span>
+      <span class="text">{t(Astro.currentLocale, 'auto')}</span>
     </label>
 
     <label class="label">
       <input class="input" type="radio" name="color-theme" value="dark" />
-      <span class="text">{dark}</span>
+      <span class="text">{t(Astro.currentLocale, 'dark')}</span>
     </label>
   </div>
 </fieldset>

@@ -2,11 +2,8 @@
 import SocialLinks from '@/components/social-links.astro'
 import Container from '@/components/container.astro'
 import BaseLayout from '@/layouts/base-layout.astro'
-import { siteInfo } from '@/data/site-info'
-import { getLocale } from '@/utils/functions'
 import type { GetStaticPaths } from 'astro'
-
-const name = siteInfo.localizations[getLocale(Astro.currentLocale)].name
+import { t } from '@/i18n'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -14,10 +11,10 @@ export const getStaticPaths = (async () => [
 ]) satisfies GetStaticPaths
 ---
 
-<BaseLayout title={name}>
+<BaseLayout title={t(Astro.currentLocale, 'name')}>
   <Container class="home-container">
     <div class="home-content">
-      <h1 class="header">{name}</h1>
+      <h1 class="header">{t(Astro.currentLocale, 'name')}</h1>
       <SocialLinks />
     </div>
   </Container>

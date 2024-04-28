@@ -1,11 +1,8 @@
 ---
 import Container from '@/components/container.astro'
-import { siteInfo } from '@/data/site-info'
+import { t } from '@/i18n'
 import BaseLayout from '@/layouts/base-layout.astro'
-import { getLocale } from '@/utils/functions'
 import type { GetStaticPaths } from 'astro'
-
-const name = siteInfo.localizations[getLocale(Astro.currentLocale)].name
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -13,4 +10,6 @@ export const getStaticPaths = (async () => [
 ]) satisfies GetStaticPaths
 ---
 
-<BaseLayout title=`${name} – 404`> <Container>404 page</Container></BaseLayout>
+<BaseLayout title=`${t(Astro.currentLocale, 'name')} – 404`>
+  <Container>404 - {t(Astro.currentLocale, 404)}</Container>
+</BaseLayout>
