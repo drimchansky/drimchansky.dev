@@ -1,9 +1,4 @@
----
-const { ...attributes } = Astro.props
----
-
 <svg
-  {...attributes}
   stroke-width="2"
   stroke="currentcolor"
   stroke-linecap="round"
