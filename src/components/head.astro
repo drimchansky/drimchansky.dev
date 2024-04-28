@@ -21,11 +21,7 @@ const { description } = siteInfo.localizations[getLocale(Astro.currentLocale)]
 <title>{title}</title>
 
 <script is:inline>
-  const theme = localStorage.getItem('color-theme')
-  if (!theme) {
-    localStorage.setItem('color-theme', 'auto')
-  } else {
-    document.documentElement.classList.toggle('is-dark-theme', theme === 'dark')
-    document.documentElement.classList.toggle('is-light-theme', theme === 'light')
-  }
+  const theme = localStorage.getItem('color-theme') || 'auto'
+  document.documentElement.classList.toggle('is-dark-theme', theme === 'dark')
+  document.documentElement.classList.toggle('is-light-theme', theme === 'light')
 </script>
