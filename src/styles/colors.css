@@ -1,6 +1,8 @@
 @define-mixin colors-light-theme {
   --outline-color: oklch(45.2% 0.31 264.052 / 86.02%);
 
+  --c-main-bg: oklch(100% 0 0);
+
   --c-header-bg: oklch(97.52% 0.003 270.1);
   --c-header-line: oklch(95% 0.006 270.07);
 
@@ -10,12 +12,18 @@
   --c-menu-link-text-hover: oklch(61.67% 0.189 252.84);
   --c-menu-link-bg-hover: oklch(61.67% 0.189 252.84 / 6.27%);
 
+  --c-theme-switcher-bg: oklch(90.06% 0 0);
+  --c-theme-switcher-select: oklch(100% 0 0);
+  --c-theme-switcher-text: oklch(28.46% 0.008 264.44);
+
   --c-text-primary: oklch(20.97% 0.008 274.53);
   --c-text-secondary: oklch(34.08% 0.016 269.69);
 }
 
 @define-mixin colors-dark-theme {
   --outline-color: oklch(45.2% 0.31 264.052 / 86.02%);
+
+  --c-main-bg: oklch(31.32% 0 0);
 
   --c-header-bg: oklch(16.86% 0.011 268.03);
   --c-header-line: oklch(21.06% 0.008 269.79);
@@ -25,6 +33,10 @@
   --c-menu-link-bg: transparent;
   --c-menu-link-text-hover: oklch(77.05% 0.116631923745878 262.4314377074766);
   --c-menu-link-bg-hover: oklch(77.05% 0.116 262.431 / 43.92%);
+
+  --c-theme-switcher-bg: oklch(32.11% 0 0);
+  --c-theme-switcher-select: oklch(28.56% 0.007 274.7);
+  --c-theme-switcher-text: oklch(100% 0 0);
 
   --c-text-primary: oklch(100% 0 0);
   --c-text-secondary: oklch(81.63% 0.007 270.04);

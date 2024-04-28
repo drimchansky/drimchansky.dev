@@ -13,6 +13,9 @@ interface Props {
 
 const { class: className, ...attributes } = Astro.props
 const locale = getLocale(Astro.currentLocale)
+
+const pathname = new URL(Astro.request.url).pathname
+const currentRoute = pathname.slice(1).replace(`${locale}`, '').slice(0, -1) || '/'
 ---
 
 <nav class:list={['menu', 'menu-closed', className]} {...attributes}>
@@ -20,7 +23,7 @@ const locale = getLocale(Astro.currentLocale)
     {
       siteInfo.localizations[locale].navigation.map(({ title, route }) => (
         <li class="item">
-          <a class="link" href={getRelativeLocaleUrl(locale, route)}>
+          <a class={`link ${currentRoute === route ? 'active' : ''}`} href={getRelativeLocaleUrl(locale, route)}>
             {title}
           </a>
         </li>
@@ -92,6 +95,10 @@ const locale = getLocale(Astro.currentLocale)
         color: var(--c-menu-link-text-hover);
       }
     }
+
+    &.active {
+      opacity: 0.7;
+    }
   }
 
   @media (--viewport-small) {
@@ -108,6 +115,7 @@ const locale = getLocale(Astro.currentLocale)
       background: transparent;
       grid-template-columns: auto repeat(2, min-content);
       grid-template-rows: unset;
+      overflow-y: auto;
     }
 
     .hamburger {
