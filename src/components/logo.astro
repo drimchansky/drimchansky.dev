@@ -1,6 +1,6 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n'
 import { Icon } from 'astro-icon/components'
+import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import { getLocale, t } from '@/i18n'
 
@@ -11,8 +11,8 @@ const locale = getLocale(Astro.currentLocale)
 <a
   class:list={['logo', className]}
   {...attributes}
-  href={getRelativeLocaleUrl(locale, '/')}
   aria-label={t(Astro.currentLocale, 'homePage')}
+  href={getRelativeLocaleUrl(locale, '/')}
 >
   <Icon class="icon" name="logo" />
 </a>

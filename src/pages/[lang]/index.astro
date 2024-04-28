@@ -1,9 +1,10 @@
 ---
-import SocialLinks from '@/components/social-links.astro'
-import Container from '@/components/container.astro'
-import BaseLayout from '@/layouts/base-layout.astro'
 import type { GetStaticPaths } from 'astro'
+
+import Container from '@/components/container.astro'
+import SocialLinks from '@/components/social-links.astro'
 import { t } from '@/i18n'
+import BaseLayout from '@/layouts/base-layout.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },

@@ -4,23 +4,23 @@ import { ru } from './locales/ru'
 export type Locale = 'en' | 'ru'
 
 export type LocaleCollection = {
-  name: string
-  siteDescription: string
-  homePage: string
-  resume: string
-  theme: string
-  light: string
+  404: string
   auto: string
   dark: string
+  homePage: string
+  light: string
+  name: string
+  resume: string
+  siteDescription: string
+  theme: string
   toLocale: string
-  404: string
 }
 
 export type TokenName = keyof LocaleCollection
 
 const locales: { [key in Locale]: LocaleCollection } = {
-  ru,
-  en
+  en,
+  ru
 }
 
 export const getLocale = (rawLocale: string | undefined): Locale => {
