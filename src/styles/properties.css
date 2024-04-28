@@ -18,5 +18,5 @@
   --outline-thickness: 4px;
 
   /** durations */
-  --link-hover-duration: 0.1s;
+  --link-hover-duration: 0;
 }

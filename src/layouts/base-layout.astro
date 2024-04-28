@@ -27,5 +27,16 @@ const locale = getLocale(Astro.currentLocale)
     <main>
       <slot />
     </main>
+    <script is:inline>
+      const toggleElement = document.getElementById('theme-toggle')
+
+      document.documentElement.classList.toggle('is-dark-theme', theme === 'dark')
+      document.documentElement.classList.toggle('is-light-theme', theme === 'light')
+
+      if (toggleElement) {
+        const input = toggleElement.querySelector(`[value="${theme}"]`)
+        input && (input.checked = true)
+      }
+    </script>
   </body>
 </html>
