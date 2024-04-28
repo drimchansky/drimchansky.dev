@@ -1,14 +1,14 @@
 import type { LocaleCollection } from '..'
 
 export const en: LocaleCollection = {
-  name: 'Nikita Chernov',
-  siteDescription: 'Personal website of Nikita Chernov',
-  homePage: 'Home',
-  resume: 'Resume',
-  theme: 'Theme',
-  light: 'Light',
+  404: 'Страница не найдена',
   auto: 'Auto',
   dark: 'Dark',
-  toLocale: 'Русский',
-  404: 'Страница не найдена'
+  homePage: 'Home',
+  light: 'Light',
+  name: 'Nikita Chernov',
+  resume: 'Resume',
+  siteDescription: 'Personal website of Nikita Chernov',
+  theme: 'Theme',
+  toLocale: 'Русский'
 }

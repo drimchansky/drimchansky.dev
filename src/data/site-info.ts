@@ -6,26 +6,26 @@ export type SocialLink = {
 }
 
 export type SiteInfo = {
-  url: string
-  socialLinks: SocialLink[]
   navigation: Array<{
-    token: TokenName
     route: string
+    token: TokenName
   }>
+  socialLinks: SocialLink[]
+  url: string
 }
 
 const siteInfo: SiteInfo = {
-  url: 'drimchansky.dev',
+  navigation: [
+    { route: '/', token: 'homePage' },
+    { route: '/resume', token: 'resume' }
+  ],
   socialLinks: [
     { name: 'Telegram', url: 'https://t.me/drimchansky' },
     { name: 'Instagram', url: 'https://www.instagram.com/drimchansky' },
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/drimchansky' },
     { name: 'GitHub', url: 'https://github.com/drimchansky' }
   ],
-  navigation: [
-    { token: 'homePage', route: '/' },
-    { token: 'resume', route: '/resume' }
-  ]
+  url: 'drimchansky.dev'
 }
 
 export { siteInfo }

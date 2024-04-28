@@ -1,9 +1,9 @@
 export const THEME_STORAGE_KEY = 'color-theme'
 
 export enum ColorTheme {
-  LIGHT = 'light',
   AUTO = 'auto',
-  DARK = 'dark'
+  DARK = 'dark',
+  LIGHT = 'light'
 }
 
 export const THEME_CLASSES = {

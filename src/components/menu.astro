@@ -1,14 +1,14 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
-import ThemeSwitcher from '@/components/theme-switcher.astro'
 import LangSwitcher from '@/components/lang-switcher.astro'
+import ThemeSwitcher from '@/components/theme-switcher.astro'
 import { siteInfo } from '@/data/site-info'
 import { getLocale, t } from '@/i18n'
 
 interface Props {
-  id?: string
   class?: string
+  id?: string
 }
 
 const { class: className, ...attributes } = Astro.props
@@ -21,7 +21,7 @@ const currentRoute = pathname.slice(1).replace(`${locale}`, '').slice(0, -1) || 
 <nav class:list={['menu', 'menu-closed', className]} {...attributes}>
   <ul class="list">
     {
-      siteInfo.navigation.map(({ token, route }) => (
+      siteInfo.navigation.map(({ route, token }) => (
         <li class="item">
           <a class={`link ${currentRoute === route ? 'active' : ''}`} href={getRelativeLocaleUrl(locale, route)}>
             {t(Astro.currentLocale, token)}

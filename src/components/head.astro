@@ -9,12 +9,12 @@ const { title } = Astro.props
 ---
 
 <meta charset="UTF-8" />
-<meta name="description" content={t(Astro.currentLocale, 'siteDescription')} />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<meta name="generator" content={Astro.generator} />
+<meta content={t(Astro.currentLocale, 'siteDescription')} name="description" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<link href="/favicon.svg" rel="icon" type="image/svg+xml" />
+<meta content={Astro.generator} name="generator" />
 
-<link rel="preload" href="/fonts/Inter-Variable.woff2" crossorigin as="font" type="font/woff2" />
+<link as="font" href="/fonts/Inter-Variable.woff2" rel="preload" type="font/woff2" crossorigin />
 
 <title>{title}</title>
 

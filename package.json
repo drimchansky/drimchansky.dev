@@ -7,7 +7,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "prettier": "npx prettier --write ."
+    "test:lint": "astro check && eslint .",
+    "format": "prettier --write . && eslint --fix ."
   },
   "browserslist": [
     "last 2 version",
@@ -22,19 +23,34 @@
     "focus-trap": "^7.5.4",
     "nanostores": "^0.10.3",
     "normalize.css": "^8.0.1",
+    "postcss-html": "^1.6.0",
     "postcss-mixins": "^10.0.1",
     "postcss-nested": "^6.0.1",
     "postcss-preset-env": "^9.5.9",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "postcss-html": "^1.6.0",
+    "@eslint/eslintrc": "^3.0.2",
+    "@typescript-eslint/parser": "^7.7.1",
+    "eslint": "^9.1.1",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-define-config": "^2.1.0",
+    "eslint-plugin-astro": "^1.0.3",
+    "eslint-plugin-perfectionist": "^2.10.0",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
     "stylelint": "^16.4.0",
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-idiomatic-order": "^10.0.0",
     "stylelint-config-recommended": "^14.0.0",
-    "stylelint-order": "^6.0.4"
+    "stylelint-order": "^6.0.4",
+    "typescript-eslint": "^7.7.1"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowAny": [
+        "eslint"
+      ]
+    }
   }
 }
