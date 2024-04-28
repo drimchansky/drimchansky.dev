@@ -7,9 +7,11 @@ export type LocaleCollection = {
   404: string
   auto: string
   dark: string
+  familyName: string
+  fullName: string
+  givenName: string
   homePage: string
   light: string
-  name: string
   resume: string
   siteDescription: string
   theme: string

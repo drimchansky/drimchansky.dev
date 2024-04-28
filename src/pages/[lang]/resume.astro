@@ -11,6 +11,6 @@ export const getStaticPaths = (async () => [
 ]) satisfies GetStaticPaths
 ---
 
-<BaseLayout title=`${t(Astro.currentLocale, 'name')} – ${t(Astro.currentLocale, 'resume')}`>
+<BaseLayout title=`${t(Astro.currentLocale, 'fullName')} – ${t(Astro.currentLocale, 'resume')}`>
   <Container>{t(Astro.currentLocale, 'resume')}</Container>
 </BaseLayout>
