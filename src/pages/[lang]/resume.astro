@@ -3,8 +3,14 @@ import Container from '@/components/container.astro'
 import BaseLayout from '@/layouts/base-layout.astro'
 import { siteInfo } from '@/data/site-info'
 import { getLocale } from '@/utils/functions'
+import type { GetStaticPaths } from 'astro'
 
 const { name, resume } = siteInfo.localizations[getLocale(Astro.currentLocale)]
+
+export const getStaticPaths = (async () => [
+  { params: { lang: 'ru' } },
+  { params: { lang: 'en' } }
+]) satisfies GetStaticPaths
 ---
 
 <BaseLayout title=`${name} – ${resume}`>
