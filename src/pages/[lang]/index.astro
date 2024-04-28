@@ -1,0 +1,45 @@
+---
+import SocialLinks from '@/components/social-links.astro'
+import Container from '@/components/container.astro'
+import BaseLayout from '@/layouts/base-layout.astro'
+import { siteInfo } from '@/data/site-info'
+import { getLocale } from '@/utils/functions'
+import type { GetStaticPaths } from 'astro'
+
+const name = siteInfo.localizations[getLocale(Astro.currentLocale)].name
+
+export const getStaticPaths = (async () => [
+  { params: { lang: 'ru' } },
+  { params: { lang: 'en' } }
+]) satisfies GetStaticPaths
+---
+
+<BaseLayout title={name}>
+  <Container class="home-container">
+    <div class="home-content">
+      <h1 class="header">{name}</h1>
+      <SocialLinks />
+    </div>
+  </Container>
+</BaseLayout>
+
+<style>
+  .header {
+    margin: 0 0 0.5rem 0;
+    color: var(--c-text-primary);
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .home-container {
+    display: flex;
+    min-height: calc(100dvh - var(--header-height));
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .home-content {
+    margin-top: -3rem;
+  }
+</style>
