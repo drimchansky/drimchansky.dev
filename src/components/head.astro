@@ -11,8 +11,13 @@ const { title } = Astro.props
 <meta charset="UTF-8" />
 <meta content={t(Astro.currentLocale, 'siteDescription')} name="description" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<link href="/favicon.svg" rel="icon" type="image/svg+xml" />
 <meta content={Astro.generator} name="generator" />
+
+<link href="/favicon.ico" rel="icon" sizes="32x32" />
+<link href="/icon.svg" rel="icon" type="image/svg+xml" />
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+<link href="/manifest.webmanifest" rel="manifest" />
+<meta content="#313131" name="theme-color" />
 
 <link as="font" href="/fonts/Inter-Variable.woff2" rel="preload" type="font/woff2" crossorigin />
 
