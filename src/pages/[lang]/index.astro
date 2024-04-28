@@ -12,10 +12,13 @@ export const getStaticPaths = (async () => [
 ]) satisfies GetStaticPaths
 ---
 
-<BaseLayout title={t(Astro.currentLocale, 'name')}>
+<BaseLayout title={t(Astro.currentLocale, 'fullName')}>
   <Container class="home-container">
     <div class="home-content">
-      <h1 class="header">{t(Astro.currentLocale, 'name')}</h1>
+      <h1 class="header">
+        <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>
+        <span itemprop="familyName">{t(Astro.currentLocale, 'familyName')}</span>
+      </h1>
       <SocialLinks />
     </div>
   </Container>

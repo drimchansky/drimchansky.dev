@@ -5,7 +5,7 @@ import { siteInfo } from '@/data/site-info'
 <div class="social-links">
   {
     siteInfo.socialLinks.map(({ name, url }) => (
-      <a class="social-link" href={url} rel="me" target="_blank">
+      <a class="social-link" href={url} itemprop="sameAs" rel="me" target="_blank">
         {name}
       </a>
     ))
