@@ -1,5 +1,9 @@
+import sitemap from '@astrojs/sitemap'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,5 +20,6 @@ export default defineConfig({
       prefixDefaultLocale: true
     }
   },
-  integrations: [icon()]
+  integrations: [icon(), sitemap()],
+  site: process.env.SITE_URL
 })
