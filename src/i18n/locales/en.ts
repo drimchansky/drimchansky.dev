@@ -2,6 +2,7 @@ import type { LocaleCollection } from '..'
 
 export const en: LocaleCollection = {
   404: 'Страница не найдена',
+  additionalInfo: 'Additional information',
   auto: 'Auto',
   dark: 'Dark',
   familyName: 'Chernov',
@@ -9,8 +10,13 @@ export const en: LocaleCollection = {
   givenName: 'Nikita',
   homePage: 'Home',
   light: 'Light',
+  location: 'Tbilisi, Georgia',
+  occupation: 'Frontend engineer',
+  present: 'Present',
   resume: 'Resume',
   siteDescription: 'Personal website of Nikita Chernov',
+  summary: 'Summary',
   theme: 'Theme',
-  toLocale: 'Русский'
+  toLocale: 'Русский',
+  workingExperience: 'Experience'
 }

@@ -1,16 +1,176 @@
 ---
 import type { GetStaticPaths } from 'astro'
 
+import { getCollection } from 'astro:content'
+
 import Container from '@/components/container.astro'
-import { t } from '@/i18n'
+import ResumeItem from '@/components/resume-item.astro'
+import { siteInfo } from '@/data/site-info'
+import { getLocale, t } from '@/i18n'
 import BaseLayout from '@/layouts/base-layout.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
   { params: { lang: 'en' } }
 ]) satisfies GetStaticPaths
+
+const locale = getLocale(Astro.currentLocale)
+const resumeCollection = await getCollection('resume')
+const generalCollection = await getCollection('general')
+
+const positions = resumeCollection
+  .filter(p => p.slug.startsWith(`${locale}/`))
+  .sort((a, b) => Number(b.data.dateStart) - Number(a.data.dateStart))
+
+const SummaryContent = (await generalCollection.filter(p => p.slug.startsWith(`${locale}/summary`))[0].render()).Content
+const AdditionalContent = (await generalCollection.filter(p => p.slug.startsWith(`${locale}/additional`))[0].render())
+  .Content
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'fullName')} – ${t(Astro.currentLocale, 'resume')}`>
-  <Container>{t(Astro.currentLocale, 'resume')}</Container>
+  <Container>
+    <article class="resume">
+      <header class="header">
+        <div class="header-profile">
+          <h1 class="header-name">{t(Astro.currentLocale, 'fullName')}</h1>
+          <p class="header-occupation">{t(Astro.currentLocale, 'occupation')}</p>
+          <p class="header-location">{t(Astro.currentLocale, 'location')}</p>
+        </div>
+
+        <div class="header-contacts">
+          <ul class="header-contacts-list">
+            {
+              siteInfo.socialLinks.map(({ content, name, showOnResumePage, url }) => {
+                return (
+                  showOnResumePage && (
+                    <li class="header-contacts-item">
+                      {name}:
+                      <a class="header-contacts-link" href={url} itemprop="sameAs" rel="me" target="_blank">
+                        {content}
+                      </a>
+                    </li>
+                  )
+                )
+              })
+            }
+            <li class="header-contacts-item">
+              E-mail:
+              <a class="header-contacts-link" href="mailto:drimchansky@gmail.com" itemprop="email" target="_blank">
+                drimchansky@gmail.com
+              </a>
+            </li>
+          </ul>
+        </div>
+      </header>
+
+      <h2 class="section-header">{t(Astro.currentLocale, 'summary')}</h2>
+      <SummaryContent />
+
+      <h2 class="section-header">{t(Astro.currentLocale, 'workingExperience')}</h2>
+
+      <ul class="positions-list">
+        {
+          positions.map(async ({ data, render }) => {
+            const Content = (await render()).Content
+            return (
+              <li class="position-item">
+                <ResumeItem
+                  company={data.company}
+                  companyLink={data.companyLink}
+                  dateEnd={data.dateEnd}
+                  dateStart={data.dateStart}
+                  position={data.position}
+                >
+                  <Content />
+                </ResumeItem>
+              </li>
+            )
+          })
+        }
+      </ul>
+
+      <h2 class="section-header">{t(Astro.currentLocale, 'additionalInfo')}</h2>
+      <AdditionalContent />
+    </article>
+  </Container>
 </BaseLayout>
+
+<style>
+  @import '../../styles/mixins.css';
+  @import '../../styles/media.css';
+
+  .resume {
+    color: var(--c-text-primary);
+    padding-block: 3rem;
+
+    & :global(p) {
+      max-width: var(--max-text-width);
+      margin: 0;
+    }
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--c-header-line);
+    gap: 1rem;
+  }
+
+  .header-name {
+    margin: 0;
+    font-size: var(--font-size-extra);
+    line-height: 1.25;
+  }
+
+  .header-occupation {
+    margin: 0;
+    font-size: var(--font-size-2xl);
+  }
+
+  .header-location {
+    margin: 0;
+    font-size: var(--font-size-lg);
+  }
+
+  .header-contacts-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .header-contacts-item {
+    &:not(:first-child) {
+      margin-top: 0.25rem;
+    }
+  }
+
+  .header-contacts-link {
+    @mixin link-underline;
+    @mixin focus;
+
+    color: var(--c-text-primary);
+  }
+
+  .section-header {
+    margin: 1rem 0 0 0;
+    font-size: var(--font-size-2xl);
+  }
+
+  .positions-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .position-item:not(:first-child) {
+    margin-top: 2.5rem;
+  }
+
+  @media print, (--viewport-small) {
+    .header {
+      flex-direction: row;
+    }
+  }
+</style>
