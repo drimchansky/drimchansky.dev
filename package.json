@@ -22,6 +22,7 @@
     "@nanostores/persistent": "^0.10.1",
     "astro": "^4.7.0",
     "astro-icon": "^1.1.0",
+    "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "focus-trap": "^7.5.4",
     "nanostores": "^0.10.3",

@@ -10,11 +10,14 @@
   --font-size-4xl: 2.1875rem;
   --font-size-extra: 2.625rem;
 
+  --line-height: 2;
+
   /** other sizes */
   --header-height: 3.5rem;
   --header-line-width: 1px;
   --page-padding-x: 1rem;
   --max-width: 1440px;
+  --max-text-width: 1000px;
   --outline-thickness: 4px;
 
   /** durations */

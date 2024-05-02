@@ -1,8 +1,11 @@
 import type { TokenName } from '@/i18n'
 
 export type SocialLink = {
+  content: string
   name: string
-  url: string
+  showOnHomePage?: boolean
+  showOnResumePage?: boolean
+  url?: string
 }
 
 export type SiteInfo = {
@@ -20,10 +23,29 @@ const siteInfo: SiteInfo = {
     { route: '/resume', token: 'resume' }
   ],
   socialLinks: [
-    { name: 'Telegram', url: 'https://t.me/drimchansky' },
-    { name: 'Instagram', url: 'https://www.instagram.com/drimchansky' },
-    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/drimchansky' },
-    { name: 'GitHub', url: 'https://github.com/drimchansky' }
+    {
+      content: '@drimchansky',
+      name: 'Telegram',
+      showOnHomePage: true,
+      showOnResumePage: true,
+      url: 'https://t.me/drimchansky'
+    },
+    { content: '@drimchansky', name: 'Instagram', showOnHomePage: true, url: 'https://www.instagram.com/drimchansky' },
+    {
+      content: '@drimchansky',
+      name: 'LinkedIn',
+      showOnHomePage: true,
+      showOnResumePage: true,
+      url: 'https://www.linkedin.com/in/drimchansky'
+    },
+    {
+      content: '@drimchansky',
+      name: 'GitHub',
+      showOnHomePage: true,
+      showOnResumePage: true,
+      url: 'https://github.com/drimchansky'
+    }
+    // { content: 'drimchansky@gmail.com', name: 'E-mail', url: 'mailto:drimchansky@gmail.com' }
   ],
   url: 'drimchansky.dev'
 }

@@ -56,6 +56,12 @@ import Menu from '@/components/menu.astro'
 <style>
   @import '../styles/media.css';
 
+  @media print {
+    .header {
+      display: none;
+    }
+  }
+
   .header {
     position: sticky;
     z-index: 1;
