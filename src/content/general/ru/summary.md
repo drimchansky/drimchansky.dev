@@ -1,4 +1,5 @@
-Frontend engineer with over 3 years of professional experience. Proficient in a wide range of base and modern web technologies (HTML, CSS, vanilla JavaScript, Web APIs, TypeScript, React, Vue, PIXI.js Node.js, MongoDB and forth), always strive to learn new skills.
+Фронтенд-инженер с опытом работы более 3 лет. Владею широким спектром базовых и современных веб-технологий (HTML, CSS, vanilla JavaScript, Web APIs, TypeScript, React, Vue, PIXI.js Node.js, MongoDB и т.д.), всегда стремлюсь к изучению чего-то нового.
 
-I am a team player who could efficiently communicate inside a team and across company departments.
-Passionate about diving deep into complex projects and making them better, crafting accessible user-friendly interfaces, performance optimizations and delivering high-quality products.
+Я командный игрок, который может эффективно общаться внутри команды, с другими отделами и клиентами.
+
+Увлечен глубоким погружением в сложные проекты и их улучшением, созданием удобных и доступных интерфейсов, оптимизацией производительности и разработкой высококачественных продуктов.

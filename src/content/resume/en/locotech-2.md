@@ -6,7 +6,7 @@ position: Service Engineer
 companyLink: https://www.locotech.ru/
 ---
 
-- Collected and analyzed key depot indicators, which affects whole depot revenue;
+- Collected and analysed key depot indicators, which affects whole depot revenue;
 - Validated of collected data from internal and external sources;
 - Negotiated with Russian Railways representatives about correctness of collected data;
 - Negotiated with Service Engineers country-wide about correctness of collected data;

@@ -1,15 +1,15 @@
 ---
-company: LocoTech Service
+company: ЛокоТех-Сервис
 dateEnd: 2020-11-01
 dateStart: 2020-01-01
-position: Service Engineer
+position: Сервисный инженер
 companyLink: https://www.locotech.ru/
 ---
 
-- Collected and analyzed key depot indicators, which affects whole depot revenue;
-- Validated of collected data from internal and external sources;
-- Negotiated with Russian Railways representatives about correctness of collected data;
-- Negotiated with Service Engineers country-wide about correctness of collected data;
-- Interpreted of collected data to depot management;
-- Optimized interdepartmental communication processes;
-- Automated significant part of Service Engineer duties, reducing the time for everyday operations from 6 to 2 hours;
+- Аггрегировал и анализировал основные показатели работы депо, которые влияли на его выручку;
+- Осуществлял контроль и сбор информации из внутренних и внешних источников;
+- Вел переговоры с с представителями РЖД о корректности собранной информации;
+- Вел переговоры с сервисными инженерами по всей стране о корректности собранной информации;
+- Интерпретировал собранную информацию руководству депо;
+- Оптимизировал процессы взаимодействия отделов в компании;
+- Автоматизировал значительную часть работы сервисных инженеров, уменьшив длительность ежедневной работы с 6 часов до 2;

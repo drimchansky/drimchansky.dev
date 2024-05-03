@@ -1,16 +1,17 @@
 ---
 company: TrueLab Game Studios
 dateStart: 2020-12-01
-position: Frontend Developer
+position: Фронтенд-разработчик
 companyLink: https://truelab.games/
 ---
 
-- Developed browser games (frontend, backend);
-- Accompanied 10 projects at all stages. Was responsible for technical implementation and stick to deadlines. All projects were successfully implemented on time;
-- Developed internal tools which are streamlined processes and enhanced efficiency either development team and other company departments;
-- Assisted with onboarding of 6 new developers;
-- Integrated games with gaming platforms;
-- Collaborated with internal services, QA, clients, certification services and art team members to build the best product;
-- Implemented modern graphic formats that reduced average project size up to 40%;
-- Wrote unit and integration tests. Implemented unit tests for the most critical part across all projects;
-- Wrote technical documentation (guides, processes, project plans, reports, incident postmortems, style guides etc.);
+- Разрабатывал браузерные игры. Фронтенд: TypeScript, PixiJS. Бэкенд: NodeJS, MongoDB;
+- Разрабатывал UI модуль: React, Redux-toolkit, Tailwind CSS;
+- Разрабатывал внутренние инструменты для оптимизации как процессов разработки, так и работы в других отделах компании;
+- Сопровождал 11 проектов на всех стадиях разработки. Был ответственным за их техническую реализацию и соблюдение сроков. Все проекты были успешно выполнены в срок;
+- Оказывал помощь в процессе онбординга 7 новых разработчиков;
+- Интегрировал игры с игровыми платформами;
+- Сотрудничал с отделами внутренних сервисов и тестирования, клиентами, сертифицирующими компаниями, арт-командами и т.д.;
+- Внедрил современные форматы графики, что помогло уменьшить средний размер проекта до 40%;
+- Писал технические и интеграционные тесты. Внедрил юнит-тестирования для наиболее критичных частей проектов;
+- Писал техническую документацию (гайды, процессы, планы проектов, отчеты, расследования инцидентов, руководства по оформлению кода и т.д.);
