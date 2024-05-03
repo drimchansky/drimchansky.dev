@@ -1,12 +1,12 @@
 ---
-company: LocoTech Service
+company: ЛокоТех-Сервис
 dateEnd: 2019-12-01
 dateStart: 2019-03-01
-position: Technician
+position: Техник
 companyLink: https://www.locotech.ru/
 ---
 
-- Integrated automatic control system (ACS) in the train depot. After 5 month integration was successfully completed;
-- Trained foremen of all depot workshops to use the ACS. At the end of integration all foremen were able to operate the ASC;
-- Onboarded and supervised of 5 technicians. Despite diverse previous working background all technicians were successfully onboarded;
-- Solved problems with ASC operating, communicated with the developers team. During integration process were solved many small and several critical issues, that were blocking the workflow of the entire depot;
+- Внедрял автоматизированную систему управления в депо. Система была успешно внедрена за 5 месяцев;
+- Обучал мастеров цехов депо работе с автоматизированной системой. В результате обучения все мастера успешно ее освоили;
+- Оказывал помощь в онбординге 5 новых техников. Несмотря на разнообразный предыдущий опыт работы все техники успешно влились в рабочий процесс;
+- Решал проблемы возникающие в процессе эксплуатации автоматизированной системы, общался с командой разработки для их устранения. В процессе интеграции системы были решены как множество мелких проблем, так и ряд критичных, возникновение которых полностью блокировало работу депо;

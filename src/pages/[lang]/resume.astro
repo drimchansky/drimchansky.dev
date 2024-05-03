@@ -66,7 +66,7 @@ const AdditionalContent = (await generalCollection.filter(p => p.slug.startsWith
       <h2 class="section-header">{t(Astro.currentLocale, 'summary')}</h2>
       <SummaryContent />
 
-      <h2 class="section-header">{t(Astro.currentLocale, 'workingExperience')}</h2>
+      <h2 class="section-header section-header-secondary">{t(Astro.currentLocale, 'workingExperience')}</h2>
 
       <ul class="positions-list">
         {
@@ -89,7 +89,7 @@ const AdditionalContent = (await generalCollection.filter(p => p.slug.startsWith
         }
       </ul>
 
-      <h2 class="section-header">{t(Astro.currentLocale, 'additionalInfo')}</h2>
+      <h2 class="section-header section-header-secondary">{t(Astro.currentLocale, 'additionalInfo')}</h2>
       <AdditionalContent />
     </article>
   </Container>
@@ -105,8 +105,6 @@ const AdditionalContent = (await generalCollection.filter(p => p.slug.startsWith
 
     & :global(p) {
       max-width: var(--max-text-width);
-      margin: 0;
-      padding-block: 0.5rem;
     }
   }
 
@@ -126,11 +124,13 @@ const AdditionalContent = (await generalCollection.filter(p => p.slug.startsWith
   }
 
   .header-occupation {
+    padding: 0;
     margin: 0;
     font-size: var(--font-size-2xl);
   }
 
   .header-location {
+    padding: 0;
     margin: 0;
     font-size: var(--font-size-lg);
   }
@@ -157,6 +157,10 @@ const AdditionalContent = (await generalCollection.filter(p => p.slug.startsWith
   .section-header {
     margin: 1rem 0 0 0;
     font-size: var(--font-size-2xl);
+  }
+
+  .section-header-secondary {
+    margin-top: 2rem;
   }
 
   .positions-list {

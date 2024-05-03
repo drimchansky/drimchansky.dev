@@ -35,6 +35,11 @@ body {
   font-size: var(--font-size-base);
 }
 
+p {
+  margin: 0;
+  padding-block: 0.5rem;
+}
+
 .clip {
   overflow: hidden;
 }
