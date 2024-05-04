@@ -1,51 +1,59 @@
 {
-  "private": true,
-  "version": "1.0.0",
+  "name": "drimchansky.dev",
   "type": "module",
+  "version": "1.0.0",
   "scripts": {
-    "clear": "rm -rf dist/ .parcel-cache/",
-    "dev": "npm run clear && npx parcel src/index.html --target watch --port 4444",
-    "build": "npm run clear && npx parcel build src/index.html --no-cache --no-autoinstall --no-source-maps --no-scope-hoist --target build",
-    "remove-m": "rm -rf node_modules/",
-    "update-browserslist": "npx update-browserslist-db@latest"
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "env": "cat .env.example > .env",
+    "test:lint": "astro check && eslint .",
+    "format": "prettier --write . && eslint --fix ."
   },
-  "targets": {
-    "main": false,
-    "build": {
-      "includeNodeModules": true,
-      "distDir": "./dist/",
-      "publicUrl": "./"
-    },
-    "watch": {
-      "distDir": "./dist/",
-      "publicUrl": "./"
-    }
+  "browserslist": [
+    "last 2 version",
+    "not dead"
+  ],
+  "dependencies": {
+    "@astrojs/check": "^0.5.10",
+    "@astrojs/sitemap": "^3.1.4",
+    "@csstools/postcss-oklab-function": "^3.0.14",
+    "@vercel/analytics": "^1.2.2",
+    "astro": "^4.7.0",
+    "astro-icon": "^1.1.0",
+    "date-fns": "^3.6.0",
+    "dotenv": "^16.4.5",
+    "focus-trap": "^7.5.4",
+    "normalize.css": "^8.0.1",
+    "postcss-html": "^1.6.0",
+    "postcss-mixins": "^10.0.1",
+    "postcss-nested": "^6.0.1",
+    "postcss-preset-env": "^9.5.9",
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.0",
-    "@csstools/postcss-oklab-function": "^3.0.10",
-    "@parcel/config-default": "^2.12.0",
-    "@parcel/packager-raw-url": "^2.12.0",
-    "@parcel/transformer-typescript-tsc": "^2.12.0",
-    "@parcel/transformer-webmanifest": "^2.12.0",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
-    "@vercel/analytics": "^1.2.2",
-    "autoprefixer": "^10.4.18",
-    "eslint": "^8.57.0",
-    "eslint-plugin-import": "^2.29.1",
-    "normalize.css": "^8.0.1",
-    "parcel": "^2.12.0",
-    "parcel-reporter-static-files-copy": "^1.5.3",
-    "postcss": "^8.4.35",
-    "postcss-import": "^15.1.0",
-    "postcss-nested": "^6.0.1",
+    "@eslint/eslintrc": "^3.0.2",
+    "@typescript-eslint/parser": "^7.7.1",
+    "eslint": "^9.1.1",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-define-config": "^2.1.0",
+    "eslint-plugin-astro": "^1.0.3",
+    "eslint-plugin-perfectionist": "^2.10.0",
     "prettier": "^3.2.5",
-    "stylelint": "^15.11.0",
-    "stylelint-config-css-modules": "^4.4.0",
-    "stylelint-config-idiomatic-order": "^9.0.0",
-    "stylelint-config-recommended": "^13.0.0",
+    "prettier-plugin-astro": "^0.13.0",
+    "stylelint": "^16.4.0",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-idiomatic-order": "^10.0.0",
+    "stylelint-config-recommended": "^14.0.0",
     "stylelint-order": "^6.0.4",
-    "typescript": "^5.3.3"
+    "typescript-eslint": "^7.7.1"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowAny": [
+        "eslint"
+      ]
+    }
   }
 }

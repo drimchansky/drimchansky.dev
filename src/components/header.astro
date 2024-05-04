@@ -1,0 +1,88 @@
+---
+import Container from '@/components/container.astro'
+import Hamburger from '@/components/hamburger.astro'
+import Logo from '@/components/logo.astro'
+import Menu from '@/components/menu.astro'
+import SkipLink from '@/components/skip-link.astro'
+---
+
+<SkipLink />
+
+<header class="header" id="header">
+  <Container class="header-container">
+    <Logo />
+    <Menu id="menu" />
+    <Hamburger aria-expanded="false" id="hamburger-button" />
+  </Container>
+</header>
+
+<script>
+  import { createFocusTrap } from 'focus-trap'
+
+  const page = document.documentElement
+  const header = document.getElementById('header')!
+  const button = document.getElementById('hamburger-button')!
+  const menu = document.getElementById('menu')!
+  const focusTrap = createFocusTrap(header, { initialFocus: false })
+
+  function isMenuOpened() {
+    return button.getAttribute('aria-expanded') === 'true'
+  }
+
+  const openMenu = () => {
+    page.classList.add('clip')
+
+    button.setAttribute('aria-expanded', 'true')
+
+    menu.classList.remove('menu-closed')
+    setTimeout(() => menu.classList.add('menu-opened'), 20)
+
+    focusTrap.activate()
+  }
+
+  const closeMenu = () => {
+    page.classList.remove('clip')
+
+    button.setAttribute('aria-expanded', 'false')
+
+    menu.classList.remove('menu-opened')
+    setTimeout(() => menu.classList.add('menu-closed'), 20)
+
+    focusTrap.deactivate()
+  }
+
+  button.addEventListener('click', () => {
+    isMenuOpened() ? closeMenu() : openMenu()
+  })
+</script>
+
+<style>
+  @import '../styles/media.css';
+
+  @media print {
+    .header {
+      display: none;
+    }
+  }
+
+  .header {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    height: var(--header-height);
+    border-bottom: var(--header-line-width) solid var(--c-header-line);
+    background: var(--c-header-bg);
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media (--viewport-small) {
+    .header-container {
+      gap: 2rem;
+    }
+  }
+</style>

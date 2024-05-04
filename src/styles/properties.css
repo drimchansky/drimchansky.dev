@@ -1,0 +1,25 @@
+:root {
+  /* font sizes */
+  --font-size-xs: 0.8125rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.8125rem;
+  --font-size-4xl: 2.1875rem;
+  --font-size-extra: 2.625rem;
+
+  --line-height: 1.8;
+
+  /** other sizes */
+  --header-height: 3.5rem;
+  --header-line-width: 1px;
+  --page-padding-x: 1rem;
+  --max-width: 1440px;
+  --max-text-width: 1000px;
+  --outline-thickness: 4px;
+
+  /** durations */
+  --link-hover-duration: 0;
+}

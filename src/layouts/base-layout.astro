@@ -1,0 +1,43 @@
+---
+import '@/styles/colors.css'
+import '@/styles/fonts.css'
+import '@/styles/global.css'
+import '@/styles/properties.css'
+import 'normalize.css'
+
+import Head from '@/components/head.astro'
+import Header from '@/components/header.astro'
+import { getLocale } from '@/i18n'
+
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+const locale = getLocale(Astro.currentLocale)
+---
+
+<!doctype html>
+<html itemtype="https://schema.org/Person" lang={locale} itemscope>
+  <head>
+    <Head title={title} />
+  </head>
+  <body>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <script is:inline>
+      const toggleElement = document.getElementById('theme-toggle')
+
+      document.documentElement.classList.toggle('is-dark-theme', theme === 'dark')
+      document.documentElement.classList.toggle('is-light-theme', theme === 'light')
+
+      if (toggleElement) {
+        const input = toggleElement.querySelector(`[value="${theme}"]`)
+        input && (input.checked = true)
+      }
+    </script>
+    <script src="../scripts/analytics.ts"></script>
+  </body>
+</html>
