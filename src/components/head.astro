@@ -1,16 +1,20 @@
 ---
 import { getLocale, t } from '@/i18n'
+import { CUSTOM_IMAGE_ROUTES } from '@/utils/constants'
 
 export type Props = {
   title: string
 }
 
 const { title } = Astro.props
-const url = Astro.url
+const urlOrigin = process.env.SITE_URL
 
 const locale = getLocale(Astro.currentLocale)
-const page = Astro.url.pathname.replace(`${locale}`, '').replaceAll('/', '')
-const coverLink = `${url.origin}/covers/${page === '' ? 'main' : page}-${locale}.png`
+const pathname = Astro.url.pathname.replace(`/${locale}`, '')
+const route = pathname.split('/')[1]
+
+const cleanUrl = urlOrigin + pathname
+const coverLink = `${urlOrigin}/covers/${CUSTOM_IMAGE_ROUTES.includes(route) ? route : 'main'}-${locale}.png`
 ---
 
 <meta charset="UTF-8" />
@@ -30,7 +34,7 @@ const coverLink = `${url.origin}/covers/${page === '' ? 'main' : page}-${locale}
 <meta content="website" property="og:type" />
 <meta content={title} property="og:title" />
 <meta content={t(Astro.currentLocale, 'siteDescription')} property="og:description" />
-<meta content={Astro.url} property="og:url" />
+<meta content={cleanUrl} property="og:url" />
 
 <meta content={coverLink} property="og:image" />
 <meta content="1200" property="og:image:width" />

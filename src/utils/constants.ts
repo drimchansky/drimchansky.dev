@@ -10,3 +10,5 @@ export const THEME_CLASSES = {
   [ColorTheme.DARK]: 'is-dark-theme',
   [ColorTheme.LIGHT]: 'is-light-theme'
 }
+
+export const CUSTOM_IMAGE_ROUTES = ['resume']
