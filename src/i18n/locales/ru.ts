@@ -17,7 +17,7 @@ export const ru: LocaleCollection = {
   siteDescription: 'Личный сайт Никиты Чернова',
   skipLink: 'Перейти к основному содержимому',
   summary: 'О себе',
-  theme: 'Тема',
+  theme: 'Переключатель цветовой схемы',
   toLocale: 'English',
   workingExperience: 'Опыт работы'
 }
