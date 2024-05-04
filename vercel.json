@@ -5,6 +5,10 @@
     {
       "source": "/",
       "destination": "/en"
+    },
+    {
+      "source": "/resume",
+      "destination": "/en/resume"
     }
   ],
   "headers": [
