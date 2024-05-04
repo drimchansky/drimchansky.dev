@@ -18,6 +18,7 @@ export type LocaleCollection = {
   present: string
   resume: string
   siteDescription: string
+  skipLink: string
   summary: string
   theme: string
   toLocale: string
