@@ -15,6 +15,7 @@ export const ru: LocaleCollection = {
   present: 'на данный момент',
   resume: 'Резюме',
   siteDescription: 'Личный сайт Никиты Чернова',
+  skipLink: 'Перейти к основному содержимому',
   summary: 'О себе',
   theme: 'Тема',
   toLocale: 'English',
