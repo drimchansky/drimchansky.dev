@@ -1,0 +1,125 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
+import LangSwitcher from '@/components/lang-switcher.astro'
+import ThemeSwitcher from '@/components/theme-switcher.astro'
+import { siteInfo } from '@/data/site-info'
+import { getLocale, t } from '@/i18n'
+
+interface Props {
+  class?: string
+  id?: string
+}
+
+const { class: className, ...attributes } = Astro.props
+
+const pathname = new URL(Astro.request.url).pathname
+const locale = getLocale(Astro.currentLocale)
+const currentRoute = pathname.slice(1).replace(`${locale}`, '').slice(0, -1) || '/'
+---
+
+<nav class:list={['menu', 'menu-closed', className]} {...attributes}>
+  <ul class="list">
+    {
+      siteInfo.navigation.map(({ route, token }) => (
+        <li class="item">
+          <a class={`link ${currentRoute === route ? 'active' : ''}`} href={getRelativeLocaleUrl(locale, route)}>
+            {t(Astro.currentLocale, token)}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <LangSwitcher />
+  <ThemeSwitcher />
+</nav>
+
+<style>
+  @import '../styles/media.css';
+  @import '../styles/mixins.css';
+
+  .menu {
+    position: fixed;
+    left: 0px;
+    display: none;
+    width: 100%;
+    padding: 16px var(--page-padding-x);
+    background: var(--c-menu-bg);
+    gap: 1rem;
+    grid-template-rows: auto repeat(2, min-content);
+    inset-block: var(--header-height) 0;
+    justify-items: center;
+    overflow-y: scroll;
+  }
+
+  .menu-opened {
+    display: grid;
+  }
+
+  .menu-closed {
+    display: none;
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    gap: 0.5rem;
+    list-style-type: none;
+  }
+
+  .item {
+    padding: 0.25rem;
+  }
+
+  .link {
+    @mixin focus;
+
+    display: inline-flex;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background: var(--c-menu-link-bg);
+    color: var(--c-menu-link-text);
+    text-decoration: none;
+    transition:
+      background-color var(--link-hover-duration),
+      color var(--link-hover-duration);
+
+    @media (hover: hover) {
+      &:hover {
+        background: var(--c-menu-link-bg-hover);
+        color: var(--c-menu-link-text-hover);
+      }
+    }
+
+    &.active {
+      opacity: 0.7;
+    }
+  }
+
+  @media (--viewport-small) {
+    .list {
+      flex-direction: row;
+      justify-self: start;
+    }
+
+    .menu {
+      position: static;
+      display: grid;
+      align-items: center;
+      padding: 0;
+      background: transparent;
+      grid-template-columns: auto repeat(2, min-content);
+      grid-template-rows: unset;
+      overflow-y: auto;
+    }
+
+    .hamburger {
+      display: none;
+    }
+  }
+</style>

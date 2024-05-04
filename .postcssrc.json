@@ -1,9 +1,10 @@
 {
   "plugins": {
-    "postcss-import": {},
+    "postcss-mixins": {},
     "postcss-nested": {},
     "@csstools/postcss-oklab-function": {
       "preserve": true
-    }
+    },
+    "postcss-preset-env": {}
   }
 }

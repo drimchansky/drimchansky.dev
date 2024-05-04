@@ -1,0 +1,70 @@
+@import './media.css';
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+html {
+  background-color: var(--c-main-bg);
+  font-size: 16px;
+
+  @media (--viewport-small) {
+    & {
+      font-size: 18px;
+    }
+  }
+
+  @media (--viewport-large) {
+    & {
+      font-size: 20px;
+    }
+  }
+}
+
+body {
+  line-height: var(--line-height);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+}
+
+p {
+  margin: 0;
+  padding-block: 0.5rem;
+}
+
+.clip {
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  margin: -1px;
+  clip-path: inset(50%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+}
+
+@media (--viewport-small) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (--viewport-large) {
+  html {
+    font-size: 20px;
+  }
+}

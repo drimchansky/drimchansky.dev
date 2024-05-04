@@ -1,3 +1,3 @@
 import { inject } from '@vercel/analytics'
 
-inject()
+inject({ mode: import.meta.env.MODE as 'development' | 'production' })

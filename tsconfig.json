@@ -1,16 +1,10 @@
 {
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "module": "ESNext",
-    "target": "ESNext",
-    "removeComments": true,
-    "noImplicitAny": true,
-    "preserveConstEnums": true,
-    "skipLibCheck": true,
-    "allowJs": false,
-    "alwaysStrict": true,
-    "resolveJsonModule": true,
-    "typeRoots": ["node_modules/@types"]
-  }
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist", ".vercel", "public"]
 }
