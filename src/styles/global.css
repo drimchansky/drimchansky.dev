@@ -36,6 +36,10 @@ body {
   font-size: var(--font-size-base);
 }
 
+main {
+  scroll-margin-top: 2rem;
+}
+
 p {
   margin: 0;
   padding-block: 0.5rem;
