@@ -15,7 +15,7 @@ export const en: LocaleCollection = {
   present: 'Present',
   resume: 'Resume',
   siteDescription: 'Personal website of Nikita Chernov',
-  skipLink: 'Перейти к основному содержимому',
+  skipLink: 'Go to main content',
   summary: 'Summary',
   theme: 'Color theme switcher',
   toLocale: 'Русский',
