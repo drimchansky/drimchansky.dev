@@ -14,7 +14,7 @@ const pathname = Astro.url.pathname.replace(`/${locale}`, '')
 const route = pathname.split('/')[1]
 
 const cleanUrl = urlOrigin + pathname
-const coverLink = `${urlOrigin}/covers/${CUSTOM_IMAGE_ROUTES.includes(route) ? route : 'main'}-${locale}.png`
+const coverLink = `${urlOrigin}/covers/${CUSTOM_IMAGE_ROUTES.includes(route) ? route : 'main'}-${locale}.jpg`
 ---
 
 <meta charset="UTF-8" />
