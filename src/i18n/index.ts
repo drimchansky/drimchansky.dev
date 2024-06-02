@@ -8,6 +8,7 @@ export type LocaleCollection = {
   additionalInfo: string
   auto: string
   dark: string
+  download: string
   familyName: string
   fullName: string
   givenName: string
@@ -17,7 +18,6 @@ export type LocaleCollection = {
   occupation: string
   present: string
   resume: string
-  saveAsPDF: string
   siteDescription: string
   skipLink: string
   summary: string
