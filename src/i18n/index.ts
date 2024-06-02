@@ -17,6 +17,7 @@ export type LocaleCollection = {
   occupation: string
   present: string
   resume: string
+  saveAsPDF: string
   siteDescription: string
   skipLink: string
   summary: string

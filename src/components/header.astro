@@ -59,12 +59,6 @@ import SkipLink from '@/components/skip-link.astro'
 <style>
   @import '../styles/media.css';
 
-  @media print {
-    .header {
-      display: none;
-    }
-  }
-
   .header {
     position: sticky;
     z-index: 1;
@@ -78,6 +72,12 @@ import SkipLink from '@/components/skip-link.astro'
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  @media print {
+    .header {
+      display: none;
+    }
   }
 
   @media (--viewport-small) {

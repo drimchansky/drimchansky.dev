@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro'
 
 import { getCollection } from 'astro:content'
 
+import Button from '@/components/button.astro'
 import Container from '@/components/container.astro'
 import ResumeItem from '@/components/resume-item.astro'
 import { siteInfo } from '@/data/site-info'
@@ -91,9 +92,19 @@ const AdditionalContent = (await generalCollection.filter(p => p.slug.startsWith
 
       <h2 class="section-header">{t(Astro.currentLocale, 'additionalInfo')}</h2>
       <AdditionalContent />
+
+      <Button class="print-button" id="print-button" type="button">{t(Astro.currentLocale, 'saveAsPDF')}</Button>
     </article>
   </Container>
 </BaseLayout>
+
+<script>
+  const printButton = document.getElementById('print-button')!
+
+  printButton.addEventListener('click', () => {
+    window.print()
+  })
+</script>
 
 <style>
   @import '../../styles/mixins.css';
@@ -171,6 +182,16 @@ const AdditionalContent = (await generalCollection.filter(p => p.slug.startsWith
 
   .position-item:not(:first-child) {
     margin-top: 2.5rem;
+  }
+
+  .print-button {
+    margin: 2.5rem auto 0 auto;
+  }
+
+  @media print {
+    .print-button {
+      display: none;
+    }
   }
 
   @media print, (--viewport-small) {
