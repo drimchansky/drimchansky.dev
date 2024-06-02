@@ -14,6 +14,7 @@ export const ru: LocaleCollection = {
   occupation: 'Фронтенд-инженер',
   present: 'на данный момент',
   resume: 'Резюме',
+  saveAsPDF: 'Сохранить как PDF',
   siteDescription: 'Личный сайт Никиты Чернова',
   skipLink: 'Перейти к основному содержимому',
   summary: 'О себе',

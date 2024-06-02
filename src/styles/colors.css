@@ -20,6 +20,11 @@
   --c-text-primary: oklch(20.97% 0.008 274.53);
   --c-text-secondary: oklch(34.08% 0.016 269.69);
   --c-text-gray: oklch(51.03% 0 0);
+
+  --c-button-bg-origin: oklch(22.21% 0 0);
+  --c-button-bg-hover: oklch(52.08% 0 0);
+  --c-button-bg-active: oklch(69.93% 0 0);
+  --c-button-text: oklch(100% 0 0);
 }
 
 @define-mixin colors-dark-theme {
@@ -44,6 +49,11 @@
   --c-text-primary: oklch(100% 0 0);
   --c-text-secondary: oklch(81.63% 0.007 270.04);
   --c-text-gray: oklch(81.63% 0 0.04);
+
+  --c-button-bg-origin: oklch(100% 0 0);
+  --c-button-bg-hover: oklch(84.83% 0 0);
+  --c-button-bg-active: oklch(69.93% 0 0);
+  --c-button-text: oklch(22.21% 0 0);
 }
 
 :root {

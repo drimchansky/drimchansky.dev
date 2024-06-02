@@ -14,6 +14,7 @@ export const en: LocaleCollection = {
   occupation: 'Frontend engineer',
   present: 'Present',
   resume: 'Resume',
+  saveAsPDF: 'Save as PDF',
   siteDescription: 'Personal website of Nikita Chernov',
   skipLink: 'Go to main content',
   summary: 'Summary',
