@@ -10,6 +10,7 @@ export const ru: LocaleCollection = {
   fullName: 'Никита Чернов',
   givenName: 'Никита',
   homePage: 'Главная',
+  intro: 'Фронтенд-инженер, сфокусированный на пользовательском опыте и производительности',
   light: 'Светлая',
   location: 'Тбилиси, Грузия',
   occupation: 'Фронтенд-инженер',

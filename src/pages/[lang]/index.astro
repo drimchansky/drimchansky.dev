@@ -19,6 +19,9 @@ export const getStaticPaths = (async () => [
         <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>
         <span itemprop="familyName">{t(Astro.currentLocale, 'familyName')}</span>
       </h1>
+      <p class="intro">
+        {t(Astro.currentLocale, 'intro')}
+      </p>
       <SocialLinks />
     </div>
   </Container>
@@ -42,5 +45,11 @@ export const getStaticPaths = (async () => [
 
   .home-content {
     margin-top: -3rem;
+  }
+
+  .intro {
+    padding: 0;
+    color: var(--c-text-primary);
+    font-size: var(--font-size-lg);
   }
 </style>

@@ -13,6 +13,7 @@ export type LocaleCollection = {
   fullName: string
   givenName: string
   homePage: string
+  intro: string
   light: string
   location: string
   occupation: string
