@@ -16,6 +16,7 @@ export type LocaleCollection = {
   intro: string
   light: string
   location: string
+  menu: string
   occupation: string
   present: string
   resume: string
