@@ -50,7 +50,7 @@ const currentRoute = pathname.slice(1).replace(`${locale}`, '').slice(0, -1) || 
     grid-template-rows: auto repeat(2, min-content);
     inset-block: var(--header-height) 0;
     justify-items: center;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   .menu-opened {
@@ -115,7 +115,6 @@ const currentRoute = pathname.slice(1).replace(`${locale}`, '').slice(0, -1) || 
       background: transparent;
       grid-template-columns: auto repeat(2, min-content);
       grid-template-rows: unset;
-      overflow-y: auto;
     }
 
     .hamburger {
