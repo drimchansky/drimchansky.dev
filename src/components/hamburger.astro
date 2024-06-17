@@ -1,6 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components'
 
+import { t } from '@/i18n'
+
 interface Props {
   class?: string
   id?: string
@@ -10,7 +12,7 @@ const { class: className, ...attributes } = Astro.props
 ---
 
 <button class:list={['hamburger', className]} type="button" {...attributes}>
-  <span>Menu</span>
+  <span>{t(Astro.currentLocale, 'menu')}</span>
   <Icon class="icon icon-hamburger" name="hamburger" />
   <Icon class="icon icon-cross" name="cross" />
 </button>
@@ -31,6 +33,7 @@ const { class: className, ...attributes } = Astro.props
     border: none;
     background: transparent;
     color: var(--c-text-primary);
+    cursor: pointer;
 
     & .icon {
       display: none;

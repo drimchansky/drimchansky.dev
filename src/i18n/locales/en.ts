@@ -13,6 +13,7 @@ export const en: LocaleCollection = {
   intro: 'Frontend engineer focused on user experience and web performance',
   light: 'Light',
   location: 'Tbilisi, Georgia',
+  menu: 'Menu',
   occupation: 'Frontend engineer',
   present: 'Present',
   resume: 'Resume',
