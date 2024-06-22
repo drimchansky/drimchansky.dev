@@ -41,8 +41,12 @@ const locale = getLocale(Astro.currentLocale)
       }
     </script>
 
-    <script src=`https://www.googletagmanager.com/gtag/js?id=${analyticsId}` type="text/partytown" defer is:inline
-    ></script>
+    <script
+      fetchpriority="low"
+      src=`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`
+      type="text/partytown"
+      defer
+      is:inline></script>
     <script define:vars={{ analyticsId }} type="text/partytown" defer is:inline>
       window.dataLayer = window.dataLayer || []
       function gtag() {
