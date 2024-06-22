@@ -1,3 +1,4 @@
+import partytown from '@astrojs/partytown'
 import sitemap from '@astrojs/sitemap'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
@@ -20,6 +21,14 @@ export default defineConfig({
       prefixDefaultLocale: true
     }
   },
-  integrations: [icon(), sitemap()],
+  integrations: [
+    icon(),
+    sitemap(),
+    partytown({
+      config: {
+        forward: ['dataLayer.push']
+      }
+    })
+  ],
   site: process.env.SITE_URL
 })

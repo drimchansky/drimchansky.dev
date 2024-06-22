@@ -13,6 +13,7 @@ interface Props {
   title: string
 }
 
+const analyticsId = import.meta.env.ANALYTICS_ID
 const { title } = Astro.props
 const locale = getLocale(Astro.currentLocale)
 ---
@@ -27,6 +28,7 @@ const locale = getLocale(Astro.currentLocale)
     <main id="main">
       <slot />
     </main>
+
     <script is:inline>
       const toggleElement = document.getElementById('theme-toggle')
 
@@ -37,6 +39,17 @@ const locale = getLocale(Astro.currentLocale)
         const input = toggleElement.querySelector(`[value="${theme}"]`)
         input && (input.checked = true)
       }
+    </script>
+
+    <script src=`https://www.googletagmanager.com/gtag/js?id=${analyticsId}` type="text/partytown" defer is:inline
+    ></script>
+    <script define:vars={{ analyticsId }} type="text/partytown" defer is:inline>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', analyticsId)
     </script>
   </body>
 </html>
