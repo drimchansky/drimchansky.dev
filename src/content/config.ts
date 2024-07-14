@@ -6,6 +6,8 @@ const resumeCollection = defineCollection({
     companyLink: z.string(),
     dateEnd: z.date().optional(),
     dateStart: z.date(),
+    isCurrent: z.boolean().optional(),
+    isDevelopment: z.boolean().optional(),
     position: z.string()
   })
 })

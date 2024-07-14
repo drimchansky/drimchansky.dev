@@ -1,7 +1,8 @@
 ---
-import { intervalToDuration } from 'date-fns'
+import { differenceInMonths } from 'date-fns'
 
-import { formatYearsAndMonths, getLocale, t } from '@/i18n'
+import { getLocale, t } from '@/i18n'
+import { getDurationTextFromMonths } from '@/utils/functions/getDurationTextFromMonths'
 
 interface Props {
   company: string
@@ -24,11 +25,6 @@ const dateEndText =
     year: 'numeric'
   }) || t(Astro.currentLocale, 'present')
 
-const duration = intervalToDuration({
-  end: dateEnd || new Date(),
-  start: dateStart
-})
-
 const locale = getLocale(Astro.currentLocale)
 ---
 
@@ -40,7 +36,7 @@ const locale = getLocale(Astro.currentLocale)
       <time datetime={dateStart.toISOString()}>{dateStartText}</time>
       {' - '}
       <time datetime={dateEnd?.toISOString()}>{dateEndText}</time>
-      ({formatYearsAndMonths(locale, duration.years, duration.months)})
+      ({getDurationTextFromMonths(differenceInMonths(dateEnd || new Date(), dateStart), locale)})
     </span>
   </h3>
 </div>
@@ -50,7 +46,7 @@ const locale = getLocale(Astro.currentLocale)
 </div>
 
 <style>
-  @import '../styles/mixins.css';
+  @import '../../styles/mixins.css';
 
   .company {
     @mixin focus;

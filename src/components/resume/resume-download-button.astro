@@ -1,0 +1,27 @@
+---
+import { getLocale, t } from '@/i18n'
+
+import ButtonLink from '../button-link.astro'
+
+const locale = getLocale(Astro.currentLocale)
+---
+
+<ButtonLink
+  class="print-button"
+  download=`CV_Nikita-Chernov_Frontend-Developer_${locale}`
+  href=`/files/CV_Nikita-Chernov_Frontend-Developer_${locale}.pdf`
+>
+  {t(Astro.currentLocale, 'download')}
+</ButtonLink>
+
+<style>
+  .print-button {
+    margin: 2.5rem auto 0 auto;
+  }
+
+  @media print {
+    .print-button {
+      display: none;
+    }
+  }
+</style>

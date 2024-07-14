@@ -3,6 +3,8 @@ company: TrueLab Game Studios
 dateStart: 2020-12-01
 position: Frontend Developer
 companyLink: https://truelab.games/
+isDevelopment: true
+isCurrent: true
 ---
 
 - Developing a UI module: React, Redux-toolkit, Tailwind CSS;
