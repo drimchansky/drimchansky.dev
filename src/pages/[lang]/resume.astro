@@ -1,14 +1,18 @@
 ---
 import type { GetStaticPaths } from 'astro'
 
-import { getCollection } from 'astro:content'
+import { getCollection, getEntry } from 'astro:content'
+import { marked } from 'marked'
 
-import ButtonLink from '@/components/button-link.astro'
 import Container from '@/components/container.astro'
-import ResumeItem from '@/components/resume-item.astro'
-import { siteInfo } from '@/data/site-info'
+import ResumeDownloadButton from '@/components/resume/resume-download-button.astro'
+import ResumeHeader from '@/components/resume/resume-header.astro'
+import ResumeItem from '@/components/resume/resume-item.astro'
 import { getLocale, t } from '@/i18n'
 import BaseLayout from '@/layouts/base-layout.astro'
+import { getCareerDurationInMonths } from '@/utils/functions/getCareerDurationInMonths'
+import { getDurationTextFromMonths } from '@/utils/functions/getDurationTextFromMonths'
+import { replaceTextVars } from '@/utils/functions/replaceTextVars'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -17,55 +21,56 @@ export const getStaticPaths = (async () => [
 
 const locale = getLocale(Astro.currentLocale)
 const resumeCollection = await getCollection('resume')
-const generalCollection = await getCollection('general')
 
 const positions = resumeCollection
   .filter(p => p.slug.startsWith(`${locale}/`))
   .sort((a, b) => Number(b.data.dateStart) - Number(a.data.dateStart))
 
-const SummaryContent = (await generalCollection.filter(p => p.slug.startsWith(`${locale}/summary`))[0].render()).Content
-const AdditionalContent = (await generalCollection.filter(p => p.slug.startsWith(`${locale}/additional`))[0].render())
-  .Content
+const experienceMonths = getCareerDurationInMonths(
+  positions.map(position => {
+    return {
+      dateEnd: position.data.dateEnd,
+      dateStart: position.data.dateStart,
+      isCurrent: position.data.isCurrent
+    }
+  })
+)
+
+const experienceDevelopmentMonths = getCareerDurationInMonths(
+  positions
+    .filter(position => position.data.isDevelopment)
+    .map(position => {
+      return {
+        dateEnd: position.data.dateEnd,
+        dateStart: position.data.dateStart,
+        isCurrent: position.data.isCurrent
+      }
+    })
+)
+
+const experienceText = getDurationTextFromMonths(experienceMonths, locale)
+const experienceDevelopmentText = getDurationTextFromMonths(experienceDevelopmentMonths, locale)
+
+const summaryText = (await getEntry('general', `${locale}/summary`)).body
+const additionalContentText = (await getEntry('general', `${locale}/additional`)).body
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'fullName')} – ${t(Astro.currentLocale, 'resume')}`>
   <Container>
     <article class="resume">
-      <header class="header">
-        <div class="header-profile">
-          <h1 class="header-name">{t(Astro.currentLocale, 'fullName')}</h1>
-          <p class="header-occupation">{t(Astro.currentLocale, 'occupation')}</p>
-          <p class="header-location">{t(Astro.currentLocale, 'location')}</p>
-        </div>
+      <ResumeHeader />
 
-        <div class="header-contacts">
-          <ul class="header-contacts-list">
-            {
-              siteInfo.socialLinks.map(({ content, name, showOnResumePage, url }) => {
-                return (
-                  showOnResumePage && (
-                    <li class="header-contacts-item">
-                      {name}:
-                      <a class="header-contacts-link" href={url} itemprop="sameAs" rel="me" target="_blank">
-                        {content}
-                      </a>
-                    </li>
-                  )
-                )
-              })
-            }
-            <li class="header-contacts-item">
-              E-mail:
-              <a class="header-contacts-link" href="mailto:drimchansky@gmail.com" itemprop="email" target="_blank">
-                drimchansky@gmail.com
-              </a>
-            </li>
-          </ul>
-        </div>
-      </header>
-
-      <h2 class="section-header">{t(Astro.currentLocale, 'summary')}</h2>
-      <SummaryContent />
+      <h2 class="section-header">
+        {t(Astro.currentLocale, 'summary')}
+      </h2>
+      <span
+        set:html={marked(
+          replaceTextVars(summaryText, {
+            '@experience@': experienceText,
+            '@experienceDev@': experienceDevelopmentText
+          })
+        )}
+      />
 
       <h2 class="section-header">{t(Astro.currentLocale, 'workingExperience')}</h2>
 
@@ -91,16 +96,9 @@ const AdditionalContent = (await generalCollection.filter(p => p.slug.startsWith
       </ul>
 
       <h2 class="section-header">{t(Astro.currentLocale, 'additionalInfo')}</h2>
-      <AdditionalContent />
+      <span set:html={marked(additionalContentText)} />
 
-      <ButtonLink
-        class="print-button"
-        download=`CV_Nikita-Chernov_Frontend-Developer_${locale}`
-        href=`/files/CV_Nikita-Chernov_Frontend-Developer_${locale}.pdf`
-        id="print-button"
-      >
-        {t(Astro.currentLocale, 'download')}
-      </ButtonLink>
+      <ResumeDownloadButton />
     </article>
   </Container>
 </BaseLayout>
@@ -116,52 +114,6 @@ const AdditionalContent = (await generalCollection.filter(p => p.slug.startsWith
     & :global(p) {
       max-width: var(--max-text-width);
     }
-  }
-
-  .header {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--c-header-line);
-    gap: 1rem;
-  }
-
-  .header-name {
-    margin: 0;
-    font-size: var(--font-size-extra);
-    line-height: 1.25;
-  }
-
-  .header-occupation {
-    padding: 0;
-    margin: 0;
-    font-size: var(--font-size-2xl);
-  }
-
-  .header-location {
-    padding: 0;
-    margin: 0;
-    font-size: var(--font-size-lg);
-  }
-
-  .header-contacts-list {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-  }
-
-  .header-contacts-item {
-    &:not(:first-child) {
-      margin-top: 0.25rem;
-    }
-  }
-
-  .header-contacts-link {
-    @mixin link-underline;
-    @mixin focus;
-
-    color: var(--c-text-primary);
   }
 
   .section-header {
@@ -181,21 +133,5 @@ const AdditionalContent = (await generalCollection.filter(p => p.slug.startsWith
 
   .position-item:not(:first-child) {
     margin-top: 2.5rem;
-  }
-
-  .print-button {
-    margin: 2.5rem auto 0 auto;
-  }
-
-  @media print {
-    .print-button {
-      display: none;
-    }
-  }
-
-  @media print, (--viewport-small) {
-    .header {
-      flex-direction: row;
-    }
   }
 </style>

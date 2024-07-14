@@ -1,0 +1,94 @@
+---
+import { siteInfo } from '@/data/site-info'
+import { t } from '@/i18n'
+---
+
+<header class="header">
+  <div class="profile">
+    <h1 class="name">{t(Astro.currentLocale, 'fullName')}</h1>
+    <p class="occupation">{t(Astro.currentLocale, 'occupation')}</p>
+    <p class="location">{t(Astro.currentLocale, 'location')}</p>
+  </div>
+
+  <div class="contacts">
+    <ul class="contacts-list">
+      {
+        siteInfo.socialLinks.map(({ content, name, showOnResumePage, url }) => {
+          return (
+            showOnResumePage && (
+              <li class="contacts-item">
+                {name}:
+                <a class="contacts-link" href={url} itemprop="sameAs" rel="me" target="_blank">
+                  {content}
+                </a>
+              </li>
+            )
+          )
+        })
+      }
+      <li class="contacts-item">
+        E-mail:
+        <a class="contacts-link" href="mailto:drimchansky@gmail.com" itemprop="email" target="_blank">
+          drimchansky@gmail.com
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<style>
+  @import '../../styles/mixins.css';
+  @import '../../styles/media.css';
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--c-header-line);
+    gap: 1rem;
+  }
+
+  .name {
+    margin: 0;
+    font-size: var(--font-size-extra);
+    line-height: 1.25;
+  }
+
+  .occupation {
+    padding: 0;
+    margin: 0;
+    font-size: var(--font-size-2xl);
+  }
+
+  .location {
+    padding: 0;
+    margin: 0;
+    font-size: var(--font-size-lg);
+  }
+
+  .contacts-list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  .contacts-item {
+    &:not(:first-child) {
+      margin-top: 0.25rem;
+    }
+  }
+
+  .contacts-link {
+    @mixin link-underline;
+    @mixin focus;
+
+    color: var(--c-text-primary);
+  }
+
+  @media print, (--viewport-small) {
+    .header {
+      flex-direction: row;
+    }
+  }
+</style>
