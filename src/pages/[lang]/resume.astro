@@ -51,8 +51,8 @@ const experienceDevelopmentMonths = getCareerDurationInMonths(
 const experienceText = getDurationTextFromMonths(experienceMonths, locale)
 const experienceDevelopmentText = getDurationTextFromMonths(experienceDevelopmentMonths, locale)
 
-const summaryText = (await getEntry('general', `${locale}/summary`)).body
-const additionalContentText = (await getEntry('general', `${locale}/additional`)).body
+const Summary = (await (await getEntry('general', `${locale}/summary`)).render()).Content
+const AdditionalContent = (await (await getEntry('general', `${locale}/additional`)).render()).Content
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'fullName')} – ${t(Astro.currentLocale, 'resume')}`>
@@ -63,14 +63,15 @@ const additionalContentText = (await getEntry('general', `${locale}/additional`)
       <h2 class="section-header">
         {t(Astro.currentLocale, 'summary')}
       </h2>
-      <span
-        set:html={marked(
-          replaceTextVars(summaryText, {
+      <Summary />
+      <p>
+        {
+          replaceTextVars(t(Astro.currentLocale, 'experienceLine'), {
             '@experience@': experienceText,
             '@experienceDev@': experienceDevelopmentText
           })
-        )}
-      />
+        }
+      </p>
 
       <h2 class="section-header">{t(Astro.currentLocale, 'workingExperience')}</h2>
 
@@ -96,7 +97,7 @@ const additionalContentText = (await getEntry('general', `${locale}/additional`)
       </ul>
 
       <h2 class="section-header">{t(Astro.currentLocale, 'additionalInfo')}</h2>
-      <span set:html={marked(additionalContentText)} />
+      <AdditionalContent />
 
       <ResumeDownloadButton />
     </article>

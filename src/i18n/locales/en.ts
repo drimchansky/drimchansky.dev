@@ -6,6 +6,8 @@ export const en: LocaleCollection = {
   auto: 'Auto',
   dark: 'Dark',
   download: 'Download',
+  experienceLine:
+    'I have @experience@ of working experience including @experienceDev@ in commercial software development.',
   familyName: 'Chernov',
   fullName: 'Nikita Chernov',
   givenName: 'Nikita',
