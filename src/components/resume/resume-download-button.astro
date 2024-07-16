@@ -11,7 +11,11 @@ const fileNameByLocale: Record<Locale, string> = {
 }
 ---
 
-<ButtonLink class="print-button" href=`/files/${fileNameByLocale[locale]}.pdf`>
+<ButtonLink
+  class="print-button"
+  download=`${fileNameByLocale[locale]}.pdf`
+  href=`/files/${fileNameByLocale[locale]}.pdf`
+>
   {t(Astro.currentLocale, 'download')}
 </ButtonLink>
 
