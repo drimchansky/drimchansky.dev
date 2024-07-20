@@ -1,17 +1,15 @@
 ---
 import type { GetStaticPaths } from 'astro'
 
-import { getCollection, getEntry } from 'astro:content'
+import { getEntry } from 'astro:content'
 
 import Container from '@/components/container.astro'
 import ResumeDownloadButton from '@/components/resume/resume-download-button.astro'
 import ResumeHeader from '@/components/resume/resume-header.astro'
-import ResumeItem from '@/components/resume/resume-item.astro'
+import ResumePositions from '@/components/resume/resume-positions.astro'
+import ResumeSectionHeader from '@/components/resume/resume-section-header.astro'
 import { getLocale, t } from '@/i18n'
 import BaseLayout from '@/layouts/base-layout.astro'
-import { getCareerDurationInMonths } from '@/utils/functions/getCareerDurationInMonths'
-import { getDurationTextFromMonths } from '@/utils/functions/getDurationTextFromMonths'
-import { replaceTextVars } from '@/utils/functions/replaceTextVars'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -19,36 +17,6 @@ export const getStaticPaths = (async () => [
 ]) satisfies GetStaticPaths
 
 const locale = getLocale(Astro.currentLocale)
-const resumeCollection = await getCollection('resume')
-
-const positions = resumeCollection
-  .filter(p => p.slug.startsWith(`${locale}/`))
-  .sort((a, b) => Number(b.data.dateStart) - Number(a.data.dateStart))
-
-const experienceMonths = getCareerDurationInMonths(
-  positions.map(position => {
-    return {
-      dateEnd: position.data.dateEnd,
-      dateStart: position.data.dateStart,
-      isCurrent: position.data.isCurrent
-    }
-  })
-)
-
-const experienceDevelopmentMonths = getCareerDurationInMonths(
-  positions
-    .filter(position => position.data.isDevelopment)
-    .map(position => {
-      return {
-        dateEnd: position.data.dateEnd,
-        dateStart: position.data.dateStart,
-        isCurrent: position.data.isCurrent
-      }
-    })
-)
-
-const experienceText = getDurationTextFromMonths(experienceMonths, locale)
-const experienceDevelopmentText = getDurationTextFromMonths(experienceDevelopmentMonths, locale)
 
 const Summary = (await (await getEntry('general', `${locale}/summary`)).render()).Content
 const AdditionalContent = (await (await getEntry('general', `${locale}/additional`)).render()).Content
@@ -59,43 +27,13 @@ const AdditionalContent = (await (await getEntry('general', `${locale}/additiona
     <article class="resume">
       <ResumeHeader />
 
-      <h2 class="section-header">
-        {t(Astro.currentLocale, 'summary')}
-      </h2>
+      <ResumeSectionHeader text={t(Astro.currentLocale, 'summary')} />
       <Summary />
-      <p>
-        {
-          replaceTextVars(t(Astro.currentLocale, 'experienceLine'), {
-            '@experience@': experienceText,
-            '@experienceDev@': experienceDevelopmentText
-          })
-        }
-      </p>
 
-      <h2 class="section-header">{t(Astro.currentLocale, 'workingExperience')}</h2>
+      <ResumeSectionHeader text={t(Astro.currentLocale, 'workingExperience')} />
+      <ResumePositions />
 
-      <ul class="positions-list">
-        {
-          positions.map(async ({ data, render }) => {
-            const Content = (await render()).Content
-            return (
-              <li class="position-item">
-                <ResumeItem
-                  company={data.company}
-                  companyLink={data.companyLink}
-                  dateEnd={data.dateEnd}
-                  dateStart={data.dateStart}
-                  position={data.position}
-                >
-                  <Content />
-                </ResumeItem>
-              </li>
-            )
-          })
-        }
-      </ul>
-
-      <h2 class="section-header">{t(Astro.currentLocale, 'additionalInfo')}</h2>
+      <ResumeSectionHeader text={t(Astro.currentLocale, 'additionalInfo')} />
       <AdditionalContent />
 
       <ResumeDownloadButton />
@@ -114,24 +52,5 @@ const AdditionalContent = (await (await getEntry('general', `${locale}/additiona
     & :global(p) {
       max-width: var(--max-text-width);
     }
-  }
-
-  .section-header {
-    margin: 1rem 0 0 0;
-    font-size: var(--font-size-2xl);
-
-    &:not(:first-of-type) {
-      margin-top: 2rem;
-    }
-  }
-
-  .positions-list {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-  }
-
-  .position-item:not(:first-child) {
-    margin-top: 2.5rem;
   }
 </style>
