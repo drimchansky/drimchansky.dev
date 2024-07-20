@@ -1,4 +1,4 @@
-import { differenceInMonths, intervalToDuration } from 'date-fns'
+import { differenceInMonths } from 'date-fns'
 
 type TPositionInfo = {
   dateEnd?: Date
