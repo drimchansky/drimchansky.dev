@@ -23,7 +23,7 @@ export default defineFlatConfig([
       'perfectionist/sort-astro-attributes': [
         'error',
         {
-          'custom-groups': { description: 'description', title: 'title' },
+          customGroups: { description: 'description', title: 'title' },
           groups: ['title', 'description', 'multiline', 'unknown', ['shorthand', 'astro-shorthand']],
           order: 'asc',
           type: 'alphabetical'
@@ -43,8 +43,8 @@ export default defineFlatConfig([
             'object',
             'unknown'
           ],
-          'internal-pattern': ['@/**'],
-          'newlines-between': 'always',
+          internalPattern: ['@/**'],
+          newlinesBetween: 'always',
           order: 'asc',
           type: 'alphabetical'
         }
