@@ -32,12 +32,14 @@ const locale = getLocale(Astro.currentLocale)
   <a class="company" href={companyLink}>{company}</a>
   <h3 class="position">
     {position}
-    <span class="time">
+    <div class="time">
       <time datetime={dateStart.toISOString()}>{dateStartText}</time>
       {' - '}
       <time datetime={dateEnd?.toISOString()}>{dateEndText}</time>
-      ({getDurationTextFromMonths(differenceInMonths(dateEnd || new Date(), dateStart), locale)})
-    </span>
+      <div class="duration">
+        ({getDurationTextFromMonths(differenceInMonths(dateEnd || new Date(), dateStart), locale)})
+      </div>
+    </div>
   </h3>
 </div>
 
@@ -78,5 +80,11 @@ const locale = getLocale(Astro.currentLocale)
     color: var(--c-text-gray);
     font-size: var(--font-size-base);
     font-weight: 300;
+  }
+
+  @media print {
+    .duration {
+      display: none;
+    }
   }
 </style>
