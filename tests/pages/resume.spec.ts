@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test'
 
-test.describe('Index page', () => {
+test.describe('Resume page page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:4321/')
+    await page.goto('http://localhost:4321/en/resume/')
   })
 
   test.afterEach(async ({ page }) => {
