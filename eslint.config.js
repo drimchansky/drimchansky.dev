@@ -11,7 +11,7 @@ const compat = new FlatCompat({
 
 export default defineFlatConfig([
   {
-    ignores: ['dist/', '.astro/', 'src/env.d.ts', '.history/']
+    ignores: ['dist/', '.astro/', 'src/env.d.ts', '.history/', './tests']
   },
   ...compat.extends('eslint-config-standard'),
   {

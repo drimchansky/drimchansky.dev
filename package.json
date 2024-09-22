@@ -8,7 +8,10 @@
     "preview": "astro preview",
     "astro": "astro",
     "env": "cat .env.example > .env",
+    "test": "pnpm run test:lint && pnpm run test:playwright",
     "test:lint": "astro check && eslint .",
+    "test:playwright": "npx playwright test",
+    "playwright:update-screenshots": "npx playwright test --update-snapshots",
     "format": "prettier --write . && eslint --fix ."
   },
   "browserslist": [
@@ -34,6 +37,8 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
+    "@playwright/test": "^1.47.1",
+    "@types/node": "^22.5.5",
     "@typescript-eslint/parser": "^7.18.0",
     "eslint": "^9.10.0",
     "eslint-config-standard": "^17.1.0",

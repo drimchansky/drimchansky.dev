@@ -10,7 +10,13 @@ const toLocale = locale === 'en' ? 'ru' : 'en'
 const pathname = Astro.url.pathname.replace(`/${locale}`, '')
 ---
 
-<a class="link" href={getRelativeLocaleUrl(toLocale, pathname)} hreflang={toLocale} rel="alternate">
+<a
+  class="link"
+  data-testid="switch-lang"
+  href={getRelativeLocaleUrl(toLocale, pathname)}
+  hreflang={toLocale}
+  rel="alternate"
+>
   <Icon name="globe" />
   {t(Astro.currentLocale, 'toLocale')}
 </a>
