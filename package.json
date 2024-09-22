@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
-    "@typescript-eslint/parser": "^7.18.0",
+    "@typescript-eslint/parser": "^8.6.0",
     "eslint": "^9.10.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-define-config": "^2.1.0",
@@ -47,7 +47,7 @@
     "stylelint-config-idiomatic-order": "^10.0.0",
     "stylelint-config-recommended": "^14.0.1",
     "stylelint-order": "^6.0.4",
-    "typescript-eslint": "^7.18.0"
+    "typescript-eslint": "^8.6.0"
   },
   "pnpm": {
     "peerDependencyRules": {

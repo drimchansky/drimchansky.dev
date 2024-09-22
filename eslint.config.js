@@ -48,7 +48,8 @@ export default defineFlatConfig([
           order: 'asc',
           type: 'alphabetical'
         }
-      ]
+      ],
+      'perfectionist/sort-jsx-props': 'off'
     }
   },
   {
