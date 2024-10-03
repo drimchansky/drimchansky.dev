@@ -24,5 +24,7 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --ignore-scripts
+      - name: Playwright install
+        run: npx playwright install
       - name: Build and test
         run: pnpm test
