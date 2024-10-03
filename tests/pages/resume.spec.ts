@@ -43,6 +43,6 @@ test.describe('Resume page page', () => {
   test('Renders correctly when menu is opened', async ({ isMobile, page }) => {
     if (isMobile) {
       await page.getByTestId('menu-button').click()
-    }
+    } else test.skip()
   })
 })
