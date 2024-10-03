@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon/components'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import { getLocale, t } from '@/i18n'
+import { addTestId } from '@/utils/functions/addTestId'
 
 const locale = getLocale(Astro.currentLocale)
 const toLocale = locale === 'en' ? 'ru' : 'en'
@@ -12,7 +13,7 @@ const pathname = Astro.url.pathname.replace(`/${locale}`, '')
 
 <a
   class="link"
-  data-testid="switch-lang"
+  {...addTestId('switch-lang')}
   href={getRelativeLocaleUrl(toLocale, pathname)}
   hreflang={toLocale}
   rel="alternate"

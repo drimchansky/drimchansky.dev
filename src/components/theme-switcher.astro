@@ -1,5 +1,6 @@
 ---
 import { t } from '@/i18n'
+import { addTestId } from '@/utils/functions/addTestId'
 ---
 
 <fieldset class="switcher" data-nosnippet>
@@ -7,17 +8,17 @@ import { t } from '@/i18n'
 
   <div class="toggle" id="theme-toggle">
     <label class="label">
-      <input class="input" data-testid="set-light-theme" name="color-theme" type="radio" value="light" />
+      <input class="input" {...addTestId('set-light-theme')} name="color-theme" type="radio" value="light" />
       <span class="text">{t(Astro.currentLocale, 'light')}</span>
     </label>
 
     <label class="label">
-      <input class="input" data-testid="set-auto-theme" name="color-theme" type="radio" value="auto" />
+      <input class="input" {...addTestId('set-auto-theme')} name="color-theme" type="radio" value="auto" />
       <span class="text">{t(Astro.currentLocale, 'auto')}</span>
     </label>
 
     <label class="label">
-      <input class="input" data-testid="set-dark-theme" name="color-theme" type="radio" value="dark" />
+      <input class="input" {...addTestId('set-dark-theme')} name="color-theme" type="radio" value="dark" />
       <span class="text">{t(Astro.currentLocale, 'dark')}</span>
     </label>
   </div>
