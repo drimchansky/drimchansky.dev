@@ -3,15 +3,15 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
+    "dev": "npx astro dev",
+    "build": "npx astro check && npx astro build",
+    "preview": "npx astro preview",
     "env": "cat .env.example > .env",
     "test": "pnpm run /^test:/",
-    "test:lint": "astro check && eslint .",
+    "test:lint": "npx astro check && npx eslint .",
     "test:playwright": "npx playwright test",
     "playwright:update-screenshots": "npx playwright test --update-snapshots",
-    "format": "prettier --write . && eslint --fix ."
+    "format": "npx prettier --write . && npx eslint --fix ."
   },
   "browserslist": [
     "last 2 version",
