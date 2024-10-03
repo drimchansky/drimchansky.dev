@@ -39,4 +39,10 @@ test.describe('Resume page page', () => {
       await page.getByTestId('set-dark-theme').click()
     }
   })
+
+  test('Renders correctly when menu is opened', async ({ isMobile, page }) => {
+    if (isMobile) {
+      await page.getByTestId('menu-button').click()
+    }
+  })
 })
