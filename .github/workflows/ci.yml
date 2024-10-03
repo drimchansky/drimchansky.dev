@@ -24,6 +24,8 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --ignore-scripts
+      - name: Prepare env
+        run: pnpm run env
       - name: Git LFS install
         run: git lfs install && git lfs pull
       - name: Playwright install
