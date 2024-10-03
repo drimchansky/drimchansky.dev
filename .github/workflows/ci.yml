@@ -26,5 +26,7 @@ jobs:
         run: pnpm install --ignore-scripts
       - name: Playwright install
         run: npx playwright install
+      - name: Playwright deps install
+        run: npx playwright install-deps
       - name: Build and test
         run: pnpm test
