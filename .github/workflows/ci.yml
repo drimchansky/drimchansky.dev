@@ -26,8 +26,11 @@ jobs:
         run: pnpm install --ignore-scripts
       - name: Prepare env
         run: pnpm run env
-      - name: Git LFS install
-        run: git lfs install && git lfs pull
+      - name: Git LFS install and pull
+        run: |
+          git lfs install
+          git lfs fetch --all
+          git lfs pull
       - name: Playwright install
         run: npx playwright install
       - name: Playwright deps install
