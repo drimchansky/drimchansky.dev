@@ -1,18 +1,16 @@
 import type { TestInfo } from '@playwright/test'
 
-export const configureSnapshotPath =
-  (options?: {}) =>
-  ({}: any, testInfo: TestInfo): any => {
-    const originalSnapshotPath = testInfo.snapshotPath
+export const configureSnapshotPath = (testInfo: TestInfo) => {
+  const originalSnapshotPath = testInfo.snapshotPath
+  testInfo.snapshotPath = snapshotName => {
+    const result = originalSnapshotPath
+      .apply(testInfo, [snapshotName])
+      .replace('.txt', '.json')
+      .replace('-chromium', '')
+      .replace('-linux', '')
+      .replace('-darwin', '')
 
-    testInfo.snapshotPath = snapshotName => {
-      const result = originalSnapshotPath
-        .apply(testInfo, [snapshotName])
-        .replace('.txt', '.json')
-        .replace('-chromium', '')
-        .replace('-linux', '')
-        .replace('-darwin', '')
-
-      return result
-    }
+    return result
   }
+  return testInfo.snapshotPath
+}

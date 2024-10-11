@@ -2,7 +2,10 @@ import { expect, test } from '@playwright/test'
 
 import { configureSnapshotPath } from '@/utils/functions/configureSnapshotPath'
 
-test.beforeEach(configureSnapshotPath())
+// eslint-disable-next-line no-empty-pattern
+test.beforeEach(async ({}, testInfo) => {
+  testInfo.snapshotPath = configureSnapshotPath(testInfo)
+})
 
 test.describe('Resume page page', () => {
   test.beforeEach(async ({ page }) => {

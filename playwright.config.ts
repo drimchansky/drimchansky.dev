@@ -35,6 +35,7 @@ export default defineConfig({
   ],
   reporter: 'html',
   retries: process.env.CI ? 2 : 0,
+  snapshotDir: './tests/__snapshots__',
   testDir: './tests',
   use: {
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
