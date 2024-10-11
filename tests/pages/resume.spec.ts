@@ -1,5 +1,9 @@
 import { expect, test } from '@playwright/test'
 
+import { configureSnapshotPath } from '@/utils/functions/configureSnapshotPath'
+
+test.beforeEach(configureSnapshotPath())
+
 test.describe('Resume page page', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('http://localhost:4321/en/resume/')
