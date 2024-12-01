@@ -15,13 +15,21 @@ const route = pathname.split('/')[1]
 
 const cleanUrl = urlOrigin + pathname
 const coverLink = `${urlOrigin}/covers/${CUSTOM_IMAGE_ROUTES.includes(route) ? route : 'main'}-${locale}.jpg`
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  description: t(Astro.currentLocale, 'siteDescription'),
+  jobTitle: t(Astro.currentLocale, 'occupation'),
+  name: t(Astro.currentLocale, 'fullName'),
+  url: `https://drimchansky.dev/${Astro.currentLocale}`
+})
 ---
 
 <meta charset="UTF-8" />
 <meta content={t(Astro.currentLocale, 'siteDescription')} name="description" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <meta content={Astro.generator} name="generator" />
-<meta content="male" itemprop="gender" />
 
 <link href="/icons/favicon.ico" rel="icon" sizes="32x32" />
 <link href="/icons/icon.svg" rel="icon" type="image/svg+xml" />
@@ -46,6 +54,8 @@ const coverLink = `${urlOrigin}/covers/${CUSTOM_IMAGE_ROUTES.includes(route) ? r
 <link as="font" href="/fonts/Inter-Variable.woff2" rel="preload" type="font/woff2" crossorigin />
 
 <title>{title}</title>
+
+<script set:html={schema} type="application/ld+json" />
 
 <script is:inline>
   const theme = localStorage.getItem('color-theme') || 'auto'
