@@ -18,8 +18,8 @@ export const getStaticPaths = (async () => [
 
 const locale = getLocale(Astro.currentLocale)
 
-const Summary = (await (await getEntry('general', `${locale}/summary`)).render()).Content
-const AdditionalContent = (await (await getEntry('general', `${locale}/additional`)).render()).Content
+const Summary = (await (await getEntry('general', `${locale}/summary`))?.render())?.Content
+const AdditionalContent = (await (await getEntry('general', `${locale}/additional`))?.render())?.Content
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'fullName')} – ${t(Astro.currentLocale, 'resume')}`>
@@ -28,13 +28,13 @@ const AdditionalContent = (await (await getEntry('general', `${locale}/additiona
       <ResumeHeader />
 
       <ResumeSectionHeader text={t(Astro.currentLocale, 'summary')} />
-      <Summary />
+      {Summary && <Summary />}
 
       <ResumeSectionHeader text={t(Astro.currentLocale, 'workingExperience')} />
       <ResumePositions />
 
       <ResumeSectionHeader text={t(Astro.currentLocale, 'additionalInfo')} />
-      <AdditionalContent />
+      {AdditionalContent && <AdditionalContent />}
 
       <ResumeDownloadButton />
     </article>

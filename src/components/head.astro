@@ -55,7 +55,7 @@ const schema = JSON.stringify({
 
 <title>{title}</title>
 
-<script set:html={schema} type="application/ld+json" />
+<script set:html={schema} type="application/ld+json" is:inline />
 
 <script is:inline>
   const theme = localStorage.getItem('color-theme') || 'auto'

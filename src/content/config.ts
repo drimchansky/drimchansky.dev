@@ -12,6 +12,9 @@ const resumeCollection = defineCollection({
   })
 })
 
+const generalCollection = defineCollection({})
+
 export const collections = {
+  general: generalCollection,
   resume: resumeCollection
 }
