@@ -19,21 +19,10 @@ export default defineFlatConfig([
       perfectionist: eslintPluginPerfectionist
     },
     rules: {
-      ...eslintPluginPerfectionist.configs['recommended-alphabetical'].rules,
-      'perfectionist/sort-astro-attributes': [
-        'error',
-        {
-          customGroups: { description: 'description', title: 'title' },
-          groups: ['title', 'description', 'multiline', 'unknown', ['shorthand', 'astro-shorthand']],
-          order: 'asc',
-          type: 'alphabetical'
-        }
-      ],
       'perfectionist/sort-imports': [
         'error',
         {
           groups: [
-            'side-effect',
             'type',
             ['builtin', 'external'],
             'internal-type',
@@ -43,13 +32,44 @@ export default defineFlatConfig([
             'object',
             'unknown'
           ],
-          internalPattern: ['@/**'],
+          ignoreCase: true,
+          internalPattern: ['^@/.+'],
           newlinesBetween: 'always',
           order: 'asc',
+          partitionByComment: false,
+          partitionByNewLine: false,
+          specialCharacters: 'keep',
           type: 'alphabetical'
         }
       ],
-      'perfectionist/sort-jsx-props': 'off'
+      'perfectionist/sort-object-types': [
+        'error',
+        {
+          groups: [],
+          ignoreCase: true,
+          ignorePattern: [],
+          newlinesBetween: 'ignore',
+          order: 'asc',
+          partitionByComment: false,
+          partitionByNewLine: false,
+          specialCharacters: 'keep',
+          type: 'alphabetical'
+        }
+      ],
+      'perfectionist/sort-objects': [
+        'error',
+        {
+          destructuredObjects: true,
+          ignoreCase: true,
+          newlinesBetween: 'ignore',
+          objectDeclarations: true,
+          order: 'asc',
+          partitionByComment: false,
+          partitionByNewLine: false,
+          specialCharacters: 'keep',
+          type: 'alphabetical'
+        }
+      ]
     }
   },
   {
