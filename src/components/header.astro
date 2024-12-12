@@ -24,6 +24,7 @@ import SkipLink from '@/components/skip-link.astro'
   const button = document.getElementById('hamburger-button')!
   const menu = document.getElementById('menu')!
   const focusTrap = createFocusTrap(header, { initialFocus: false })
+  const menuMedia = matchMedia('(max-width: 767px)')
 
   function isMenuOpened() {
     return button.getAttribute('aria-expanded') === 'true'
@@ -53,6 +54,12 @@ import SkipLink from '@/components/skip-link.astro'
 
   button.addEventListener('click', () => {
     isMenuOpened() ? closeMenu() : openMenu()
+  })
+
+  menuMedia.addEventListener('change', event => {
+    if (!event.matches && isMenuOpened()) {
+      closeMenu()
+    }
   })
 </script>
 

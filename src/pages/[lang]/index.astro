@@ -54,4 +54,10 @@ export const getStaticPaths = (async () => [
     font-size: var(--font-size-lg);
     text-wrap: balance;
   }
+
+  @media (orientation: landscape) and (max-height: 414px) {
+    .home-content {
+      margin-top: 0rem;
+    }
+  }
 </style>
