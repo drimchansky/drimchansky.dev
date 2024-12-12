@@ -8,9 +8,6 @@ dotenv.config()
 
 // https://astro.build/config
 export default defineConfig({
-  build: {
-    inlineStylesheets: 'never'
-  },
   devToolbar: {
     enabled: false
   },
