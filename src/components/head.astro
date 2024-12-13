@@ -62,3 +62,24 @@ const schema = JSON.stringify({
   document.documentElement.classList.toggle('is-dark-theme', theme === 'dark')
   document.documentElement.classList.toggle('is-light-theme', theme === 'light')
 </script>
+
+<script type="speculationrules">
+  {
+    "prefetch": [
+      {
+        "where": {
+          "selector_matches": "[data-prefetch='']"
+        },
+        "eagerness": "immediate"
+      }
+    ],
+    "prerender": [
+      {
+        "where": {
+          "selector_matches": "[data-prefetch='']"
+        },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+</script>
