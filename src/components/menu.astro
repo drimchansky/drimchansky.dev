@@ -23,7 +23,11 @@ const currentRoute = pathname.slice(1).replace(`${locale}`, '').slice(0, -1) || 
     {
       siteInfo.navigation.map(({ route, token }) => (
         <li class="item">
-          <a class={`link ${currentRoute === route ? 'active' : ''}`} href={getRelativeLocaleUrl(locale, route)}>
+          <a
+            class={`link ${currentRoute === route ? 'active' : ''}`}
+            href={getRelativeLocaleUrl(locale, route)}
+            data-prefetch
+          >
             {t(Astro.currentLocale, token)}
           </a>
         </li>
