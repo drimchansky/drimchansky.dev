@@ -1,0 +1,41 @@
+---
+import { Image, Picture } from 'astro:assets'
+
+import avatar from '@/assets/images/avatar-square.jpg'
+---
+
+<a class="avatar" href={avatar.src} target="_blank" rel="noopener noreferrer">
+  <Picture
+    src={avatar}
+    formats={['avif', 'webp', 'jpg']}
+    alt="Nikita's photo"
+    class="image"
+    width={150}
+    height={150}
+    densities={[1.5, 2]}
+    loading="eager"
+    quality={95}
+    fetchpriority="high"
+  />
+</a>
+
+<style>
+  @import '../styles/mixins.css';
+
+  .avatar {
+    @mixin focus;
+
+    display: block;
+    width: 7.5rem;
+    min-width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 50%;
+    background-color: aliceblue;
+  }
+
+  .image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+</style>

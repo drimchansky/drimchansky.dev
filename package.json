@@ -30,6 +30,7 @@
     "postcss-mixins": "^10.0.1",
     "postcss-nested": "^6.2.0",
     "postcss-preset-env": "^9.6.0",
+    "sharp": "^0.33.5",
     "typescript": "^5.7.2"
   },
   "devDependencies": {
