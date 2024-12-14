@@ -1,5 +1,5 @@
 ---
-import { Image, Picture } from 'astro:assets'
+import { Picture } from 'astro:assets'
 
 import avatar from '@/assets/images/avatar-square.jpg'
 ---
@@ -31,6 +31,10 @@ import avatar from '@/assets/images/avatar-square.jpg'
     height: 7.5rem;
     border-radius: 50%;
     background-color: aliceblue;
+  }
+
+  picture {
+    pointer-events: none;
   }
 
   .image {
