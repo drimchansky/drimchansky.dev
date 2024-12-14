@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from 'astro'
 
+import Avatar from '@/components/avatar.astro'
 import Container from '@/components/container.astro'
 import SocialLinks from '@/components/social-links.astro'
 import { t } from '@/i18n'
@@ -15,14 +16,17 @@ export const getStaticPaths = (async () => [
 <BaseLayout title={t(Astro.currentLocale, 'fullName')}>
   <Container class="home-container">
     <div class="home-content">
-      <h1 class="header">
-        <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>
-        <span itemprop="familyName">{t(Astro.currentLocale, 'familyName')}</span>
-      </h1>
-      <p class="intro">
-        {t(Astro.currentLocale, 'intro')}
-      </p>
-      <SocialLinks />
+      <Avatar />
+      <div>
+        <h1 class="header">
+          <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>
+          <span itemprop="familyName">{t(Astro.currentLocale, 'familyName')}</span>
+        </h1>
+        <p class="intro">
+          {t(Astro.currentLocale, 'intro')}
+        </p>
+        <SocialLinks />
+      </div>
     </div>
   </Container>
 </BaseLayout>
@@ -44,7 +48,10 @@ export const getStaticPaths = (async () => [
   }
 
   .home-content {
-    margin-top: -3rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: -5rem;
+    gap: 1rem;
   }
 
   .intro {
@@ -55,8 +62,15 @@ export const getStaticPaths = (async () => [
     text-wrap: balance;
   }
 
-  @media (orientation: landscape) and (max-height: 414px) {
+  @media (orientation: portrait) {
     .home-content {
+      margin-top: 0rem;
+    }
+  }
+
+  @media (orientation: landscape) and (max-height: 500px) {
+    .home-content {
+      flex-direction: row;
       margin-top: 0rem;
     }
   }

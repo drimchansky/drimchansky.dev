@@ -1,4 +1,4 @@
-Frontend engineer with experience in HTML, CSS, JavaScript, Web APIs, TypeScript, React, Vue, PIXI.js, Node.js, MongoDB and other technologies. Always strive to learn new skills: for the sake of personal interest or for a new work project.
+Frontend developer with experience in HTML, CSS, JavaScript, Web APIs, TypeScript, React, Vue, PIXI.js, Node.js, MongoDB and other technologies. Always strive to learn new skills: for the sake of personal interest or for a new work project.
 
 I believe that the product and fundamental knowledge are primary, and specific tools like frameworks, libraries etc., can be studied and applied to appropriate tasks.
 
