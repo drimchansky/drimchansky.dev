@@ -25,4 +25,4 @@ jobs:
       - name: Install dependencies
         run: pnpm i
       - name: Test against linters
-        run: pnpm test:lint
+        run: pnpm lint
