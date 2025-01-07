@@ -9,6 +9,7 @@ isCurrent: true
 
 - Developed an application using React, Redux-toolkit, Tailwind CSS;
 - Developed internal tools which are streamlined processes and enhanced efficiency either development team and other company departments;
+- Developed an application documentation website using Docusaurus;
 - Wrote unit and integration tests. Implemented unit tests for the most critical part across all projects;
 - Wrote technical documentation (guides, processes, project plans, reports, incident postmortems, style guides etc.);
 - Collaborated with internal services, QA, clients, certification services and art team members to build the best product;
