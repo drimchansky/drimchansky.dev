@@ -7,6 +7,11 @@ dotenv.config()
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  expect: {
+    toHaveScreenshot: {
+      threshold: 0.01
+    }
+  },
   forbidOnly: !!process.env.CI,
   fullyParallel: true,
   projects: [
