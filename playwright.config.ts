@@ -31,8 +31,11 @@ export default defineConfig({
   reporter: 'html',
   retries: process.env.CI ? 2 : 0,
   snapshotDir: './tests/__snapshots__',
+  snapshotPathTemplate: '{snapshotDir}/{testFileDir}/{testFileName}-snapshots/{arg}-{projectName}{ext}',
   testDir: './tests',
   use: {
+    /* Base URL to use in actions like `await page.goto('/')`. */
+    baseURL: process.env.SITE_URL || 'http://localhost:4321',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry'
   },
@@ -43,7 +46,7 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     stderr: 'pipe',
     stdout: 'ignore',
-    url: process.env.SITE_URL // env?
+    url: process.env.SITE_URL
   },
 
   workers: process.env.CI ? 1 : undefined
