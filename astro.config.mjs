@@ -1,6 +1,5 @@
 import partytown from '@astrojs/partytown'
 import sitemap from '@astrojs/sitemap'
-import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
 import dotenv from 'dotenv'
 
@@ -19,9 +18,6 @@ export default defineConfig({
     }
   },
   integrations: [
-    icon({
-      iconDir: 'src/assets/icons'
-    }),
     sitemap(),
     partytown({
       config: {
