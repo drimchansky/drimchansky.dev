@@ -6,8 +6,6 @@ position: Service Engineer
 companyLink: https://www.locotech.ru/
 ---
 
-Responsibilities and achievements:
-
 - Collected and analysed key depot indicators, which affects whole depot revenue;
 - Validated of collected data from internal and external sources;
 - Negotiated with Russian Railways representatives about correctness of collected data;
