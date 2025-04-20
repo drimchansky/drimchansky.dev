@@ -1,6 +1,5 @@
 import { FlatCompat } from '@eslint/eslintrc'
 import eslintParserAstro from 'astro-eslint-parser'
-import { defineFlatConfig } from 'eslint-define-config'
 import eslintPluginAstro from 'eslint-plugin-astro'
 import eslintPluginPerfectionist from 'eslint-plugin-perfectionist'
 import eslintPluginTypeScript from 'typescript-eslint'
@@ -9,7 +8,7 @@ const compat = new FlatCompat({
   baseDirectory: import.meta.dirname
 })
 
-export default defineFlatConfig([
+export default [
   {
     ignores: ['dist/', '.astro/', 'src/env.d.ts', '.history/']
   },
@@ -104,4 +103,4 @@ export default defineFlatConfig([
       ...eslintPluginAstro.configs['flat/recommended'].rules
     }
   }
-])
+]
