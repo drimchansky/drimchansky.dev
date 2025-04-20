@@ -13,27 +13,12 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v4
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-      - name: Install dependencies
-        run: pnpm i
-      - name: Prepare env
-        run: pnpm run env
       - name: Git LFS install and pull
         run: |
           git lfs install
           git lfs fetch --all
           git lfs pull
-      - name: Playwright install
-        run: npx playwright install
-      - name: Playwright deps install
-        run: npx playwright install-deps
-      - name: Build and test
-        run: pnpm test
+      - name: Build and run tests with Docker
+        run: |
+          docker build -t playwright-tests .
+          docker run playwright-tests
