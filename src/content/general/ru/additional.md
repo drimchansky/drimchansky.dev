@@ -1,3 +1,3 @@
 **Языки:** English – Upper-Intermediate, Русский – родной
 
-**Навыки и инструменты:** HTML, CSS, Tailwind, JavaScript, TypeScript, ReactJS, NextJS, Redux, VueJS, Pinia, NodeJS, npm, Express, MongoDB, Figma, Webpack, Vite, Parcel, Canvas, NoSQL, Jest, Postman, git
+**Навыки и инструменты:** JavaScript, TypeScript, HTML, CSS, Tailwind, React, Redux, Socket.IO, Sentry, Storybook, Node.js, npm, Express, MongoDB, Figma, Webpack, Vite, Parcel, Canvas, NoSQL, Jest, Postman, git
