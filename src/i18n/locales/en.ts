@@ -12,7 +12,7 @@ export const en: LocaleCollection = {
   fullName: 'Nikita Chernov',
   givenName: 'Nikita',
   homePage: 'Home',
-  intro: 'Frontend Developer focused on User Experience and Web Performance',
+  intro: 'Frontend Developer specializing in creating user-friendly, performant, and accessible web solutions',
   light: 'Light',
   location: 'Tbilisi, Georgia',
   menu: 'Menu',
