@@ -7,7 +7,7 @@ isDevelopment: true
 isCurrent: true
 ---
 
-- Developed the universal UI and business logic application for games using React.js, Redux Toolkit, Tailwind CSS which reduced game development costs by around 30%, streamlined support and and enabled the team to deliver new features swiftly.
+- Developed the universal UI and business logic application for games using React.js, Redux Toolkit, Tailwind CSS which reduced game development costs by around 30%, streamlined support and enabled the team to deliver new features swiftly.
 - Launched a documentation website using Docusaurus, cutting duplicate chat questions by 40%.
 - Introduced and implemented unit tests for the most critical parts across the company’s key projects. It reduced new-bug count by around 70% in these modules.
 - Engineered and developed the internal localization tool, cutting more than 50% efforts on the localization process.

@@ -7,7 +7,7 @@ companyLink: https://www.locotech.ru/
 ---
 
 - Collected and analysed key depot indicators, which affects whole depot revenue.
-- Validated of collected data from internal and external sources.
+- Validated collected data from internal and external sources.
 - Negotiated with Russian Railways representatives about correctness of collected data.
 - Negotiated with Service Engineers country-wide about correctness of collected data.
 - Interpreted of collected data to depot management.
