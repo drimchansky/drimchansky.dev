@@ -9,6 +9,6 @@ location:
 companyLink: https://www.locotech.ru/
 ---
 
-- Collected and analysed key depot indicators which affects depot revenue, negotiated with Russian Railways representatives about correctness of collected data.
+- Collected and analysed key depot indicators which affect depot revenue, negotiated with Russian Railways representatives about correctness of collected data.
 - Integrated automatic control system (ACS) in the train depot. After 5-month integration was successfully completed.
 - Automated significant part of Service Engineer duties, reducing the time for everyday operations from 6 to 2 hours.
