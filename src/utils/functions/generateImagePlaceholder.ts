@@ -5,7 +5,7 @@ import sharp from 'sharp'
 /**
  *
  * @param imageMetadata Astro ImageMetadata
- * @param baseUrl The base URL of the site (e.g., Astro.site.toString() or new URL(Astro.request.url).origin)
+ * @param baseUrl The base URL of the site
  * @param target Size of the placeholder (px)
  * @param blur Gaussian-blur radius
  * @param quality Image quality for Sharp
@@ -26,6 +26,7 @@ export const generateImagePlaceholder = async (
   const absoluteImageUrl = new URL(imagePath, baseUrl).href
 
   let srcBuffer: Buffer
+
   try {
     const response = await fetch(absoluteImageUrl)
     if (!response.ok) {
@@ -38,7 +39,7 @@ export const generateImagePlaceholder = async (
       `Error fetching image for placeholder: ${absoluteImageUrl}. Original src: ${imageMetadata.src}`,
       error
     )
-    // Rethrow or handle as appropriate for your application
+
     throw new Error(
       `Could not load image from ${absoluteImageUrl} to generate placeholder. Original src: ${imageMetadata.src}. Error: ${(error as Error).message}`
     )
