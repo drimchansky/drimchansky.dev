@@ -42,7 +42,7 @@ main {
 
 p {
   margin: 0;
-  padding-block: 0.5rem;
+  padding: 0;
 }
 
 .clip {

@@ -12,6 +12,7 @@ import sharp from 'sharp'
  * @returns Image placeholder (base64)
  */
 export const generateImagePlaceholder = async (imageMetadata: ImageMetadata, target = 64, blur = 4, quality = 90) => {
+  console.log('>>> imageMetadata', imageMetadata)
   const cleanedSrc = imageMetadata.src.replace(/^\/@fs/, '').replace(/\?.*$/, '')
   const src = await fs.readFile(cleanedSrc)
   const img = sharp(src)
