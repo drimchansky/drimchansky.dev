@@ -4,7 +4,7 @@ import { Picture } from 'astro:assets'
 import avatar from '@/assets/images/avatar-square.jpg'
 import { generateImagePlaceholder } from '@/utils/functions/generateImagePlaceholder'
 
-const placeholder = await generateImagePlaceholder(avatar)
+const placeholder = await generateImagePlaceholder(avatar, Astro!.site!.toString())
 ---
 
 <a
