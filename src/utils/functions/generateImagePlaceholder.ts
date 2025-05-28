@@ -3,7 +3,6 @@ import type { ImageMetadata } from 'astro'
 import sharp from 'sharp'
 
 /**
- *
  * @param imageMetadata Astro ImageMetadata
  * @param baseUrl The base URL of the site
  * @param target Size of the placeholder (px)
