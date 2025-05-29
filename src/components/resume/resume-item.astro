@@ -10,9 +10,13 @@ interface Props {
   dateEnd?: Date
   dateStart: Date
   position: string
+  location: {
+    country: string
+    type: 'on-site' | 'remote' | 'hybrid'
+  }
 }
 
-const { company, companyLink, dateEnd, dateStart, position } = Astro.props
+const { company, companyLink, dateEnd, dateStart, location, position } = Astro.props
 
 const dateStartText = dateStart.toLocaleDateString(getLocale(Astro.currentLocale), {
   month: 'short',
@@ -29,9 +33,14 @@ const locale = getLocale(Astro.currentLocale)
 ---
 
 <div class="info">
-  <a class="company" href={companyLink}>{company}</a>
-  <h3 class="position">
-    {position}
+  <div>
+    <a class="company" href={companyLink}>{company}</a>
+    <h3 class="position">
+      {position}
+    </h3>
+  </div>
+  <div>
+    <div class="location">{location.country} | {t(Astro.currentLocale, location.type)}</div>
     <div class="time">
       <time datetime={dateStart.toISOString()}>{dateStartText}</time>
       {' - '}
@@ -40,7 +49,7 @@ const locale = getLocale(Astro.currentLocale)
         ({getDurationTextFromMonths(differenceInMonths(dateEnd || new Date(), dateStart), locale)})
       </span>
     </div>
-  </h3>
+  </div>
 </div>
 
 <div class="description">
@@ -50,6 +59,14 @@ const locale = getLocale(Astro.currentLocale)
 <style>
   @import '../../styles/mixins.css';
 
+  .info {
+    display: flex;
+    width: 100%;
+    max-width: var(--max-text-width);
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
   .company {
     @mixin focus;
     @mixin link-underline;
@@ -58,14 +75,18 @@ const locale = getLocale(Astro.currentLocale)
     font-size: var(--font-size-xs);
   }
 
+  .location {
+    font-size: var(--font-size-xs);
+    font-weight: 400;
+  }
+
   .position {
     margin: 0;
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
   }
 
   .description {
     max-width: var(--max-text-width);
-    margin-top: 0.5rem;
 
     & :global(ul) {
       padding-left: 0;
@@ -73,14 +94,16 @@ const locale = getLocale(Astro.currentLocale)
     }
 
     & :global(li:not(:first-child)) {
-      margin-top: 0.55rem;
+      margin-top: 0.25rem;
+      @media print {
+        margin-top: 0;
+      }
     }
   }
 
   .time {
-    color: var(--c-text-gray);
-    font-size: var(--font-size-base);
-    font-weight: 300;
+    font-size: var(--font-size-xs);
+    font-weight: 400;
   }
 
   @media print {

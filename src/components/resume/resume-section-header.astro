@@ -10,11 +10,14 @@ const text = Astro.props.text
 
 <style>
   .section-header {
-    margin: 1rem 0 0 0;
-    font-size: var(--font-size-2xl);
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--c-resume-separator);
+    margin: 0;
+    font-size: var(--font-size-xl);
+    line-height: 1;
 
     &:not(:first-of-type) {
-      margin-top: 2rem;
+      margin-top: 0.5rem;
     }
   }
 </style>

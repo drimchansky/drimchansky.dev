@@ -6,6 +6,8 @@
   --c-header-bg: oklch(97.52% 0.003 270.1);
   --c-header-line: oklch(95% 0.006 270.07);
 
+  --c-resume-separator: oklch(0.5544 0.0099 270.07);
+
   --c-menu-bg: oklch(100% 0 0);
   --c-menu-link-text: var(--c-text-primary);
   --c-menu-link-bg: transparent;
@@ -34,6 +36,8 @@
 
   --c-header-bg: oklch(31.32% 0 0);
   --c-header-line: oklch(61.67% 0 0);
+
+  --c-resume-separator: oklch(61.67% 0 0);
 
   --c-menu-bg: oklch(21.06% 0.008 269.79);
   --c-menu-link-text: var(--c-text-primary);

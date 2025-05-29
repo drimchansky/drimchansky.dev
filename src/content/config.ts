@@ -8,6 +8,10 @@ const resumeCollection = defineCollection({
     dateStart: z.date(),
     isCurrent: z.boolean().optional(),
     isDevelopment: z.boolean().optional(),
+    location: z.object({
+      country: z.string(),
+      type: z.enum(['on-site', 'remote', 'hybrid'])
+    }),
     position: z.string()
   })
 })
