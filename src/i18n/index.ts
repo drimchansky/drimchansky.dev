@@ -5,23 +5,27 @@ export type Locale = 'en' | 'ru'
 
 export type LocaleCollection = {
   404: string
-  additionalInfo: string
   auto: string
   dark: string
   download: string
+  education: string
   experienceLine: string
   familyName: string
   fullName: string
   givenName: string
   homePage: string
+  hybrid: string
   intro: string
   light: string
   location: string
   menu: string
   occupation: string
+  'on-site': string
   present: string
+  remote: string
   resume: string
   siteDescription: string
+  skillsAndLanguages: string
   skipLink: string
   summary: string
   theme: string

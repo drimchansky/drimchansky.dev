@@ -19,7 +19,8 @@ export const getStaticPaths = (async () => [
 const locale = getLocale(Astro.currentLocale)
 
 const Summary = (await (await getEntry('general', `${locale}/summary`))?.render())?.Content
-const AdditionalContent = (await (await getEntry('general', `${locale}/additional`))?.render())?.Content
+const SkillsAndLanguagesContent = (await (await getEntry('general', `${locale}/skills`))?.render())?.Content
+const EducationContent = (await (await getEntry('general', `${locale}/education`))?.render())?.Content
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'fullName')} – ${t(Astro.currentLocale, 'resume')}`>
@@ -33,8 +34,11 @@ const AdditionalContent = (await (await getEntry('general', `${locale}/additiona
       <ResumeSectionHeader text={t(Astro.currentLocale, 'workingExperience')} />
       <ResumePositions />
 
-      <ResumeSectionHeader text={t(Astro.currentLocale, 'additionalInfo')} />
-      {AdditionalContent && <AdditionalContent />}
+      <ResumeSectionHeader text={t(Astro.currentLocale, 'education')} />
+      {EducationContent && <EducationContent />}
+
+      <ResumeSectionHeader text={t(Astro.currentLocale, 'skillsAndLanguages')} />
+      {SkillsAndLanguagesContent && <SkillsAndLanguagesContent />}
 
       <ResumeDownloadButton />
     </article>
@@ -47,10 +51,29 @@ const AdditionalContent = (await (await getEntry('general', `${locale}/additiona
 
   .resume {
     color: var(--c-text-primary);
+    line-height: 1.6;
     padding-block: 3rem;
+
+    @media print {
+      line-height: normal;
+      padding-block: 0;
+    }
 
     & :global(p) {
       max-width: var(--max-text-width);
+    }
+  }
+
+  @media print {
+    .resume {
+      & :global(p, li) {
+        padding: 0;
+        line-height: normal;
+      }
+
+      & :global(a) {
+        text-decoration: none;
+      }
     }
   }
 </style>

@@ -24,6 +24,7 @@ const positions = (await getCollection('resume'))
             dateEnd={data.dateEnd}
             dateStart={data.dateStart}
             position={data.position}
+            location={data.location}
           >
             <Content />
           </ResumeItem>
@@ -40,11 +41,7 @@ const positions = (await getCollection('resume'))
     list-style-type: none;
   }
 
-  .position-item:first-child {
-    margin-top: 0.5rem;
-  }
-
   .position-item:not(:first-child) {
-    margin-top: 2.5rem;
+    margin-top: 0.5rem;
   }
 </style>
