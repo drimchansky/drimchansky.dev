@@ -9,7 +9,7 @@ import sharp from 'sharp'
  * @param quality Image quality for Sharp
  * @returns Image placeholder (base64)
  */
-export const generateImagePlaceholder = async (absoluteImagePath: string, target = 64, blur = 4, quality = 90) => {
+export const generateImagePlaceholder = async (absoluteImagePath: string, target = 16, blur = 4, quality = 40) => {
   const imageBuffer = await fs.readFile(absoluteImagePath)
   const img = sharp(imageBuffer)
 
