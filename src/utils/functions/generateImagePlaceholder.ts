@@ -1,22 +1,9 @@
 import type { ImageMetadata } from 'astro'
 
+import fs from 'node:fs/promises'
 import sharp from 'sharp'
 
-/**
- * @param imageMetadata Astro ImageMetadata
- * @param baseUrl The base URL of the site
- * @param target Size of the placeholder (px)
- * @param blur Gaussian-blur radius
- * @param quality Image quality for Sharp
- * @returns Image placeholder (base64)
- */
-export const generateImagePlaceholder = async (
-  imageMetadata: ImageMetadata,
-  baseUrl: string,
-  target = 64,
-  blur = 4,
-  quality = 90
-) => {
+const getVercelImageBuffer = async (imageMetadata: ImageMetadata, baseUrl: string) => {
   // The /@fs/ replacement is mainly for Vite dev server scenarios.
   const cleanedSrc = imageMetadata.src.replace(/^\/@fs/, '').replace(/\?.*$/, '')
 
@@ -44,7 +31,36 @@ export const generateImagePlaceholder = async (
     )
   }
 
-  const img = sharp(srcBuffer)
+  return srcBuffer
+}
+
+const getLocalImageBuffer = async (imageMetadata: ImageMetadata) => {
+  const cleanedSrc = imageMetadata.src.replace(/^\/@fs/, '').replace(/\?.*$/, '')
+  return await fs.readFile(cleanedSrc)
+}
+
+/**
+ * @param imageMetadata Astro ImageMetadata
+ * @param baseUrl The base URL of the site
+ * @param target Size of the placeholder (px)
+ * @param blur Gaussian-blur radius
+ * @param quality Image quality for Sharp
+ * @returns Image placeholder (base64)
+ */
+export const generateImagePlaceholder = async (
+  imageMetadata: ImageMetadata,
+  baseUrl: string,
+  target = 64,
+  blur = 4,
+  quality = 90
+) => {
+  const isVercel = import.meta.env.VERCEL === '1'
+
+  const imageBuffer = isVercel
+    ? await getVercelImageBuffer(imageMetadata, baseUrl)
+    : await getLocalImageBuffer(imageMetadata)
+
+  const img = sharp(imageBuffer)
 
   const { height, width } = await img.metadata()
 
