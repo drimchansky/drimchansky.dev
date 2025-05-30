@@ -1,6 +1,8 @@
 import type { ImageMetadata } from 'astro'
 
 import fs from 'node:fs/promises'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 
 const getVercelImageBuffer = async (imageMetadata: ImageMetadata, baseUrl: string) => {
@@ -13,9 +15,9 @@ const getVercelImageBuffer = async (imageMetadata: ImageMetadata, baseUrl: strin
   return Buffer.from(await response.arrayBuffer())
 }
 
-const getLocalImageBuffer = async (imageMetadata: ImageMetadata) => {
-  const cleanedSrc = imageMetadata.src.replace(/^\/@fs/, '').replace(/\?.*$/, '')
-  return await fs.readFile(cleanedSrc)
+const getLocalImageBuffer = async (imagePath: string) => {
+  const filePath = fileURLToPath(new URL(imagePath, import.meta.url))
+  return await fs.readFile(imagePath)
 }
 
 /**
@@ -26,18 +28,12 @@ const getLocalImageBuffer = async (imageMetadata: ImageMetadata) => {
  * @param quality Image quality for Sharp
  * @returns Image placeholder (base64)
  */
-export const generateImagePlaceholder = async (
-  imageMetadata: ImageMetadata,
-  baseUrl: string,
-  target = 64,
-  blur = 4,
-  quality = 90
-) => {
+export const generateImagePlaceholder = async (imagePath: string, target = 64, blur = 4, quality = 90) => {
   const isVercel = !!process.env.VERCEL
 
-  const imageBuffer = isVercel
-    ? await getVercelImageBuffer(imageMetadata, baseUrl)
-    : await getLocalImageBuffer(imageMetadata)
+  const imageBuffer = await getLocalImageBuffer(imagePath)
+  // ? await getVercelImageBuffer(imageMetadata, baseUrl)
+  // : await getLocalImageBuffer(imageMetadata)
 
   const img = sharp(imageBuffer)
 
