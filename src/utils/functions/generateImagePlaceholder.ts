@@ -1,7 +1,4 @@
-import type { ImageMetadata } from 'astro'
-
 import fs from 'node:fs/promises'
-import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 
 /**
@@ -13,11 +10,11 @@ import sharp from 'sharp'
  * @returns Image placeholder (base64)
  */
 export const generateImagePlaceholder = async (absoluteImagePath: string, target = 64, blur = 4, quality = 90) => {
-  const filePath = fileURLToPath(new URL(absoluteImagePath, import.meta.url))
-  const imageBuffer = await fs.readFile(filePath)
+  const imageBuffer = await fs.readFile(absoluteImagePath)
   const img = sharp(imageBuffer)
 
   const { height, width } = await img.metadata()
+
   const smallestSide = Math.min(width!, height!)
   const factor = target / smallestSide
 
