@@ -4,34 +4,13 @@ import fs from 'node:fs/promises'
 import sharp from 'sharp'
 
 const getVercelImageBuffer = async (imageMetadata: ImageMetadata, baseUrl: string) => {
-  // The /@fs/ replacement is mainly for Vite dev server scenarios.
-  const cleanedSrc = imageMetadata.src.replace(/^\/@fs/, '').replace(/\?.*$/, '')
-
-  // Ensure cleanedSrc is treated as a path segment of the URL
-  const imagePath = cleanedSrc.startsWith('/') ? cleanedSrc : `/${cleanedSrc}`
+  const src = imageMetadata.src
+  const imagePath = src.startsWith('/') ? src : `/${src}`
   const absoluteImageUrl = new URL(imagePath, baseUrl).href
 
-  let srcBuffer: Buffer
+  const response = await fetch(absoluteImageUrl)
 
-  try {
-    const response = await fetch(absoluteImageUrl)
-    if (!response.ok) {
-      throw new Error(`Failed to fetch image ${absoluteImageUrl}: ${response.statusText} (status: ${response.status})`)
-    }
-    const arrayBuffer = await response.arrayBuffer()
-    srcBuffer = Buffer.from(arrayBuffer)
-  } catch (error) {
-    console.error(
-      `Error fetching image for placeholder: ${absoluteImageUrl}. Original src: ${imageMetadata.src}`,
-      error
-    )
-
-    throw new Error(
-      `Could not load image from ${absoluteImageUrl} to generate placeholder. Original src: ${imageMetadata.src}. Error: ${(error as Error).message}`
-    )
-  }
-
-  return srcBuffer
+  return Buffer.from(await response.arrayBuffer())
 }
 
 const getLocalImageBuffer = async (imageMetadata: ImageMetadata) => {
