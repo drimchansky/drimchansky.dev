@@ -54,7 +54,7 @@ export const generateImagePlaceholder = async (
   blur = 4,
   quality = 90
 ) => {
-  const isVercel = import.meta.env.VERCEL === '1'
+  const isVercel = !!process.env.VERCEL
 
   console.log('>>> isVercel', isVercel)
 
