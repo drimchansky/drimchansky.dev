@@ -56,8 +56,6 @@ export const generateImagePlaceholder = async (
 ) => {
   const isVercel = !!process.env.VERCEL
 
-  console.log('>>> isVercel', isVercel)
-
   const imageBuffer = isVercel
     ? await getVercelImageBuffer(imageMetadata, baseUrl)
     : await getLocalImageBuffer(imageMetadata)
