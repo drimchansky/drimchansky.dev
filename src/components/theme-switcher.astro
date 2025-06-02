@@ -2,7 +2,7 @@
 import { t } from '@/i18n'
 ---
 
-<fieldset class="switcher" data-nosnippet>
+<fieldset id="switcher" class="switcher" data-nosnippet disabled>
   <legend class="visually-hidden">{t(Astro.currentLocale, 'theme')}</legend>
 
   <div class="toggle" id="theme-toggle">
@@ -23,12 +23,38 @@ import { t } from '@/i18n'
   </div>
 </fieldset>
 
+<script is:inline>
+  ;(() => {
+    function applyPageTheme() {
+      const theme = localStorage.getItem('color-theme') || 'auto'
+      document.documentElement.classList.toggle('is-dark-theme', theme === 'dark')
+      document.documentElement.classList.toggle('is-light-theme', theme === 'light')
+    }
+
+    function updateSwitcherStateAfterNavigation() {
+      const toggleElement = document.getElementById('theme-toggle')
+      const theme = localStorage.getItem('color-theme') || 'auto'
+
+      if (toggleElement) {
+        const input = toggleElement.querySelector(`[value="${theme}"]`)
+        input.checked = true
+      }
+    }
+
+    applyPageTheme()
+    updateSwitcherStateAfterNavigation()
+    document.addEventListener('astro:after-swap', applyPageTheme)
+    document.addEventListener('astro:after-swap', updateSwitcherStateAfterNavigation)
+  })()
+</script>
+
 <script>
   import { ColorTheme, THEME_CLASSES, THEME_STORAGE_KEY } from '@/utils/constants'
 
-  const toggleElement = document.getElementById('theme-toggle')!
-
   const applyTheme = (theme: ColorTheme) => {
+    const switcherElement = document.getElementById('switcher')! as HTMLFieldSetElement
+    const toggleElement = switcherElement.querySelector('#theme-toggle')!
+
     if (toggleElement) {
       const input = toggleElement.querySelector(`[value="${theme}"]`)! as HTMLInputElement
       input.checked = true
@@ -38,38 +64,36 @@ import { t } from '@/i18n'
     document.documentElement.classList.toggle(THEME_CLASSES[ColorTheme.LIGHT], theme === ColorTheme.LIGHT)
   }
 
-  function setCurrentTheme(theme: ColorTheme) {
-    localStorage.setItem(THEME_STORAGE_KEY, theme)
-  }
-
-  const toggleTheme = (event: Event) => {
+  const onThemeChange = (event: Event) => {
     const target = event.target as HTMLInputElement
     const newTheme = target.value as ColorTheme
 
-    if (!newTheme) {
-      return
-    }
+    if (!newTheme) return
 
-    setCurrentTheme(newTheme)
+    localStorage.setItem(THEME_STORAGE_KEY, newTheme)
     applyTheme(newTheme)
   }
 
   const onStorageChange = (event: StorageEvent) => {
-    if (event.key !== THEME_STORAGE_KEY) {
-      return
-    }
+    if (event.key !== THEME_STORAGE_KEY) return
 
     const newTheme = event.newValue as ColorTheme
-
-    if (!newTheme) {
-      return
-    }
+    if (!newTheme) return
 
     applyTheme(newTheme)
   }
 
-  toggleElement.addEventListener('change', toggleTheme)
+  const onPageLoaded = () => {
+    const switcherElement = document.getElementById('switcher')! as HTMLFieldSetElement
+    const toggleElement = switcherElement.querySelector('#theme-toggle')!
+
+    switcherElement.disabled = false
+    toggleElement.addEventListener('change', onThemeChange)
+  }
+
+  window.addEventListener('DOMContentLoaded', onPageLoaded)
   window.addEventListener('storage', onStorageChange)
+  document.addEventListener('astro:after-swap', onPageLoaded)
 </script>
 
 <style>
