@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from 'astro:transitions'
+
 import { getLocale, t } from '@/i18n'
 import { CUSTOM_IMAGE_ROUTES } from '@/utils/constants'
 
@@ -53,14 +55,20 @@ const schema = JSON.stringify({
 
 <link as="font" href="/fonts/Inter-Variable.woff2" rel="preload" type="font/woff2" crossorigin />
 
+<ClientRouter />
+
 <title>{title}</title>
 
 <script set:html={schema} type="application/ld+json" is:inline />
 
 <script is:inline>
-  const theme = localStorage.getItem('color-theme') || 'auto'
-  document.documentElement.classList.toggle('is-dark-theme', theme === 'dark')
-  document.documentElement.classList.toggle('is-light-theme', theme === 'light')
+  // disable view transition for mobile to avoid glitch
+  const mobile = matchMedia('(max-width: 768px)')
+  document.addEventListener('astro:before-swap', ev => {
+    if (mobile.matches && ev.viewTransition) {
+      ev.viewTransition.skipTransition()
+    }
+  })
 </script>
 
 <script type="speculationrules" is:inline>

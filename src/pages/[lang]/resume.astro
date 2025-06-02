@@ -50,11 +50,13 @@ const EducationContent = (await (await getEntry('general', `${locale}/education`
   @import '../../styles/media.css';
 
   .resume {
+    --resume-gap: 1rem;
     color: var(--c-text-primary);
     line-height: 1.6;
     padding-block: 3rem;
 
     @media print {
+      --resume-gap: 0.5rem;
       line-height: normal;
       padding-block: 0;
     }
