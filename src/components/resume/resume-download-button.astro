@@ -1,20 +1,16 @@
 ---
-import { getLocale, type Locale, t } from '@/i18n'
+import { getLocale, t } from '@/i18n'
+import { RESUME_FILENAMES_BY_LOCALE } from '@/utils/constants'
 
 import ButtonLink from '../button-link.astro'
 
 const locale = getLocale(Astro.currentLocale)
-
-const fileNameByLocale: Record<Locale, string> = {
-  en: 'Nikita Chernov – Resume',
-  ru: 'Никита Чернов – Резюме'
-}
 ---
 
 <ButtonLink
   class="print-button"
-  download=`${fileNameByLocale[locale]}.pdf`
-  href=`/files/${fileNameByLocale[locale]}.pdf`
+  download=`${RESUME_FILENAMES_BY_LOCALE[locale]}.pdf`
+  href=`/files/${RESUME_FILENAMES_BY_LOCALE[locale]}.pdf`
 >
   {t(Astro.currentLocale, 'download')}
 </ButtonLink>

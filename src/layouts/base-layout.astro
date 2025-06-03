@@ -3,6 +3,7 @@ import '@/styles/colors.css'
 import '@/styles/fonts.css'
 import '@/styles/global.css'
 import '@/styles/properties.css'
+import '@/styles/view-transitions.css'
 import 'normalize.css'
 
 import Head from '@/components/head.astro'
@@ -25,21 +26,9 @@ const locale = getLocale(Astro.currentLocale)
   </head>
   <body>
     <Header />
-    <main id="main">
+    <main id="main" transition:name="main">
       <slot />
     </main>
-
-    <script is:inline>
-      const toggleElement = document.getElementById('theme-toggle')
-
-      document.documentElement.classList.toggle('is-dark-theme', theme === 'dark')
-      document.documentElement.classList.toggle('is-light-theme', theme === 'light')
-
-      if (toggleElement) {
-        const input = toggleElement.querySelector(`[value="${theme}"]`)
-        input && (input.checked = true)
-      }
-    </script>
 
     <script
       fetchpriority="low"
