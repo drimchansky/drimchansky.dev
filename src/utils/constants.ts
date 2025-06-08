@@ -2,15 +2,12 @@ import type { Locale } from '@/i18n'
 
 export const THEME_STORAGE_KEY = 'color-theme'
 
-export enum ColorTheme {
-  AUTO = 'auto',
-  DARK = 'dark',
-  LIGHT = 'light'
-}
+export const colorThemeValues = ['light', 'auto', 'dark'] as const
+export type ColorTheme = (typeof colorThemeValues)[number]
 
-export const THEME_CLASSES = {
-  [ColorTheme.DARK]: 'is-dark-theme',
-  [ColorTheme.LIGHT]: 'is-light-theme'
+export const THEME_CLASSES: Partial<Record<ColorTheme, string>> = {
+  dark: 'is-dark-theme',
+  light: 'is-light-theme'
 }
 
 export const CUSTOM_IMAGE_ROUTES = ['resume']

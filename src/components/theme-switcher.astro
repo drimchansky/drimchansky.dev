@@ -1,25 +1,30 @@
 ---
-import { t } from '@/i18n'
+import type { ColorTheme } from '@/utils/constants'
+
+import { t, type LocaleCollection } from '@/i18n'
+import { getTestId } from '@/utils/functions/getTestId'
+
+const values: ColorTheme[] = ['light', 'auto', 'dark']
 ---
 
-<fieldset id="switcher" class="switcher" data-nosnippet disabled>
+<fieldset data-testid={getTestId('theme-switcher')} id="theme-switcher" class="switcher" data-nosnippet disabled>
   <legend class="visually-hidden">{t(Astro.currentLocale, 'theme')}</legend>
 
-  <div class="toggle" id="theme-toggle">
-    <label class="label">
-      <input class="input" name="color-theme" type="radio" value="light" />
-      <span class="text">{t(Astro.currentLocale, 'light')}</span>
-    </label>
-
-    <label class="label">
-      <input class="input" name="color-theme" type="radio" value="auto" />
-      <span class="text">{t(Astro.currentLocale, 'auto')}</span>
-    </label>
-
-    <label class="label">
-      <input class="input" name="color-theme" type="radio" value="dark" />
-      <span class="text">{t(Astro.currentLocale, 'dark')}</span>
-    </label>
+  <div class="theme-options" id="theme-options">
+    {
+      values.map(value => (
+        <label class="label">
+          <input
+            data-testid={getTestId(`set-${value}-theme-button`)}
+            class="input"
+            name="color-theme"
+            type="radio"
+            value={value}
+          />
+          <span class="text">{t(Astro.currentLocale, value as keyof LocaleCollection)}</span>
+        </label>
+      ))
+    }
   </div>
 </fieldset>
 
@@ -32,11 +37,11 @@ import { t } from '@/i18n'
     }
 
     function updateSwitcherStateAfterNavigation() {
-      const toggleElement = document.getElementById('theme-toggle')
+      const themeOptionsElement = document.getElementById('theme-options')
       const theme = localStorage.getItem('color-theme') || 'auto'
 
-      if (toggleElement) {
-        const input = toggleElement.querySelector(`[value="${theme}"]`)
+      if (themeOptionsElement) {
+        const input = themeOptionsElement.querySelector(`[value="${theme}"]`)
         input.checked = true
       }
     }
@@ -49,19 +54,19 @@ import { t } from '@/i18n'
 </script>
 
 <script>
-  import { ColorTheme, THEME_CLASSES, THEME_STORAGE_KEY } from '@/utils/constants'
+  import { THEME_CLASSES, THEME_STORAGE_KEY, type ColorTheme } from '@/utils/constants'
 
   const applyTheme = (theme: ColorTheme) => {
-    const switcherElement = document.getElementById('switcher')! as HTMLFieldSetElement
-    const toggleElement = switcherElement.querySelector('#theme-toggle')!
+    const switcherElement = document.getElementById('theme-switcher')! as HTMLFieldSetElement
+    const themeOptionsElement = switcherElement.querySelector('#theme-options')!
 
-    if (toggleElement) {
-      const input = toggleElement.querySelector(`[value="${theme}"]`)! as HTMLInputElement
+    if (themeOptionsElement) {
+      const input = themeOptionsElement.querySelector(`[value="${theme}"]`)! as HTMLInputElement
       input.checked = true
     }
 
-    document.documentElement.classList.toggle(THEME_CLASSES[ColorTheme.DARK], theme === ColorTheme.DARK)
-    document.documentElement.classList.toggle(THEME_CLASSES[ColorTheme.LIGHT], theme === ColorTheme.LIGHT)
+    document.documentElement.classList.toggle(THEME_CLASSES['dark']!, theme === 'dark')
+    document.documentElement.classList.toggle(THEME_CLASSES['light']!, theme === 'light')
   }
 
   const onThemeChange = (event: Event) => {
@@ -84,11 +89,11 @@ import { t } from '@/i18n'
   }
 
   const onPageLoaded = () => {
-    const switcherElement = document.getElementById('switcher')! as HTMLFieldSetElement
-    const toggleElement = switcherElement.querySelector('#theme-toggle')!
+    const switcherElement = document.getElementById('theme-switcher')! as HTMLFieldSetElement
+    const themeOptionsElement = switcherElement.querySelector('#theme-options')!
 
     switcherElement.disabled = false
-    toggleElement.addEventListener('change', onThemeChange)
+    themeOptionsElement.addEventListener('change', onThemeChange)
   }
 
   window.addEventListener('DOMContentLoaded', onPageLoaded)
@@ -105,7 +110,7 @@ import { t } from '@/i18n'
     margin: 0;
   }
 
-  .toggle {
+  .theme-options {
     display: flex;
     padding: 0.25rem;
     border: 1px solid var(--c-theme-switcher-border);

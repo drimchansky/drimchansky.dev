@@ -4,7 +4,6 @@ on:
     branches:
       - main
       - dev
-      - test
   pull_request:
 jobs:
   test:
@@ -26,3 +25,9 @@ jobs:
         run: pnpm i
       - name: Test against linters
         run: pnpm lint
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps
+      - name: Run Playwright tests
+        run: pnpm exec playwright test
+        env:
+          SITE_URL: http://localhost:4321

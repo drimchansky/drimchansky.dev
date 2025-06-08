@@ -11,8 +11,8 @@ export type SocialLink = {
 
 export type SiteInfo = {
   navigation: Array<{
+    id: TokenName
     route: string
-    token: TokenName
   }>
   socialLinks: SocialLink[]
   url: string
@@ -20,8 +20,8 @@ export type SiteInfo = {
 
 const siteInfo: SiteInfo = {
   navigation: [
-    { route: '/', token: 'homePage' },
-    { route: '/resume', token: 'resume' }
+    { id: 'home', route: '/' },
+    { id: 'resume', route: '/resume' }
   ],
   socialLinks: [
     {
