@@ -1,13 +1,15 @@
 {
   "name": "drimchansky.dev",
   "type": "module",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "env": "cat .env.example > .env",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
     "lint": "astro check && eslint .",
     "format": "prettier --write . && eslint --fix ."
   },
@@ -18,13 +20,13 @@
   "dependencies": {
     "@astrojs/check": "^0.5.10",
     "@astrojs/partytown": "^2.1.4",
-    "@astrojs/sitemap": "^3.4.0",
+    "@astrojs/sitemap": "^3.4.1",
     "@csstools/postcss-oklab-function": "^3.0.19",
-    "astro": "^5.8.0",
+    "astro": "^5.9.1",
     "astro-icon": "^1.1.5",
     "date-fns": "^3.6.0",
     "dotenv": "^16.5.0",
-    "focus-trap": "^7.6.4",
+    "focus-trap": "^7.6.5",
     "normalize.css": "^8.0.1",
     "postcss-html": "^1.8.0",
     "postcss-mixins": "^10.0.1",
@@ -35,20 +37,22 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
-    "@typescript-eslint/parser": "^8.32.1",
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.30",
+    "@typescript-eslint/parser": "^8.33.1",
     "astro-eslint-parser": "^1.2.2",
-    "eslint": "^9.27.0",
+    "eslint": "^9.28.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-astro": "^1.3.1",
-    "eslint-plugin-perfectionist": "^4.13.0",
+    "eslint-plugin-perfectionist": "^4.14.0",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.13.0",
-    "stylelint": "^16.19.1",
+    "stylelint": "^16.20.0",
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-idiomatic-order": "^10.0.0",
     "stylelint-config-recommended": "^14.0.1",
     "stylelint-order": "^6.0.4",
-    "typescript-eslint": "^8.32.1"
+    "typescript-eslint": "^8.33.1"
   },
   "pnpm": {
     "peerDependencyRules": {

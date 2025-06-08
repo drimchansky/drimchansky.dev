@@ -3,6 +3,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import GlobeIcon from '@/assets/icons/globe.svg'
 import { getLocale, t } from '@/i18n'
+import { getTestId } from '@/utils/functions/getTestId'
 
 const locale = getLocale(Astro.currentLocale)
 const toLocale = locale === 'en' ? 'ru' : 'en'
@@ -10,7 +11,14 @@ const toLocale = locale === 'en' ? 'ru' : 'en'
 const pathname = Astro.url.pathname.replace(`/${locale}`, '')
 ---
 
-<a class="link" href={getRelativeLocaleUrl(toLocale, pathname)} hreflang={toLocale} rel="alternate" data-prefetch>
+<a
+  data-testid={getTestId('lang-switch-link')}
+  class="link"
+  href={getRelativeLocaleUrl(toLocale, pathname)}
+  hreflang={toLocale}
+  rel="alternate"
+  data-prefetch
+>
   <GlobeIcon class="icon" />
   {t(Astro.currentLocale, 'toLocale')}
 </a>

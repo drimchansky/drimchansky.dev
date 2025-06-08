@@ -11,7 +11,7 @@ export const en: LocaleCollection = {
   familyName: 'Chernov',
   fullName: 'Nikita Chernov',
   givenName: 'Nikita',
-  homePage: 'Home',
+  home: 'Home',
   hybrid: 'Hybrid',
   intro: 'Frontend Developer specializing in creating user-friendly, performant, and accessible web solutions',
   light: 'Light',
