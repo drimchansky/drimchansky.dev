@@ -23,7 +23,7 @@ const SkillsAndLanguagesContent = (await (await getEntry('general', `${locale}/s
 const EducationContent = (await (await getEntry('general', `${locale}/education`))?.render())?.Content
 ---
 
-<BaseLayout title=`${t(Astro.currentLocale, 'fullName')} – ${t(Astro.currentLocale, 'resume')}`>
+<BaseLayout title=`${t(Astro.currentLocale, 'resume')} – ${t(Astro.currentLocale, 'fullName')}`>
   <Container>
     <article class="resume">
       <ResumeHeader />

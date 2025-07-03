@@ -1,0 +1,27 @@
+---
+import type { GetStaticPaths } from 'astro'
+
+import { getCollection } from 'astro:content'
+
+import Container from '@/components/container.astro'
+import { t } from '@/i18n'
+import BaseLayout from '@/layouts/base-layout.astro'
+
+const { note } = Astro.props
+
+const { Content } = await note.render()
+
+export const getStaticPaths = (async () => {
+  const notes = await getCollection('notes')
+
+  return notes.map(note => {
+    const [lang, slugWithoutLang] = note.slug.split('/')
+
+    return { params: { lang, note: slugWithoutLang }, props: { note } }
+  })
+}) satisfies GetStaticPaths
+---
+
+<BaseLayout title={`${note.data.title} – ${t(Astro.currentLocale, 'fullName')}`}
+  ><Container><Content /></Container></BaseLayout
+>

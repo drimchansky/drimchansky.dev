@@ -17,6 +17,7 @@ export const en: LocaleCollection = {
   light: 'Light',
   location: 'Tbilisi, Georgia',
   menu: 'Menu',
+  notes: 'Notes',
   occupation: 'Frontend Developer',
   'on-site': 'On Site',
   present: 'Present',

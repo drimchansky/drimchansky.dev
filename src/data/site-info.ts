@@ -21,7 +21,8 @@ export type SiteInfo = {
 const siteInfo: SiteInfo = {
   navigation: [
     { id: 'home', route: '/' },
-    { id: 'resume', route: '/resume' }
+    { id: 'resume', route: '/resume' },
+    { id: 'notes', route: '/notes' }
   ],
   socialLinks: [
     {

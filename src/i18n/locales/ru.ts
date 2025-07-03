@@ -17,6 +17,7 @@ export const ru: LocaleCollection = {
   light: 'Светлая',
   location: 'Тбилиси, Грузия',
   menu: 'Меню',
+  notes: 'Заметки',
   occupation: 'Фронтенд-разработчик',
   'on-site': 'В офисе',
   present: 'на данный момент',

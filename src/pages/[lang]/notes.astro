@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths } from 'astro'
+
+import { getCollection } from 'astro:content'
+
+import Container from '@/components/container.astro'
+import { getLocale, t } from '@/i18n'
+import BaseLayout from '@/layouts/base-layout.astro'
+
+export const getStaticPaths = (async () => [
+  { params: { lang: 'ru' } },
+  { params: { lang: 'en' } }
+]) satisfies GetStaticPaths
+
+const locale = getLocale(Astro.currentLocale)
+
+const notes = await getCollection('notes', entry => {
+  return entry.slug.startsWith(`${locale}/`)
+})
+---
+
+<BaseLayout title=`${t(Astro.currentLocale, 'notes')} – ${t(Astro.currentLocale, 'fullName')}`>
+  <Container>
+    <ul>
+      {
+        notes.map(note => (
+          <>
+            <li>
+              <a href={note.slug.split('/')[1]}>{note.data.title}</a>
+            </li>
+          </>
+        ))
+      }
+    </ul>
+  </Container>
+</BaseLayout>
+
+<style>
+  @import '../../styles/mixins.css';
+  @import '../../styles/media.css';
+</style>
