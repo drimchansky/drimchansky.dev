@@ -2,9 +2,13 @@
 import type { HTMLAttributes } from 'astro/types'
 
 interface Props extends HTMLAttributes<'button'> {}
+
+const { class: className, ...props } = Astro.props
 ---
 
-<button class={`button ${Astro.props.class}`} {...Astro.props}><slot /></button>
+<button class:list={['button', className || '']} {...props}>
+  <slot />
+</button>
 
 <style>
   @import '../styles/mixins.css';

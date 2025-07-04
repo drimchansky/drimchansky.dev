@@ -6,6 +6,8 @@ import { getCareerDurationInMonths } from '@/utils/functions/getCareerDurationIn
 import { getDurationTextFromMonths } from '@/utils/functions/getDurationTextFromMonths'
 import { replaceTextVars } from '@/utils/functions/replaceTextVars'
 
+import TypographyP from '../typography/TypographyP.astro'
+
 const locale = getLocale(Astro.currentLocale)
 const resumeCollection = await getCollection('resume')
 
@@ -39,11 +41,11 @@ const experienceText = getDurationTextFromMonths(experienceMonths, locale)
 const experienceDevelopmentText = getDurationTextFromMonths(experienceDevelopmentMonths, locale)
 ---
 
-<p>
+<TypographyP>
   {
     replaceTextVars(t(Astro.currentLocale, 'experienceLine'), {
       '@experience@': experienceText,
       '@experienceDev@': experienceDevelopmentText
     })
   }
-</p>
+</TypographyP>

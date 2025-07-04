@@ -1,12 +1,12 @@
 ---
-interface Props {
-  class?: string
-}
+import type { HTMLAttributes } from 'astro/types'
 
-const { class: className, ...attributes } = Astro.props
+interface Props extends HTMLAttributes<'div'> {}
+
+const { class: className, ...props } = Astro.props
 ---
 
-<div class:list={['container', className]} {...attributes}>
+<div class:list={['container', className]} {...props}>
   <slot />
 </div>
 

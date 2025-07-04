@@ -7,31 +7,13 @@
 }
 
 @font-face {
-  font-weight: 400;
-  font-family: 'Inter';
-  font-style: normal;
+  font-weight: 600;
+  font-family: 'EB Garamond SemiBold';
   font-display: swap;
-  src:
-    url('/fonts/Inter-Regular.woff2') format('woff2'),
-    url('/fonts/Inter-Regular.woff') format('woff');
-}
-
-@font-face {
-  font-weight: 700;
-  font-family: 'Inter';
-  font-style: normal;
-  font-display: swap;
-  src:
-    url('/fonts/Inter-Bold.woff2') format('woff2'),
-    url('/fonts/Inter-Bold.woff') format('woff');
+  src: url('/fonts/EBGaramond-SemiBold.woff2') format('woff2');
 }
 
 :root {
-  --font-family-base: 'Inter', sans-serif;
-}
-
-@supports (font-variation-settings: normal) {
-  :root {
-    --font-family-base: 'Inter Variable', sans-serif;
-  }
+  --font-family-heading: 'EB Garamond SemiBold', Georgia, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-family-base: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
 }

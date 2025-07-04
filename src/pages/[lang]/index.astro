@@ -4,6 +4,8 @@ import type { GetStaticPaths } from 'astro'
 import Avatar from '@/components/avatar.astro'
 import Container from '@/components/container.astro'
 import SocialLinks from '@/components/social-links.astro'
+import TypographyH1 from '@/components/typography/TypographyH1.astro'
+import TypographyP from '@/components/typography/TypographyP.astro'
 import { t } from '@/i18n'
 import BaseLayout from '@/layouts/base-layout.astro'
 
@@ -18,13 +20,15 @@ export const getStaticPaths = (async () => [
     <div class="home-content">
       <Avatar />
       <div>
-        <h1 class="header">
+        <TypographyH1 class="header">
           <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>
           <span itemprop="familyName">{t(Astro.currentLocale, 'familyName')}</span>
-        </h1>
-        <p class="intro">
+        </TypographyH1>
+
+        <TypographyP class="intro-text">
           {t(Astro.currentLocale, 'intro')}
-        </p>
+        </TypographyP>
+
         <SocialLinks />
       </div>
     </div>
@@ -34,9 +38,7 @@ export const getStaticPaths = (async () => [
 <style>
   .header {
     margin: 0 0 0.5rem 0;
-    color: var(--c-text-primary);
     font-size: 4rem;
-    font-weight: 600;
     line-height: 1;
   }
 
@@ -54,11 +56,9 @@ export const getStaticPaths = (async () => [
     gap: 1rem;
   }
 
-  .intro {
+  .intro-text {
     max-width: var(--max-text-width);
-    padding: 0;
-    color: var(--c-text-primary);
-    font-size: var(--font-size-lg);
+    font-size: 1.1rem;
     text-wrap: balance;
   }
 

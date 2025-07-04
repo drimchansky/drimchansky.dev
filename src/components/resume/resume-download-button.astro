@@ -3,6 +3,7 @@ import { getLocale, t } from '@/i18n'
 import { RESUME_FILENAMES_BY_LOCALE } from '@/utils/constants'
 
 import ButtonLink from '../button-link.astro'
+import TypographySpan from '../typography/TypographySpan.astro'
 
 const locale = getLocale(Astro.currentLocale)
 ---
@@ -12,12 +13,17 @@ const locale = getLocale(Astro.currentLocale)
   download=`${RESUME_FILENAMES_BY_LOCALE[locale]}.pdf`
   href=`/files/${RESUME_FILENAMES_BY_LOCALE[locale]}.pdf`
 >
-  {t(Astro.currentLocale, 'download')}
+  <TypographySpan>{t(Astro.currentLocale, 'download')}</TypographySpan>
 </ButtonLink>
 
 <style>
   .print-button {
     margin: 2.5rem auto 0 auto;
+    background-color: var(--c-button-bg-origin);
+
+    & span {
+      color: var(--c-button-text);
+    }
   }
 
   @media print {

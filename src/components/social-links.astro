@@ -1,5 +1,7 @@
 ---
 import { siteInfo } from '@/data/site-info'
+
+import TypographySpan from './typography/TypographySpan.astro'
 ---
 
 <div class="social-links" data-nosnippet>
@@ -8,7 +10,7 @@ import { siteInfo } from '@/data/site-info'
       ({ name, showOnHomePage, url }) =>
         showOnHomePage && (
           <a class="social-link" href={url} itemprop="sameAs" rel="me" target="_blank">
-            {name}
+            <TypographySpan>{name}</TypographySpan>
           </a>
         )
     )
@@ -30,9 +32,12 @@ import { siteInfo } from '@/data/site-info'
 
     padding: 0.25rem;
     color: var(--c-text-secondary);
-    font-size: var(--font-size-lg);
     opacity: 0.8;
     transition: color var(--link-hover-duration);
+
+    & span {
+      font-size: 1.125rem;
+    }
 
     @media (hover: hover) {
       &:hover {

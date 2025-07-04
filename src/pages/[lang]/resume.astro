@@ -52,17 +52,24 @@ const EducationContent = (await (await getEntry('general', `${locale}/education`
   .resume {
     --resume-gap: 1rem;
     color: var(--c-text-primary);
-    line-height: 1.6;
     padding-block: 3rem;
 
     @media print {
       --resume-gap: 0.5rem;
-      line-height: normal;
       padding-block: 0;
     }
 
-    & :global(p) {
+    & :global(p, li) {
       max-width: var(--max-text-width);
+      margin: 0;
+      font-family: var(--font-family-base);
+      font-size: var(--text-base);
+      line-height: var(--text-base--line-height);
+
+      @media print {
+        font-size: var(--text-sm);
+        line-height: var(--text-sm--line-height);
+      }
     }
   }
 

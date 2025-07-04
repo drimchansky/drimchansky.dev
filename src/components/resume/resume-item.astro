@@ -72,21 +72,25 @@ const locale = getLocale(Astro.currentLocale)
     @mixin link-underline;
 
     color: var(--c-text-secondary);
-    font-size: var(--font-size-xs);
+    font-size: var(--text-xs);
+    line-height: var(--text-xs--line-height);
   }
 
   .location {
-    font-size: var(--font-size-xs);
+    font-size: var(--text-xs);
     font-weight: 400;
+    line-height: var(--text-xs--line-height);
   }
 
   .position {
     margin: 0;
-    font-size: var(--font-size-lg);
+    font-size: var(--text-xl);
+    line-height: var(--text-xl--line-height);
   }
 
   .description {
     max-width: var(--max-text-width);
+    margin-top: 0.5rem;
 
     & :global(ul) {
       padding-left: 0;
@@ -95,15 +99,13 @@ const locale = getLocale(Astro.currentLocale)
 
     & :global(li:not(:first-child)) {
       margin-top: 0.25rem;
-      @media print {
-        margin-top: 0;
-      }
     }
   }
 
   .time {
-    font-size: var(--font-size-xs);
+    font-size: var(--text-xs);
     font-weight: 400;
+    line-height: var(--text-xs--line-height);
   }
 
   @media print {

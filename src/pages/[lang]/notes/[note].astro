@@ -22,6 +22,9 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths
 ---
 
-<BaseLayout title={`${note.data.title} – ${t(Astro.currentLocale, 'fullName')}`}
-  ><Container><Content /></Container></BaseLayout
->
+<BaseLayout title={`${note.data.title} – ${t(Astro.currentLocale, 'fullName')}`}>
+  <Container>
+    <h2>{note.data.title}</h2>
+    <Content />
+  </Container>
+</BaseLayout>

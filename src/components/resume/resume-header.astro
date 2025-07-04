@@ -3,14 +3,16 @@ import { Icon } from 'astro-icon/components'
 
 import { siteInfo } from '@/data/site-info'
 import { t } from '@/i18n'
+
+import TypographyH1 from '../typography/TypographyH1.astro'
+import TypographyP from '../typography/TypographyP.astro'
+import TypographySpan from '../typography/TypographySpan.astro'
 ---
 
 <header class="header">
   <div class="profile">
-    <h1 class="name">
-      {t(Astro.currentLocale, 'fullName')}
-    </h1>
-    <p class="location">{t(Astro.currentLocale, 'location')}</p>
+    <TypographyH1 class="header-name">{t(Astro.currentLocale, 'fullName')}</TypographyH1>
+    <TypographySpan class="location-text">{t(Astro.currentLocale, 'location')}</TypographySpan>
   </div>
 
   <div class="contacts">
@@ -28,7 +30,7 @@ import { t } from '@/i18n'
                   rel="me"
                   target="_blank"
                 >
-                  {content}
+                  <TypographySpan>{content}</TypographySpan>
                 </a>
               </li>
             )
@@ -56,17 +58,21 @@ import { t } from '@/i18n'
     }
   }
 
-  .name {
-    margin: 0;
-    font-size: var(--font-size-3xl);
-    line-height: 1.25;
+  .header-name {
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+  }
+
+  .location-text {
+    font-family: var(--font-family-heading);
   }
 
   .location {
     max-width: none;
     padding: 0;
     margin: 0;
-    font-size: var(--font-size-base);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
   }
 
   .contacts-list {
@@ -75,7 +81,6 @@ import { t } from '@/i18n'
     justify-content: center;
     padding: 0;
     margin: 0;
-    font-size: var(--font-size-xs);
     gap: 0.5rem;
     list-style-type: none;
   }
@@ -85,8 +90,13 @@ import { t } from '@/i18n'
     align-items: center;
     gap: 0.2rem;
 
-    & a {
-      font-size: var(--font-size-xs);
+    & span {
+      font-size: 0.8125rem;
+    }
+
+    & svg {
+      width: 0.8rem;
+      height: 0.8rem;
     }
   }
 

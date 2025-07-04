@@ -1,4 +1,6 @@
 ---
+import type { HTMLAttributes } from 'astro/types'
+
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import LangSwitcLink from '@/components/lang-swith-link.astro'
@@ -7,19 +9,18 @@ import { siteInfo } from '@/data/site-info'
 import { getLocale, t } from '@/i18n'
 import { getTestId } from '@/utils/functions/getTestId'
 
-interface Props {
-  class?: string
-  id?: string
-}
+import TypographySpan from './typography/TypographySpan.astro'
 
-const { class: className, ...attributes } = Astro.props
+interface Props extends HTMLAttributes<'nav'> {}
+
+const { class: className, ...props } = Astro.props
 
 const pathname = new URL(Astro.request.url).pathname
 const locale = getLocale(Astro.currentLocale)
 const currentRoute = pathname.slice(1).replace(`${locale}`, '').slice(0, -1) || '/'
 ---
 
-<nav data-testid={getTestId('menu')} class:list={['menu', 'menu-closed', className]} {...attributes}>
+<nav data-testid={getTestId('menu')} class:list={['menu', 'menu-closed', className]} {...props}>
   <ul class="list">
     {
       siteInfo.navigation.map(({ id, route }) => (
@@ -30,7 +31,7 @@ const currentRoute = pathname.slice(1).replace(`${locale}`, '').slice(0, -1) || 
             href={getRelativeLocaleUrl(locale, route)}
             data-prefetch
           >
-            {t(Astro.currentLocale, id)}
+            <TypographySpan>{t(Astro.currentLocale, id)}</TypographySpan>
           </a>
         </li>
       ))

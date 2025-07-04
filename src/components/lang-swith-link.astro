@@ -5,6 +5,8 @@ import GlobeIcon from '@/assets/icons/globe.svg'
 import { getLocale, t } from '@/i18n'
 import { getTestId } from '@/utils/functions/getTestId'
 
+import TypographySpan from './typography/TypographySpan.astro'
+
 const locale = getLocale(Astro.currentLocale)
 const toLocale = locale === 'en' ? 'ru' : 'en'
 
@@ -20,7 +22,7 @@ const pathname = Astro.url.pathname.replace(`/${locale}`, '')
   data-prefetch
 >
   <GlobeIcon class="icon" />
-  {t(Astro.currentLocale, 'toLocale')}
+  <TypographySpan>{t(Astro.currentLocale, 'toLocale')}</TypographySpan>
 </a>
 
 <style>
@@ -38,7 +40,8 @@ const pathname = Astro.url.pathname.replace(`/${locale}`, '')
     transition: color var(--link-hover-duration);
 
     @media (hover: hover) {
-      &:hover {
+      &:hover,
+      &:hover span {
         color: var(--c-menu-link-text-hover);
       }
     }

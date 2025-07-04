@@ -20,8 +20,6 @@ const generalCollection = defineCollection({})
 
 const notesCollection = defineCollection({
   schema: z.object({
-    description: z.string(),
-    // slug: z.string(),
     title: z.string()
   }),
   type: 'content'
