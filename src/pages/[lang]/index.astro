@@ -19,25 +19,22 @@ export const getStaticPaths = (async () => [
   <Container class="home-container">
     <div class="home-content">
       <Avatar />
-      <div>
-        <TypographyH1 class="header">
-          <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>
-          <span itemprop="familyName">{t(Astro.currentLocale, 'familyName')}</span>
-        </TypographyH1>
+      <TypographyH1 class="header">
+        <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>
+        <span itemprop="familyName">{t(Astro.currentLocale, 'familyName')}</span>
+      </TypographyH1>
 
-        <TypographyP class="intro-text">
-          {t(Astro.currentLocale, 'intro')}
-        </TypographyP>
+      <TypographyP class="intro-text">
+        {t(Astro.currentLocale, 'intro')}
+      </TypographyP>
 
-        <SocialLinks />
-      </div>
+      <SocialLinks />
     </div>
   </Container>
 </BaseLayout>
 
 <style>
   .header {
-    margin: 0 0 0.5rem 0;
     font-size: 4rem;
     line-height: 1;
   }
@@ -53,7 +50,7 @@ export const getStaticPaths = (async () => [
     display: flex;
     flex-direction: column;
     margin-top: -5rem;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
   .intro-text {
