@@ -31,10 +31,10 @@ const notesGrouped = prepareNotesList(locale, notes)
           <>
             <TypographyH2>{monthYear}</TypographyH2>
             <ul class="list">
-              {notes.map(({ data, slug }) => {
+              {notes.map(({ data, url }) => {
                 return (
                   <li class="list-item">
-                    <a class="link" href={slug}>
+                    <a class="link" href={url}>
                       <TypographySpan>{data.title}</TypographySpan>
                     </a>
                   </li>
