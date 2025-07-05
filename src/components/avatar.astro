@@ -1,10 +1,10 @@
 ---
 import { Picture } from 'astro:assets'
 
-import avatar from '@/assets/images/avatar-informal.jpg'
+import avatar from '@/assets/images/avatar.jpg'
 import { getPlaceholderStyles } from '@/utils/functions/getPlaceholderStyles'
 
-const placeholderStyles = await getPlaceholderStyles('src/assets/images/avatar-informal.jpg')
+const placeholderStyles = await getPlaceholderStyles('src/assets/images/avatar.jpg')
 ---
 
 <a class="avatar" href={avatar.src} target="_blank" rel="noopener noreferrer" style={placeholderStyles}>
