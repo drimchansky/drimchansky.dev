@@ -20,6 +20,7 @@ const generalCollection = defineCollection({})
 
 const notesCollection = defineCollection({
   schema: z.object({
+    pubDate: z.date(),
     title: z.string()
   }),
   type: 'content'

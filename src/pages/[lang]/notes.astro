@@ -5,33 +5,46 @@ import { getCollection } from 'astro:content'
 
 import Container from '@/components/container.astro'
 import TypographyH1 from '@/components/typography/TypographyH1.astro'
+import TypographyH2 from '@/components/typography/TypographyH2.astro'
+import TypographySpan from '@/components/typography/TypographySpan.astro'
 import { getLocale, t } from '@/i18n'
 import BaseLayout from '@/layouts/base-layout.astro'
+import { prepareNotesList } from '@/utils/functions/prepareNotesList'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
   { params: { lang: 'en' } }
 ]) satisfies GetStaticPaths
 
-const notes = await getCollection('notes', entry => {
-  return entry.slug.startsWith(`${getLocale(Astro.currentLocale)}/`)
-})
+const locale = getLocale(Astro.currentLocale)
+const notes = await getCollection('notes', entry => entry.slug.startsWith(`${locale}/`))
+const notesGrouped = prepareNotesList(locale, notes)
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'notes')} – ${t(Astro.currentLocale, 'fullName')}`>
   <Container class="notes-container">
     <TypographyH1>{t(Astro.currentLocale, 'notes')}</TypographyH1>
-    <ul>
-      {
-        notes.map(note => (
+
+    {
+      notesGrouped.map(([monthYear, notes]) => {
+        return (
           <>
-            <li>
-              <a href={note.slug.split('/')[1]}>{note.data.title}</a>
-            </li>
+            <TypographyH2>{monthYear}</TypographyH2>
+            <ul class="list">
+              {notes.map(({ data, slug }) => {
+                return (
+                  <li class="list-item">
+                    <a class="link" href={slug}>
+                      <TypographySpan>{data.title}</TypographySpan>
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
           </>
-        ))
-      }
-    </ul>
+        )
+      })
+    }
   </Container>
 </BaseLayout>
 
@@ -43,5 +56,19 @@ const notes = await getCollection('notes', entry => {
     --max-width: 800px;
 
     padding-top: 3rem;
+  }
+
+  .list {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+
+  /* .list-item {
+  } */
+
+  .link {
+    display: block;
+    text-decoration: none;
   }
 </style>
