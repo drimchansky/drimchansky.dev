@@ -10,6 +10,7 @@ import TypographyH3 from '@/components/typography/TypographyH3.astro'
 import TypographySpan from '@/components/typography/TypographySpan.astro'
 import { getLocale, t } from '@/i18n'
 import BaseLayout from '@/layouts/base-layout.astro'
+import { filterTestNotesCb } from '@/utils/functions/filterTestNotesCb'
 import { prepareNotesList } from '@/utils/functions/prepareNotesList'
 
 export const getStaticPaths = (async () => [
@@ -19,7 +20,7 @@ export const getStaticPaths = (async () => [
 
 const locale = getLocale(Astro.currentLocale)
 const notes = await getCollection('notes', entry => entry.slug.startsWith(`${locale}/`))
-const notesGrouped = prepareNotesList(locale, notes)
+const notesGrouped = prepareNotesList(locale, notes.filter(filterTestNotesCb))
 
 const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short' })
 ---

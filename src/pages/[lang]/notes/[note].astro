@@ -10,6 +10,7 @@ import TypographyH1 from '@/components/typography/TypographyH1.astro'
 import TypographySpan from '@/components/typography/TypographySpan.astro'
 import { getLocale, t } from '@/i18n'
 import BaseLayout from '@/layouts/base-layout.astro'
+import { filterTestNotesCb } from '@/utils/functions/filterTestNotesCb'
 
 const { note } = Astro.props
 const { Content } = await note.render()
@@ -20,12 +21,10 @@ const dateFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: '
 export const getStaticPaths = (async () => {
   const notes = await getCollection('notes')
 
-  return notes
-    .filter(note => !(note.data.isTestNote && import.meta.env.PROD))
-    .map(note => {
-      const [lang, slugWithoutLang] = note.slug.split('/')
-      return { params: { lang, note: slugWithoutLang }, props: { note } }
-    })
+  return notes.filter(filterTestNotesCb).map(note => {
+    const [lang, slugWithoutLang] = note.slug.split('/')
+    return { params: { lang, note: slugWithoutLang }, props: { note } }
+  })
 }) satisfies GetStaticPaths
 ---
 
@@ -97,6 +96,7 @@ export const getStaticPaths = (async () => {
 
   .note-meta-last-updated {
     background: var(--c-highlight);
+    color: oklch(51.03% 0 0);
   }
 
   .note-content-wrapper {
