@@ -6,6 +6,7 @@ import { getCollection } from 'astro:content'
 import Container from '@/components/container.astro'
 import TypographyH1 from '@/components/typography/TypographyH1.astro'
 import TypographyH2 from '@/components/typography/TypographyH2.astro'
+import TypographyH3 from '@/components/typography/TypographyH3.astro'
 import TypographySpan from '@/components/typography/TypographySpan.astro'
 import { getLocale, t } from '@/i18n'
 import BaseLayout from '@/layouts/base-layout.astro'
@@ -19,6 +20,8 @@ export const getStaticPaths = (async () => [
 const locale = getLocale(Astro.currentLocale)
 const notes = await getCollection('notes', entry => entry.slug.startsWith(`${locale}/`))
 const notesGrouped = prepareNotesList(locale, notes)
+
+const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short' })
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'notes')} – ${t(Astro.currentLocale, 'fullName')}`>
@@ -26,16 +29,22 @@ const notesGrouped = prepareNotesList(locale, notes)
     <TypographyH1>{t(Astro.currentLocale, 'notes')}</TypographyH1>
 
     {
-      notesGrouped.map(([monthYear, notes]) => {
+      notesGrouped.map(([year, notes]) => {
         return (
           <>
-            <TypographyH2>{monthYear}</TypographyH2>
+            <TypographyH2 class="year-header">{year}</TypographyH2>
+
             <ul class="list">
               {notes.map(({ data, url }) => {
                 return (
                   <li class="list-item">
                     <a class="link" href={url}>
-                      <TypographySpan>{data.title}</TypographySpan>
+                      <TypographyH3 class="note-header">
+                        <TypographySpan>{data.title}</TypographySpan>
+                        <TypographySpan class="note-date">
+                          <time datetime={data.pubDate.toISOString()}>{monthDayFormatter.format(data.pubDate)}</time>
+                        </TypographySpan>
+                      </TypographyH3>
                     </a>
                   </li>
                 )
@@ -58,9 +67,16 @@ const notesGrouped = prepareNotesList(locale, notes)
     padding-top: 3rem;
   }
 
+  .year-header {
+    padding: 2rem 0 0.5rem 0;
+    border-bottom: 2px solid var(--c-header-line);
+  }
+
   .list {
     padding: 0;
     margin: 0;
+    margin-top: 0.5rem;
+
     list-style-type: none;
   }
 
@@ -69,6 +85,22 @@ const notesGrouped = prepareNotesList(locale, notes)
 
   .link {
     display: block;
+    padding: 0.4rem 0;
     text-decoration: none;
+    @mixin focus;
+  }
+
+  .note-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .note-date {
+    color: gray;
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    text-wrap: nowrap;
   }
 </style>
