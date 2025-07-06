@@ -45,11 +45,10 @@ export const getStaticPaths = (async () => {
             {
               note.data.lastModified && (
                 <span class="note-meta-last-updated">
-                  (last updated on{' '}
+                  {'('}last updated on{' '}
                   <time datetime={note.data.lastModified.toISOString()}>
-                    {dateFormatter.format(note.data.lastModified)}
+                    {dateFormatter.format(note.data.lastModified) + ')'}
                   </time>
-                  )
                 </span>
               )
             }
