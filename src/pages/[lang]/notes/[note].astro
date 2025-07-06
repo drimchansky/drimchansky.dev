@@ -20,11 +20,12 @@ const dateFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: '
 export const getStaticPaths = (async () => {
   const notes = await getCollection('notes')
 
-  return notes.map(note => {
-    const [lang, slugWithoutLang] = note.slug.split('/')
-
-    return { params: { lang, note: slugWithoutLang }, props: { note } }
-  })
+  return notes
+    .filter(note => !(note.data.isTestNote && import.meta.env.PROD))
+    .map(note => {
+      const [lang, slugWithoutLang] = note.slug.split('/')
+      return { params: { lang, note: slugWithoutLang }, props: { note } }
+    })
 }) satisfies GetStaticPaths
 ---
 
