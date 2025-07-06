@@ -1,3 +1,4 @@
+import mdx from '@astrojs/mdx'
 import partytown from '@astrojs/partytown'
 import sitemap from '@astrojs/sitemap'
 import icon from 'astro-icon'
@@ -27,7 +28,8 @@ export default defineConfig({
       config: {
         forward: ['dataLayer.push']
       }
-    })
+    }),
+    mdx()
   ],
   site: process.env.SITE_URL
 })

@@ -19,6 +19,8 @@
   ],
   "dependencies": {
     "@astrojs/check": "^0.5.10",
+    "@astrojs/markdown-remark": "^6.3.2",
+    "@astrojs/mdx": "^4.3.0",
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/sitemap": "^3.4.1",
     "@csstools/postcss-oklab-function": "^3.0.19",

@@ -4,6 +4,8 @@ import type { GetStaticPaths } from 'astro'
 import { getCollection } from 'astro:content'
 
 import Container from '@/components/container.astro'
+import { mdxComponents } from '@/components/mdx-components'
+import TypographyH2 from '@/components/typography/TypographyH2.astro'
 import { t } from '@/i18n'
 import BaseLayout from '@/layouts/base-layout.astro'
 
@@ -23,8 +25,18 @@ export const getStaticPaths = (async () => {
 ---
 
 <BaseLayout title={`${note.data.title} – ${t(Astro.currentLocale, 'fullName')}`}>
-  <Container>
-    <h2>{note.data.title}</h2>
-    <Content />
+  <Container class="note-container">
+    <TypographyH2>{note.data.title}</TypographyH2>
+    <Content components={mdxComponents} />
   </Container>
 </BaseLayout>
+
+<style>
+  @import '@/styles/mixins.css';
+  @import '@/styles/media.css';
+
+  .note-container {
+    --max-width: var(--max-notes-text-width);
+    padding-top: 3rem;
+  }
+</style>

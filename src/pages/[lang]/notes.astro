@@ -58,11 +58,11 @@ const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', mont
 </BaseLayout>
 
 <style>
-  @import '../../styles/mixins.css';
-  @import '../../styles/media.css';
+  @import '@/styles/mixins.css';
+  @import '@/styles/media.css';
 
   .notes-container {
-    --max-width: 800px;
+    --max-width: var(--max-notes-text-width);
 
     padding-top: 3rem;
   }
