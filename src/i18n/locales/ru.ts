@@ -3,6 +3,7 @@ import type { LocaleCollection } from '..'
 export const ru: LocaleCollection = {
   404: 'Page not found',
   auto: 'Авто',
+  backToNotes: 'Назад к заметкам',
   dark: 'Темная',
   download: 'Скачать',
   education: 'Образование',

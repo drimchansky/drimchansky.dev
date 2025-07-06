@@ -2,6 +2,7 @@
   --outline-color: oklch(67.06% 0.163 235.02);
 
   --c-main-bg: oklch(100% 0 0);
+  --c-highlight: #ffffcc;
 
   --c-header-bg: oklch(97.52% 0.003 270.1);
   --c-header-line: oklch(95% 0.006 270.07);
@@ -33,6 +34,7 @@
   --outline-color: oklch(67.06% 0.163 235.02);
 
   --c-main-bg: oklch(22.21% 0 0);
+  --c-highlight: #ffffcc;
 
   --c-header-bg: oklch(31.32% 0 0);
   --c-header-line: oklch(61.67% 0 0);

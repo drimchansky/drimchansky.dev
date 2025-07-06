@@ -3,6 +3,7 @@ import type { LocaleCollection } from '..'
 export const en: LocaleCollection = {
   404: 'Страница не найдена',
   auto: 'Auto',
+  backToNotes: 'Back to Notes',
   dark: 'Dark',
   download: 'Download',
   education: 'Education',
