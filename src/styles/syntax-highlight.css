@@ -4,3 +4,17 @@
   overflow: auto;
   font-size: var(--text-sm);
 }
+
+pre.astro-code[data-language] {
+  position: relative;
+}
+
+pre.astro-code[data-language]::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.7rem;
+  color: gray;
+  pointer-events: none;
+}
