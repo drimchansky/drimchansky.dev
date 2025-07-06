@@ -29,7 +29,13 @@ export default defineConfig({
         forward: ['dataLayer.push']
       }
     }),
-    mdx()
+    mdx({
+      shikiConfig: {
+        theme: 'github-dark',
+        wrap: true
+      },
+      syntaxHighlight: 'shiki'
+    })
   ],
   site: process.env.SITE_URL
 })

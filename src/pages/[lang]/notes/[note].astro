@@ -6,7 +6,6 @@ import { getCollection } from 'astro:content'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import Container from '@/components/container.astro'
-import { mdxComponents } from '@/components/mdx-components'
 import TypographyH1 from '@/components/typography/TypographyH1.astro'
 import TypographySpan from '@/components/typography/TypographySpan.astro'
 import { getLocale, t } from '@/i18n'
@@ -56,7 +55,7 @@ export const getStaticPaths = (async () => {
         </header>
 
         <div class="note-content-wrapper">
-          <Content components={mdxComponents} />
+          <Content />
         </div>
       </article>
     </main>
