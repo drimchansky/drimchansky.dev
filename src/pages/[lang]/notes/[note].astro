@@ -6,6 +6,7 @@ import { getCollection } from 'astro:content'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
 import Container from '@/components/container.astro'
+import MarkdownWrapper from '@/components/markdown-wrapper.astro'
 import TypographyH1 from '@/components/typography/TypographyH1.astro'
 import TypographySpan from '@/components/typography/TypographySpan.astro'
 import { getLocale, t } from '@/i18n'
@@ -54,9 +55,9 @@ export const getStaticPaths = (async () => {
           </TypographySpan>
         </header>
 
-        <div class="note-content-wrapper">
+        <MarkdownWrapper>
           <Content />
-        </div>
+        </MarkdownWrapper>
       </article>
     </main>
   </Container>
@@ -68,7 +69,7 @@ export const getStaticPaths = (async () => {
 
   .note-container {
     --max-width: var(--max-notes-text-width);
-    padding-top: 3rem;
+    padding: 3rem 0;
   }
 
   .note-header {
@@ -97,13 +98,5 @@ export const getStaticPaths = (async () => {
   .note-meta-last-updated {
     background: var(--c-highlight);
     color: oklch(51.03% 0 0);
-  }
-
-  .note-content-wrapper {
-    margin-top: 3rem;
-
-    & :global(p) {
-      background: pink;
-    }
   }
 </style>

@@ -18,6 +18,13 @@
   --text-5xl: 3rem;
   --text-5xl--line-height: 1;
 
+  --tracking-tighter: -0.05em -1.5px;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+  --tracking-widest: 0.1em;
+
   /** other sizes */
   --header-height: 3.5rem;
   --header-line-width: 1px;
