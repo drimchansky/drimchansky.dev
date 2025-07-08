@@ -20,8 +20,8 @@
   --c-theme-switcher-text: oklch(28.46% 0.008 264.44);
   --c-theme-switcher-border: oklch(95% 0.006 270.07);
 
-  --c-text-primary: oklch(20.97% 0.008 274.53);
-  --c-text-secondary: oklch(34.08% 0.016 269.69);
+  --c-text-primary: oklch(26.9% 0 0);
+  --c-text-secondary: oklch(26.9% 0 0);
   --c-text-gray: oklch(51.03% 0 0);
 
   --c-button-bg-origin: oklch(22.21% 0 0);
