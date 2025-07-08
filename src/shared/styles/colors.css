@@ -55,8 +55,8 @@
   --c-theme-switcher-text: oklch(100% 0 0);
   --c-theme-switcher-border: oklch(61.67% 0 0);
 
-  --c-text-primary: oklch(100% 0 0);
-  --c-text-secondary: oklch(81.63% 0.007 270.04);
+  --c-text-primary: oklch(95% 0 0);
+  --c-text-secondary: oklch(90% 0 0);
   --c-text-gray: oklch(81.63% 0 0.04);
 
   --c-button-bg-origin: oklch(100% 0 0);
