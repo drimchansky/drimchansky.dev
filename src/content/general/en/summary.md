@@ -1,1 +1,1 @@
-Frontend engineer with over 4 years of professional experience in JavaScript / TypeScript, React, CSS, Node.js and many other web technologies. Specializing in creating user-friendly, performant, and accessible web solutions.
+Frontend engineer with 5 years of professional experience in JavaScript / TypeScript, React, CSS, Node.js and many other web technologies. Specializing in creating user-friendly, performant, and accessible web solutions.

@@ -1,13 +1,13 @@
 ---
 import type { GetStaticPaths } from 'astro'
 
-import Avatar from '@/components/avatar.astro'
-import Container from '@/components/container.astro'
-import SocialLinks from '@/components/social-links.astro'
-import TypographyH1 from '@/components/typography/TypographyH1.astro'
-import TypographyP from '@/components/typography/TypographyP.astro'
-import { t } from '@/i18n'
-import BaseLayout from '@/layouts/base-layout.astro'
+import { t } from '@/shared/i18n'
+import BaseLayout from '@/shared/layouts/base-layout.astro'
+import Avatar from '@/shared/ui/avatar.astro'
+import Container from '@/shared/ui/container.astro'
+import SocialLinks from '@/shared/ui/social-links.astro'
+import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
+import TypographyP from '@/shared/ui/typography/typography-p.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -15,16 +15,17 @@ export const getStaticPaths = (async () => [
 ]) satisfies GetStaticPaths
 ---
 
+<div class="home"></div>
 <BaseLayout title={t(Astro.currentLocale, 'fullName')}>
-  <Container class="home-container">
-    <div class="home-content">
+  <Container class="home__container">
+    <div class="home__content">
       <Avatar />
-      <TypographyH1 class="header">
+      <TypographyH1 class="home__header">
         <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>
         <span itemprop="familyName">{t(Astro.currentLocale, 'familyName')}</span>
       </TypographyH1>
 
-      <TypographyP class="intro-text">
+      <TypographyP class="home__intro-text">
         {t(Astro.currentLocale, 'intro')}
       </TypographyP>
 
@@ -34,39 +35,39 @@ export const getStaticPaths = (async () => [
 </BaseLayout>
 
 <style>
-  .header {
+  .home__header {
     font-size: 4rem;
     line-height: 1;
   }
 
-  .home-container {
+  .home__container {
     display: flex;
     min-height: calc(100dvh - var(--header-height));
     flex-direction: column;
     justify-content: center;
   }
 
-  .home-content {
+  .home__content {
     display: flex;
     flex-direction: column;
     margin-top: -5rem;
     gap: 0.5rem;
   }
 
-  .intro-text {
+  .home__intro-text {
     max-width: var(--max-text-width);
     font-size: 1.1rem;
     text-wrap: balance;
   }
 
   @media (orientation: portrait) {
-    .home-content {
+    .home__content {
       margin-top: 0rem;
     }
   }
 
   @media (orientation: landscape) and (max-height: 500px) {
-    .home-content {
+    .home__content {
       flex-direction: row;
       margin-top: 0rem;
     }

@@ -21,7 +21,7 @@ export default defineConfig({
   },
   integrations: [
     icon({
-      iconDir: 'src/assets/icons'
+      iconDir: 'src/shared/assets/icons'
     }),
     sitemap(),
     partytown({

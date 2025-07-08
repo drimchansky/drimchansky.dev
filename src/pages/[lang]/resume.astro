@@ -3,13 +3,10 @@ import type { GetStaticPaths } from 'astro'
 
 import { getEntry } from 'astro:content'
 
-import Container from '@/components/container.astro'
-import ResumeDownloadButton from '@/components/resume/resume-download-button.astro'
-import ResumeHeader from '@/components/resume/resume-header.astro'
-import ResumePositions from '@/components/resume/resume-positions.astro'
-import ResumeSectionHeader from '@/components/resume/resume-section-header.astro'
-import { getLocale, t } from '@/i18n'
-import BaseLayout from '@/layouts/base-layout.astro'
+import { ResumeDownloadButton, ResumeHeader, ResumePositions, ResumeSectionHeader } from '@/features/resume'
+import { getLocale, t } from '@/shared/i18n'
+import BaseLayout from '@/shared/layouts/base-layout.astro'
+import Container from '@/shared/ui/container.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -23,33 +20,35 @@ const SkillsAndLanguagesContent = (await (await getEntry('general', `${locale}/s
 const EducationContent = (await (await getEntry('general', `${locale}/education`))?.render())?.Content
 ---
 
-<BaseLayout title=`${t(Astro.currentLocale, 'resume')} – ${t(Astro.currentLocale, 'fullName')}`>
-  <Container>
-    <article class="resume">
-      <ResumeHeader />
+<div class="resume">
+  <BaseLayout title=`${t(Astro.currentLocale, 'resume')} – ${t(Astro.currentLocale, 'fullName')}`>
+    <Container>
+      <article class="resume__article">
+        <ResumeHeader />
 
-      <ResumeSectionHeader text={t(Astro.currentLocale, 'summary')} />
-      {Summary && <Summary />}
+        <ResumeSectionHeader text={t(Astro.currentLocale, 'summary')} />
+        {Summary && <Summary />}
 
-      <ResumeSectionHeader text={t(Astro.currentLocale, 'workingExperience')} />
-      <ResumePositions />
+        <ResumeSectionHeader text={t(Astro.currentLocale, 'workingExperience')} />
+        <ResumePositions />
 
-      <ResumeSectionHeader text={t(Astro.currentLocale, 'education')} />
-      {EducationContent && <EducationContent />}
+        <ResumeSectionHeader text={t(Astro.currentLocale, 'education')} />
+        {EducationContent && <EducationContent />}
 
-      <ResumeSectionHeader text={t(Astro.currentLocale, 'skillsAndLanguages')} />
-      {SkillsAndLanguagesContent && <SkillsAndLanguagesContent />}
+        <ResumeSectionHeader text={t(Astro.currentLocale, 'skillsAndLanguages')} />
+        {SkillsAndLanguagesContent && <SkillsAndLanguagesContent />}
 
-      <ResumeDownloadButton />
-    </article>
-  </Container>
-</BaseLayout>
+        <ResumeDownloadButton />
+      </article>
+    </Container>
+  </BaseLayout>
+</div>
 
 <style>
-  @import '@/styles/mixins.css';
-  @import '@/styles/media.css';
+  @import '@/shared/styles/mixins.css';
+  @import '@/shared/styles/media.css';
 
-  .resume {
+  .resume__article {
     --resume-gap: 1rem;
     color: var(--c-text-primary);
     padding-block: 3rem;

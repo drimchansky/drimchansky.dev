@@ -1,0 +1,54 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
+import GlobeIcon from '@/shared/assets/icons/globe.svg'
+import { getTestId } from '@/shared/functions/getTestId'
+import { getLocale, t } from '@/shared/i18n'
+
+import TypographySpan from './typography/typography-span.astro'
+
+const locale = getLocale(Astro.currentLocale)
+const toLocale = locale === 'en' ? 'ru' : 'en'
+
+const pathname = Astro.url.pathname.replace(`/${locale}`, '')
+---
+
+<a
+  data-testid={getTestId('lang-switch-link')}
+  class="lang-swith-link"
+  href={getRelativeLocaleUrl(toLocale, pathname)}
+  hreflang={toLocale}
+  rel="alternate"
+  data-prefetch
+>
+  <GlobeIcon class="lang-swith-link__icon" />
+  <TypographySpan>{t(Astro.currentLocale, 'toLocale')}</TypographySpan>
+</a>
+
+<style>
+  @import '@/shared/styles/mixins.css';
+
+  .lang-swith-link {
+    @mixin focus;
+
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    color: var(--c-menu-link-text);
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: color var(--link-hover-duration);
+
+    @media (hover: hover) {
+      &:hover,
+      &:hover span {
+        color: var(--c-menu-link-text-hover);
+      }
+    }
+  }
+
+  .lang-swith-link__icon {
+    width: 1rem;
+    height: 1rem;
+  }
+</style>

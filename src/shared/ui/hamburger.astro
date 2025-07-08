@@ -1,0 +1,64 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+import CrossIcon from '@/shared/assets/icons/cross.svg'
+import HamburgerIcon from '@/shared/assets/icons/hamburger.svg'
+import { getTestId } from '@/shared/functions/getTestId'
+import { t } from '@/shared/i18n'
+
+import TypographySpan from './typography/typography-span.astro'
+
+interface Props extends HTMLAttributes<'button'> {}
+
+const { class: className, ...props } = Astro.props
+---
+
+<button
+  data-testid={getTestId('open-mobile-menu-button')}
+  class:list={['hamburger', className]}
+  type="button"
+  data-nosnippet
+  {...props}
+>
+  <TypographySpan>{t(Astro.currentLocale, 'menu')}</TypographySpan>
+  <HamburgerIcon class="hamburger__icon hamburger__icon-hamburger" />
+  <CrossIcon class="hamburger__icon hamburger__icon-cross" />
+</button>
+
+<style>
+  @import '@/shared/styles/mixins.css';
+  @import '@/shared/styles/media.css';
+
+  .hamburger {
+    @mixin focus;
+
+    z-index: 2;
+    display: inline-flex;
+    height: 3rem;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 0.25rem;
+    border: none;
+    background: transparent;
+    color: var(--c-text-primary);
+    cursor: pointer;
+
+    & .hamburger__icon {
+      display: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-left: 4px;
+    }
+  }
+
+  .hamburger[aria-expanded='true'] .hamburger__icon-cross,
+  .hamburger[aria-expanded='false'] .hamburger__icon-hamburger {
+    display: block;
+  }
+
+  @media (--viewport-small) {
+    .hamburger__hamburger {
+      display: none;
+    }
+  }
+</style>

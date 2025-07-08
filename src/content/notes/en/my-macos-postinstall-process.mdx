@@ -79,7 +79,7 @@ Host {host2}
 ### Enable commits signing (SSH)
 
 1. Generate SSH key locally.
-2. Add SSH key to GitHub (Settings -> SSH and GPG keys -> New SSH key (Signing)).
+2. Add SSH key to GitHub: Settings -> SSH and GPG keys -> New SSH key – Signing.
 3. Update local git settings.
 
 ```
@@ -92,7 +92,7 @@ git config --global commit.gpgsign true
 
 ### Git configs: work/personal
 
-1. Create a root `.gitconfig` file: `touch ~/.gitconfig`
+1. **Create a root `.gitconfig` file:** `touch ~/.gitconfig`
 
 ```
 [includeIf "gitdir:~/work/"]
@@ -101,7 +101,7 @@ git config --global commit.gpgsign true
     path = .gitconfig-personal
 ```
 
-2. Create work and personal files: `touch ~/.gitconfig-personal`, `touch ~/.gitconfig-work`
+2. **Create work and personal files:** `touch ~/.gitconfig-personal`, `touch ~/.gitconfig-work`
 
 ```
 [user]

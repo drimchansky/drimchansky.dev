@@ -3,15 +3,15 @@ import type { GetStaticPaths } from 'astro'
 
 import { getCollection } from 'astro:content'
 
-import Container from '@/components/container.astro'
-import TypographyH1 from '@/components/typography/TypographyH1.astro'
-import TypographyH2 from '@/components/typography/TypographyH2.astro'
-import TypographyH3 from '@/components/typography/TypographyH3.astro'
-import TypographySpan from '@/components/typography/TypographySpan.astro'
-import { getLocale, t } from '@/i18n'
-import BaseLayout from '@/layouts/base-layout.astro'
-import { filterTestNotesCb } from '@/utils/functions/filterTestNotesCb'
-import { prepareNotesList } from '@/utils/functions/prepareNotesList'
+import { filterTestNotesCb } from '@/features/notes/functions/filterTestNotesCb'
+import { prepareNotesList } from '@/features/notes/functions/prepareNotesList'
+import { getLocale, t } from '@/shared/i18n'
+import BaseLayout from '@/shared/layouts/base-layout.astro'
+import Container from '@/shared/ui/container.astro'
+import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
+import TypographyH2 from '@/shared/ui/typography/typography-h2.astro'
+import TypographyH3 from '@/shared/ui/typography/typography-h3.astro'
+import TypographySpan from '@/shared/ui/typography/typography-span.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -26,54 +26,56 @@ const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', mont
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'notes')} – ${t(Astro.currentLocale, 'fullName')}`>
-  <Container class="notes-container">
-    <TypographyH1>{t(Astro.currentLocale, 'notes')}</TypographyH1>
+  <div class="notes">
+    <Container class="notes__container">
+      <TypographyH1>{t(Astro.currentLocale, 'notes')}</TypographyH1>
 
-    {
-      notesGrouped.map(([year, notes]) => {
-        return (
-          <>
-            <TypographyH2 class="year-header">{year}</TypographyH2>
+      {
+        notesGrouped.map(([year, notes]) => {
+          return (
+            <>
+              <TypographyH2 class="notes__year-header">{year}</TypographyH2>
 
-            <ul class="list">
-              {notes.map(({ data, url }) => {
-                return (
-                  <li class="list-item">
-                    <a class="link" href={url}>
-                      <TypographyH3 class="note-header">
-                        <TypographySpan>{data.title}</TypographySpan>
-                        <TypographySpan class="note-date">
-                          <time datetime={data.pubDate.toISOString()}>{monthDayFormatter.format(data.pubDate)}</time>
-                        </TypographySpan>
-                      </TypographyH3>
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
-          </>
-        )
-      })
-    }
-  </Container>
+              <ul class="notes__list">
+                {notes.map(({ data, url }) => {
+                  return (
+                    <li class="notes__list-item">
+                      <a class="notes__link" href={url}>
+                        <TypographyH3 class="notes__note-header">
+                          <TypographySpan>{data.title}</TypographySpan>
+                          <TypographySpan class="notes__note-date">
+                            <time datetime={data.pubDate.toISOString()}>{monthDayFormatter.format(data.pubDate)}</time>
+                          </TypographySpan>
+                        </TypographyH3>
+                      </a>
+                    </li>
+                  )
+                })}
+              </ul>
+            </>
+          )
+        })
+      }
+    </Container>
+  </div>
 </BaseLayout>
 
 <style>
-  @import '@/styles/mixins.css';
-  @import '@/styles/media.css';
+  @import '@/shared/styles/mixins.css';
+  @import '@/shared/styles/media.css';
 
-  .notes-container {
+  .notes__container {
     --max-width: var(--max-notes-text-width);
 
-    padding-top: 3rem;
+    padding-block: 3rem;
   }
 
-  .year-header {
+  .notes__year-header {
     padding: 2rem 0 0.5rem 0;
     border-bottom: 2px solid var(--c-header-line);
   }
 
-  .list {
+  .notes__list {
     padding: 0;
     margin: 0;
     margin-top: 0.5rem;
@@ -81,24 +83,21 @@ const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', mont
     list-style-type: none;
   }
 
-  /* .list-item {
-  } */
-
-  .link {
+  .notes__link {
     display: block;
     padding: 0.4rem 0;
     text-decoration: none;
     @mixin focus;
   }
 
-  .note-header {
+  .notes__note-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
   }
 
-  .note-date {
+  .notes__note-date {
     color: gray;
     font-size: var(--text-sm);
     line-height: var(--text-sm--line-height);

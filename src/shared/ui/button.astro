@@ -1,0 +1,35 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'button'> {}
+
+const { class: className, ...props } = Astro.props
+---
+
+<button class:list={['button', className || '']} {...props}>
+  <slot />
+</button>
+
+<style>
+  @import '@/shared/styles/mixins.css';
+
+  .button {
+    @mixin focus;
+
+    display: block;
+    padding: 0.5rem 3rem;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--c-button-bg-origin);
+    color: var(--c-button-text);
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--c-button-bg-hover);
+    }
+
+    &:active {
+      background-color: var(--c-button-bg-active);
+    }
+  }
+</style>

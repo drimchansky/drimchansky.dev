@@ -1,23 +1,17 @@
 ---
 import type { GetStaticPaths } from 'astro'
 
-import { Icon } from 'astro-icon/components'
 import { getCollection } from 'astro:content'
-import { getRelativeLocaleUrl } from 'astro:i18n'
 
-import Container from '@/components/container.astro'
-import MarkdownWrapper from '@/components/markdown-wrapper.astro'
-import TypographyH1 from '@/components/typography/TypographyH1.astro'
-import TypographySpan from '@/components/typography/TypographySpan.astro'
-import { getLocale, t } from '@/i18n'
-import BaseLayout from '@/layouts/base-layout.astro'
-import { filterTestNotesCb } from '@/utils/functions/filterTestNotesCb'
+import { NoteHeader } from '@/features/notes'
+import { filterTestNotesCb } from '@/features/notes/functions/filterTestNotesCb'
+import { t } from '@/shared/i18n'
+import BaseLayout from '@/shared/layouts/base-layout.astro'
+import Container from '@/shared/ui/container.astro'
+import MarkdownWrapper from '@/shared/ui/markdown-wrapper.astro'
 
 const { note } = Astro.props
 const { Content } = await note.render()
-const locale = getLocale(Astro.currentLocale)
-
-const dateFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' })
 
 export const getStaticPaths = (async () => {
   const notes = await getCollection('notes')
@@ -29,74 +23,25 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths
 ---
 
-<BaseLayout title={`${note.data.title} – ${t(Astro.currentLocale, 'fullName')}`}>
-  <Container class="note-container">
-    <main>
-      <article>
-        <header class="note-header">
-          <a class="note-back-link" href={getRelativeLocaleUrl(locale, '/notes')}>
-            <Icon class="" name="arrow-left" aria-hidden="true" />
-            <TypographySpan>{t(Astro.currentLocale, 'backToNotes')}</TypographySpan>
-          </a>
+<div class="note">
+  <BaseLayout title={`${note.data.title} – ${t(Astro.currentLocale, 'fullName')}`}>
+    <Container class="note__container">
+      <main>
+        <article>
+          <NoteHeader note={note} />
 
-          <TypographyH1>{note.data.title}</TypographyH1>
-          <TypographySpan class="note-meta">
-            <time datetime={note.data.pubDate.toISOString()}>{dateFormatter.format(note.data.pubDate)}</time>
-            {
-              note.data.lastModified && (
-                <span class="note-meta-last-updated">
-                  {'('}last updated on{' '}
-                  <time datetime={note.data.lastModified.toISOString()}>
-                    {dateFormatter.format(note.data.lastModified) + ')'}
-                  </time>
-                </span>
-              )
-            }
-          </TypographySpan>
-        </header>
-
-        <MarkdownWrapper>
-          <Content />
-        </MarkdownWrapper>
-      </article>
-    </main>
-  </Container>
-</BaseLayout>
+          <MarkdownWrapper>
+            <Content />
+          </MarkdownWrapper>
+        </article>
+      </main>
+    </Container>
+  </BaseLayout>
+</div>
 
 <style>
-  @import '@/styles/mixins.css';
-  @import '@/styles/media.css';
-
-  .note-container {
+  .note__container {
     --max-width: var(--max-notes-text-width);
-    padding: 3rem 0;
-  }
-
-  .note-header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .note-back-link {
-    @mixin focus;
-
-    display: flex;
-    align-items: center;
-    color: var(--c-text-primary);
-    gap: 3px;
-    text-decoration: none;
-  }
-
-  .note-meta {
-    color: var(--c-text-gray);
-    font-size: var(--text-sm);
-    line-height: var(--text-sm--line-height);
-  }
-
-  .note-meta-last-updated {
-    background: var(--c-highlight);
-    color: oklch(51.03% 0 0);
+    padding-block: 3rem;
   }
 </style>
