@@ -1,7 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions'
 
-import { CUSTOM_IMAGE_ROUTES } from '@/shared/constants'
+import { CUSTOM_COVER_ROUTES } from '@/shared/constants'
 import { getLocale, t } from '@/shared/i18n'
 
 export type Props = {
@@ -16,7 +16,7 @@ const pathname = Astro.url.pathname.replace(`/${locale}`, '')
 const route = pathname.split('/')[1]
 
 const cleanUrl = urlOrigin + pathname
-const coverLink = `${urlOrigin}/covers/${CUSTOM_IMAGE_ROUTES.includes(route) ? route : 'main'}-${locale}.jpg`
+const coverLink = `${urlOrigin}/covers/${CUSTOM_COVER_ROUTES.includes(route) ? route : 'main'}-${locale}.jpg`
 
 const schema = JSON.stringify({
   '@context': 'https://schema.org',

@@ -10,7 +10,7 @@ export const THEME_CLASSES: Partial<Record<ColorTheme, string>> = {
   light: 'is-light-theme'
 }
 
-export const CUSTOM_IMAGE_ROUTES = ['resume']
+export const CUSTOM_COVER_ROUTES = ['resume', 'notes']
 
 export const RESUME_FILENAMES_BY_LOCALE: Record<Locale, string> = {
   en: 'Nikita_Chernov_Frontend_Resume',
