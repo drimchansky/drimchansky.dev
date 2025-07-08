@@ -1,6 +1,4 @@
 ---
-import { ClientRouter } from 'astro:transitions'
-
 import { CUSTOM_IMAGE_ROUTES } from '@/shared/constants'
 import { getLocale, t } from '@/shared/i18n'
 
@@ -55,8 +53,6 @@ const schema = JSON.stringify({
 
 <link as="font" href="/fonts/Inter-Variable.woff2" rel="preload" type="font/woff2" crossorigin />
 <link as="font" href="/fonts/EBGaramond-SemiBold.woff2" rel="preload" type="font/woff2" crossorigin />
-
-<ClientRouter />
 
 <title>{title}</title>
 
