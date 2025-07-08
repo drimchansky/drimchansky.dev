@@ -20,29 +20,27 @@ const SkillsAndLanguagesContent = (await (await getEntry('general', `${locale}/s
 const EducationContent = (await (await getEntry('general', `${locale}/education`))?.render())?.Content
 ---
 
-<div class="resume">
-  <BaseLayout title=`${t(Astro.currentLocale, 'resume')} – ${t(Astro.currentLocale, 'fullName')}`>
-    <Container>
-      <article class="resume__article">
-        <ResumeHeader />
+<BaseLayout title=`${t(Astro.currentLocale, 'resume')} – ${t(Astro.currentLocale, 'fullName')}`>
+  <Container>
+    <article class="resume__article">
+      <ResumeHeader />
 
-        <ResumeSectionHeader text={t(Astro.currentLocale, 'summary')} />
-        {Summary && <Summary />}
+      <ResumeSectionHeader text={t(Astro.currentLocale, 'summary')} />
+      {Summary && <Summary />}
 
-        <ResumeSectionHeader text={t(Astro.currentLocale, 'workingExperience')} />
-        <ResumePositions />
+      <ResumeSectionHeader text={t(Astro.currentLocale, 'workingExperience')} />
+      <ResumePositions />
 
-        <ResumeSectionHeader text={t(Astro.currentLocale, 'education')} />
-        {EducationContent && <EducationContent />}
+      <ResumeSectionHeader text={t(Astro.currentLocale, 'education')} />
+      {EducationContent && <EducationContent />}
 
-        <ResumeSectionHeader text={t(Astro.currentLocale, 'skillsAndLanguages')} />
-        {SkillsAndLanguagesContent && <SkillsAndLanguagesContent />}
+      <ResumeSectionHeader text={t(Astro.currentLocale, 'skillsAndLanguages')} />
+      {SkillsAndLanguagesContent && <SkillsAndLanguagesContent />}
 
-        <ResumeDownloadButton />
-      </article>
-    </Container>
-  </BaseLayout>
-</div>
+      <ResumeDownloadButton />
+    </article>
+  </Container>
+</BaseLayout>
 
 <style>
   @import '@/shared/styles/mixins.css';

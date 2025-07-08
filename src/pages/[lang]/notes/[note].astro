@@ -23,21 +23,19 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths
 ---
 
-<div class="note">
-  <BaseLayout title={`${note.data.title} – ${t(Astro.currentLocale, 'fullName')}`}>
-    <Container class="note__container">
-      <main>
-        <article>
-          <NoteHeader note={note} />
+<BaseLayout title={`${note.data.title} – ${t(Astro.currentLocale, 'fullName')}`}>
+  <Container class="note__container">
+    <main>
+      <article>
+        <NoteHeader note={note} />
 
-          <MarkdownWrapper>
-            <Content />
-          </MarkdownWrapper>
-        </article>
-      </main>
-    </Container>
-  </BaseLayout>
-</div>
+        <MarkdownWrapper>
+          <Content />
+        </MarkdownWrapper>
+      </article>
+    </main>
+  </Container>
+</BaseLayout>
 
 <style>
   .note__container {
