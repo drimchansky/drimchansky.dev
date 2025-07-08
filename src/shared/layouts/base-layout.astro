@@ -27,7 +27,7 @@ const locale = getLocale(Astro.currentLocale)
   <body>
     <Header />
 
-    <main id="main">
+    <main id="main" transition:name="main">
       <slot />
     </main>
 
