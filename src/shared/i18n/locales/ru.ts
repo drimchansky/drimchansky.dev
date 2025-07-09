@@ -5,7 +5,7 @@ export const ru: LocaleCollection = {
   auto: 'Авто',
   backToNotes: 'Назад к заметкам',
   dark: 'Темная',
-  download: 'Скачать',
+  download: 'Скачать PDF',
   education: 'Образование',
   experienceLine: 'Мой общий стаж работы @experience@, из них @experienceDev@ в коммерческой разработке.',
   familyName: 'Чернов',
