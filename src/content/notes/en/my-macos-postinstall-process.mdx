@@ -1,0 +1,112 @@
+---
+title: 'My post-install process for MacOS'
+publishingDate: 2024-03-21
+lastModified: 2025-07-06
+---
+
+## Software
+
+- Browsers: [Chrome](https://www.google.com/chrome/), [Firefox](https://www.mozilla.org/en-US/firefox/new/).
+- Code editors: [VS Code](https://code.visualstudio.com/), [Cursor](https://cursor.com/).
+- Media: [VLC Player](https://www.videolan.org/vlc/index.ru.html).
+- Communication: [Zoom](https://zoom.us/download#client_4meeting), [Discord](https://discord.com/), [Slack](https://apps.apple.com/ge/app/slack-for-desktop/id803453959), [Telegam](https://apps.apple.com/ge/app/telegram/id747648890).
+- Graphics: [Inkscape](https://inkscape.org/), [ImageOptim](https://imageoptim.com/mac).
+- Storage: [Tuxera](https://ntfsformac.tuxera.com/), [Google Drive](https://www.google.com/drive/download/).
+- Development stuff: [Node JS](https://nodejs.org/en/download/), [nvm](https://github.com/nvm-sh/nvm), [Docker](https://docs.docker.com/desktop/install/mac-install/), [MongoDB](https://www.mongodb.com/try/download/community), [MongoDB-Compass](https://www.mongodb.com/try/download/compass), [Postman](https://www.postman.com/downloads/),.
+- Helpful utilities:
+  - [Command X](https://sindresorhus.com/command-x) – cut and paste files in Finder.
+  - [Magnet](https://magnet.crowdcafe.com/) – snapping windows into organized tiles.
+  - [Scroll-Reverser](https://github.com/pilotmoon/Scroll-Reverser) – reverses the direction of scrolling on macOS.
+  - [The Unarchiver](https://apps.apple.com/ge/app/the-unarchiver/id425424353).
+  - [Transmission](https://transmissionbt.com/download) – free bittorrent client.
+- Management apps:
+  - [Homebrew](https://brew.sh/) for packages.
+  - [Bitwarder](https://apps.apple.com/ge/app/bitwarden/id1352778147) for passwords.
+  - [AnyDesk](https://anydesk.com/) for remote devices.
+- Some more stuff using brew:
+  ```bash
+  brew install cmake p7zip, pnpm, fonttools
+  ```
+- And just several more using pnpm:
+  ```bash
+  pnpm i -g kill-port yarn
+  ```
+
+## Settings
+
+- **Add Russian text input:** System Settings -> Keyboard -> Text Input -> Edit -> '+' -> 'Russian' -> 'Russian – PC'.
+- **Enable natural trackpad scrolling:** System Settings -> Trackpad -> Scroll & Zoom: Natural scrolling (ON).
+- **Add user directory to the Finder:** Finder -> Go -> Go to finder -> type `/` -> find user directory and drag it to the Favorites.
+- **Always show hidden files:**
+  ```bash
+  defaults write http://com.apple.Finder AppleShowAllFiles true
+  ```
+- **Speed up keyboard:** System Settings -> Keyboard -> Key repeat rate – fast, Delay until repeat – fast.
+
+## Fonts
+
+Download and install using Font Book.
+
+- [Fira Code](https://github.com/tonsky/FiraCode)
+- [Martian Mono](https://github.com/evilmartians/mono)
+
+## Configs
+
+### SSH keys
+
+1. Place keys to `User/.ssh` directory.
+
+2. Add keys to authentication agent `ssh-add ~/.ssh/{private_key}`
+
+3. Set directory rights `chmod 700 ~/.ssh/*`
+
+4. Create ssh config `.ssh/config`
+
+```
+Host {host1}
+    HostName {hostname1}
+    User {username1}
+    IdentityFile ~/.ssh/{filename1}
+
+Host {host2}
+    HostName {hostname2}
+    User {username2}
+    IdentityFile ~/.ssh/{filename2}
+```
+
+[Read more about ssh configuration](https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client)
+
+### Enable commits signing (SSH)
+
+1. Generate SSH key locally.
+2. Add SSH key to GitHub: Settings -> SSH and GPG keys -> New SSH key – Signing.
+3. Update local git settings.
+
+```
+git config --global gpg.format ssh
+git config --global user.signingkey ~/PATH/TO/.SSH/KEY.PUB
+git config --global commit.gpgsign true
+```
+
+[Read more about commits signing](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification)
+
+### Git configs: work/personal
+
+1. **Create a root `.gitconfig` file:** `touch ~/.gitconfig`
+
+```
+[includeIf "gitdir:~/work/"]
+    path = .gitconfig-work
+[includeIf "gitdir:~/personal/"]
+    path = .gitconfig-personal
+```
+
+2. **Create work and personal files:** `touch ~/.gitconfig-personal`, `touch ~/.gitconfig-work`
+
+```
+[user]
+    email = work/personal@email.com
+    name = John Doe
+```
+
+[Read more about conditional git configs](https://git-scm.com/docs/git-config#_includes)

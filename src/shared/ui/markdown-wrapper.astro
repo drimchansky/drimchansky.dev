@@ -1,0 +1,116 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'div'> {}
+
+const { class: className, ...props } = Astro.props
+---
+
+<div class:list={['markdown-wrapper', className || '']} {...props}>
+  <slot />
+</div>
+
+<style>
+  @import '@/shared/styles/mixins.css';
+
+  .markdown-wrapper {
+    padding: 3rem 0 0 0;
+    & :global(> :first-child) {
+      margin-top: 0;
+    }
+
+    & :global(h2, h3, h4) {
+      color: var(--c-text-primary);
+      font-family: var(--font-family-heading);
+      font-weight: 600;
+      text-wrap: balance;
+    }
+
+    & :global(h2) {
+      margin: 2rem 0 1rem;
+      font-size: var(--text-3xl);
+      line-height: var(--text-3xl--line-height);
+    }
+
+    & :global(h3) {
+      margin: 1.5rem 0 1rem;
+      font-size: var(--text-2xl);
+      line-height: var(--text-2xl--line-height);
+    }
+
+    & :global(h4) {
+      font-size: var(--text-xl);
+      line-height: var(--text-xl--line-height);
+    }
+
+    & :global(p, li) {
+      margin: 0;
+      color: var(--c-text-secondary);
+      font-family: var(--font-family-base);
+      font-size: var(--text-base);
+      font-weight: 400;
+      line-height: var(--text-base--line-height);
+    }
+
+    & :global(ul, ol) {
+      padding-left: 1.25rem;
+      margin: 0.5rem 0 0 0;
+    }
+
+    & :global(li:not(:first-child)) {
+      margin-top: 0.25rem;
+    }
+
+    & :global(a) {
+      @mixin link-underline;
+      @mixin focus;
+
+      color: var(--c-text-secondary);
+
+      @media (hover: hover) {
+        &:hover {
+          color: var(--c-text-primary);
+        }
+      }
+    }
+
+    & :global(p) {
+      margin-top: 1rem;
+    }
+
+    & :global(img) {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      border-radius: 0.313rem;
+      margin: 1.5rem auto;
+      margin-bottom: 1rem;
+      background-clip: content-box;
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.15),
+        0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    & :global(strong) {
+      font-weight: 600;
+    }
+
+    & :global(code:not(pre code)) {
+      padding: 0.2rem 0.3rem;
+      border-radius: var(--radius);
+      background: var(--c-inline-code-bg);
+      color: var(--c-inline-code-text);
+      font-family: var(--font-family-mono);
+      font-size: var(--text-sm);
+      line-height: var(--text-sm--line-height);
+    }
+
+    & :global(blockquote) {
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--c-border);
+      margin: 0;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+  }
+</style>

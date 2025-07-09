@@ -1,0 +1,27 @@
+@define-mixin visually-hidden {
+  position: absolute;
+  margin: -1px;
+  clip-path: inset(50%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  max-width: 1px;
+  max-height: 1px;
+  border: 0;
+  padding: 0;
+  display: block;
+}
+
+@define-mixin focus {
+  border-radius: 5px;
+  outline: none;
+  &:focus-visible {
+    box-shadow: 0 0 0 var(--outline-thickness) var(--c-outline);
+  }
+}
+
+@define-mixin link-underline {
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}

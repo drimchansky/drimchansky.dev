@@ -3,13 +3,10 @@ import type { GetStaticPaths } from 'astro'
 
 import { getEntry } from 'astro:content'
 
-import Container from '@/components/container.astro'
-import ResumeDownloadButton from '@/components/resume/resume-download-button.astro'
-import ResumeHeader from '@/components/resume/resume-header.astro'
-import ResumePositions from '@/components/resume/resume-positions.astro'
-import ResumeSectionHeader from '@/components/resume/resume-section-header.astro'
-import { getLocale, t } from '@/i18n'
-import BaseLayout from '@/layouts/base-layout.astro'
+import { ResumeDownloadButton, ResumeHeader, ResumePositions, ResumeSectionHeader } from '@/features/resume'
+import { getLocale, t } from '@/shared/i18n'
+import BaseLayout from '@/shared/layouts/base-layout.astro'
+import Container from '@/shared/ui/container.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -23,9 +20,9 @@ const SkillsAndLanguagesContent = (await (await getEntry('general', `${locale}/s
 const EducationContent = (await (await getEntry('general', `${locale}/education`))?.render())?.Content
 ---
 
-<BaseLayout title=`${t(Astro.currentLocale, 'fullName')} – ${t(Astro.currentLocale, 'resume')}`>
-  <Container>
-    <article class="resume">
+<BaseLayout title=`${t(Astro.currentLocale, 'resume')} – ${t(Astro.currentLocale, 'fullName')}`>
+  <Container class="resume__container">
+    <article class="resume__article">
       <ResumeHeader />
 
       <ResumeSectionHeader text={t(Astro.currentLocale, 'summary')} />
@@ -46,24 +43,35 @@ const EducationContent = (await (await getEntry('general', `${locale}/education`
 </BaseLayout>
 
 <style>
-  @import '../../styles/mixins.css';
-  @import '../../styles/media.css';
+  @import '@/shared/styles/mixins.css';
+  @import '@/shared/styles/media.css';
 
-  .resume {
+  .resume__article {
     --resume-gap: 1rem;
     color: var(--c-text-primary);
-    line-height: 1.6;
     padding-block: 3rem;
 
     @media print {
       --resume-gap: 0.5rem;
-      line-height: normal;
       padding-block: 0;
     }
 
-    & :global(p) {
-      max-width: var(--max-text-width);
+    & :global(p, li) {
+      margin: 0;
+      color: var(--c-text-secondary);
+      font-family: var(--font-family-base);
+      font-size: var(--text-base);
+      line-height: var(--text-base--line-height);
+
+      @media print {
+        font-size: var(--text-sm);
+        line-height: var(--text-sm--line-height);
+      }
     }
+  }
+
+  .resume__container {
+    max-width: var(--max-content-width);
   }
 
   @media print {

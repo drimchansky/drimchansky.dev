@@ -18,7 +18,19 @@ const resumeCollection = defineCollection({
 
 const generalCollection = defineCollection({})
 
+const notesCollection = defineCollection({
+  schema: z.object({
+    isTestNote: z.boolean().optional(),
+    isUntranslated: z.boolean().optional(),
+    lastModified: z.date().optional(),
+    publishingDate: z.date(),
+    title: z.string()
+  }),
+  type: 'content'
+})
+
 export const collections = {
   general: generalCollection,
+  notes: notesCollection,
   resume: resumeCollection
 }

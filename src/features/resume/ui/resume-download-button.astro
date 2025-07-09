@@ -1,0 +1,33 @@
+---
+import { RESUME_FILENAMES_BY_LOCALE } from '@/shared/constants'
+import { getLocale, t } from '@/shared/i18n'
+import ButtonLink from '@/shared/ui/button-link.astro'
+import TypographySpan from '@/shared/ui/typography/typography-span.astro'
+
+const locale = getLocale(Astro.currentLocale)
+---
+
+<ButtonLink
+  class="resume-download-button"
+  download=`${RESUME_FILENAMES_BY_LOCALE[locale]}.pdf`
+  href=`/files/${RESUME_FILENAMES_BY_LOCALE[locale]}.pdf`
+>
+  <TypographySpan>{t(Astro.currentLocale, 'download')}</TypographySpan>
+</ButtonLink>
+
+<style>
+  .resume-download-button {
+    margin: 2.5rem auto 0 auto;
+    background-color: var(--c-button-bg-origin);
+
+    & span {
+      color: var(--c-button-text);
+    }
+  }
+
+  @media print {
+    .resume-download-button {
+      display: none;
+    }
+  }
+</style>

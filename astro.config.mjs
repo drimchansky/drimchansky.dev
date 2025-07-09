@@ -1,3 +1,4 @@
+import mdx from '@astrojs/mdx'
 import partytown from '@astrojs/partytown'
 import sitemap from '@astrojs/sitemap'
 import icon from 'astro-icon'
@@ -20,13 +21,20 @@ export default defineConfig({
   },
   integrations: [
     icon({
-      iconDir: 'src/assets/icons'
+      iconDir: 'src/shared/assets/icons'
     }),
     sitemap(),
     partytown({
       config: {
         forward: ['dataLayer.push']
       }
+    }),
+    mdx({
+      shikiConfig: {
+        theme: 'github-dark',
+        wrap: true
+      },
+      syntaxHighlight: 'shiki'
     })
   ],
   site: process.env.SITE_URL

@@ -10,11 +10,11 @@ isDevelopment: true
 isCurrent: true
 ---
 
-- Developed and designed the universal UI and business logic application for games using React.js, Redux Toolkit, Tailwind CSS, which reduced game development costs by over 30%, streamlined support and enabled the team to deliver new features swiftly.
-- Launched a documentation website using Docusaurus, cutting duplicate chat questions by 40%.
-- Introduced and implemented unit tests for the most critical parts across the company’s key projects. It reduced new-bug count by around 70% in these modules.
-- Engineered and developed the internal localization tool, cutting more than 50% efforts on the localization process.
-- Wrote technical documentation (guides, processes, project plans, reports, incident postmortems, style guides etc.) which helped to reduce count of repetitive bugs, cut onboarding period by 20% and enhanced development processes.
-- Led 11 projects through planning, full-stack development and supporting stages. Was responsible for technical implementation and sticking to deadlines. All projects were successfully implemented on time.
-- Mentored 7 junior-middle developers during their onboarding period.
-- Implemented various optimization techniques, like modern graphic formats that reduced average project size by up to 40% and improved performance.
+- Prototyped, designed, and built a unified React.js / Redux Toolkit / Tailwind CSS UI and business logic application for games, reducing development costs by over 35%, streamlining support, and doubling the feature-release speed.
+- Led 11 projects through planning, full-stack development and support stages. Owned technical implementation, sticking to deadlines and cross-functional team coordination; shipped every project on time.
+- Created an internal localization tool that cut translation effort and enabled launches in 15+ new language markets.
+- Mentored 7 engineers – guiding 5 juniors to mid-level and 2 mids to senior-ready.
+- Shipped a Docusaurus documentation website, cutting duplicate chat questions by 75% and freeing 15+ developer hours per week.
+- Introduced and implemented unit and integration tests for the most critical parts and user stories across the company’s key projects, reducing the new-bug count by around 70% in these modules.
+- Authored documentation and style guides that shortened onboarding by 20% and reduced repetitive bugs across modules.
+- Implemented modern graphics formats and other optimizations, reducing average load time by about 40% and significantly boosting user experience.
