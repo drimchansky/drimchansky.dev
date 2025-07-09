@@ -9,6 +9,8 @@ import { getLocale, t } from '@/shared/i18n'
 import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
 import TypographySpan from '@/shared/ui/typography/typography-span.astro'
 
+import AlertNoteUntranslated from './alert-note-untranslated.astro'
+
 interface Props extends HTMLAttributes<'header'> {
   note: CollectionEntry<'notes'>
 }
@@ -27,7 +29,7 @@ const dateFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: '
 
   <TypographyH1>{note.data.title}</TypographyH1>
   <TypographySpan class="note-header__meta">
-    <time datetime={note.data.pubDate.toISOString()}>{dateFormatter.format(note.data.pubDate)}</time>
+    <time datetime={note.data.publishingDate.toISOString()}>{dateFormatter.format(note.data.publishingDate)}</time>
     {
       note.data.lastModified && (
         <span class="note-header__last-updated">
@@ -39,6 +41,7 @@ const dateFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: '
       )
     }
   </TypographySpan>
+  {note.data.isUntranslated && <AlertNoteUntranslated class="note-header__untranslated" />}
 </header>
 
 <style>
@@ -71,5 +74,9 @@ const dateFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: '
   .note-header__last-updated {
     background: var(--c-highlight);
     color: oklch(51.03% 0 0);
+  }
+
+  .note-header__untranslated {
+    margin-top: 0.5rem;
   }
 </style>

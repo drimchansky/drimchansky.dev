@@ -44,7 +44,9 @@ const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', mont
                         <TypographyH3 class="notes__note-header">
                           <TypographySpan>{data.title}</TypographySpan>
                           <TypographySpan class="notes__note-date">
-                            <time datetime={data.pubDate.toISOString()}>{monthDayFormatter.format(data.pubDate)}</time>
+                            <time datetime={data.publishingDate.toISOString()}>
+                              {monthDayFormatter.format(data.publishingDate)}
+                            </time>
                           </TypographySpan>
                         </TypographyH3>
                       </a>

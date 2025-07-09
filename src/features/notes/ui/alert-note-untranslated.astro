@@ -1,12 +1,18 @@
 ---
+import type { HTMLAttributes } from 'astro/types'
+
 import { Icon } from 'astro-icon/components'
 
 import { t } from '@/shared/i18n'
 import Alert from '@/shared/ui/alert.astro'
 import TypographySpan from '@/shared/ui/typography/typography-span.astro'
+
+interface Props extends HTMLAttributes<'div'> {}
+
+const { class: className, ...props } = Astro.props
 ---
 
-<Alert class="alert-note-untranslated">
+<Alert class:list={['alert-note-untranslated', className || '']} {...props}>
   <Icon name="languages" class="alert-note-untranslated__icon" aria-hidden />
   <TypographySpan class="alert-note-untranslated__text">
     {t(Astro.currentLocale, 'untranslated')}
