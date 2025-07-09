@@ -15,6 +15,7 @@ export const en: LocaleCollection = {
   home: 'Home',
   hybrid: 'Hybrid',
   intro: 'Frontend engineer specializing in creating user-friendly, performant, and accessible web solutions',
+  lastUpdated: 'last updated on',
   light: 'Light',
   location: 'Tbilisi, Georgia',
   menu: 'Menu',

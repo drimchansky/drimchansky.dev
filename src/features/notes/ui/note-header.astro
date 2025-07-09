@@ -33,7 +33,7 @@ const dateFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: '
     {
       note.data.lastModified && (
         <span class="note-header__last-updated">
-          {'('}last updated on{' '}
+          {'(' + t(Astro.currentLocale, 'lastUpdated')}{' '}
           <time datetime={note.data.lastModified.toISOString()}>
             {dateFormatter.format(note.data.lastModified) + ')'}
           </time>

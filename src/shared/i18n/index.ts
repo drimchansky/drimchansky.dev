@@ -17,6 +17,7 @@ export type LocaleCollection = {
   home: string
   hybrid: string
   intro: string
+  lastUpdated: string
   light: string
   location: string
   menu: string
