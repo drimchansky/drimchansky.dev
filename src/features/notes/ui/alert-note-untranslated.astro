@@ -13,23 +13,17 @@ const { class: className, ...props } = Astro.props
 ---
 
 <Alert class:list={['alert-note-untranslated', className || '']} {...props}>
-  <Icon name="languages" class="alert-note-untranslated__icon" aria-hidden />
   <TypographySpan class="alert-note-untranslated__text">
+    <Icon name="languages" class="alert-note-untranslated__icon" aria-hidden />
     {t(Astro.currentLocale, 'untranslated')}
   </TypographySpan>
 </Alert>
 
 <style>
-  .alert-note-untranslated {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: calc(var(--spacing) * 2);
-  }
-
   .alert-note-untranslated__icon {
-    width: 1rem;
-    height: 1rem;
+    min-width: 1rem;
+    min-height: 1rem;
+    vertical-align: text-top;
   }
 
   .alert-note-untranslated__text {
