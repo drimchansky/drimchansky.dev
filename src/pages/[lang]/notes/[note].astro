@@ -1,0 +1,45 @@
+---
+import type { GetStaticPaths } from 'astro'
+
+import { getCollection } from 'astro:content'
+
+import { NoteHeader } from '@/features/notes'
+import { filterTestNotesCb } from '@/features/notes/functions/filterTestNotesCb'
+import { t } from '@/shared/i18n'
+import BaseLayout from '@/shared/layouts/base-layout.astro'
+import Container from '@/shared/ui/container.astro'
+import MarkdownWrapper from '@/shared/ui/markdown-wrapper.astro'
+
+const { note } = Astro.props
+const { Content } = await note.render()
+
+export const getStaticPaths = (async () => {
+  const notes = await getCollection('notes')
+
+  return notes.filter(filterTestNotesCb).map(note => {
+    const [lang, slugWithoutLang] = note.slug.split('/')
+    return { params: { lang, note: slugWithoutLang }, props: { note } }
+  })
+}) satisfies GetStaticPaths
+---
+
+<BaseLayout title={`${note.data.title} – ${t(Astro.currentLocale, 'fullName')}`}>
+  <Container class="note__container">
+    <main>
+      <article>
+        <NoteHeader note={note} />
+
+        <MarkdownWrapper>
+          <Content />
+        </MarkdownWrapper>
+      </article>
+    </main>
+  </Container>
+</BaseLayout>
+
+<style>
+  .note__container {
+    --max-width: var(--max-content-width);
+    padding-block: 3rem;
+  }
+</style>

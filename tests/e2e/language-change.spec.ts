@@ -2,8 +2,8 @@ import type { Page } from '@playwright/test'
 
 import { test as base, expect } from '@playwright/test'
 
-import { en } from '@/i18n/locales/en'
-import { ru } from '@/i18n/locales/ru'
+import { en } from '@/shared/i18n/locales/en'
+import { ru } from '@/shared/i18n/locales/ru'
 
 type Selectors = {
   html: ReturnType<Page['locator']>

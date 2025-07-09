@@ -1,11 +1,13 @@
 ---
 import type { GetStaticPaths } from 'astro'
 
-import Avatar from '@/components/avatar.astro'
-import Container from '@/components/container.astro'
-import SocialLinks from '@/components/social-links.astro'
-import { t } from '@/i18n'
-import BaseLayout from '@/layouts/base-layout.astro'
+import { t } from '@/shared/i18n'
+import BaseLayout from '@/shared/layouts/base-layout.astro'
+import Avatar from '@/shared/ui/avatar.astro'
+import Container from '@/shared/ui/container.astro'
+import SocialLinks from '@/shared/ui/social-links.astro'
+import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
+import TypographyP from '@/shared/ui/typography/typography-p.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -14,62 +16,58 @@ export const getStaticPaths = (async () => [
 ---
 
 <BaseLayout title={t(Astro.currentLocale, 'fullName')}>
-  <Container class="home-container">
-    <div class="home-content">
+  <Container class="home__container">
+    <div class="home__content">
       <Avatar />
-      <div>
-        <h1 class="header">
-          <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>
-          <span itemprop="familyName">{t(Astro.currentLocale, 'familyName')}</span>
-        </h1>
-        <p class="intro">
-          {t(Astro.currentLocale, 'intro')}
-        </p>
-        <SocialLinks />
-      </div>
+      <TypographyH1 class="home__header">
+        <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>
+        <span itemprop="familyName">{t(Astro.currentLocale, 'familyName')}</span>
+      </TypographyH1>
+
+      <TypographyP class="home__intro-text">
+        {t(Astro.currentLocale, 'intro')}
+      </TypographyP>
+
+      <SocialLinks />
     </div>
   </Container>
 </BaseLayout>
 
 <style>
-  .header {
-    margin: 0 0 0.5rem 0;
-    color: var(--c-text-primary);
+  .home__header {
     font-size: 4rem;
-    font-weight: 600;
     line-height: 1;
   }
 
-  .home-container {
+  .home__container {
     display: flex;
+    max-width: var(--max-content-width);
     min-height: calc(100dvh - var(--header-height));
     flex-direction: column;
     justify-content: center;
   }
 
-  .home-content {
+  .home__content {
     display: flex;
     flex-direction: column;
     margin-top: -5rem;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 
-  .intro {
-    max-width: var(--max-text-width);
-    padding: 0;
-    color: var(--c-text-primary);
-    font-size: var(--font-size-lg);
+  .home__intro-text {
+    max-width: 600px;
+    font-size: 1.1rem;
     text-wrap: balance;
   }
 
   @media (orientation: portrait) {
-    .home-content {
+    .home__content {
       margin-top: 0rem;
     }
   }
 
   @media (orientation: landscape) and (max-height: 500px) {
-    .home-content {
+    .home__content {
       flex-direction: row;
       margin-top: 0rem;
     }

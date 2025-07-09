@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'h1'> {}
+
+const { class: className, ...props } = Astro.props
+---
+
+<h1 class:list={['typography-h1', className || '']} {...props}>
+  <slot />
+</h1>
+
+<style>
+  .typography-h1 {
+    margin: 0;
+    color: var(--c-text-primary);
+    font-family: var(--font-family-heading);
+    font-size: var(--text-4xl);
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--text-4xl--line-height);
+    text-wrap: balance;
+  }
+</style>

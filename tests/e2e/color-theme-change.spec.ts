@@ -2,7 +2,7 @@ import type { Page } from '@playwright/test'
 
 import { test as base, expect } from '@playwright/test'
 
-import { colorThemeValues, THEME_STORAGE_KEY } from '@/utils/constants'
+import { colorThemeValues, THEME_STORAGE_KEY } from '@/shared/constants'
 
 import { getFromLocalStorage } from './utils/getFromLocalStorage'
 

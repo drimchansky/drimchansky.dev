@@ -1,0 +1,111 @@
+---
+import type { GetStaticPaths } from 'astro'
+
+import { getCollection } from 'astro:content'
+
+import { filterTestNotesCb } from '@/features/notes/functions/filterTestNotesCb'
+import { prepareNotesList } from '@/features/notes/functions/prepareNotesList'
+import { getLocale, t } from '@/shared/i18n'
+import BaseLayout from '@/shared/layouts/base-layout.astro'
+import Container from '@/shared/ui/container.astro'
+import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
+import TypographyH2 from '@/shared/ui/typography/typography-h2.astro'
+import TypographyH3 from '@/shared/ui/typography/typography-h3.astro'
+import TypographySpan from '@/shared/ui/typography/typography-span.astro'
+
+export const getStaticPaths = (async () => [
+  { params: { lang: 'ru' } },
+  { params: { lang: 'en' } }
+]) satisfies GetStaticPaths
+
+const locale = getLocale(Astro.currentLocale)
+const notes = await getCollection('notes', entry => entry.slug.startsWith(`${locale}/`))
+const notesGrouped = prepareNotesList(locale, notes.filter(filterTestNotesCb))
+
+const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short' })
+---
+
+<BaseLayout title=`${t(Astro.currentLocale, 'notes')} – ${t(Astro.currentLocale, 'fullName')}`>
+  <div class="notes">
+    <Container class="notes__container">
+      <TypographyH1>{t(Astro.currentLocale, 'notes')}</TypographyH1>
+
+      {
+        notesGrouped.map(([year, notes]) => {
+          return (
+            <>
+              <TypographyH2 class="notes__year-header">{year}</TypographyH2>
+
+              <ul class="notes__list">
+                {notes.map(({ data, url }) => {
+                  return (
+                    <li class="notes__list-item">
+                      <a class="notes__link" href={url}>
+                        <TypographyH3 class="notes__note-header">
+                          <TypographySpan>{data.title}</TypographySpan>
+                        </TypographyH3>
+                      </a>
+                      <TypographySpan class="notes__note-date">
+                        <time datetime={data.publishingDate.toISOString()}>
+                          {monthDayFormatter.format(data.publishingDate)}
+                        </time>
+                      </TypographySpan>
+                    </li>
+                  )
+                })}
+              </ul>
+            </>
+          )
+        })
+      }
+    </Container>
+  </div>
+</BaseLayout>
+
+<style>
+  @import '@/shared/styles/mixins.css';
+  @import '@/shared/styles/media.css';
+
+  .notes__container {
+    --max-width: var(--max-content-width);
+
+    padding-block: 3rem;
+  }
+
+  .notes__year-header {
+    padding: 2rem 0 0.5rem 0;
+    border-bottom: 2px solid var(--c-header-line);
+  }
+
+  .notes__list {
+    padding: 0;
+    margin: 0;
+    margin-top: 0.5rem;
+
+    list-style-type: none;
+  }
+
+  .notes__list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .notes__link {
+    @mixin focus;
+    @mixin link-underline;
+
+    display: block;
+    padding: 0.4rem 0;
+    color: var(--c-text-primary);
+  }
+
+  .notes__note-date {
+    color: gray;
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+    text-decoration: none;
+    text-wrap: nowrap;
+  }
+</style>

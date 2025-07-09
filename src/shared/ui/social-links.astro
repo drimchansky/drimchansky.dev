@@ -1,0 +1,47 @@
+---
+import { siteInfo } from '../site-info'
+import TypographySpan from './typography/typography-span.astro'
+---
+
+<div class="social-links" data-nosnippet>
+  {
+    siteInfo.socialLinks.map(
+      ({ name, showOnHomePage, url }) =>
+        showOnHomePage && (
+          <a class="social-links__link" href={url} itemprop="sameAs" rel="me" target="_blank">
+            <TypographySpan>{name}</TypographySpan>
+          </a>
+        )
+    )
+  }
+</div>
+
+<style>
+  @import '@/shared/styles/mixins.css';
+
+  .social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  .social-links__link {
+    @mixin link-underline;
+    @mixin focus;
+
+    padding: 0.25rem;
+    color: var(--c-text-secondary);
+    opacity: 0.8;
+    transition: color var(--link-hover-duration);
+
+    & span {
+      font-size: 1.125rem;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--c-text-primary);
+      }
+    }
+  }
+</style>

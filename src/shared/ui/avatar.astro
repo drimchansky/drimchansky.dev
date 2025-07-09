@@ -1,0 +1,45 @@
+---
+import { Picture } from 'astro:assets'
+
+import avatar from '@/shared/assets/images/avatar.jpg'
+import { getPlaceholderStyles } from '@/shared/functions/getPlaceholderStyles'
+
+const placeholderStyles = await getPlaceholderStyles('src/shared/assets/images/avatar.jpg')
+---
+
+<a class="avatar" href={avatar.src} target="_blank" rel="noopener noreferrer" style={placeholderStyles}>
+  <Picture
+    src={avatar}
+    formats={['avif', 'webp', 'jpg']}
+    alt="Nikita's photo"
+    class="avatar__picture"
+    width={150}
+    height={150}
+    densities={[1.5, 2]}
+    loading="eager"
+    quality={90}
+    fetchpriority="high"
+  />
+</a>
+
+<style>
+  @import '@/shared/styles/mixins.css';
+
+  .avatar {
+    @mixin focus;
+
+    display: block;
+    width: 7.5rem;
+    min-width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 50%;
+  }
+
+  .avatar__picture {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    color: transparent;
+    pointer-events: none;
+  }
+</style>

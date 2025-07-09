@@ -1,0 +1,30 @@
+@import './media.css';
+@import './mixins.css';
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+html {
+  background-color: var(--c-main-bg);
+}
+
+main {
+  scroll-margin-top: 2rem;
+}
+
+.clip {
+  overflow: hidden;
+}
+
+.visually-hidden {
+  @mixin visually-hidden;
+}
