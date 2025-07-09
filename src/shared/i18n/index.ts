@@ -32,6 +32,7 @@ export type LocaleCollection = {
   summary: string
   theme: string
   toLocale: string
+  untranslated: string
   workingExperience: string
 }
 

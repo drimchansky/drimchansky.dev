@@ -1,0 +1,33 @@
+---
+import { Icon } from 'astro-icon/components'
+
+import { t } from '@/shared/i18n'
+import Alert from '@/shared/ui/alert.astro'
+import TypographySpan from '@/shared/ui/typography/typography-span.astro'
+---
+
+<Alert class="alert-note-untranslated">
+  <Icon name="languages" class="alert-note-untranslated__icon" aria-hidden />
+  <TypographySpan class="alert-note-untranslated__text">
+    {t(Astro.currentLocale, 'untranslated')}
+  </TypographySpan>
+</Alert>
+
+<style>
+  .alert-note-untranslated {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: calc(var(--spacing) * 2);
+  }
+
+  .alert-note-untranslated__icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .alert-note-untranslated__text {
+    font-size: var(--text-sm);
+    line-height: var(--text-sm--line-height);
+  }
+</style>

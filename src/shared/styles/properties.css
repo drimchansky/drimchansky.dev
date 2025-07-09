@@ -18,6 +18,9 @@
   --text-5xl: 3rem;
   --text-5xl--line-height: 1;
 
+  --radius: 0.625rem;
+  --spacing: 0.25rem;
+
   --tracking-tighter: -0.05em -1.5px;
   --tracking-tight: -0.025em;
   --tracking-normal: 0em;

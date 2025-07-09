@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'div'> {
+  variant?: 'default'
+}
+
+const { class: className, variant = 'default', ...props } = Astro.props
+---
+
+<div class:list={['alert', variant, className || '']} {...props}>
+  <slot />
+</div>
+
+<style>
+  .alert {
+    border: 1px solid var(--c-alert-border);
+    border-radius: var(--radius);
+    background: var(--c-alert-background);
+    padding-block: calc(var(--spacing) * 3);
+    padding-inline: calc(var(--spacing) * 4);
+  }
+
+  .alert.default {
+    color: var(--c-alert-text);
+  }
+</style>

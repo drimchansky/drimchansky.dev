@@ -1,5 +1,5 @@
 @define-mixin colors-light-theme {
-  --outline-color: oklch(67.06% 0.163 235.02);
+  --c-outline: oklch(67.06% 0.163 235.02);
 
   --c-main-bg: oklch(100% 0 0);
   --c-highlight: oklch(0.9875 0.0654 107.54);
@@ -30,12 +30,16 @@
   --c-button-bg-active: oklch(69.93% 0 0);
   --c-button-text: oklch(100% 0 0);
 
-  --inline-code-bg: oklch(0.97 0 0);
-  --inline-code-text: oklch(26.9% 0 0);
+  --c-inline-code-bg: oklch(0.97 0 0);
+  --c-inline-code-text: oklch(26.9% 0 0);
+
+  --c-alert-background: oklch(1 0 0);
+  --c-alert-text: oklch(0.145 0 0);
+  --c-alert-border: oklch(0.922 0 0);
 }
 
 @define-mixin colors-dark-theme {
-  --outline-color: oklch(67.06% 0.163 235.02);
+  --c-outline: oklch(67.06% 0.163 235.02);
 
   --c-main-bg: oklch(22.21% 0 0);
   --c-highlight: oklch(0.9875 0.0654 107.54);
@@ -66,8 +70,12 @@
   --c-button-bg-active: oklch(69.93% 0 0);
   --c-button-text: oklch(22.21% 0 0);
 
-  --inline-code-bg: oklch(0.269 0 0);
-  --inline-code-text: oklch(87% 0 0);
+  --c-inline-code-bg: oklch(0.269 0 0);
+  --c-inline-code-text: oklch(87% 0 0);
+
+  --c-alert-background: oklch(0.205 0 0);
+  --c-alert-text: oklch(0.985 0 0);
+  --c-alert-border: oklch(1 0 0 / 10%);
 }
 
 :root {

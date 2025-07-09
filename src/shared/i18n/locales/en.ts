@@ -30,5 +30,6 @@ export const en: LocaleCollection = {
   summary: 'Summary',
   theme: 'Color theme switcher',
   toLocale: 'Русский',
+  untranslated: 'This note is available only in Russian.',
   workingExperience: 'Experience'
 }

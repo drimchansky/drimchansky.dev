@@ -30,5 +30,6 @@ export const ru: LocaleCollection = {
   summary: 'О себе',
   theme: 'Переключатель цветовой схемы',
   toLocale: 'English',
+  untranslated: 'Эта заметка доступна только на английском языке',
   workingExperience: 'Опыт работы'
 }
