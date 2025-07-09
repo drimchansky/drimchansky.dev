@@ -43,13 +43,13 @@ const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', mont
                       <a class="notes__link" href={url}>
                         <TypographyH3 class="notes__note-header">
                           <TypographySpan>{data.title}</TypographySpan>
-                          <TypographySpan class="notes__note-date">
-                            <time datetime={data.publishingDate.toISOString()}>
-                              {monthDayFormatter.format(data.publishingDate)}
-                            </time>
-                          </TypographySpan>
                         </TypographyH3>
                       </a>
+                      <TypographySpan class="notes__note-date">
+                        <time datetime={data.publishingDate.toISOString()}>
+                          {monthDayFormatter.format(data.publishingDate)}
+                        </time>
+                      </TypographySpan>
                     </li>
                   )
                 })}
@@ -85,24 +85,27 @@ const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', mont
     list-style-type: none;
   }
 
-  .notes__link {
-    display: block;
-    padding: 0.4rem 0;
-    text-decoration: none;
-    @mixin focus;
-  }
-
-  .notes__note-header {
+  .notes__list-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
   }
 
+  .notes__link {
+    @mixin focus;
+    @mixin link-underline;
+
+    display: block;
+    padding: 0.4rem 0;
+    color: var(--c-text-primary);
+  }
+
   .notes__note-date {
     color: gray;
     font-size: var(--text-sm);
     line-height: var(--text-sm--line-height);
+    text-decoration: none;
     text-wrap: nowrap;
   }
 </style>

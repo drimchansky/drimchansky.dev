@@ -144,8 +144,10 @@ const values: ColorTheme[] = ['light', 'auto', 'dark']
     background: 0 0;
     cursor: pointer;
 
-    &:hover + .theme-switcher__text {
-      opacity: 1;
+    @media (hover: hover) {
+      &:hover + .theme-switcher__text {
+        opacity: 1;
+      }
     }
 
     &:checked + .theme-switcher__text {

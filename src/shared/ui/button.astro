@@ -24,8 +24,10 @@ const { class: className, ...props } = Astro.props
     color: var(--c-button-text);
     cursor: pointer;
 
-    &:hover {
-      background-color: var(--c-button-bg-hover);
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--c-button-bg-hover);
+      }
     }
 
     &:active {
