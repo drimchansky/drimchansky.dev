@@ -21,7 +21,7 @@ const EducationContent = (await (await getEntry('general', `${locale}/education`
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'resume')} – ${t(Astro.currentLocale, 'fullName')}`>
-  <Container>
+  <Container class="resume__container">
     <article class="resume__article">
       <ResumeHeader />
 
@@ -57,7 +57,6 @@ const EducationContent = (await (await getEntry('general', `${locale}/education`
     }
 
     & :global(p, li) {
-      max-width: var(--max-text-width);
       margin: 0;
       color: var(--c-text-secondary);
       font-family: var(--font-family-base);
@@ -69,6 +68,10 @@ const EducationContent = (await (await getEntry('general', `${locale}/education`
         line-height: var(--text-sm--line-height);
       }
     }
+  }
+
+  .resume__container {
+    max-width: var(--max-content-width);
   }
 
   @media print {

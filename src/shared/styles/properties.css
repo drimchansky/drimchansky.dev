@@ -33,8 +33,7 @@
   --header-line-width: 1px;
   --page-padding-x: 1rem;
   --max-width: 1440px;
-  --max-text-width: 1000px;
-  --max-notes-text-width: 800px;
+  --max-content-width: 800px;
   --outline-thickness: 4px;
 
   /** durations */

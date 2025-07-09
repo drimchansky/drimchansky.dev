@@ -63,7 +63,7 @@ const locale = getLocale(Astro.currentLocale)
   .resume-item {
     display: flex;
     width: 100%;
-    max-width: var(--max-text-width);
+    max-width: var(--max-content-width);
     flex-wrap: wrap;
     justify-content: space-between;
   }
@@ -90,7 +90,7 @@ const locale = getLocale(Astro.currentLocale)
   }
 
   .resume-item__description {
-    max-width: var(--max-text-width);
+    max-width: var(--max-content-width);
     margin-top: 0.5rem;
 
     & :global(ul) {
