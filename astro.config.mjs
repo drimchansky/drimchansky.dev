@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
 import dotenv from 'dotenv'
+import rehypeExternalLinks from 'rehype-external-links'
 
 dotenv.config()
 
@@ -30,6 +31,7 @@ export default defineConfig({
       }
     }),
     mdx({
+      rehypePlugins: [[rehypeExternalLinks, { rel: ['noopener', 'noreferrer'], target: '_blank' }]],
       shikiConfig: {
         theme: 'github-dark',
         wrap: true
