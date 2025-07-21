@@ -3,8 +3,8 @@ import type { GetStaticPaths } from 'astro'
 
 import { getCollection } from 'astro:content'
 
-import { filterTestNotesCb } from '@/features/notes/functions/filterTestNotesCb'
-import { prepareNotesList } from '@/features/notes/functions/prepareNotesList'
+import { filterNotes, prepareNotesList } from '@/features/notes'
+import RssLink from '@/features/notes/ui/rss-link.astro'
 import { getLocale, t } from '@/shared/i18n'
 import BaseLayout from '@/shared/layouts/base-layout.astro'
 import Container from '@/shared/ui/container.astro'
@@ -20,7 +20,7 @@ export const getStaticPaths = (async () => [
 
 const locale = getLocale(Astro.currentLocale)
 const notes = await getCollection('notes', entry => entry.slug.startsWith(`${locale}/`))
-const notesGrouped = prepareNotesList(locale, notes.filter(filterTestNotesCb))
+const notesGrouped = prepareNotesList(locale, filterNotes(notes))
 
 const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short' })
 ---
@@ -28,7 +28,12 @@ const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', mont
 <BaseLayout title=`${t(Astro.currentLocale, 'notes')} – ${t(Astro.currentLocale, 'fullName')}`>
   <div class="notes">
     <Container class="notes__container">
-      <TypographyH1>{t(Astro.currentLocale, 'notes')}</TypographyH1>
+      <TypographyH1 class="notes__header"
+        >{t(Astro.currentLocale, 'notes')}
+        <sup>
+          <RssLink class="notes__rss-link" />
+        </sup>
+      </TypographyH1>
 
       {
         notesGrouped.map(([year, notes]) => {
@@ -65,6 +70,10 @@ const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', mont
 <style>
   @import '@/shared/styles/mixins.css';
   @import '@/shared/styles/media.css';
+
+  .notes__rss-link {
+    margin-left: 0.2rem;
+  }
 
   .notes__container {
     --max-width: var(--max-content-width);

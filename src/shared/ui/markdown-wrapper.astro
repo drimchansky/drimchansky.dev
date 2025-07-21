@@ -27,18 +27,24 @@ const { class: className, ...props } = Astro.props
     }
 
     & :global(h2) {
-      margin: 2rem 0 1rem;
+      margin: calc(var(--spacing) * 14) 0 1rem;
       font-size: var(--text-3xl);
       line-height: var(--text-3xl--line-height);
     }
 
+    & :global(h2 + h3),
+    & :global(h2 + h4) {
+      margin-top: 1rem;
+    }
+
     & :global(h3) {
-      margin: 1.5rem 0 1rem;
+      margin: calc(var(--spacing) * 8) 0 1rem;
       font-size: var(--text-2xl);
       line-height: var(--text-2xl--line-height);
     }
 
     & :global(h4) {
+      margin: calc(var(--spacing) * 8) 0 1rem;
       font-size: var(--text-xl);
       line-height: var(--text-xl--line-height);
     }
@@ -75,7 +81,7 @@ const { class: className, ...props } = Astro.props
     }
 
     & :global(p) {
-      margin-top: 1rem;
+      margin-top: calc(var(--spacing) * 6);
     }
 
     & :global(img) {

@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+import { Icon } from 'astro-icon/components'
+
+import { getLocale } from '@/shared/i18n'
+import TypographySpan from '@/shared/ui/typography/typography-span.astro'
+
+import { getRssUrl } from '../functions/getRssUrl'
+
+interface Props extends HTMLAttributes<'a'> {}
+
+const { class: className, ...props } = Astro.props
+const locale = getLocale(Astro.currentLocale)
+---
+
+<a target="_blank" href={getRssUrl(locale)} class:list={['rss-link', className || '']} {...props}>
+  <Icon name="rss" aria-hidden="true" class="rss-link__icon" />
+  <TypographySpan class="rss-link__label">RSS</TypographySpan>
+</a>
+
+<style>
+  @import '@/shared/styles/mixins.css';
+
+  .rss-link {
+    @mixin focus;
+
+    display: inline-flex;
+    align-items: center;
+    border-bottom: 1px solid currentColor;
+    color: var(--c-text-primary);
+    gap: 0.2rem;
+    text-decoration: none;
+
+    & .rss-link__label {
+      line-height: 1.1;
+    }
+  }
+
+  .rss-link__icon {
+    max-width: 1rem;
+    height: 1rem;
+  }
+</style>
