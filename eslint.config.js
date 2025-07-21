@@ -84,7 +84,8 @@ export default [
     },
     rules: {
       ...eslintPluginTypeScript.configs.recommended.rules,
-      'no-unused-vars': 'off'
+      'no-unused-vars': 'off',
+      'space-before-function-paren': 'off'
     }
   },
   {

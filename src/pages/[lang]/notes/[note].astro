@@ -3,8 +3,7 @@ import type { GetStaticPaths } from 'astro'
 
 import { getCollection } from 'astro:content'
 
-import { NoteHeader } from '@/features/notes'
-import { filterTestNotesCb } from '@/features/notes/functions/filterTestNotesCb'
+import { filterNotes, NoteHeader } from '@/features/notes'
 import { t } from '@/shared/i18n'
 import BaseLayout from '@/shared/layouts/base-layout.astro'
 import Container from '@/shared/ui/container.astro'
@@ -16,7 +15,7 @@ const { Content } = await note.render()
 export const getStaticPaths = (async () => {
   const notes = await getCollection('notes')
 
-  return notes.filter(filterTestNotesCb).map(note => {
+  return filterNotes(notes).map(note => {
     const [lang, slugWithoutLang] = note.slug.split('/')
     return { params: { lang, note: slugWithoutLang }, props: { note } }
   })
