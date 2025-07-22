@@ -2,7 +2,7 @@
 import { ClientRouter } from 'astro:transitions'
 
 import { getRssUrl } from '@/features/notes'
-import { BASE_URL, CUSTOM_COVER_ROUTES } from '@/shared/constants'
+import { CUSTOM_COVER_ROUTES } from '@/shared/constants'
 import { getLocale, t } from '@/shared/i18n'
 
 export type Props = {
@@ -15,8 +15,8 @@ const locale = getLocale(Astro.currentLocale)
 const pathname = Astro.url.pathname.replace(`/${locale}`, '')
 const route = pathname.split('/')[1]
 
-const cleanUrl = BASE_URL + pathname
-const coverLink = `${BASE_URL}/covers/${CUSTOM_COVER_ROUTES.includes(route) ? route : 'main'}-${locale}.jpg`
+const cleanUrl = process.env.SITE_URL + pathname
+const coverLink = `${process.env.SITE_URL}/covers/${CUSTOM_COVER_ROUTES.includes(route) ? route : 'main'}-${locale}.jpg`
 
 const schema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -24,7 +24,7 @@ const schema = JSON.stringify({
   description: t(Astro.currentLocale, 'siteDescription'),
   jobTitle: t(Astro.currentLocale, 'occupation'),
   name: t(Astro.currentLocale, 'fullName'),
-  url: `${BASE_URL}/${Astro.currentLocale}`
+  url: `${process.env.SITE_URL}/${Astro.currentLocale}`
 })
 ---
 
@@ -39,7 +39,7 @@ const schema = JSON.stringify({
 <link href="/manifest.webmanifest" rel="manifest" />
 <meta content="#1B1B1B" name="theme-color" />
 
-<link href={BASE_URL} rel="canonical" />
+<link href={process.env.SITE_URL} rel="canonical" />
 <link rel="alternate" type="application/rss+xml" title="Nikita's notes" href={getRssUrl(locale)} />
 
 <meta content="website" property="og:type" />
