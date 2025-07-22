@@ -2,38 +2,41 @@
 title: 'Frontend Good Reads – June 2025'
 publishingDate: 2025-07-01
 isUntranslated: true
+description: A monthly digest from my telegram channel **[Frontend Good Reads](t.me/goodreadsfrontend)**
 ---
+
+> A monthly digest from my telegram channel **[Frontend Good Reads](t.me/goodreadsfrontend)**
+
+## My experience using ChatGPT with enabled personalization
+
+I have been trying to use ChatGPT with enabled personalization for several weeks.
+
+For the first week it seemed convenient: you don't need to specify some of the system's feature are constraints explicitly.
+
+But during the second week I began feeling an obvious decrease in the responses quality, like the whole context about me got mixed up and was trying to being used, adding more and more details in there. As a result, the average response quality had decreased dramatically and I had to specify the context every each time.
+
+Maybe there are ways to manage this kind of personalization, but I decided to just turn it off several days ago, and the responses quality improved rapidly.
+
+There is an article written by Addy Osmani on this topic [The Prompt Engineering Playbook for Programmers](https://addyo.substack.com/p/the-prompt-engineering-playbook-for). He writes in very beautiful language, but there is a fair amount of fluff. I will just highlight the following principles:
+
+- **Provide the AI exhaustive context.** Imagine that AI doesn't know anything about the project except what you have told it, (that’s really the case if the context is turned off).
+- **Be concrete about your goals and questions.** Vague questions lead to vague answers.
+- **Split complex tasks.** Begin with high-level goals and iteratively ask about its different parts.
+- **Provide examples of input/output or examples of desired results.** It helps the AI to understand your intentions better and avoid misunderstandings.
+- **Use roles.** It can affect the depth and style of a response. Example: `You are a senior {language} developer. Review this function for {goal}.`.
+- **Improve the dialogue iteratively.** AI remembers the history of the chat, so it can gradually adjust it (for me, a prompt change with the clear context works better, if the response is quite far from the desired one).
+- Keep code consistent and clear. Meaningful function names and variables, consistent formatting, and suitable comments are helpful not only for humans to understand the code, but also to optimize the AI work with it.
 
 ## Couple words about Cache-Control request header
 
 **[Why Do We Have a Cache-Control Request Header?](https://csswizardry.com/2025/03/why-do-we-have-a-cache-control-request-header/)**
 
-Если про использование заголовка `Cache-Control` в ответе всё понятно, то использование его же для запроса история вообще не очевидная, никогда в такой перспективе о нём не задумывался.
+If everything is quite clear about using the `Cache-Control` header in the response, using it for a request is not obvious at all. Never thought about it from that perspective.
 
-Он инструктирует CDN или сервер ревалидировать кэш для этого запроса. `max-age=0` – запросить ревалидацию, `no-cache` – запросить ревалидацию более настойчиво и запретить отдавать ответ без неё.
+It instructs the CDN or server to revalidate the cache for this request. `max-age=0` – request revalidation, `no-cache` – request revalidation more insistently and forbid returning a response without it.
 
-Несколько сценариев его применения:
+There are several cases to use it:
 
-- Используется браузерами для обычной и жесткой перезагрузки страницы, и как мы любим, все три основных браузера (Chrome, Safari, Firefox) ведут себя в этих сценариях по-разному.
-- Можно добавлять к запросам, ответам которых очень желательно быть актуальными. В дополнение к правильным заголовкам ответа сервера для надёжности или если ему не доверяем.
-- И самый интересный кейс – для оффлайн приложений со значением `only-if-cached`, чтобы не делать запрос в сеть, а только попытаться взять ответ из кэша
-
-## My experience using ChatGPT with personalization enabled
-
-Несколько недель пробовал использовать ChatGPT с включенной персонализацией.
-
-Первую неделю это казалось удобным: не надо было явным образом прописывать особенности и ограничения разных контекстов и систем.
-
-А на второй неделе начал ощущать явный упадок качества ответов, как будто весь контекст про меня перемешался в кашу, которую он пытался использовать и добавлял в неё новые и новые ингредиенты. В результате среднее качество ответов сильно упало и приходилось постоянно уточнять, что из моего контекста не надо учитывать в текущем вопросе.
-
-Возможно есть способы, как управлять такой персонализацией, но решил просто её выключить несколько дней назад, и качество ответов резко выросло.
-
-На эту тему интересно почитать статью Addy Osmani [The Prompt Engineering Playbook for Programmers](https://addyo.substack.com/p/the-prompt-engineering-playbook-for). Пишет он, конечно, красивым языком, но количество воды порядочное. Можно просто выделить эти принципы:
-
-- Предоставляй AI исчерпывающий контекст. Представь, что AI ничего не знает о проекте кроме того, что ты ему расскажешь (а с выключенным контекстом это так и есть).
-- Будь конкретным в своих целях и вопросах. Расплывчатые вопросы ведут к расплывчатым ответам.
-- Разделяй сложные задачи. Начни с высокоуровневой цели и итеративно спрашивай о разных её частях.
-- Приводи примеры ввода/вывода или примеры ожидаемого результата. Поможет AI лучше понять твои намерения и избежать недопонимания.
-- Используй роли. Это может повлиять на глубину и стиль ответа. Пример: `You are a senior {language} developer. Review this function for {goal}.`.
-- Итеративно улучшай диалог. AI помнит историю чата, так что можно постепенно выводить его на чистую воду (но для меня лучше работает изменение промпта и старт с чистым контекстом, если результат очень далек от ожидаемого).
-- Поддерживай чистоту кода и консистентность его написания. Продуманные названия функций и переменных, консистентное форматирование и уместные комментарии не только помогают людям понимать этот код, но и сильно оптимизирует работу AI с ним.
+- Used by browsers for normal and hard page reloads, and as we all love, every of the three major browsers (Chrome, Safari, Firefox) behaves differently in these scenarios.
+- Can be added to requests, whose responses are very desirable to be up-to-date. In addition to the correct server response headers for reliability or if we do not trust it.
+- And the most interesting case is about offline applications: with the value `only-if-cached`, so as not to make a request to the network, but only try to get the response from the cache.

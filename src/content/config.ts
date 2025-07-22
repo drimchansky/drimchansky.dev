@@ -20,6 +20,7 @@ const generalCollection = defineCollection({})
 
 const notesCollection = defineCollection({
   schema: z.object({
+    description: z.string(),
     isDraft: z.boolean().optional(),
     isTestNote: z.boolean().optional(),
     isUntranslated: z.boolean().optional(),

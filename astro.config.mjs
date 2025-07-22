@@ -24,7 +24,15 @@ export default defineConfig({
     icon({
       iconDir: 'src/shared/assets/icons'
     }),
-    sitemap(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en-US',
+          ru: 'ru-RU'
+        }
+      }
+    }),
     partytown({
       config: {
         forward: ['dataLayer.push']

@@ -5,6 +5,7 @@ import sanitizeHtml from 'sanitize-html'
 
 import type { Locale } from '@/shared/i18n'
 
+import { filterNotes } from '@/features/notes'
 import { siteInfo } from '@/shared/site-info'
 
 const mdParser = new MarkdownIt()
@@ -19,7 +20,7 @@ export async function GET({ params }: { params: { lang: Locale } }) {
     return id.startsWith(`${lang}/`)
   })
 
-  const sortedNotes = notes.sort(
+  const sortedNotes = filterNotes(notes).sort(
     (a, b) => new Date(b.data.publishingDate).getTime() - new Date(a.data.publishingDate).getTime()
   )
 
@@ -43,6 +44,7 @@ export async function GET({ params }: { params: { lang: Locale } }) {
     description: config.description,
     items: sortedNotes.map(note => ({
       content: sanitizeHtml(mdParser.render(note.body)),
+      description: note.data.description,
       link: `/${lang}/notes/${note.slug.replace(`${lang}/`, '')}/`,
       pubDate: note.data.publishingDate,
       title: note.data.title
