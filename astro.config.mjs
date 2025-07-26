@@ -4,7 +4,9 @@ import sitemap from '@astrojs/sitemap'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
 import dotenv from 'dotenv'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
+import rehypeSlug from 'rehype-slug'
 
 dotenv.config()
 
@@ -39,7 +41,11 @@ export default defineConfig({
       }
     }),
     mdx({
-      rehypePlugins: [[rehypeExternalLinks, { rel: ['noopener', 'noreferrer'], target: '_blank' }]],
+      rehypePlugins: [
+        rehypeSlug,
+        [rehypeExternalLinks, { rel: ['noopener', 'noreferrer'], target: '_blank' }],
+        [rehypeAutolinkHeadings, { behavior: 'append' }]
+      ],
       shikiConfig: {
         theme: 'github-dark',
         wrap: true
