@@ -9,6 +9,7 @@ on:
   pull_request:
 jobs:
   test:
+    timeout-minutes: 20
     name: Test
     runs-on: ubuntu-latest
     steps:
