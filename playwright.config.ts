@@ -39,6 +39,7 @@ export default defineConfig({
 
   reporter: 'html',
   retries: process.env.CI ? 2 : 0,
+  snapshotPathTemplate: 'snapshots/{arg}-{projectName}{ext}',
   testDir: './tests',
 
   use: {
