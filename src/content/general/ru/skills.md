@@ -1,4 +1,4 @@
-**Технологии:** TypeScript / JavaScript • React • Redux Toolkit • React Router • Vite / Webpack • Tailwind CSS • SCSS / SASS • Socket.IO • Astro
+**Технологии:** TypeScript / JavaScript • React • Redux Toolkit • React Router • Vite / Webpack • Tailwind CSS • SCSS / SASS • Socket.IO • Astro • Next.js
 
 **Тестирование:** Jest • Storybook (visual/interaction tests) • Playwright (E2E) • React Testing Library
 

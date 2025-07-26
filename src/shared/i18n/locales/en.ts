@@ -10,6 +10,8 @@ export const en: LocaleCollection = {
   experienceLine:
     'I have @experience@ of working experience including @experienceDev@ in commercial software development.',
   familyName: 'Chernov',
+  fgrDisclaimer:
+    'A monthly digest from my telegram channel **[Frontend Good Reads](https://t.me/goodreadsfrontend)** where I share interesting articles, videos, and news from the frontend world and my thoughts about them. Sometimes there are some offtopics: UX, learning, technologies, etc.',
   fullName: 'Nikita Chernov',
   givenName: 'Nikita',
   home: 'Home',

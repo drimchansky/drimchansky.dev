@@ -9,6 +9,8 @@ export const ru: LocaleCollection = {
   education: 'Образование',
   experienceLine: 'Мой общий стаж работы @experience@, из них @experienceDev@ в коммерческой разработке.',
   familyName: 'Чернов',
+  fgrDisclaimer:
+    'Ежемесячный дайджест моего телеграм-канала **[Frontend Good Reads](https://t.me/goodreadsfrontend)**, где я делюсь интересными статьями, видео и новостями из мира фронтенда и моими мыслями о них. Иногда бывают оффтопы: UX, обучение, технологии и тд.',
   fullName: 'Никита Чернов',
   givenName: 'Никита',
   home: 'Главная',

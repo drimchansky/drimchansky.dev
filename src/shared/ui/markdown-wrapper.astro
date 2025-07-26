@@ -23,7 +23,22 @@ const { class: className, ...props } = Astro.props
       color: var(--c-text-primary);
       font-family: var(--font-family-heading);
       font-weight: 600;
+      scroll-margin-top: calc(var(--header-height));
       text-wrap: balance;
+    }
+
+    & :global(:is(h2, h3, h4) a) {
+      color: var(--c-text-gray);
+      text-decoration: none;
+    }
+
+    & :global(:is(h2, h3, h4) .icon:before) {
+      position: relative;
+      color: inherit;
+      content: '#';
+      font-size: var(--text-xxl);
+      font-weight: bolder;
+      padding-inline: 0.25em;
     }
 
     & :global(h2) {
