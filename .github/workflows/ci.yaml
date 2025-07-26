@@ -5,6 +5,7 @@ on:
       - main
       - preview
       - dev
+      - tests
   pull_request:
 jobs:
   test:
@@ -42,3 +43,9 @@ jobs:
         run: pnpm exec playwright test
         env:
           SITE_URL: http://localhost:4321
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
