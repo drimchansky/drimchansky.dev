@@ -43,7 +43,7 @@
 
   --c-main-bg: oklch(22.21% 0 0);
   --c-highlight: oklch(0.9875 0.0654 107.54);
-  --c-border: oklch(1 0 0 / 10%);
+  --c-border: oklch(0.922 0 0);
 
   --c-header-bg: oklch(31.32% 0 0);
   --c-header-line: oklch(61.67% 0 0);
