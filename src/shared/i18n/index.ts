@@ -12,7 +12,6 @@ export type LocaleCollection = {
   education: string
   experienceLine: string
   familyName: string
-  fgrDisclaimer: string
   fullName: string
   givenName: string
   home: string
