@@ -3,7 +3,6 @@ import { differenceInMonths } from 'date-fns'
 type TPositionInfo = {
   dateEnd?: Date
   dateStart: Date
-  isCurrent?: boolean
 }
 
 // TODO: career breaks?
@@ -15,7 +14,8 @@ export const getCareerDurationInMonths = (positions: TPositionInfo[]): number =>
   let workEndDate
 
   for (const position of positions) {
-    const { dateEnd, dateStart, isCurrent } = position
+    const { dateEnd, dateStart } = position
+    const isCurrent = !!dateEnd
 
     if (isCurrent) {
       hasCurrent = true

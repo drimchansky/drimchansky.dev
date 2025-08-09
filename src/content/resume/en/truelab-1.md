@@ -1,5 +1,6 @@
 ---
 company: TrueLab Game Studios
+dateEnd: 2025-08-08
 dateStart: 2020-12-01
 position: Frontend Developer
 location:
@@ -7,7 +8,6 @@ location:
   country: 'Malta'
 companyLink: https://truelab.games/
 isDevelopment: true
-isCurrent: true
 ---
 
 - Prototyped, designed, and built a unified React.js / Redux Toolkit / Tailwind CSS UI and business logic application for games, reducing development costs by over 35%, streamlining support, and doubling the feature-release speed.

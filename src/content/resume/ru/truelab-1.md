@@ -1,13 +1,13 @@
 ---
 company: TrueLab Game Studios
 dateStart: 2020-12-01
+dateEnd: 2025-08-08
 position: Фронтенд-разработчик
 location:
   type: 'remote'
   country: 'Мальта'
 companyLink: https://truelab.games/
 isDevelopment: true
-isCurrent: true
 ---
 
 - Создал прототип, спроектировал и разработал унифицированное React.js / Redux Toolkit / Tailwind CSS приложение пользовательского интерфейса и бизнес-логики для игр, уменьшив стоимость разработки более чем на 35%, упростив поддержку и удвоив скорость релизов нового функционала.
