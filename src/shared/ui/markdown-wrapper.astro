@@ -75,7 +75,7 @@ const { class: className, ...props } = Astro.props
 
     & :global(ul, ol) {
       padding-left: 1.25rem;
-      margin: 0.5rem 0 0 0;
+      margin: calc(var(--spacing) * 6) 0 0 0;
     }
 
     & :global(li:not(:first-child)) {

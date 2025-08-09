@@ -20,7 +20,7 @@ const experienceMonths = getCareerDurationInMonths(
     return {
       dateEnd: position.data.dateEnd,
       dateStart: position.data.dateStart,
-      isCurrent: position.data.isCurrent
+      isCurrent: !!position.data.dateEnd
     }
   })
 )
@@ -32,7 +32,7 @@ const experienceDevelopmentMonths = getCareerDurationInMonths(
       return {
         dateEnd: position.data.dateEnd,
         dateStart: position.data.dateStart,
-        isCurrent: position.data.isCurrent
+        isCurrent: !!position.data.dateEnd
       }
     })
 )

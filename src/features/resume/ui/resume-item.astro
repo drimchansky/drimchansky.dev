@@ -47,7 +47,7 @@ const locale = getLocale(Astro.currentLocale)
       {' - '}
       <time datetime={dateEnd?.toISOString()}>{dateEndText}</time>
       <span class="resume-item__duration">
-        ({getDurationTextFromMonths(differenceInMonths(dateEnd || new Date(), dateStart), locale)})
+        ({getDurationTextFromMonths(differenceInMonths(dateEnd || new Date(), dateStart) || 1, locale)})
       </span>
     </div>
   </div>
