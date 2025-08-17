@@ -61,12 +61,17 @@ const EducationContent = (await (await getEntry('general', `${locale}/education`
       color: var(--c-text-secondary);
       font-family: var(--font-family-base);
       font-size: var(--text-base);
+      font-weight: 400;
       line-height: var(--text-base--line-height);
 
       @media print {
         font-size: var(--text-sm);
         line-height: var(--text-sm--line-height);
       }
+    }
+
+    & :global(strong) {
+      font-weight: 600;
     }
   }
 
