@@ -1,0 +1,22 @@
+---
+title: 'My experience using ChatGPT with enabled personalization'
+publishingDate: 2025-06-25
+---
+
+I have been trying to use ChatGPT with enabled personalization for several weeks.
+
+For the first week it seemed convenient: you don't need to specify some of the system's feature are constraints explicitly.
+
+But during the second week I began feeling an obvious decrease in the responses quality, like the whole context about me got mixed up and was trying to being used, adding more and more details in there. As a result, the average response quality had decreased dramatically and I had to specify the context every each time.
+
+Maybe there are ways to manage this kind of personalization, but I decided to just turn it off several days ago, and the responses quality improved rapidly.
+
+There is an article written by Addy Osmani on this topic [The Prompt Engineering Playbook for Programmers](https://addyo.substack.com/p/the-prompt-engineering-playbook-for). He writes in very beautiful language, but there is a fair amount of fluff. I will just highlight the following principles:
+
+- **Provide the AI exhaustive context.** Imagine that AI doesn't know anything about the project except what you have told it, (that’s really the case if the context is turned off).
+- **Be concrete about your goals and questions.** Vague questions lead to vague answers.
+- **Split complex tasks.** Begin with high-level goals and iteratively ask about its different parts.
+- **Provide examples of input/output or examples of desired results.** It helps the AI to understand your intentions better and avoid misunderstandings.
+- **Use roles.** It can affect the depth and style of a response. Example: `You are a senior {language} developer. Review this function for {goal}.`.
+- **Improve the dialogue iteratively.** AI remembers the history of the chat, so it can gradually adjust it (for me, a prompt change with the clear context works better, if the response is quite far from the desired one).
+- **Keep code consistent and clear.** Meaningful function names and variables, consistent formatting, and suitable comments are helpful not only for humans to understand the code, but also to optimize the AI work with it.

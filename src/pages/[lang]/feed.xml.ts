@@ -26,13 +26,11 @@ export async function GET({ params }: { params: { lang: Locale } }) {
 
   const feedConfig = {
     en: {
-      description:
-        'Personal notes, interesting meterials and thoughts on web development, technology, learning, and other topics',
+      description: 'Personal notes and thoughts on web development, technology, learning, and other topics',
       title: 'Notes – Nikita Chernov'
     },
     ru: {
-      description:
-        'Личные заметки, интересные материалы и мысли о веб-разработке, технологиях, обучении, и на другие темы',
+      description: 'Личные заметки и мысли о веб-разработке, технологиях, обучении, и на другие темы',
       title: 'Заметки – Никита Чернов'
     }
   }
