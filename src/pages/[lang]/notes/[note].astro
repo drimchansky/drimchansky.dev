@@ -12,6 +12,9 @@ import MarkdownWrapper from '@/shared/ui/markdown-wrapper.astro'
 const { note } = Astro.props
 const { Content } = await note.render()
 
+const title = `${note.data.title} – ${t(Astro.currentLocale, 'fullName')}`
+const description = note.data.description
+
 export const getStaticPaths = (async () => {
   const notes = await getCollection('notes')
 
@@ -22,7 +25,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths
 ---
 
-<BaseLayout title={`${note.data.title} – ${t(Astro.currentLocale, 'fullName')}`}>
+<BaseLayout title={title} description={description}>
   <Container class="note__container">
     <main>
       <article>

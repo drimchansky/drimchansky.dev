@@ -5,11 +5,12 @@ import { getRssUrl } from '@/features/notes'
 import { CUSTOM_COVER_ROUTES } from '@/shared/constants'
 import { getLocale, t } from '@/shared/i18n'
 
-export type Props = {
+type Props = {
+  description?: string
   title: string
 }
 
-const { title } = Astro.props
+const { description: customDescription, title } = Astro.props
 
 const locale = getLocale(Astro.currentLocale)
 const pathname = Astro.url.pathname.replace(`/${locale}`, '')
@@ -18,10 +19,13 @@ const route = pathname.split('/')[1]
 const cleanUrl = process.env.SITE_URL + pathname
 const coverLink = `${process.env.SITE_URL}/covers/${CUSTOM_COVER_ROUTES.includes(route) ? route : 'main'}-${locale}.jpg`
 
+const siteDescription = t(Astro.currentLocale, 'siteDescription')
+const description = customDescription || siteDescription
+
 const schema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Person',
-  description: t(Astro.currentLocale, 'siteDescription'),
+  description,
   jobTitle: t(Astro.currentLocale, 'occupation'),
   name: t(Astro.currentLocale, 'fullName'),
   url: `${process.env.SITE_URL}/${Astro.currentLocale}`
@@ -29,7 +33,7 @@ const schema = JSON.stringify({
 ---
 
 <meta charset="UTF-8" />
-<meta content={t(Astro.currentLocale, 'siteDescription')} name="description" />
+<meta content={description} name="description" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <meta content={Astro.generator} name="generator" />
 
@@ -39,12 +43,12 @@ const schema = JSON.stringify({
 <link href="/manifest.webmanifest" rel="manifest" />
 <meta content="#1B1B1B" name="theme-color" />
 
-<link href={process.env.SITE_URL} rel="canonical" />
+<link href={cleanUrl} rel="canonical" />
 <link rel="alternate" type="application/rss+xml" title="Nikita's notes" href={getRssUrl(locale)} />
 
 <meta content="website" property="og:type" />
 <meta content={title} property="og:title" />
-<meta content={t(Astro.currentLocale, 'siteDescription')} property="og:description" />
+<meta content={description} property="og:description" />
 <meta content={cleanUrl} property="og:url" />
 
 <meta content={coverLink} property="og:image" />

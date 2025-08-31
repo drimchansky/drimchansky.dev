@@ -23,6 +23,6 @@
 @define-mixin link-underline {
   text-decoration: underline;
   text-decoration-color: currentColor;
-  text-underline-offset: 4px;
+  text-underline-offset: 3px;
   text-decoration-thickness: 2px;
 }

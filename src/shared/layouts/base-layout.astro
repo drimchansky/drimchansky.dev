@@ -10,19 +10,20 @@ import { getLocale } from '@/shared/i18n'
 import Head from '@/shared/ui/head.astro'
 import Header from '@/shared/ui/header.astro'
 
-interface Props {
+type Props = {
+  description?: string
   title: string
 }
 
 const analyticsId = import.meta.env.ANALYTICS_ID
-const { title } = Astro.props
+const { description, title } = Astro.props
 const locale = getLocale(Astro.currentLocale)
 ---
 
 <!doctype html>
 <html itemtype="https://schema.org/Person" lang={locale} itemscope transition:animate="none">
   <head>
-    <Head title={title} />
+    <Head title={title} description={description} />
   </head>
   <body>
     <Header />
