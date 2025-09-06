@@ -16,6 +16,12 @@ jobs:
     container:
       image: mcr.microsoft.com/playwright:v1.54.2-noble
     steps:
+      - name: Install Git LFS
+        run: |
+          apt-get update
+          apt-get install -y git-lfs
+          git lfs install
+
       - name: Checkout the repository
         uses: actions/checkout@v4
         with:
