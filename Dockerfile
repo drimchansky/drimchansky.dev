@@ -36,4 +36,4 @@ ENV CI=true
 ENV SITE_URL=http://localhost:4321
 
 # Default command to run tests
-CMD ["sh", "-c", "pnpm dev --host 0.0.0.0 --port 4321 & sleep 10 && pnpm exec playwright test"]
+CMD ["pnpm", "exec", "playwright", "test"]
