@@ -26,33 +26,6 @@ services:
         kill $$DEV_PID
       "
 
-  # Alternative service for running tests against a pre-built app
-  playwright-tests-built:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      - CI=true
-      - SITE_URL=http://localhost:4321
-      - DOCKER=true
-    ports:
-      - '4321:4321'
-    volumes:
-      - ./test-results:/app/test-results
-      - ./playwright-report:/app/playwright-report
-    command: >
-      sh -c "
-        echo 'Starting Astro preview server...' &&
-        pnpm preview --host 0.0.0.0 --port 4321 &
-        PREVIEW_PID=$$! &&
-        echo 'Waiting for server to be ready...' &&
-        sleep 5 &&
-        echo 'Running Playwright tests...' &&
-        pnpm exec playwright test &&
-        echo 'Tests completed, stopping preview server...' &&
-        kill $$PREVIEW_PID
-      "
-
   # Service for updating snapshots
   playwright-update-snapshots:
     build:
