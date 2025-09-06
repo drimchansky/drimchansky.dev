@@ -27,30 +27,17 @@ jobs:
         with:
           lfs: true
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
+      - name: Build Docker image
+        run: docker build -t playwright-tests .
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
+      - name: Run linting in Docker
+        run: docker run --rm playwright-tests pnpm lint
 
-      - name: Install dependencies
-        run: pnpm i
-
-      - name: Test against linters
-        run: pnpm lint
-
-      - name: Run Playwright tests
-        run: pnpm exec playwright test
+      - name: Run Playwright tests in Docker
+        run: docker run --rm -p 4321:4321 playwright-tests
         env:
           SITE_URL: http://localhost:4321
           CI: true
-          HOME: /root
-          DOCKER_CONFIG: /tmp/.docker
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
