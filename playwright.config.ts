@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-dotenv.config({ path: path.resolve(__dirname, '.env') })
+dotenv.config({ path: path.resolve(__dirname, '.env'), quiet: true })
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -48,12 +48,14 @@ export default defineConfig({
     trace: process.env.CI ? 'retain-on-failure' : 'on-first-retry'
   },
 
-  webServer: {
-    command: 'pnpm dev',
-    reuseExistingServer: !process.env.CI,
-    timeout: 30000,
-    url: process.env.SITE_URL
-  },
+  webServer: process.env.DOCKER
+    ? undefined
+    : {
+        command: 'pnpm dev',
+        reuseExistingServer: !process.env.CI,
+        timeout: 30000,
+        url: process.env.SITE_URL
+      },
 
   workers: process.env.CI ? 1 : undefined
 })
