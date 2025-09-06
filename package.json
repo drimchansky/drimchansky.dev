@@ -8,9 +8,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "env": "cat .env.example > .env",
-    "test:e2e:docker": "docker-compose up --build playwright-tests",
-    "test:e2e:docker-update-snapshots": "docker-compose up --build playwright-update-snapshots",
-    "test:e2e:docker-clean": "docker-compose down -v && docker system prune -f",
+    "test:e2e:docker": "docker build -t playwright-tests . && docker run --rm -p 4321:4321 -v $(pwd)/test-results:/app/test-results -v $(pwd)/playwright-report:/app/playwright-report -e CI=true -e SITE_URL=http://localhost:4321 playwright-tests",
+    "test:e2e:docker-update-snapshots": "docker build -t playwright-tests . && docker run --rm -p 4321:4321 -v $(pwd)/test-results:/app/test-results -v $(pwd)/playwright-report:/app/playwright-report -v $(pwd)/tests/screenshots:/app/tests/screenshots -e CI=true -e SITE_URL=http://localhost:4321 playwright-tests sh -c 'pnpm dev --host 0.0.0.0 --port 4321 & sleep 10 && pnpm exec playwright test --update-snapshots && kill %1'",
     "lint": "astro check && eslint .",
     "format": "prettier --write . && eslint --fix ."
   },
