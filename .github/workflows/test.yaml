@@ -1,23 +1,30 @@
-name: CI
+name: Test
+
 on:
   push:
     branches:
       - main
       - preview
       - dev
-  pull_request:
 jobs:
   test:
+    timeout-minutes: 20
     name: Test
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.54.2-noble
+
     steps:
+      - name: Install Git LFS
+        run: |
+          apt-get update
+          apt-get install -y git-lfs
+          git lfs install
+
       - name: Checkout the repository
         uses: actions/checkout@v4
         with:
           lfs: true
-
-      - name: Install Git LFS
-        run: git lfs install
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -36,9 +43,17 @@ jobs:
       - name: Test against linters
         run: pnpm lint
 
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
       - name: Run Playwright tests
         run: pnpm exec playwright test
         env:
           SITE_URL: http://localhost:4321
+          CI: true
+          HOME: /root
+          DOCKER_CONFIG: /tmp/.docker
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

@@ -8,8 +8,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "env": "cat .env.example > .env",
-    "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:docker": "docker-compose up playwright-tests",
+    "test:e2e:docker-update-snapshots": "docker-compose up playwright-update-snapshots",
+    "test:e2e:docker-clean": "docker-compose down --volumes --remove-orphans && docker system prune -f",
     "lint": "astro check && eslint .",
     "format": "prettier --write . && eslint --fix ."
   },

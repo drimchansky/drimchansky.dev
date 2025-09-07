@@ -1,0 +1,53 @@
+services:
+  playwright-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - CI=true
+      - SITE_URL=http://localhost:4321
+      - DOCKER=true
+    ports:
+      - '4321:4321'
+    volumes:
+      - ./test-results:/app/test-results
+      - ./playwright-report:/app/playwright-report
+    command: >
+      sh -c "
+        echo 'Starting Astro dev server...' &&
+        pnpm dev --host 0.0.0.0 --port 4321 &
+        DEV_PID=$$! &&
+        echo 'Waiting for server to be ready...' &&
+        sleep 10 &&
+        echo 'Running Playwright tests...' &&
+        pnpm exec playwright test &&
+        echo 'Tests completed, stopping dev server...' &&
+        kill $$DEV_PID
+      "
+
+  playwright-update-snapshots:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - CI=true
+      - SITE_URL=http://localhost:4321
+      - DOCKER=true
+    ports:
+      - '4321:4321'
+    volumes:
+      - ./test-results:/app/test-results
+      - ./playwright-report:/app/playwright-report
+      - ./tests/screenshots:/app/tests/screenshots
+    command: >
+      sh -c "
+        echo 'Starting Astro dev server...' &&
+        pnpm dev --host 0.0.0.0 --port 4321 &
+        DEV_PID=$$! &&
+        echo 'Waiting for server to be ready...' &&
+        sleep 10 &&
+        echo 'Updating Playwright snapshots...' &&
+        pnpm exec playwright test --update-snapshots &&
+        echo 'Snapshots updated, stopping dev server...' &&
+        kill $$DEV_PID
+      "
