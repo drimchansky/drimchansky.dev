@@ -4,8 +4,7 @@ import { getRelativeLocaleUrl } from 'astro:i18n'
 import GlobeIcon from '@/shared/assets/icons/globe.svg'
 import { getTestId } from '@/shared/functions/getTestId'
 import { getLocale, t } from '@/shared/i18n'
-
-import TypographySpan from './typography/typography-span.astro'
+import TypographySpan from '@/shared/ui/typography/typography-span.astro'
 
 const locale = getLocale(Astro.currentLocale)
 const toLocale = locale === 'en' ? 'ru' : 'en'

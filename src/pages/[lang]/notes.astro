@@ -3,8 +3,8 @@ import type { GetStaticPaths } from 'astro'
 
 import { getCollection } from 'astro:content'
 
-import { filterNotes, prepareNotesList } from '@/features/notes'
-import RssLink from '@/features/notes/ui/rss-link.astro'
+import { filterNotes, prepareNotesList } from '@/entities/notes'
+import RssLink from '@/entities/notes/ui/rss-link.astro'
 import { getLocale, t } from '@/shared/i18n'
 import BaseLayout from '@/shared/layouts/base-layout.astro'
 import Container from '@/shared/ui/container.astro'
@@ -12,6 +12,7 @@ import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
 import TypographyH2 from '@/shared/ui/typography/typography-h2.astro'
 import TypographyH3 from '@/shared/ui/typography/typography-h3.astro'
 import TypographySpan from '@/shared/ui/typography/typography-span.astro'
+import Header from '@/widgets/header.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -26,6 +27,8 @@ const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', mont
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'notes')} – ${t(Astro.currentLocale, 'fullName')}`>
+  <Header slot="header" />
+
   <div class="notes">
     <Container class="notes__container">
       <TypographyH1 class="notes__header"

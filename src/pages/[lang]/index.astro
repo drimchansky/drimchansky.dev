@@ -8,6 +8,7 @@ import Container from '@/shared/ui/container.astro'
 import SocialLinks from '@/shared/ui/social-links.astro'
 import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
 import TypographyP from '@/shared/ui/typography/typography-p.astro'
+import Header from '@/widgets/header.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -16,6 +17,8 @@ export const getStaticPaths = (async () => [
 ---
 
 <BaseLayout title={t(Astro.currentLocale, 'fullName')}>
+  <Header slot="header" />
+
   <Container class="home__container">
     <div class="home__content">
       <Avatar />

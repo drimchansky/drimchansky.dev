@@ -3,11 +3,12 @@ import type { GetStaticPaths } from 'astro'
 
 import { getCollection } from 'astro:content'
 
-import { filterNotes, NoteHeader } from '@/features/notes'
+import { filterNotes, NoteHeader } from '@/entities/notes'
 import { t } from '@/shared/i18n'
 import BaseLayout from '@/shared/layouts/base-layout.astro'
 import Container from '@/shared/ui/container.astro'
 import MarkdownWrapper from '@/shared/ui/markdown-wrapper.astro'
+import Header from '@/widgets/header.astro'
 
 const { note } = Astro.props
 const { Content } = await note.render()
@@ -26,6 +27,8 @@ export const getStaticPaths = (async () => {
 ---
 
 <BaseLayout title={title} description={description}>
+  <Header slot="header" />
+
   <Container class="note__container">
     <main>
       <article>

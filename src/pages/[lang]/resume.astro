@@ -3,10 +3,12 @@ import type { GetStaticPaths } from 'astro'
 
 import { getEntry } from 'astro:content'
 
-import { ResumeDownloadButton, ResumeHeader, ResumePositions, ResumeSectionHeader } from '@/features/resume'
+import { ResumeHeader, ResumePositions, ResumeSectionHeader } from '@/entities/resume'
+import { ResumeDownloadButton } from '@/features/resume-download'
 import { getLocale, t } from '@/shared/i18n'
 import BaseLayout from '@/shared/layouts/base-layout.astro'
 import Container from '@/shared/ui/container.astro'
+import Header from '@/widgets/header.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -21,6 +23,8 @@ const EducationContent = (await (await getEntry('general', `${locale}/education`
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'resume')} – ${t(Astro.currentLocale, 'fullName')}`>
+  <Header slot="header" />
+
   <Container class="resume__container">
     <article class="resume__article">
       <ResumeHeader />

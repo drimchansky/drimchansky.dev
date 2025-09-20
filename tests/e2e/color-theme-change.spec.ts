@@ -2,7 +2,7 @@ import type { Page } from '@playwright/test'
 
 import { test as base, expect } from '@playwright/test'
 
-import { colorThemeValues, THEME_STORAGE_KEY } from '@/shared/constants'
+import { colorThemeValues, THEME_STORAGE_KEY } from '@/features/theme-switch/constants'
 
 import { getFromLocalStorage } from './utils/getFromLocalStorage'
 
@@ -12,7 +12,7 @@ type Selectors = {
   openResumeLink: ReturnType<Page['getByTestId']>
   setAutoThemeButton: ReturnType<Page['getByTestId']>
   setDarkThemeButton: ReturnType<Page['getByTestId']>
-  themeSwitcher: ReturnType<Page['getByTestId']>
+  themeSegmentedControl: ReturnType<Page['getByTestId']>
 }
 
 const test = base.extend<{ selectors: Selectors }>({
@@ -21,9 +21,9 @@ const test = base.extend<{ selectors: Selectors }>({
       html: page.locator('html'),
       openMobileMenuButton: page.getByTestId('open-mobile-menu-button'),
       openResumeLink: page.getByTestId('menu').getByTestId('open-resume-link'),
-      setAutoThemeButton: page.getByTestId('theme-switcher').getByTestId('set-auto-theme-button'),
-      setDarkThemeButton: page.getByTestId('theme-switcher').getByTestId('set-dark-theme-button'),
-      themeSwitcher: page.getByTestId('theme-switcher')
+      setAutoThemeButton: page.getByTestId('theme-segmented-control').getByTestId('set-auto-theme-button'),
+      setDarkThemeButton: page.getByTestId('theme-segmented-control').getByTestId('set-dark-theme-button'),
+      themeSegmentedControl: page.getByTestId('theme-segmented-control')
     })
   }
 })
@@ -55,8 +55,8 @@ test.describe('Color theme change', () => {
         page,
         selectors
       }) => {
-        const { html, themeSwitcher } = selectors
-        const themeButton = themeSwitcher.getByTestId(`set-${colorThemeValue}-theme-button`)
+        const { html, themeSegmentedControl } = selectors
+        const themeButton = themeSegmentedControl.getByTestId(`set-${colorThemeValue}-theme-button`)
 
         await themeButton.click()
 

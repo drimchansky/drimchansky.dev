@@ -4,6 +4,7 @@ import type { GetStaticPaths } from 'astro'
 import { t } from '@/shared/i18n'
 import BaseLayout from '@/shared/layouts/base-layout.astro'
 import Container from '@/shared/ui/container.astro'
+import Header from '@/widgets/header.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -12,5 +13,6 @@ export const getStaticPaths = (async () => [
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'fullName')} – 404`>
+  <Header slot="header" />
   <Container>404 - {t(Astro.currentLocale, 404)}</Container>
 </BaseLayout>

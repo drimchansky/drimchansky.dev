@@ -3,13 +3,12 @@ import type { HTMLAttributes } from 'astro/types'
 
 import { getRelativeLocaleUrl } from 'astro:i18n'
 
+import { LangSwitchLink } from '@/features/lang-switch'
+import { ThemeSegmentedControl } from '@/features/theme-switch'
 import { getTestId } from '@/shared/functions/getTestId'
 import { getLocale, t } from '@/shared/i18n'
 import { siteInfo } from '@/shared/site-info'
-import LangSwitcLink from '@/shared/ui/lang-swith-link.astro'
-import ThemeSwitcher from '@/shared/ui/theme-switcher.astro'
-
-import TypographySpan from './typography/typography-span.astro'
+import TypographySpan from '@/shared/ui/typography/typography-span.astro'
 
 interface Props extends HTMLAttributes<'nav'> {}
 
@@ -38,8 +37,8 @@ const currentRoute = pathname.slice(1).replace(`${locale}`, '').slice(0, -1) || 
     }
   </ul>
 
-  <LangSwitcLink />
-  <ThemeSwitcher />
+  <LangSwitchLink />
+  <ThemeSegmentedControl />
 </nav>
 
 <style>

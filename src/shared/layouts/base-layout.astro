@@ -8,7 +8,6 @@ import 'normalize.css'
 
 import { getLocale } from '@/shared/i18n'
 import Head from '@/shared/ui/head.astro'
-import Header from '@/shared/ui/header.astro'
 
 type Props = {
   description?: string
@@ -26,7 +25,7 @@ const locale = getLocale(Astro.currentLocale)
     <Head title={title} description={description} />
   </head>
   <body>
-    <Header />
+    <slot name="header" />
 
     <main id="main" transition:name="main">
       <slot />

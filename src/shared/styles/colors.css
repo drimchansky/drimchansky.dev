@@ -16,10 +16,10 @@
   --c-menu-link-text-hover: oklch(61.67% 0.189 252.84);
   --c-menu-link-bg-hover: oklch(61.67% 0.189 252.84 / 6.27%);
 
-  --c-theme-switcher-bg: oklch(90.06% 0 0);
-  --c-theme-switcher-select: oklch(100% 0 0);
-  --c-theme-switcher-text: oklch(28.46% 0.008 264.44);
-  --c-theme-switcher-border: oklch(95% 0.006 270.07);
+  --c-theme-sc-bg: oklch(90.06% 0 0);
+  --c-theme-sc-select: oklch(100% 0 0);
+  --c-theme-sc-text: oklch(28.46% 0.008 264.44);
+  --c-theme-sc-border: oklch(95% 0.006 270.07);
 
   --c-text-primary: oklch(26.9% 0 0);
   --c-text-secondary: oklch(26.9% 0 0);
@@ -56,10 +56,10 @@
   --c-menu-link-text-hover: oklch(77.05% 0.116 262.431);
   --c-menu-link-bg-hover: oklch(77.05% 0.116 262.431 / 43.92%);
 
-  --c-theme-switcher-bg: oklch(32.11% 0 0);
-  --c-theme-switcher-select: oklch(22.21% 0 0);
-  --c-theme-switcher-text: oklch(100% 0 0);
-  --c-theme-switcher-border: oklch(61.67% 0 0);
+  --c-theme-sc-bg: oklch(32.11% 0 0);
+  --c-theme-sc-select: oklch(22.21% 0 0);
+  --c-theme-sc-text: oklch(100% 0 0);
+  --c-theme-sc-border: oklch(61.67% 0 0);
 
   --c-text-primary: oklch(95% 0 0);
   --c-text-secondary: oklch(90% 0 0);
