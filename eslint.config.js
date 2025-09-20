@@ -10,7 +10,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ['dist/', '.astro/', 'src/env.d.ts', '.history/']
+    ignores: ['dist/', '.astro/', 'src/env.d.ts', '.history/', './playwright-report/']
   },
   ...compat.extends('eslint-config-standard'),
   {

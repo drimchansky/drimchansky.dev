@@ -5,7 +5,7 @@ import sanitizeHtml from 'sanitize-html'
 
 import type { Locale } from '@/shared/i18n'
 
-import { filterNotes } from '@/features/notes'
+import { filterNotes } from '@/entities/notes'
 import { siteInfo } from '@/shared/site-info'
 
 const mdParser = new MarkdownIt()

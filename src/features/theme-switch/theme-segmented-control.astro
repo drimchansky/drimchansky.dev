@@ -1,29 +1,34 @@
 ---
-import type { ColorTheme } from '@/shared/constants'
-
 import { getTestId } from '@/shared/functions/getTestId'
 import { t, type LocaleCollection } from '@/shared/i18n'
+import TypographySpan from '@/shared/ui/typography/typography-span.astro'
 
-import TypographySpan from './typography/typography-span.astro'
+import type { ColorTheme } from './constants'
 
 const values: ColorTheme[] = ['light', 'auto', 'dark']
 ---
 
-<fieldset data-testid={getTestId('theme-switcher')} id="theme-switcher" class="theme-switcher" data-nosnippet disabled>
+<fieldset
+  data-testid={getTestId('theme-segmented-control')}
+  id="theme-segmented-control"
+  class="theme-segmented-control"
+  data-nosnippet
+  disabled
+>
   <legend class="visually-hidden">{t(Astro.currentLocale, 'theme')}</legend>
 
-  <div class="theme-switcher__options" id="theme-options">
+  <div class="theme-segmented-control__options" id="theme-options">
     {
       values.map(value => (
-        <label class="theme-switcher__option-label">
+        <label class="theme-segmented-control__option-label">
           <input
             data-testid={getTestId(`set-${value}-theme-button`)}
-            class="theme-switcher__option-input"
+            class="theme-segmented-control__option-input"
             name="color-theme"
             type="radio"
             value={value}
           />
-          <TypographySpan class="theme-switcher__text">
+          <TypographySpan class="theme-segmented-control__text">
             {t(Astro.currentLocale, value as keyof LocaleCollection)}
           </TypographySpan>
         </label>
@@ -58,10 +63,10 @@ const values: ColorTheme[] = ['light', 'auto', 'dark']
 </script>
 
 <script>
-  import { THEME_CLASSES, THEME_STORAGE_KEY, type ColorTheme } from '@/shared/constants'
+  import { THEME_CLASSES, THEME_STORAGE_KEY, type ColorTheme } from './constants'
 
   const applyTheme = (theme: ColorTheme) => {
-    const switcherElement = document.getElementById('theme-switcher')! as HTMLFieldSetElement
+    const switcherElement = document.getElementById('theme-segmented-control')! as HTMLFieldSetElement
     const themeOptionsElement = switcherElement.querySelector('#theme-options')!
 
     if (themeOptionsElement) {
@@ -93,7 +98,7 @@ const values: ColorTheme[] = ['light', 'auto', 'dark']
   }
 
   const onPageLoaded = () => {
-    const switcherElement = document.getElementById('theme-switcher')! as HTMLFieldSetElement
+    const switcherElement = document.getElementById('theme-segmented-control')! as HTMLFieldSetElement
     const themeOptionsElement = switcherElement.querySelector('#theme-options')!
 
     switcherElement.disabled = false
@@ -108,26 +113,26 @@ const values: ColorTheme[] = ['light', 'auto', 'dark']
 <style>
   @import '@/shared/styles//mixins.css';
 
-  .theme-switcher {
+  .theme-segmented-control {
     padding: 0;
     border: unset;
     margin: 0;
   }
 
-  .theme-switcher__options {
+  .theme-segmented-control__options {
     display: flex;
     padding: 0.25rem;
-    border: 1px solid var(--c-theme-switcher-border);
+    border: 1px solid var(--c-theme-sc-border);
     border-radius: 50px;
-    background: var(--c-theme-switcher-bg);
-    color: var(--c-theme-switcher-text);
+    background: var(--c-theme-sc-bg);
+    color: var(--c-theme-sc-text);
   }
 
-  .theme-switcher__option-label {
+  .theme-segmented-control__option-label {
     position: relative;
   }
 
-  .theme-switcher__option-input {
+  .theme-segmented-control__option-input {
     @mixin focus;
 
     position: absolute;
@@ -145,18 +150,18 @@ const values: ColorTheme[] = ['light', 'auto', 'dark']
     cursor: pointer;
 
     @media (hover: hover) {
-      &:hover + .theme-switcher__text {
+      &:hover + .theme-segmented-control__text {
         opacity: 1;
       }
     }
 
-    &:checked + .theme-switcher__text {
-      background: var(--c-theme-switcher-select);
+    &:checked + .theme-segmented-control__text {
+      background: var(--c-theme-sc-select);
       opacity: 1;
     }
   }
 
-  .theme-switcher .theme-switcher__text {
+  .theme-segmented-control .theme-segmented-control__text {
     display: block;
     padding: 0.4em 0.67em;
     border: 0;
