@@ -7,6 +7,7 @@ services:
       - CI=true
       - SITE_URL=http://localhost:4321
       - DOCKER=true
+      - SCREENSHOT_TEST_MODE=true
     ports:
       - '4321:4321'
     volumes:
@@ -18,7 +19,11 @@ services:
         pnpm dev --host 0.0.0.0 --port 4321 &
         DEV_PID=$$! &&
         echo 'Waiting for server to be ready...' &&
-        sleep 10 &&
+        until curl -s http://localhost:4321 > /dev/null; do 
+          echo 'Waiting for server...'
+          sleep 1
+        done &&
+        echo 'Server is ready!' &&
         echo 'Running Playwright tests...' &&
         pnpm exec playwright test &&
         echo 'Tests completed, stopping dev server...' &&
@@ -33,6 +38,7 @@ services:
       - CI=true
       - SITE_URL=http://localhost:4321
       - DOCKER=true
+      - SCREENSHOT_TEST_MODE=true
     ports:
       - '4321:4321'
     volumes:
@@ -45,7 +51,11 @@ services:
         pnpm dev --host 0.0.0.0 --port 4321 &
         DEV_PID=$$! &&
         echo 'Waiting for server to be ready...' &&
-        sleep 10 &&
+        until curl -s http://localhost:4321 > /dev/null; do 
+          echo 'Waiting for server...'
+          sleep 1
+        done &&
+        echo 'Server is ready!' &&
         echo 'Updating Playwright snapshots...' &&
         pnpm exec playwright test --update-snapshots &&
         echo 'Snapshots updated, stopping dev server...' &&

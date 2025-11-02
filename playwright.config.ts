@@ -57,5 +57,5 @@ export default defineConfig({
         url: process.env.SITE_URL
       },
 
-  workers: process.env.CI ? 1 : undefined
+  workers: process.env.CI && !process.env.DOCKER ? 1 : undefined
 })

@@ -14,6 +14,8 @@ export const getCareerDurationInMonths = (positions: TPositionInfo[]): number =>
   let workEndDate
 
   for (const position of positions) {
+    if (import.meta.env.SCREENSHOT_TEST_MODE) return 1
+
     const { dateEnd, dateStart } = position
     const isCurrent = !!dateEnd
 
