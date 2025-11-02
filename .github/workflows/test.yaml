@@ -12,7 +12,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.55.0-noble
+      image: mcr.microsoft.com/playwright:v1.56.1-noble
 
     steps:
       - name: Install Git LFS
@@ -48,6 +48,7 @@ jobs:
         env:
           SITE_URL: http://localhost:4321
           CI: true
+          SCREENSHOT_TEST_MODE: true
           HOME: /root
           DOCKER_CONFIG: /tmp/.docker
 
