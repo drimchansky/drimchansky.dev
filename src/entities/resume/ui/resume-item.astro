@@ -1,9 +1,7 @@
 ---
-import { differenceInMonths } from 'date-fns'
-
 import { getLocale, t } from '@/shared/i18n'
 
-import { getDurationTextFromMonths } from '../functions/getDurationTextFromMonths'
+import { getTotalDurationText } from '../functions/getTotalDurationText'
 
 interface Props {
   company: string
@@ -47,7 +45,7 @@ const locale = getLocale(Astro.currentLocale)
       {' - '}
       <time datetime={dateEnd?.toISOString()}>{dateEndText}</time>
       <span class="resume-item__duration">
-        ({getDurationTextFromMonths(differenceInMonths(dateEnd || new Date(), dateStart) || 1, locale)})
+        ({getTotalDurationText(dateStart, dateEnd, locale)})
       </span>
     </div>
   </div>
@@ -90,12 +88,25 @@ const locale = getLocale(Astro.currentLocale)
   }
 
   .resume-item__description {
+    --description-gap: 0.5rem;
+
     max-width: var(--max-content-width);
-    margin-top: 0.5rem;
+    margin-top: var(--description-gap);
+
+    @media print {
+      --description-gap: 0.2rem;
+    }
 
     & :global(ul) {
       padding-left: 0;
+      margin-top: var(--description-gap);
       list-style: inside;
+    }
+
+    & :global(p) {
+      &:not(:first-of-type) {
+        margin-top: var(--description-gap);
+      }
     }
 
     & :global(strong) {

@@ -9,6 +9,6 @@ location:
 companyLink: https://www.locotech.ru/
 ---
 
-- Collected and analysed key depot indicators which affect depot revenue, negotiated with Russian Railways representatives about correctness of collected data.
-- Integrated automatic control system (ACS) in the train depot. After 5-month integration was successfully completed.
-- Automated significant part of Service Engineer duties, reducing the time for everyday operations from 6 to 2 hours.
+**LocoTech Service** is a large railway engineering company providing maintenance, repair, and modernization services for locomotives.
+
+Collected and analyzed key revenue-related depot indicators, coordinated data validation with Russian Railways, and led a 5-month ACS integration, automating a large part of Service Engineer tasks and cutting daily operational time from 6 to 2 hours.
