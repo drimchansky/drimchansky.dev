@@ -10,6 +10,8 @@ companyLink: https://truelab.games/
 isDevelopment: true
 ---
 
+**TrueLab Game Studios** is an iGaming studio creating online games for global operators.
+
 - Prototyped, designed, and built a unified React.js / Redux Toolkit / Tailwind CSS UI and business logic application for games, reducing development costs by over 35%, streamlining support, and doubling the feature-release speed.
 - Led 11 projects through planning, full-stack development and support stages. Owned technical implementation, sticking to deadlines and cross-functional team coordination; shipped every project on time.
 - Created an internal localization tool that cut translation effort and enabled launches in 15+ new language markets.

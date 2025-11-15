@@ -8,3 +8,5 @@ location:
 companyLink: https://socialdiscoverygroup.com/
 isDevelopment: true
 ---
+
+**Social Discovery Group** – глобальная технологическая компания, создающая продукты в области social discovery и виртуальной близости для более чем 500 млн пользователей в более чем 150 странах мира.
