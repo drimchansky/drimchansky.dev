@@ -1,67 +1,80 @@
 ---
 title: 'Мой процесс настройки MacOS после установки'
 publishingDate: 2024-03-21
-lastModified: 2025-07-06
+lastModified: 2025-12-05
 isUntranslated: true
 ---
 
-## Software
+## 1. Onboarding and OS Update
 
-- Browsers: [Chrome](https://www.google.com/chrome/), [Firefox](https://www.mozilla.org/en-US/firefox/new/).
-- Code editors: [VS Code](https://code.visualstudio.com/), [Cursor](https://cursor.com/).
-- Media: [VLC Player](https://www.videolan.org/vlc/index.ru.html).
-- Communication: [Zoom](https://zoom.us/download#client_4meeting), [Discord](https://discord.com/), [Slack](https://apps.apple.com/ge/app/slack-for-desktop/id803453959), [Telegam](https://apps.apple.com/ge/app/telegram/id747648890).
-- Graphics: [Inkscape](https://inkscape.org/), [ImageOptim](https://imageoptim.com/mac).
-- Storage: [Tuxera](https://ntfsformac.tuxera.com/), [Google Drive](https://www.google.com/drive/download/).
-- Development stuff: [Node JS](https://nodejs.org/en/download/), [nvm](https://github.com/nvm-sh/nvm), [Docker](https://docs.docker.com/desktop/install/mac-install/), [MongoDB](https://www.mongodb.com/try/download/community), [MongoDB-Compass](https://www.mongodb.com/try/download/compass), [Postman](https://www.postman.com/downloads/),.
-- Helpful utilities:
-  - [Command X](https://sindresorhus.com/command-x) – cut and paste files in Finder.
-  - [Magnet](https://magnet.crowdcafe.com/) – snapping windows into organized tiles.
-  - [Scroll-Reverser](https://github.com/pilotmoon/Scroll-Reverser) – reverses the direction of scrolling on macOS.
-  - [The Unarchiver](https://apps.apple.com/ge/app/the-unarchiver/id425424353).
-  - [Transmission](https://transmissionbt.com/download) – free bittorrent client.
-- Management apps:
-  - [Homebrew](https://brew.sh/) for packages.
-  - [Bitwarder](https://apps.apple.com/ge/app/bitwarden/id1352778147) for passwords.
-  - [AnyDesk](https://anydesk.com/) for remote devices.
-- Some more stuff using brew:
-  ```bash
-  brew install cmake p7zip, pnpm, fonttools
-  ```
-- And just several more using pnpm:
-  ```bash
-  pnpm i -g kill-port yarn
-  ```
+1. Onboarding choices:
+   - Keyboards: **British** and **Russian – PC**.
+2. Install latest version of OS.
 
-## Settings
+## 2. Update Settings
 
-- **Add Russian text input:** System Settings -> Keyboard -> Text Input -> Edit -> '+' -> 'Russian' -> 'Russian – PC'.
-- **Enable natural trackpad scrolling:** System Settings -> Trackpad -> Scroll & Zoom: Natural scrolling (ON).
-- **Add user directory to the Finder:** Finder -> Go -> Go to finder -> type `/` -> find user directory and drag it to the Favorites.
-- **Always show hidden files:**
-  ```bash
-  defaults write http://com.apple.Finder AppleShowAllFiles true
-  ```
-- **Speed up keyboard:** System Settings -> Keyboard -> Key repeat rate – fast, Delay until repeat – fast.
+1. **Enable natural trackpad scrolling:** System Settings -> Trackpad -> Scroll & Zoom: Natural scrolling – ON(for NTFS drive read/write support).
+2. **Add user directory to the Finder:** Finder -> Go -> Go to finder -> type `/` -> find user directory and drag it to the Favorites.
+3. **Always show hidden files:**
+   ```bash
+   defaults write http://com.apple.Finder AppleShowAllFiles true
+   ```
+4. **Speed up keyboard:** System Settings -> Keyboard -> Key repeat rate – Fast, Delay until repeat – Short.
+5. **Wallpaper:** Set some nice nature landscape as a wallpaper.
+6. **Appearance:**
+   - Liquid Glass – Tinted.
+   - Show scroll bars – Always.
+7. **Desktop & Dock:**
+   - Automatically hide and show the Dock – ON.
+   - Show suggested and recent apps in Dock – ON.
+   - Default web browser – Google Chrome.
+8. **Notifications:**
+   - when screen is locked – OFF.
+9. **Sound:**
+   - Play sound on startup – OFF.
+   - Play user interface sound effects – OFF.
+10. **Privacy and Security:**
+    1. FileVault – ON.
+11. **Network:**
+    - Firewall – ON.
 
-## Fonts
+## 3. Install Software
+
+1. Password Manager [Bitwarden](https://apps.apple.com/ge/app/bitwarden/id1352778147).
+2. Browsers: [Chrome](https://www.google.com/chrome/), [Firefox](https://www.mozilla.org/en-US/firefox/new/).
+3. Code editors: [VS Code](https://code.visualstudio.com/), [Cursor](https://cursor.com/).
+4. Media: [VLC Player](https://www.videolan.org/vlc/index.ru.html).
+5. Communication: [Zoom](https://zoom.us/download#client_4meeting), [Slack](https://apps.apple.com/ge/app/slack-for-desktop/id803453959), [Telegram](https://apps.apple.com/ge/app/telegram/id747648890).
+6. Graphics: [ImageOptim](https://imageoptim.com/mac).
+7. Storage: [Tuxera](https://ntfsformac.tuxera.com/), [Google Drive](https://www.google.com/drive/download/) for NTFS drive read/write support.
+8. Helpful utilities:
+   - [Command X](https://sindresorhus.com/command-x) – cut and paste files in Finder.
+   - [Scroll-Reverser](https://github.com/pilotmoon/Scroll-Reverser) – reverses the direction of scrolling on macOS.
+   - [The Unarchiver](https://apps.apple.com/ge/app/the-unarchiver/id425424353).
+   - [Homebrew](https://brew.sh/) for packages management.
+   - [Transmission](https://transmissionbt.com/download) bittorrent client.
+9. Development stuff:
+   - [nvm](https://github.com/nvm-sh/nvm).
+   - [Docker](https://docs.docker.com/desktop/install/mac-install/).
+   - [Postman](https://www.postman.com/downloads/).
+10. Some stuff using brew: `brew install cmake p7zip pnpm git git-lfs`.
+11. Some more stuff using pnpm: `pnpm i -g kill-port`.
+
+## 4. Install Fonts
 
 Download and install using Font Book.
 
-- [Fira Code](https://github.com/tonsky/FiraCode)
-- [Martian Mono](https://github.com/evilmartians/mono)
+- [Fira Code](https://github.com/tonsky/FiraCode).
+- [Martian Mono](https://github.com/evilmartians/mono).
 
-## Configs
+## 5. Setup Configs
 
 ### SSH keys
 
 1. Place keys to `User/.ssh` directory.
-
-2. Add keys to authentication agent `ssh-add ~/.ssh/{private_key}`
-
-3. Set directory rights `chmod 700 ~/.ssh/*`
-
-4. Create ssh config `.ssh/config`
+2. Add keys to authentication agent `ssh-add ~/.ssh/{private_key}`.
+3. Set directory rights `chmod 700 ~/.ssh/*`.
+4. Create ssh config `.ssh/config`.
 
 ```
 Host {host1}
@@ -93,7 +106,7 @@ git config --global commit.gpgsign true
 
 ### Git configs: work/personal
 
-1. **Create a root `.gitconfig` file:** `touch ~/.gitconfig`
+1. **Create a root `.gitconfig` file:** `touch ~/.gitconfig`.
 
 ```
 [includeIf "gitdir:~/work/"]
@@ -102,7 +115,7 @@ git config --global commit.gpgsign true
     path = .gitconfig-personal
 ```
 
-2. **Create work and personal files:** `touch ~/.gitconfig-personal`, `touch ~/.gitconfig-work`
+2. **Create work and personal files:** `touch ~/.gitconfig-personal`, `touch ~/.gitconfig-work`.
 
 ```
 [user]
@@ -111,3 +124,19 @@ git config --global commit.gpgsign true
 ```
 
 [Read more about conditional git configs](https://git-scm.com/docs/git-config#_includes)
+
+## 6. The Last Mile
+
+1. Arrange dock icons. From left to right:
+   - AI Apps (ChatGPT, Gemini, ...).
+   - Code editors and IDEs (Cursor, WebStorm, ...).
+   - Browsers (Chrome, Firefox, Safari, ...).
+   - Personal stuff (Password manager, notes).
+   - System things (Terminal, System monitoring, Clock, Calculator, ...).
+   - Communication (Telegram, Slack, ...).
+2. Adjust notifications.
+3. Setup widgets in notification center:
+   - Weather (med).
+   - Calendar (large).
+   - Calendar (small).
+   - Batteries (small).
