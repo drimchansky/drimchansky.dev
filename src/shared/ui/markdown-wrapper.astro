@@ -78,7 +78,7 @@ const { class: className, ...props } = Astro.props
       margin: calc(var(--spacing) * 6) 0 0 0;
     }
 
-    & :global(ul ul, ol ol, ul ol, ol ul) {
+    & :global(:is(ul, ol) li :is(ul, ol)) {
       margin-top: 0.25rem;
     }
 
