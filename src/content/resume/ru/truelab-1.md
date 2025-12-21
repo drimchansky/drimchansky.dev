@@ -7,7 +7,6 @@ location:
   type: 'remote'
   country: 'Мальта'
 companyLink: https://truelab.games/
-isDevelopment: true
 ---
 
 **TrueLab Game Studios** — студия в сфере iGaming, разрабатывающая онлайн-игры для операторов по всему миру.

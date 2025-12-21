@@ -6,10 +6,6 @@ import { getMonthsText } from './getMonthsText'
 import { getYearsText } from './getYearsText'
 
 export const getDurationTextFromMonths = (numMonths: number, locale: Locale) => {
-  if (import.meta.env.SCREENSHOT_TEST_MODE) {
-    return 'x years x months'
-  }
-
   let result = ''
 
   const date = new Date(0)

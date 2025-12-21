@@ -6,7 +6,6 @@ const resumeCollection = defineCollection({
     companyLink: z.string(),
     dateEnd: z.date().optional(),
     dateStart: z.date(),
-    isDevelopment: z.boolean().optional(),
     location: z.object({
       country: z.string(),
       type: z.enum(['on-site', 'remote', 'hybrid'])
@@ -21,7 +20,6 @@ const notesCollection = defineCollection({
   schema: z.object({
     description: z.string().optional(),
     isDraft: z.boolean().optional(),
-    isTestNote: z.boolean().optional(),
     isUntranslated: z.boolean().optional(),
     lastModified: z.date().optional(),
     publishingDate: z.date(),

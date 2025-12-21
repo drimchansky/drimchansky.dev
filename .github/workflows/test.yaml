@@ -12,7 +12,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.56.1-noble
+      image: mcr.microsoft.com/playwright:v1.57.0-noble
 
     steps:
       - name: Install Git LFS
@@ -28,8 +28,6 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
-        with:
-          version: 10
 
       - name: Install Node.js
         uses: actions/setup-node@v4
@@ -48,9 +46,6 @@ jobs:
         env:
           SITE_URL: http://localhost:4321
           CI: true
-          SCREENSHOT_TEST_MODE: true
-          HOME: /root
-          DOCKER_CONFIG: /tmp/.docker
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
