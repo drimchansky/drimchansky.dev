@@ -7,7 +7,6 @@ location:
   type: 'remote'
   country: 'Malta'
 companyLink: https://truelab.games/
-isDevelopment: true
 ---
 
 **TrueLab Game Studios** is an iGaming studio creating online games for global operators.

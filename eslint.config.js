@@ -22,50 +22,37 @@ export default [
         'error',
         {
           groups: [
-            'type',
-            ['builtin', 'external'],
-            'internal-type',
-            'internal',
-            ['parent-type', 'sibling-type', 'index-type'],
-            ['parent', 'sibling', 'index'],
-            'object',
+            'type-import',
+            ['value-builtin', 'value-external'],
+            'type-internal',
+            'value-internal',
+            ['type-parent', 'type-sibling', 'type-index'],
+            ['value-parent', 'value-sibling', 'value-index'],
+            'ts-equals-import',
             'unknown'
           ],
           ignoreCase: true,
           internalPattern: ['^@/.+'],
-          newlinesBetween: 'always',
+          newlinesBetween: 1,
           order: 'asc',
-          partitionByComment: false,
-          partitionByNewLine: false,
-          specialCharacters: 'keep',
           type: 'alphabetical'
         }
       ],
       'perfectionist/sort-object-types': [
         'error',
         {
-          groups: [],
           ignoreCase: true,
-          ignorePattern: [],
           newlinesBetween: 'ignore',
           order: 'asc',
-          partitionByComment: false,
-          partitionByNewLine: false,
-          specialCharacters: 'keep',
           type: 'alphabetical'
         }
       ],
       'perfectionist/sort-objects': [
         'error',
         {
-          destructuredObjects: true,
           ignoreCase: true,
           newlinesBetween: 'ignore',
-          objectDeclarations: true,
           order: 'asc',
-          partitionByComment: false,
-          partitionByNewLine: false,
-          specialCharacters: 'keep',
           type: 'alphabetical'
         }
       ]

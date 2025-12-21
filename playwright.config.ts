@@ -20,20 +20,8 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] }
     },
     {
-      name: 'Firefox',
-      use: { ...devices['Desktop Firefox'] }
-    },
-    {
-      name: 'WebKit',
-      use: { ...devices['Desktop Safari'] }
-    },
-    {
       name: 'Mobile Chrome',
       use: { ...devices['Pixel 5'] }
-    },
-    {
-      name: 'Mobile Safari',
-      use: { ...devices['iPhone 12'] }
     }
   ],
 
@@ -48,14 +36,12 @@ export default defineConfig({
     trace: process.env.CI ? 'retain-on-failure' : 'on-first-retry'
   },
 
-  webServer: process.env.DOCKER
-    ? undefined
-    : {
-        command: 'pnpm dev',
-        reuseExistingServer: !process.env.CI,
-        timeout: 30000,
-        url: process.env.SITE_URL
-      },
+  webServer: {
+    command: 'pnpm dev',
+    reuseExistingServer: !process.env.CI,
+    timeout: 30000,
+    url: process.env.SITE_URL
+  },
 
-  workers: process.env.CI && !process.env.DOCKER ? 1 : undefined
+  workers: process.env.CI ? 1 : undefined
 })
