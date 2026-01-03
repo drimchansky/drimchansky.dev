@@ -4,9 +4,8 @@ import type { HTMLAttributes } from 'astro/types'
 import { Icon } from 'astro-icon/components'
 
 import { getLocale } from '@/app/i18n'
+import { getRssUrl } from '@/shared/functions/getRssUrl'
 import TypographySpan from '@/shared/ui/typography/typography-span.astro'
-
-import { getRssUrl } from '../functions/getRssUrl'
 
 interface Props extends HTMLAttributes<'a'> {}
 

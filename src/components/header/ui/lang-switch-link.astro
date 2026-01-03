@@ -14,20 +14,20 @@ const pathname = Astro.url.pathname.replace(`/${locale}`, '')
 
 <a
   data-testid={getTestId('lang-switch-link')}
-  class="lang-swith-link"
+  class="lang-switch-link"
   href={getRelativeLocaleUrl(toLocale, pathname)}
   hreflang={toLocale}
   rel="alternate"
   data-prefetch
 >
-  <GlobeIcon class="lang-swith-link__icon" />
+  <GlobeIcon class="lang-switch-link__icon" />
   <TypographySpan>{t(Astro.currentLocale, 'toLocale')}</TypographySpan>
 </a>
 
 <style>
   @import '@/app/styles/mixins.css';
 
-  .lang-swith-link {
+  .lang-switch-link {
     @mixin focus;
 
     display: flex;
@@ -46,7 +46,7 @@ const pathname = Astro.url.pathname.replace(`/${locale}`, '')
     }
   }
 
-  .lang-swith-link__icon {
+  .lang-switch-link__icon {
     width: 1rem;
     height: 1rem;
   }

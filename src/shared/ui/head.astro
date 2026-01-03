@@ -2,8 +2,8 @@
 import { ClientRouter } from 'astro:transitions'
 
 import { getLocale, t } from '@/app/i18n'
-import { getRssUrl } from '@/components/notes'
 import { CUSTOM_COVER_ROUTES } from '@/shared/constants'
+import { getRssUrl } from '@/shared/functions/getRssUrl'
 
 type Props = {
   description?: string
