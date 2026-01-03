@@ -1,14 +1,14 @@
 ---
 import type { GetStaticPaths } from 'astro'
 
-import { t } from '@/shared/i18n'
-import BaseLayout from '@/shared/layouts/base-layout.astro'
+import { t } from '@/app/i18n'
+import BaseLayout from '@/app/layouts/base-layout.astro'
+import { Header } from '@/components/header'
 import Avatar from '@/shared/ui/avatar.astro'
 import Container from '@/shared/ui/container.astro'
 import SocialLinks from '@/shared/ui/social-links.astro'
 import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
 import TypographyP from '@/shared/ui/typography/typography-p.astro'
-import Header from '@/widgets/header.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },

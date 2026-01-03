@@ -1,0 +1,50 @@
+---
+import '@/app/styles/colors.css'
+import '@/app/styles/fonts.css'
+import '@/app/styles/global.css'
+import '@/app/styles/properties.css'
+import '@/app/styles/syntax-highlight.css'
+import 'normalize.css'
+
+import { getLocale } from '@/app/i18n'
+import Head from '@/shared/ui/head.astro'
+
+type Props = {
+  description?: string
+  title: string
+}
+
+const analyticsId = import.meta.env.ANALYTICS_ID
+const { description, title } = Astro.props
+const locale = getLocale(Astro.currentLocale)
+---
+
+<!doctype html>
+<html itemtype="https://schema.org/Person" lang={locale} itemscope transition:animate="none">
+  <head>
+    <Head title={title} description={description} />
+  </head>
+  <body>
+    <slot name="header" />
+
+    <main id="main" transition:name="main">
+      <slot />
+    </main>
+
+    <script
+      fetchpriority="low"
+      src=`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`
+      type="text/partytown"
+      defer
+      is:inline></script>
+
+    <script define:vars={{ analyticsId }} type="text/partytown" defer is:inline>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', analyticsId)
+    </script>
+  </body>
+</html>
