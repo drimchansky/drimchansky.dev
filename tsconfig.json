@@ -3,7 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@/app/*": ["src/app/*"],
+      "@/shared/*": ["src/shared/*"],
+      "@/components/*": ["src/components/*"]
     }
   },
   "exclude": ["node_modules", "dist", ".vercel", "public", "playwright-report"]

@@ -1,0 +1,105 @@
+---
+import { Icon } from 'astro-icon/components'
+
+import { t } from '@/app/i18n'
+import { siteInfo } from '@/shared/site-info'
+import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
+import TypographySpan from '@/shared/ui/typography/typography-span.astro'
+---
+
+<header class="resume-header">
+  <div>
+    <TypographyH1 class="resume-header__name">{t(Astro.currentLocale, 'fullName')}</TypographyH1>
+    <TypographySpan class="resume-header__location">{t(Astro.currentLocale, 'location')}</TypographySpan>
+  </div>
+
+  <div class="resume-header__contacts">
+    <ul class="resume-header__contacts-list">
+      {
+        siteInfo.socialLinks.map(({ content, id, name, showOnResumePage, url }) => {
+          return (
+            showOnResumePage && (
+              <li class="resume-header__contact-item">
+                <Icon name={id} aria-hidden="true" />
+                <a
+                  class="resume-header__contact-link"
+                  href={url}
+                  itemprop={name === 'Email' || name === 'E-mail' ? 'email' : 'sameAs'}
+                  rel="me"
+                  target="_blank"
+                >
+                  <TypographySpan>{content}</TypographySpan>
+                </a>
+              </li>
+            )
+          )
+        })
+      }
+    </ul>
+  </div>
+</header>
+
+<style>
+  @import '@/app/styles/mixins.css';
+  @import '@/app/styles/media.css';
+
+  .resume-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    gap: 0.4rem;
+    text-align: center;
+
+    & p {
+      max-width: none;
+    }
+  }
+
+  .resume-header__name {
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl--line-height);
+  }
+
+  .resume-header__location {
+    font-family: var(--font-family-heading);
+  }
+
+  .resume-header__contacts-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    gap: 0.5rem;
+    list-style-type: none;
+  }
+
+  .resume-header__contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+
+    & span {
+      font-size: 0.8125rem;
+    }
+
+    & svg {
+      width: 0.8rem;
+      height: 0.8rem;
+    }
+  }
+
+  .resume-header__contact-link {
+    @mixin link-underline;
+    @mixin focus;
+
+    color: var(--c-text-primary);
+  }
+
+  @media print {
+    .resume-header__contact-link {
+      text-decoration-thickness: 1px;
+    }
+  }
+</style>

@@ -1,4 +1,4 @@
-import type { TokenName } from '@/shared/i18n'
+import type { TokenName } from '@/app/i18n'
 
 export type SocialLink = {
   content: string

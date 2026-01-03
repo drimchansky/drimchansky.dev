@@ -3,16 +3,15 @@ import type { GetStaticPaths } from 'astro'
 
 import { getCollection } from 'astro:content'
 
-import { filterNotes, prepareNotesList } from '@/entities/notes'
-import RssLink from '@/entities/notes/ui/rss-link.astro'
-import { getLocale, t } from '@/shared/i18n'
-import BaseLayout from '@/shared/layouts/base-layout.astro'
+import { getLocale, t } from '@/app/i18n'
+import BaseLayout from '@/app/layouts/base-layout.astro'
+import { Header } from '@/components/header'
+import { filterNotes, prepareNotesList, RssLink } from '@/components/notes'
 import Container from '@/shared/ui/container.astro'
 import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
 import TypographyH2 from '@/shared/ui/typography/typography-h2.astro'
 import TypographyH3 from '@/shared/ui/typography/typography-h3.astro'
 import TypographySpan from '@/shared/ui/typography/typography-span.astro'
-import Header from '@/widgets/header.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -71,8 +70,8 @@ const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', mont
 </BaseLayout>
 
 <style>
-  @import '@/shared/styles/mixins.css';
-  @import '@/shared/styles/media.css';
+  @import '@/app/styles/mixins.css';
+  @import '@/app/styles/media.css';
 
   .notes__rss-link {
     margin-left: 0.2rem;
