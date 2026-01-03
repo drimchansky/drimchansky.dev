@@ -3,12 +3,11 @@ import type { GetStaticPaths } from 'astro'
 
 import { getEntry } from 'astro:content'
 
-import { ResumeHeader, ResumePositions, ResumeSectionHeader } from '@/entities/resume'
-import { ResumeDownloadButton } from '@/features/resume-download'
-import { getLocale, t } from '@/shared/i18n'
-import BaseLayout from '@/shared/layouts/base-layout.astro'
+import { getLocale, t } from '@/app/i18n'
+import BaseLayout from '@/app/layouts/base-layout.astro'
+import { Header } from '@/components/header'
+import { ResumeDownloadButton, ResumeHeader, ResumePositions, ResumeSectionHeader } from '@/components/resume'
 import Container from '@/shared/ui/container.astro'
-import Header from '@/widgets/header.astro'
 
 export const getStaticPaths = (async () => [
   { params: { lang: 'ru' } },
@@ -47,8 +46,8 @@ const EducationContent = (await (await getEntry('general', `${locale}/education`
 </BaseLayout>
 
 <style>
-  @import '@/shared/styles/mixins.css';
-  @import '@/shared/styles/media.css';
+  @import '@/app/styles/mixins.css';
+  @import '@/app/styles/media.css';
 
   .resume__article {
     --resume-gap: 1rem;

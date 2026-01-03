@@ -9,7 +9,7 @@ const { class: className, ...props } = Astro.props
 <a class:list={['button-link', className || '']} {...props}><slot /></a>
 
 <style>
-  @import '@/shared/styles/mixins.css';
+  @import '@/app/styles/mixins.css';
 
   .button-link {
     @mixin focus;

@@ -3,9 +3,9 @@ import { getCollection } from 'astro:content'
 import MarkdownIt from 'markdown-it'
 import sanitizeHtml from 'sanitize-html'
 
-import type { Locale } from '@/shared/i18n'
+import type { Locale } from '@/app/i18n'
 
-import { filterNotes } from '@/entities/notes'
+import { filterNotes } from '@/components/notes'
 import { siteInfo } from '@/shared/site-info'
 
 const mdParser = new MarkdownIt()
