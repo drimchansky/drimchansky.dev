@@ -29,7 +29,12 @@ const { class: className, ...props } = Astro.props
 
     & :global(:is(h2, h3, h4) a) {
       color: var(--c-text-gray);
+      opacity: 0;
       text-decoration: none;
+    }
+
+    & :global(:is(h2, h3, h4):hover a) {
+      opacity: 1;
     }
 
     & :global(:is(h2, h3, h4) .icon:before) {
@@ -136,6 +141,10 @@ const { class: className, ...props } = Astro.props
       margin: 0;
       margin-top: 1rem;
       font-style: italic;
+    }
+
+    & :global(hr) {
+      margin: calc(var(--spacing) * 6) 0;
     }
   }
 </style>
