@@ -3,16 +3,14 @@ import type { GetStaticPaths } from 'astro'
 
 import { getEntry } from 'astro:content'
 
-import { getLocale, t } from '@/app/i18n'
+import { getLocale, supportedLocales, t } from '@/app/i18n'
 import BaseLayout from '@/app/layouts/base-layout.astro'
 import { Header } from '@/components/header'
 import { ResumeDownloadButton, ResumeHeader, ResumePositions, ResumeSectionHeader } from '@/components/resume'
 import Container from '@/shared/ui/container.astro'
 
-export const getStaticPaths = (async () => [
-  { params: { lang: 'ru' } },
-  { params: { lang: 'en' } }
-]) satisfies GetStaticPaths
+export const getStaticPaths = (async () =>
+  supportedLocales.map(lang => ({ params: { lang } }))) satisfies GetStaticPaths
 
 const locale = getLocale(Astro.currentLocale)
 
@@ -83,7 +81,7 @@ const EducationContent = (await (await getEntry('general', `${locale}/education`
   }
 
   @media print {
-    .resume {
+    .resume__article {
       & :global(p, li) {
         padding: 0;
         line-height: normal;

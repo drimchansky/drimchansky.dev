@@ -16,8 +16,9 @@ const locale = getLocale(Astro.currentLocale)
 const pathname = Astro.url.pathname.replace(`/${locale}`, '')
 const route = pathname.split('/')[1]
 
-const cleanUrl = process.env.SITE_URL + pathname
-const coverLink = `${process.env.SITE_URL}/covers/${CUSTOM_COVER_ROUTES.includes(route) ? route : 'main'}-${locale}.jpg`
+const siteOrigin = Astro.site?.origin ?? ''
+const cleanUrl = siteOrigin + pathname
+const coverLink = `${siteOrigin}/covers/${CUSTOM_COVER_ROUTES.includes(route) ? route : 'main'}-${locale}.jpg`
 
 const siteDescription = t(Astro.currentLocale, 'siteDescription')
 const description = customDescription || siteDescription
@@ -28,7 +29,7 @@ const schema = JSON.stringify({
   description,
   jobTitle: t(Astro.currentLocale, 'occupation'),
   name: t(Astro.currentLocale, 'fullName'),
-  url: `${process.env.SITE_URL}/${Astro.currentLocale}`
+  url: `${siteOrigin}/${Astro.currentLocale}`
 })
 ---
 
@@ -44,7 +45,7 @@ const schema = JSON.stringify({
 <meta content="#1B1B1B" name="theme-color" />
 
 <link href={cleanUrl} rel="canonical" />
-<link rel="alternate" type="application/rss+xml" title="Nikita's notes" href={getRssUrl(locale)} />
+<link rel="alternate" type="application/rss+xml" title="Nikita's notes" href={getRssUrl(siteOrigin, locale)} />
 
 <meta content="website" property="og:type" />
 <meta content={title} property="og:title" />

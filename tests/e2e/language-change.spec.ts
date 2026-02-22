@@ -1,6 +1,6 @@
 import type { Page } from '@playwright/test'
 
-import { test as base, expect } from '@playwright/test'
+import { expect, test as base } from '@playwright/test'
 
 import { en } from '@/app/i18n/locales/en'
 import { ru } from '@/app/i18n/locales/ru'
@@ -30,6 +30,7 @@ test.beforeEach(async ({ isMobile, page, selectors }) => {
 
   if (isMobile) {
     await selectors.openMobileMenuButton.click()
+    await selectors.langSwitchLink.waitFor({ state: 'visible' })
   }
 })
 

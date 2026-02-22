@@ -67,7 +67,11 @@ import Menu from './menu.astro'
       })
     }
 
-    window.addEventListener('DOMContentLoaded', onPageLoaded)
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', onPageLoaded)
+    } else {
+      onPageLoaded()
+    }
     document.addEventListener('astro:after-swap', onPageLoaded)
 
     document.addEventListener('astro:before-swap', () => {

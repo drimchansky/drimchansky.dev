@@ -8,10 +8,12 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "env": "cat .env.example > .env",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test tests/e2e",
+    "test:visual": "sh scripts/test-visual.sh",
+    "test:visual:update": "sh scripts/test-visual.sh --update-snapshots",
     "lint": "astro check && eslint .",
     "format": "prettier --write . && eslint --fix .",
-    "test": "pnpm lint && pnpm test:e2e"
+    "test": "pnpm lint && pnpm test:e2e && pnpm test:visual"
   },
   "browserslist": [
     "last 2 version",

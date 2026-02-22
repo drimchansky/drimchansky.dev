@@ -24,6 +24,7 @@ pnpm-debug.log*
 .idea/
 
 .history/
+.pnpm-store/
 
 # Playwright
 /test-results/

@@ -3,7 +3,7 @@ import type { GetStaticPaths } from 'astro'
 
 import { getCollection } from 'astro:content'
 
-import { getLocale, t } from '@/app/i18n'
+import { getLocale, supportedLocales, t } from '@/app/i18n'
 import BaseLayout from '@/app/layouts/base-layout.astro'
 import { Header } from '@/components/header'
 import { filterNotes, prepareNotesList, RssLink } from '@/components/notes'
@@ -13,10 +13,8 @@ import TypographyH2 from '@/shared/ui/typography/typography-h2.astro'
 import TypographyH3 from '@/shared/ui/typography/typography-h3.astro'
 import TypographySpan from '@/shared/ui/typography/typography-span.astro'
 
-export const getStaticPaths = (async () => [
-  { params: { lang: 'ru' } },
-  { params: { lang: 'en' } }
-]) satisfies GetStaticPaths
+export const getStaticPaths = (async () =>
+  supportedLocales.map(lang => ({ params: { lang } }))) satisfies GetStaticPaths
 
 const locale = getLocale(Astro.currentLocale)
 const notes = await getCollection('notes', entry => entry.slug.startsWith(`${locale}/`))

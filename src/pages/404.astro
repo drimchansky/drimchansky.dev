@@ -1,15 +1,13 @@
 ---
 import type { GetStaticPaths } from 'astro'
 
-import { t } from '@/app/i18n'
+import { supportedLocales, t } from '@/app/i18n'
 import BaseLayout from '@/app/layouts/base-layout.astro'
 import { Header } from '@/components/header'
 import Container from '@/shared/ui/container.astro'
 
-export const getStaticPaths = (async () => [
-  { params: { lang: 'ru' } },
-  { params: { lang: 'en' } }
-]) satisfies GetStaticPaths
+export const getStaticPaths = (async () =>
+  supportedLocales.map(lang => ({ params: { lang } }))) satisfies GetStaticPaths
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'fullName')} – 404`>
