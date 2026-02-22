@@ -1,0 +1,37 @@
+import { expect, test } from '@playwright/test'
+
+import { supportedLocales } from '@/app/i18n'
+
+for (const locale of supportedLocales) {
+  test(`Notes page (${locale})`, async ({ page }) => {
+    await page.goto(`/${locale}/notes`)
+    await page.waitForLoadState('networkidle')
+
+    await expect(page).toHaveScreenshot({
+      fullPage: true
+    })
+  })
+}
+
+test('Notes page (dark theme)', async ({ page }) => {
+  await page.goto('/en/notes')
+  await page.waitForLoadState('networkidle')
+
+  const hamburger = page.getByTestId('open-mobile-menu-button')
+
+  if (await hamburger.isVisible()) {
+    await hamburger.click()
+    await page.getByTestId('theme-segmented-control').waitFor({ state: 'visible' })
+  }
+
+  await page.getByTestId('set-dark-theme-button').check({ force: true })
+
+  if (await hamburger.isVisible()) {
+    await hamburger.click()
+    await page.getByTestId('menu').waitFor({ state: 'hidden' })
+  }
+
+  await expect(page).toHaveScreenshot({
+    fullPage: true
+  })
+})

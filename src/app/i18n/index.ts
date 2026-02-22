@@ -44,6 +44,8 @@ const locales: { [key in Locale]: LocaleCollection } = {
   ru
 }
 
+export const supportedLocales = Object.keys(locales) as Locale[]
+
 export const getLocale = (rawLocale: string | undefined): Locale => {
   return (rawLocale || 'en') as Locale
 }

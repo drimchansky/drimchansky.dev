@@ -3,15 +3,14 @@ import { getCollection } from 'astro:content'
 import MarkdownIt from 'markdown-it'
 import sanitizeHtml from 'sanitize-html'
 
-import type { Locale } from '@/app/i18n'
-
+import { supportedLocales, type Locale } from '@/app/i18n'
 import { filterNotes } from '@/components/notes'
 import { siteInfo } from '@/shared/site-info'
 
 const mdParser = new MarkdownIt()
 
 export async function getStaticPaths() {
-  return [{ params: { lang: 'en' } }, { params: { lang: 'ru' } }]
+  return supportedLocales.map(lang => ({ params: { lang } }))
 }
 
 export async function GET({ params }: { params: { lang: Locale } }) {

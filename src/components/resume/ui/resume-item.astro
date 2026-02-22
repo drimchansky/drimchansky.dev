@@ -1,5 +1,6 @@
 ---
 import { getLocale, t } from '@/app/i18n'
+import { getTestId } from '@/shared/functions/getTestId'
 
 import { getTotalDurationText } from '../functions/getTotalDurationText'
 
@@ -44,7 +45,7 @@ const locale = getLocale(Astro.currentLocale)
       <time datetime={dateStart.toISOString()}>{dateStartText}</time>
       {' - '}
       <time datetime={dateEnd?.toISOString()}>{dateEndText}</time>
-      <span class="resume-item__duration">
+      <span class="resume-item__duration" data-testid={getTestId('resume-item-duration')}>
         ({getTotalDurationText(dateStart, dateEnd, locale)})
       </span>
     </div>

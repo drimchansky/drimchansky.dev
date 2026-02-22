@@ -30,15 +30,13 @@ export const getStaticPaths = (async () => {
   <Header slot="header" />
 
   <Container class="note__container">
-    <main>
-      <article>
-        <NoteHeader note={note} />
+    <article>
+      <NoteHeader note={note} />
 
-        <MarkdownWrapper>
-          <Content />
-        </MarkdownWrapper>
-      </article>
-    </main>
+      <MarkdownWrapper>
+        <Content />
+      </MarkdownWrapper>
+    </article>
   </Container>
 </BaseLayout>
 

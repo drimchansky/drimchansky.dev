@@ -33,6 +33,7 @@ test.beforeEach(async ({ isMobile, page, selectors }) => {
 
   if (isMobile) {
     await selectors.openMobileMenuButton.click()
+    await selectors.themeSegmentedControl.waitFor({ state: 'visible' })
   }
 })
 
