@@ -1,14 +1,12 @@
 import type { LocaleCollection } from '..'
 
 export const en: LocaleCollection = {
-  404: 'Страница не найдена',
+  404: 'Page not found',
   auto: 'Auto',
   backToNotes: 'Back to Notes',
   dark: 'Dark',
   download: 'Download PDF',
   education: 'Education',
-  experienceLine:
-    'I have @experience@ of working experience including @experienceDev@ in commercial software development.',
   familyName: 'Chernov',
   fullName: 'Nikita Chernov',
   givenName: 'Nikita',

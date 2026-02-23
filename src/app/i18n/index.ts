@@ -10,7 +10,6 @@ export type LocaleCollection = {
   dark: string
   download: string
   education: string
-  experienceLine: string
   familyName: string
   fullName: string
   givenName: string
