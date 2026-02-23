@@ -1,13 +1,12 @@
 import type { LocaleCollection } from '..'
 
 export const ru: LocaleCollection = {
-  404: 'Page not found',
+  404: 'Страница не найдена',
   auto: 'Авто',
   backToNotes: 'Назад к заметкам',
   dark: 'Темная',
   download: 'Скачать PDF',
   education: 'Образование',
-  experienceLine: 'Мой общий стаж работы @experience@, из них @experienceDev@ в коммерческой разработке.',
   familyName: 'Чернов',
   fullName: 'Никита Чернов',
   givenName: 'Никита',
