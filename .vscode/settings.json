@@ -9,11 +9,5 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "eslint.validate": ["typescript", "astro"],
-  "files.associations": {
-    "*.css": "postcss"
-  },
-  "emmet.includeLanguages": {
-    "postcss": "css"
-  },
   "stylelint.validate": ["astro"]
 }

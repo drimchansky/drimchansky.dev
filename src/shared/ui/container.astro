@@ -1,21 +1,15 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
 
-interface Props extends HTMLAttributes<'div'> {}
+interface Props extends HTMLAttributes<'div'> {
+  content?: boolean
+}
 
-const { class: className, ...props } = Astro.props
+const { class: className, content, ...props } = Astro.props
+
+const maxWidthClass = content ? 'max-w-[var(--max-content-width)]' : 'max-w-[var(--max-width)]'
 ---
 
-<div class:list={['container', className]} {...props}>
+<div class:list={['mx-auto h-full w-full px-4', maxWidthClass, className]} {...props}>
   <slot />
 </div>
-
-<style>
-  .container {
-    width: 100%;
-    max-width: var(--max-width);
-    height: 100%;
-    padding: 0 1rem;
-    margin: 0 auto;
-  }
-</style>

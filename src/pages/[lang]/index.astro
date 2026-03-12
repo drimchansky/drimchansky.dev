@@ -17,15 +17,15 @@ export const getStaticPaths = (async () =>
 <BaseLayout title={t(Astro.currentLocale, 'fullName')}>
   <Header slot="header" />
 
-  <Container class="home__container">
-    <div class="home__content">
+  <Container content class="flex min-h-[calc(100dvh-var(--header-height))] flex-col justify-center">
+    <div class="flex flex-col gap-2 portrait:mt-0 [@media(orientation:landscape)_and_(max-height:500px)]:flex-row">
       <Avatar />
-      <TypographyH1 class="home__header">
+      <TypographyH1 class="[&>span]:text-[4rem] [&>span]:leading-none">
         <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>
         <span itemprop="familyName">{t(Astro.currentLocale, 'familyName')}</span>
       </TypographyH1>
 
-      <TypographyP class="home__intro-text">
+      <TypographyP class="max-w-150 text-lg font-normal text-balance">
         {t(Astro.currentLocale, 'intro')}
       </TypographyP>
 
@@ -33,43 +33,3 @@ export const getStaticPaths = (async () =>
     </div>
   </Container>
 </BaseLayout>
-
-<style>
-  .home__header > span {
-    font-size: 4rem;
-    line-height: 1;
-  }
-
-  .home__container {
-    display: flex;
-    max-width: var(--max-content-width);
-    min-height: calc(100dvh - var(--header-height));
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .home__content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .home__intro-text {
-    max-width: 600px;
-    font-size: 1.1rem;
-    font-weight: 400;
-    text-wrap: balance;
-  }
-
-  @media (orientation: portrait) {
-    .home__content {
-      margin-top: 0rem;
-    }
-  }
-
-  @media (orientation: landscape) and (max-height: 500px) {
-    .home__content {
-      flex-direction: row;
-    }
-  }
-</style>

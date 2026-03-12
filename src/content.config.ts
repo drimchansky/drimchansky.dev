@@ -1,6 +1,12 @@
-import { defineCollection, z } from 'astro:content'
+import { defineCollection } from 'astro:content'
+import { glob } from 'astro/loaders'
+import { z } from 'astro/zod'
 
 const resumeCollection = defineCollection({
+  loader: glob({
+    base: './src/content/resume',
+    pattern: '**/*.md'
+  }),
   schema: z.object({
     company: z.string(),
     companyLink: z.string(),
@@ -14,9 +20,18 @@ const resumeCollection = defineCollection({
   })
 })
 
-const generalCollection = defineCollection({})
+const generalCollection = defineCollection({
+  loader: glob({
+    base: './src/content/general',
+    pattern: '**/*.md'
+  })
+})
 
 const notesCollection = defineCollection({
+  loader: glob({
+    base: './src/content/notes',
+    pattern: '**/*.{md,mdx}'
+  }),
   schema: z.object({
     description: z.string().optional(),
     isDraft: z.boolean().optional(),
@@ -25,8 +40,7 @@ const notesCollection = defineCollection({
     lastModified: z.date().optional(),
     publishingDate: z.date(),
     title: z.string()
-  }),
-  type: 'content'
+  })
 })
 
 export const collections = {

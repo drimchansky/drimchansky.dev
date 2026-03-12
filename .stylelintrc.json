@@ -5,7 +5,7 @@
     "at-rule-no-unknown": [
       true,
       {
-        "ignoreAtRules": ["define-mixin", "mixin"]
+        "ignoreAtRules": ["theme", "apply", "utility", "variant", "layer", "tailwind", "reference", "slot"]
       }
     ],
     "selector-pseudo-class-no-unknown": [

@@ -7,12 +7,36 @@ on:
       - preview
       - dev
 jobs:
+  lint:
+    timeout-minutes: 5
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Test against linters
+        run: pnpm lint
+
   test:
     timeout-minutes: 20
     name: Test
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.57.0-noble
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
 
     steps:
       - name: Install Git LFS
@@ -37,9 +61,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm i
-
-      - name: Test against linters
-        run: pnpm lint
 
       - name: Build
         run: pnpm build

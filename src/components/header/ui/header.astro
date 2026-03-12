@@ -8,8 +8,12 @@ import Menu from './menu.astro'
 
 <SkipLink />
 
-<header class="header" id="header" transition:animate="none">
-  <Container class="header__container">
+<header
+  class="border-header-border bg-header sticky top-0 z-1 h-[var(--header-height)] border-b print:hidden"
+  id="header"
+  transition:animate="none"
+>
+  <Container class="flex items-center justify-between sm:gap-8">
     <Menu id="menu" />
     <Hamburger aria-expanded="false" id="hamburger-button" />
   </Container>
@@ -40,7 +44,7 @@ import Menu from './menu.astro'
         button.setAttribute('aria-expanded', 'true')
 
         menu.classList.remove('menu--closed')
-        setTimeout(() => menu.classList.add('menu--opened'), 20)
+        menu.classList.add('menu--opened')
 
         focusTrap.activate()
       }
@@ -51,7 +55,7 @@ import Menu from './menu.astro'
         button.setAttribute('aria-expanded', 'false')
 
         menu.classList.remove('menu--opened')
-        setTimeout(() => menu.classList.add('menu--closed'), 20)
+        menu.classList.add('menu--closed')
 
         focusTrap.deactivate()
       }
@@ -79,34 +83,3 @@ import Menu from './menu.astro'
     })
   })()
 </script>
-
-<style>
-  @import '@/app/styles/media.css';
-
-  .header {
-    position: sticky;
-    z-index: 1;
-    top: 0;
-    height: var(--header-height);
-    border-bottom: var(--header-line-width) solid var(--c-header-line);
-    background: var(--c-header-bg);
-  }
-
-  .header__container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  @media print {
-    .header {
-      display: none;
-    }
-  }
-
-  @media (--viewport-small) {
-    .header__container {
-      gap: 2rem;
-    }
-  }
-</style>

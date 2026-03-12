@@ -6,33 +6,10 @@ interface Props extends HTMLAttributes<'a'> {}
 const { class: className, ...props } = Astro.props
 ---
 
-<a class:list={['button-link', className || '']} {...props}><slot /></a>
-
-<style>
-  @import '@/app/styles/mixins.css';
-
-  .button-link {
-    @mixin focus;
-
-    display: block;
-    max-width: 350px;
-    padding: 0.5rem 3rem;
-    border: none;
-    border-radius: 6px;
-    background-color: var(--c-button-bg-origin);
-    color: var(--c-button-text);
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-
-    @media (hover: hover) {
-      &:hover {
-        background-color: var(--c-button-bg-hover);
-      }
-    }
-
-    &:active {
-      background-color: var(--c-button-bg-active);
-    }
-  }
-</style>
+<a
+  class:list={[
+    'bg-btn text-btn-fg focus-ring hoverable:bg-btn-hover active:bg-btn-active block max-w-[350px] cursor-pointer rounded border-none px-12 py-2 text-center no-underline',
+    className
+  ]}
+  {...props}><slot /></a
+>

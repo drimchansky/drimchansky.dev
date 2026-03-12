@@ -1,95 +1,58 @@
 ---
 import type { GetStaticPaths } from 'astro'
 
-import { getEntry } from 'astro:content'
+import { getEntry, render } from 'astro:content'
 
 import { getLocale, supportedLocales, t } from '@/app/i18n'
 import BaseLayout from '@/app/layouts/base-layout.astro'
 import { Header } from '@/components/header'
-import { ResumeDownloadButton, ResumeHeader, ResumePositions, ResumeSectionHeader } from '@/components/resume'
+import { ResumeDownloadButton, ResumeHeader, ResumePositions } from '@/components/resume'
 import Container from '@/shared/ui/container.astro'
+import TypographyH2 from '@/shared/ui/typography/typography-h2.astro'
 
 export const getStaticPaths = (async () =>
   supportedLocales.map(lang => ({ params: { lang } }))) satisfies GetStaticPaths
 
 const locale = getLocale(Astro.currentLocale)
 
-const Summary = (await (await getEntry('general', `${locale}/summary`))?.render())?.Content
-const SkillsAndLanguagesContent = (await (await getEntry('general', `${locale}/skills`))?.render())?.Content
-const EducationContent = (await (await getEntry('general', `${locale}/education`))?.render())?.Content
+const summaryEntry = await getEntry('general', `${locale}/summary`)
+const Summary = summaryEntry ? (await render(summaryEntry)).Content : null
+const skillsEntry = await getEntry('general', `${locale}/skills`)
+const SkillsAndLanguagesContent = skillsEntry ? (await render(skillsEntry)).Content : null
+const educationEntry = await getEntry('general', `${locale}/education`)
+const EducationContent = educationEntry ? (await render(educationEntry)).Content : null
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'resume')} – ${t(Astro.currentLocale, 'fullName')}`>
   <Header slot="header" />
 
-  <Container class="resume__container">
-    <article class="resume__article">
+  <Container content>
+    <article
+      class="markdown text-fg py-12 [--resume-gap:1.5rem] print:py-0 print:[--resume-gap:0.25rem] print:[&_:is(p,li)]:p-0 print:[&_:is(p,li)]:text-sm print:[&_:is(p,li)]:leading-normal print:[&_a]:no-underline [&_p]:mt-0"
+    >
       <ResumeHeader />
 
-      <ResumeSectionHeader text={t(Astro.currentLocale, 'summary')} />
+      <TypographyH2 class="mt-1 mb-2 text-2xl">
+        {t(Astro.currentLocale, 'summary')}
+      </TypographyH2>
       {Summary && <Summary />}
 
-      <ResumeSectionHeader text={t(Astro.currentLocale, 'workingExperience')} />
+      <TypographyH2 class="mt-8 mb-2 text-2xl">
+        {t(Astro.currentLocale, 'workingExperience')}
+      </TypographyH2>
       <ResumePositions />
 
-      <ResumeSectionHeader text={t(Astro.currentLocale, 'education')} />
+      <TypographyH2 class="mt-8 mb-2 text-2xl">
+        {t(Astro.currentLocale, 'education')}
+      </TypographyH2>
       {EducationContent && <EducationContent />}
 
-      <ResumeSectionHeader text={t(Astro.currentLocale, 'skillsAndLanguages')} />
+      <TypographyH2 class="mt-8 mb-2 text-2xl">
+        {t(Astro.currentLocale, 'skillsAndLanguages')}
+      </TypographyH2>
       {SkillsAndLanguagesContent && <SkillsAndLanguagesContent />}
 
       <ResumeDownloadButton />
     </article>
   </Container>
 </BaseLayout>
-
-<style>
-  @import '@/app/styles/mixins.css';
-  @import '@/app/styles/media.css';
-
-  .resume__article {
-    --resume-gap: 1rem;
-    color: var(--c-text-primary);
-    padding-block: 3rem;
-
-    @media print {
-      --resume-gap: 0.25rem;
-      padding-block: 0;
-    }
-
-    & :global(p, li) {
-      margin: 0;
-      color: var(--c-text-secondary);
-      font-family: var(--font-family-base);
-      font-size: var(--text-base);
-      font-weight: 400;
-      line-height: var(--text-base--line-height);
-
-      @media print {
-        font-size: var(--text-sm);
-        line-height: var(--text-sm--line-height);
-      }
-    }
-
-    & :global(strong) {
-      font-weight: 600;
-    }
-  }
-
-  .resume__container {
-    max-width: var(--max-content-width);
-  }
-
-  @media print {
-    .resume__article {
-      & :global(p, li) {
-        padding: 0;
-        line-height: normal;
-      }
-
-      & :global(a) {
-        text-decoration: none;
-      }
-    }
-  }
-</style>

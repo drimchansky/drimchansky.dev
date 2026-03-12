@@ -5,8 +5,12 @@ PW_VERSION=$(node -p "require('./package.json').devDependencies['@playwright/tes
 IMAGE="mcr.microsoft.com/playwright:v${PW_VERSION}-noble"
 
 if ! command -v docker >/dev/null 2>&1; then
-  echo "Error: Docker is required for visual tests." >&2
+  echo "Error: Docker is required for tests." >&2
   exit 1
+fi
+
+if [ $# -eq 0 ]; then
+  set -- tests/e2e tests/visual
 fi
 
 EXIT_CODE=0
@@ -20,7 +24,7 @@ docker run --rm \
   -e TESTING=true \
   -e CI="${CI:-}" \
   "$IMAGE" \
-  sh -c 'corepack enable && corepack install && pnpm install --frozen-lockfile && pnpm build && pnpm exec playwright test tests/visual "$@"' \
+  sh -c 'corepack enable && corepack install && pnpm install --frozen-lockfile && pnpm build && pnpm exec playwright test "$@"' \
   -- "$@" || EXIT_CODE=$?
 
 if [ "$EXIT_CODE" -ne 0 ] && [ -z "${CI:-}" ]; then
