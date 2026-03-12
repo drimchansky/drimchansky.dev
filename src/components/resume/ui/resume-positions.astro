@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content'
+import { getCollection, render as renderEntry } from 'astro:content'
 
 import { getLocale } from '@/app/i18n'
 
@@ -8,16 +8,17 @@ import ResumeItem from './resume-item.astro'
 const locale = getLocale(Astro.currentLocale)
 
 const positions = (await getCollection('resume'))
-  .filter(p => p.slug.startsWith(`${locale}/`))
+  .filter(p => p.id.startsWith(`${locale}/`))
   .sort((a, b) => Number(b.data.dateStart) - Number(a.data.dateStart))
 ---
 
-<ul class="resume-positions">
+<ul class="space-y-resume-gap m-0 list-none p-0">
   {
-    positions.map(async ({ data, render }) => {
-      const Content = (await render()).Content
+    positions.map(async position => {
+      const { data } = position
+      const Content = (await renderEntry(position)).Content
       return (
-        <li class="resume-positions__position-item">
+        <li>
           <ResumeItem
             company={data.company}
             companyLink={data.companyLink}
@@ -33,15 +34,3 @@ const positions = (await getCollection('resume'))
     })
   }
 </ul>
-
-<style>
-  .resume-positions {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-  }
-
-  .resume-positions__position-item:not(:first-child) {
-    margin-top: var(--resume-gap);
-  }
-</style>

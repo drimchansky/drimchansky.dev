@@ -1,6 +1,7 @@
 import mdx from '@astrojs/mdx'
 import partytown from '@astrojs/partytown'
 import sitemap from '@astrojs/sitemap'
+import tailwindcss from '@tailwindcss/vite'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
 import dotenv from 'dotenv'
@@ -21,7 +22,8 @@ export default defineConfig({
     defaultLocale: 'en',
     locales: ['ru', 'en'],
     routing: {
-      prefixDefaultLocale: true
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: true
     }
   },
   integrations: [
@@ -55,5 +57,8 @@ export default defineConfig({
       syntaxHighlight: 'shiki'
     })
   ],
-  site: process.env.SITE_URL
+  site: process.env.SITE_URL,
+  vite: {
+    plugins: [tailwindcss()]
+  }
 })

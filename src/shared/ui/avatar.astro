@@ -7,12 +7,18 @@ import { getPlaceholderStyles } from '@/shared/functions/getPlaceholderStyles'
 const placeholderStyles = await getPlaceholderStyles('src/shared/assets/images/avatar.jpg')
 ---
 
-<a class="avatar" href={avatar.src} target="_blank" rel="noopener noreferrer" style={placeholderStyles}>
+<a
+  class="border-border focus-ring block size-30 min-w-30 rounded-full border-3"
+  href={avatar.src}
+  target="_blank"
+  rel="noopener noreferrer"
+  style={placeholderStyles}
+>
   <Picture
     src={avatar}
     formats={['avif', 'webp', 'jpg']}
     alt="Nikita's photo"
-    class="avatar__picture"
+    class="pointer-events-none h-full w-full rounded-full text-transparent"
     width={150}
     height={150}
     densities={[1.5, 2]}
@@ -21,26 +27,3 @@ const placeholderStyles = await getPlaceholderStyles('src/shared/assets/images/a
     fetchpriority="high"
   />
 </a>
-
-<style>
-  @import '@/app/styles/mixins.css';
-
-  .avatar {
-    @mixin focus;
-    display: block;
-    width: 7.5rem;
-    min-width: 7.5rem;
-    height: 7.5rem;
-
-    border: 3px solid var(--c-border);
-    border-radius: 50%;
-  }
-
-  .avatar__picture {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    color: transparent;
-    pointer-events: none;
-  }
-</style>

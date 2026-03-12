@@ -7,11 +7,11 @@ export const prepareNotesList = (locale: Locale, notes: CollectionEntry<'notes'>
 
   const notesRawSortedDesc = notes
     .sort((a, b) => new Date(b.data.publishingDate).getTime() - new Date(a.data.publishingDate).getTime())
-    .map(({ data, slug }) => {
+    .map(({ data, id }) => {
       return {
         data,
-        slug,
-        url: `/${locale}/notes/${slug.split('/')[1]}`,
+        id,
+        url: `/${locale}/notes/${id.split('/')[1]}`,
         year: yearFormatter.format(data.publishingDate)
       }
     })

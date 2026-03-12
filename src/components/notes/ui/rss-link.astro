@@ -14,31 +14,12 @@ const locale = getLocale(Astro.currentLocale)
 const siteOrigin = Astro.site?.origin ?? ''
 ---
 
-<a target="_blank" href={getRssUrl(siteOrigin, locale)} class:list={['rss-link', className || '']} {...props}>
-  <Icon name="rss" aria-hidden="true" class="rss-link__icon" />
-  <TypographySpan class="rss-link__label">RSS</TypographySpan>
+<a
+  target="_blank"
+  href={getRssUrl(siteOrigin, locale)}
+  class:list={['text-fg focus-ring inline-flex items-center gap-0.5 no-underline', className]}
+  {...props}
+>
+  <Icon name="rss" aria-hidden="true" class="h-4 max-w-4" />
+  <TypographySpan class="leading-1">RSS</TypographySpan>
 </a>
-
-<style>
-  @import '@/app/styles/mixins.css';
-
-  .rss-link {
-    @mixin focus;
-
-    display: inline-flex;
-    align-items: center;
-    border-bottom: 2px solid currentColor;
-    color: var(--c-text-primary);
-    gap: 0.2rem;
-    text-decoration: none;
-
-    & .rss-link__label {
-      line-height: 1.1;
-    }
-  }
-
-  .rss-link__icon {
-    max-width: 1rem;
-    height: 1rem;
-  }
-</style>

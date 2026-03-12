@@ -14,40 +14,12 @@ const pathname = Astro.url.pathname.replace(`/${locale}`, '')
 
 <a
   data-testid={getTestId('lang-switch-link')}
-  class="lang-switch-link"
+  class="text-fg focus-ring hoverable:text-menu-hover-fg hoverable:[&_span]:text-menu-hover-fg flex items-center gap-2 p-2 no-underline transition-colors duration-[var(--link-hover-duration)]"
   href={getRelativeLocaleUrl(toLocale, pathname)}
   hreflang={toLocale}
   rel="alternate"
   data-prefetch
 >
-  <GlobeIcon class="lang-switch-link__icon" />
+  <GlobeIcon class="h-4 w-4" />
   <TypographySpan>{t(Astro.currentLocale, 'toLocale')}</TypographySpan>
 </a>
-
-<style>
-  @import '@/app/styles/mixins.css';
-
-  .lang-switch-link {
-    @mixin focus;
-
-    display: flex;
-    align-items: center;
-    padding: 0.5rem;
-    color: var(--c-menu-link-text);
-    gap: 0.5rem;
-    text-decoration: none;
-    transition: color var(--link-hover-duration);
-
-    @media (hover: hover) {
-      &:hover,
-      &:hover span {
-        color: var(--c-menu-link-text-hover);
-      }
-    }
-  }
-
-  .lang-switch-link__icon {
-    width: 1rem;
-    height: 1rem;
-  }
-</style>

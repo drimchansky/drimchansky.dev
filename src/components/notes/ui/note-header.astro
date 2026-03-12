@@ -21,18 +21,18 @@ const locale = getLocale(Astro.currentLocale)
 const dateFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' })
 ---
 
-<header class:list={['note-header', className || '']} {...props}>
-  <a class="note-header__back-link" href={getRelativeLocaleUrl(locale, '/notes')}>
+<header class:list={['flex flex-col items-start gap-2', className]} {...props}>
+  <a class="text-fg focus-ring flex items-center gap-0.75 no-underline" href={getRelativeLocaleUrl(locale, '/notes')}>
     <Icon name="arrow-left" aria-hidden="true" />
     <TypographySpan>{t(Astro.currentLocale, 'backToNotes')}</TypographySpan>
   </a>
 
   <TypographyH1>{note.data.title}</TypographyH1>
-  <TypographySpan class="note-header__meta">
+  <TypographySpan class="text-fg-subtle text-sm">
     <time datetime={note.data.publishingDate.toISOString()}>{dateFormatter.format(note.data.publishingDate)}</time>
     {
       note.data.lastModified && (
-        <span class="note-header__last-updated">
+        <span class="bg-highlight text-highlight-fg">
           {'(' + t(Astro.currentLocale, 'lastUpdated')}{' '}
           <time datetime={note.data.lastModified.toISOString()}>
             {dateFormatter.format(note.data.lastModified) + ')'}
@@ -41,42 +41,5 @@ const dateFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: '
       )
     }
   </TypographySpan>
-  {note.data.isUntranslated && <AlertNoteUntranslated class="note-header__untranslated" />}
+  {note.data.isUntranslated && <AlertNoteUntranslated class="mt-2" />}
 </header>
-
-<style>
-  @import '@/app/styles/mixins.css';
-  @import '@/app/styles/media.css';
-
-  .note-header {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .note-header__back-link {
-    @mixin focus;
-
-    display: flex;
-    align-items: center;
-    color: var(--c-text-primary);
-    gap: 3px;
-    text-decoration: none;
-  }
-
-  .note-header__meta {
-    color: var(--c-text-gray);
-    font-size: var(--text-sm);
-    line-height: var(--text-sm--line-height);
-  }
-
-  .note-header__last-updated {
-    background: var(--c-highlight);
-    color: oklch(51.03% 0 0);
-  }
-
-  .note-header__untranslated {
-    margin-top: 0.5rem;
-  }
-</style>

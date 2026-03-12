@@ -12,9 +12,3 @@
   font-display: swap;
   src: url('/fonts/EBGaramond-SemiBold.woff2') format('woff2');
 }
-
-:root {
-  --font-family-heading: 'EB Garamond SemiBold', Georgia, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-  --font-family-base: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-family-mono: monospace;
-}

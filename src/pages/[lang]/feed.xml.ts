@@ -40,9 +40,9 @@ export async function GET({ params }: { params: { lang: Locale } }) {
     customData: `<language>${lang}</language>`,
     description: config.description,
     items: sortedNotes.map(note => ({
-      content: sanitizeHtml(mdParser.render(note.body)),
+      content: sanitizeHtml(mdParser.render(note.body ?? '')),
       description: note.data.description,
-      link: `/${lang}/notes/${note.slug.replace(`${lang}/`, '')}/`,
+      link: `/${lang}/notes/${note.id.replace(`${lang}/`, '')}/`,
       pubDate: note.data.publishingDate,
       title: note.data.title
     })),

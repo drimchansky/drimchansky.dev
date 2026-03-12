@@ -6,7 +6,7 @@
   "arrowParens": "avoid",
   "tabWidth": 2,
   "trailingComma": "none",
-  "plugins": ["prettier-plugin-astro"],
+  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
   "overrides": [
     {
       "files": "*.astro",

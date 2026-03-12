@@ -12,22 +12,9 @@ interface Props extends HTMLAttributes<'div'> {}
 const { class: className, ...props } = Astro.props
 ---
 
-<Alert class:list={['alert-note-untranslated', className || '']} {...props}>
-  <TypographySpan class="alert-note-untranslated__text">
-    <Icon name="languages" class="alert-note-untranslated__icon" aria-hidden />
+<Alert class:list={[className]} {...props}>
+  <TypographySpan class="text-sm">
+    <Icon name="languages" class="inline min-h-4 min-w-4 align-text-top" aria-hidden />
     {t(Astro.currentLocale, 'untranslated')}
   </TypographySpan>
 </Alert>
-
-<style>
-  .alert-note-untranslated__icon {
-    min-width: 1rem;
-    min-height: 1rem;
-    vertical-align: text-top;
-  }
-
-  .alert-note-untranslated__text {
-    font-size: var(--text-sm);
-    line-height: var(--text-sm--line-height);
-  }
-</style>

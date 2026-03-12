@@ -3,45 +3,21 @@ import { siteInfo } from '../site-info'
 import TypographySpan from './typography/typography-span.astro'
 ---
 
-<div class="social-links" data-nosnippet>
+<div class="flex flex-wrap gap-1" data-nosnippet>
   {
     siteInfo.socialLinks.map(
       ({ name, showOnHomePage, url }) =>
         showOnHomePage && (
-          <a class="social-links__link" href={url} itemprop="sameAs" rel="me" target="_blank">
+          <a
+            class="text-fg-muted link-underline focus-ring hoverable:text-fg p-1 opacity-80 transition-colors duration-(--link-hover-duration) [&_span]:text-lg"
+            href={url}
+            itemprop="sameAs"
+            rel="me"
+            target="_blank"
+          >
             <TypographySpan>{name}</TypographySpan>
           </a>
         )
     )
   }
 </div>
-
-<style>
-  @import '@/app/styles/mixins.css';
-
-  .social-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem;
-  }
-
-  .social-links__link {
-    @mixin link-underline;
-    @mixin focus;
-
-    padding: 0.25rem;
-    color: var(--c-text-secondary);
-    opacity: 0.8;
-    transition: color var(--link-hover-duration);
-
-    & span {
-      font-size: 1.125rem;
-    }
-
-    @media (hover: hover) {
-      &:hover {
-        color: var(--c-text-primary);
-      }
-    }
-  }
-</style>

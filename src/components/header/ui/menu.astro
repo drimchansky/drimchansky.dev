@@ -20,14 +20,21 @@ const locale = getLocale(Astro.currentLocale)
 const currentRoute = pathname.slice(1).replace(`${locale}`, '').slice(0, -1) || '/'
 ---
 
-<nav data-testid={getTestId('menu')} class:list={['menu', 'menu--closed', className]} {...props}>
-  <ul class="menu__list">
+<nav
+  data-testid={getTestId('menu')}
+  class:list={[
+    'bg-menu menu--closed fixed inset-y-[var(--header-height)_0] left-0 w-full grid-rows-[auto_repeat(2,min-content)] justify-items-center gap-4 overflow-y-auto p-4 px-[var(--page-padding-x)] sm:static sm:grid sm:grid-cols-[auto_repeat(2,min-content)] sm:grid-rows-[unset] sm:items-center sm:bg-transparent sm:p-0',
+    className
+  ]}
+  {...props}
+>
+  <ul class="m-0 flex list-none flex-col items-center justify-center gap-2 p-0 sm:flex-row sm:justify-self-start">
     {
       siteInfo.navigation.map(({ id, route }) => (
-        <li class="menu__item">
+        <li class="p-1">
           <a
             data-testid={getTestId(`open-${id}-link`)}
-            class={`menu__link ${currentRoute === route ? 'menu__link--active' : ''}`}
+            class={`text-fg focus-ring hoverable:bg-menu-hover hoverable:text-menu-hover-fg inline-flex rounded-md bg-transparent p-2 no-underline transition-colors duration-[var(--link-hover-duration)] ${currentRoute === route ? 'opacity-70' : ''}`}
             href={getRelativeLocaleUrl(locale, route)}
             data-prefetch
           >
@@ -41,87 +48,3 @@ const currentRoute = pathname.slice(1).replace(`${locale}`, '').slice(0, -1) || 
   <LangSwitchLink />
   <ThemeSegmentedControl />
 </nav>
-
-<style>
-  @import '@/app/styles/media.css';
-  @import '@/app/styles/mixins.css';
-
-  .menu {
-    position: fixed;
-    left: 0px;
-    display: none;
-    width: 100%;
-    padding: 16px var(--page-padding-x);
-    background: var(--c-menu-bg);
-    gap: 1rem;
-    grid-template-rows: auto repeat(2, min-content);
-    inset-block: var(--header-height) 0;
-    justify-items: center;
-    overflow-y: auto;
-  }
-
-  .menu--opened {
-    display: grid;
-  }
-
-  .menu--closed {
-    display: none;
-  }
-
-  .menu__list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-    gap: 0.5rem;
-    list-style-type: none;
-  }
-
-  .menu__item {
-    padding: 0.25rem;
-  }
-
-  .menu__link {
-    @mixin focus;
-
-    display: inline-flex;
-    padding: 0.5rem;
-    border-radius: 5px;
-    background: var(--c-menu-link-bg);
-    color: var(--c-menu-link-text);
-    text-decoration: none;
-    transition:
-      background-color var(--link-hover-duration),
-      color var(--link-hover-duration);
-
-    @media (hover: hover) {
-      &:hover {
-        background: var(--c-menu-link-bg-hover);
-        color: var(--c-menu-link-text-hover);
-      }
-    }
-
-    &.menu__link--active {
-      opacity: 0.7;
-    }
-  }
-
-  @media (--viewport-small) {
-    .menu {
-      position: static;
-      display: grid;
-      align-items: center;
-      padding: 0;
-      background: transparent;
-      grid-template-columns: auto repeat(2, min-content);
-      grid-template-rows: unset;
-    }
-
-    .menu__list {
-      flex-direction: row;
-      justify-self: start;
-    }
-  }
-</style>
