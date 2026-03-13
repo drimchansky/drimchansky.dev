@@ -12,7 +12,6 @@ type Props = {
   title: string
 }
 
-const analyticsId = import.meta.env.ANALYTICS_ID
 const { description, title } = Astro.props
 const locale = getLocale(Astro.currentLocale)
 ---
@@ -29,20 +28,5 @@ const locale = getLocale(Astro.currentLocale)
       <slot />
     </main>
 
-    <script
-      fetchpriority="low"
-      src=`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`
-      type="text/partytown"
-      defer
-      is:inline></script>
-
-    <script define:vars={{ analyticsId }} type="text/partytown" defer is:inline>
-      window.dataLayer = window.dataLayer || []
-      function gtag() {
-        dataLayer.push(arguments)
-      }
-      gtag('js', new Date())
-      gtag('config', analyticsId)
-    </script>
   </body>
 </html>

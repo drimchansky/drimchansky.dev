@@ -9,5 +9,5 @@
       "@/components/*": ["src/components/*"]
     }
   },
-  "exclude": ["node_modules", "dist", ".vercel", "public", "playwright-report"]
+  "exclude": ["node_modules", "dist", ".wrangler", "public", "playwright-report"]
 }
