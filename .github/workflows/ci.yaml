@@ -1,4 +1,4 @@
-name: Test
+name: CI
 
 on:
   push:
@@ -16,17 +16,8 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm i
+      - name: Setup
+        uses: ./.github/actions/setup
 
       - name: Test against linters
         run: pnpm lint
@@ -50,17 +41,8 @@ jobs:
         with:
           lfs: true
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm i
+      - name: Setup
+        uses: ./.github/actions/setup
 
       - name: Build
         run: pnpm build
@@ -86,3 +68,34 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
+
+  deploy:
+    name: Deploy
+    needs: [lint, test]
+    if: github.ref_name == 'main' || github.ref_name == 'preview'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Build
+        run: pnpm build
+        env:
+          SITE_URL: https://drimchansky.dev
+          IS_PRODUCTION: ${{ github.ref_name == 'main' && '1' || '' }}
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=drimchansky-dev --branch=${{ github.ref_name }}

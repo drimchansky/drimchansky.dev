@@ -1,5 +1,4 @@
 import mdx from '@astrojs/mdx'
-import partytown from '@astrojs/partytown'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
 import icon from 'astro-icon'
@@ -37,11 +36,6 @@ export default defineConfig({
           en: 'en-US',
           ru: 'ru-RU'
         }
-      }
-    }),
-    partytown({
-      config: {
-        forward: ['dataLayer.push']
       }
     }),
     mdx({
