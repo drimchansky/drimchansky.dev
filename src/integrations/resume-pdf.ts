@@ -1,4 +1,5 @@
 import type { AstroIntegration } from 'astro'
+import type { AddressInfo } from 'node:net'
 
 import { mkdir, readFile, stat } from 'node:fs/promises'
 import { createServer, type Server } from 'node:http'
@@ -11,18 +12,24 @@ import { RESUME_FILENAMES_BY_LOCALE } from '../components/resume/constants'
 
 const MIME_TYPES: Record<string, string> = {
   '.css': 'text/css',
+  '.gif': 'image/gif',
   '.html': 'text/html',
+  '.ico': 'image/x-icon',
+  '.jpg': 'image/jpeg',
   '.js': 'application/javascript',
   '.json': 'application/json',
+  '.png': 'image/png',
   '.svg': 'image/svg+xml',
+  '.webmanifest': 'application/manifest+json',
+  '.webp': 'image/webp',
   '.woff': 'font/woff',
   '.woff2': 'font/woff2'
 }
 
-function startServer(root: string, port: number): Promise<Server> {
+function startServer(root: string): Promise<{ port: number; server: Server }> {
   return new Promise((resolve, reject) => {
     const server = createServer(async (req, res) => {
-      let filePath = join(root, new URL(req.url!, `http://localhost:${port}`).pathname)
+      let filePath = join(root, new URL(req.url!, 'http://localhost').pathname)
 
       try {
         const fileStat = await stat(filePath)
@@ -40,7 +47,10 @@ function startServer(root: string, port: number): Promise<Server> {
     })
 
     server.on('error', reject)
-    server.listen(port, () => resolve(server))
+    server.listen(0, () => {
+      const { port } = server.address() as AddressInfo
+      resolve({ port, server })
+    })
   })
 }
 
@@ -54,10 +64,10 @@ export default function resumePdf(): AstroIntegration {
         }
 
         const distDir = fileURLToPath(dir)
-        const port = 4173
-        const server = await startServer(distDir, port)
+        const { port, server } = await startServer(distDir)
 
         try {
+          // Lazy require: Playwright is only installed in build environments, not during tests
           const nodeRequire = createRequire(import.meta.url)
           const { chromium } = nodeRequire('@playwright/test')
           const browser = await chromium.launch()
