@@ -46,7 +46,7 @@ const locales: { [key in Locale]: LocaleCollection } = {
 export const supportedLocales = Object.keys(locales) as Locale[]
 
 export const getLocale = (rawLocale: string | undefined): Locale => {
-  return (rawLocale || 'en') as Locale
+  return supportedLocales.includes(rawLocale as Locale) ? (rawLocale as Locale) : 'en'
 }
 
 export const t = (rawLocale: string | undefined, token: TokenName) => {
