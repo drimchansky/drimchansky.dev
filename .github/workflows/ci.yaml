@@ -84,7 +84,7 @@ jobs:
   deploy:
     name: Deploy
     needs: [lint, test]
-    if: github.ref_name == 'main' || github.ref_name == 'preview'
+    if: github.ref_name == 'main' || github.ref_name == 'preview' || github.ref_name == 'dev'
     runs-on: ubuntu-latest
     permissions:
       contents: read
