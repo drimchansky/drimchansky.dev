@@ -8,6 +8,8 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
 
+import resumePdf from './src/integrations/resume-pdf'
+
 dotenv.config({
   quiet: true
 })
@@ -49,7 +51,8 @@ export default defineConfig({
         wrap: true
       },
       syntaxHighlight: 'shiki'
-    })
+    }),
+    resumePdf()
   ],
   site: process.env.SITE_URL,
   vite: {
