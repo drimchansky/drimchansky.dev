@@ -99,6 +99,9 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
 
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
       - name: Build
         run: pnpm build
         env:
