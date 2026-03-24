@@ -1,22 +1,10 @@
 # Todo
 
-## Pages
-
+- [ ] Update favicon
 - [ ] Create readings page
 - [ ] Create watchings page
 - [ ] Create about page
 - [ ] Create video games page
-
-## Resume
-
-- [ ] Add position images
-
-## Notes
-
-- [ ] Add image descriptions
-- [ ] Add footnotes support
-
-## Site-wide
-
-- [ ] Update favicon
-- [ ] Update 404 page
+- [ ] Add position images in resume
+- [ ] Add image descriptions in notes
+- [ ] Add footnotes support in notes
