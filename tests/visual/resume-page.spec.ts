@@ -2,6 +2,8 @@ import { type Page, expect, test } from '@playwright/test'
 
 import { supportedLocales } from '@/app/i18n'
 
+import { enableDarkTheme } from './utils/enableDarkTheme'
+
 const stubDurations = (page: Page) =>
   page.getByTestId('resume-item-duration').evaluateAll(elements => {
     for (const el of elements) el.textContent = '(0 years 0 months)'
@@ -23,19 +25,7 @@ test('Resume page (dark theme)', async ({ page }) => {
   await page.goto('/en/resume')
   await page.waitForLoadState('networkidle')
 
-  const hamburger = page.getByTestId('open-mobile-menu-button')
-
-  if (await hamburger.isVisible()) {
-    await hamburger.click()
-    await page.getByTestId('theme-segmented-control').waitFor({ state: 'visible' })
-  }
-
-  await page.getByTestId('set-dark-theme-button').check({ force: true })
-
-  if (await hamburger.isVisible()) {
-    await hamburger.click()
-    await page.getByTestId('menu').waitFor({ state: 'hidden' })
-  }
+  await enableDarkTheme(page)
 
   await stubDurations(page)
 

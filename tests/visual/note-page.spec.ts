@@ -2,6 +2,8 @@ import { expect, test } from '@playwright/test'
 
 import { supportedLocales } from '@/app/i18n'
 
+import { enableDarkTheme } from './utils/enableDarkTheme'
+
 for (const locale of supportedLocales) {
   test(`Note page (${locale})`, async ({ page }) => {
     await page.goto(`/${locale}/notes/content-test`)
@@ -17,19 +19,7 @@ test('Note page (dark theme)', async ({ page }) => {
   await page.goto('/en/notes/content-test')
   await page.waitForLoadState('networkidle')
 
-  const hamburger = page.getByTestId('open-mobile-menu-button')
-
-  if (await hamburger.isVisible()) {
-    await hamburger.click()
-    await page.getByTestId('theme-segmented-control').waitFor({ state: 'visible' })
-  }
-
-  await page.getByTestId('set-dark-theme-button').check({ force: true })
-
-  if (await hamburger.isVisible()) {
-    await hamburger.click()
-    await page.getByTestId('menu').waitFor({ state: 'hidden' })
-  }
+  await enableDarkTheme(page)
 
   await expect(page).toHaveScreenshot({
     fullPage: true

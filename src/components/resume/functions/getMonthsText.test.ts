@@ -28,7 +28,24 @@ describe('getMonthsText', () => {
 
     it('returns "месяцев" for 5+', () => {
       expect(getMonthsText(5, 'ru')).toBe('месяцев')
+    })
+
+    it('returns "месяцев" for 11-14 (special case)', () => {
       expect(getMonthsText(11, 'ru')).toBe('месяцев')
+      expect(getMonthsText(12, 'ru')).toBe('месяцев')
+      expect(getMonthsText(14, 'ru')).toBe('месяцев')
+    })
+
+    it('returns correct forms for 21, 22, 25', () => {
+      expect(getMonthsText(21, 'ru')).toBe('месяц')
+      expect(getMonthsText(22, 'ru')).toBe('месяца')
+      expect(getMonthsText(25, 'ru')).toBe('месяцев')
+    })
+
+    it('returns correct forms for 111, 112, 121', () => {
+      expect(getMonthsText(111, 'ru')).toBe('месяцев')
+      expect(getMonthsText(112, 'ru')).toBe('месяцев')
+      expect(getMonthsText(121, 'ru')).toBe('месяц')
     })
   })
 })

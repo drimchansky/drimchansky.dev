@@ -5,8 +5,7 @@ import Button from './button.astro'
 import Container from './container.astro'
 import Head from './head.astro'
 import SkipLink from './skip-link.astro'
-import SocialLinks from './social-links.astro'
 
-export { Alert, Avatar, Button, ButtonLink, Container, Head, SkipLink, SocialLinks }
+export { Alert, Avatar, Button, ButtonLink, Container, Head, SkipLink }
 
 export { TypographyH1, TypographyH2, TypographyH3, TypographyP, TypographySpan } from './typography'

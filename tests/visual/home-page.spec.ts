@@ -2,6 +2,8 @@ import { expect, test } from '@playwright/test'
 
 import { supportedLocales } from '@/app/i18n'
 
+import { enableDarkTheme } from './utils/enableDarkTheme'
+
 for (const locale of supportedLocales) {
   test(`Home page (${locale})`, async ({ page }) => {
     await page.goto(`/${locale}/`)
@@ -17,14 +19,7 @@ test('Home page (dark theme)', async ({ page }) => {
   await page.goto('/en/')
   await page.waitForLoadState('networkidle')
 
-  const hamburger = page.getByTestId('open-mobile-menu-button')
-
-  if (await hamburger.isVisible()) {
-    await hamburger.click()
-    await page.getByTestId('theme-segmented-control').waitFor({ state: 'visible' })
-  }
-
-  await page.getByTestId('set-dark-theme-button').check({ force: true })
+  await enableDarkTheme(page)
 
   await expect(page).toHaveScreenshot({
     fullPage: true

@@ -30,5 +30,23 @@ describe('getYearsText', () => {
       expect(getYearsText(5, 'ru')).toBe('лет')
       expect(getYearsText(10, 'ru')).toBe('лет')
     })
+
+    it('returns "лет" for 11-14 (special case)', () => {
+      expect(getYearsText(11, 'ru')).toBe('лет')
+      expect(getYearsText(12, 'ru')).toBe('лет')
+      expect(getYearsText(14, 'ru')).toBe('лет')
+    })
+
+    it('returns correct forms for 21, 22, 25', () => {
+      expect(getYearsText(21, 'ru')).toBe('год')
+      expect(getYearsText(22, 'ru')).toBe('года')
+      expect(getYearsText(25, 'ru')).toBe('лет')
+    })
+
+    it('returns correct forms for 111, 112, 121', () => {
+      expect(getYearsText(111, 'ru')).toBe('лет')
+      expect(getYearsText(112, 'ru')).toBe('лет')
+      expect(getYearsText(121, 'ru')).toBe('год')
+    })
   })
 })

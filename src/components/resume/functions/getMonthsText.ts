@@ -1,20 +1,12 @@
 import type { Locale } from '@/app/i18n'
 
+import { pluralize } from './pluralize'
+
+const forms: Record<Locale, Partial<Record<Intl.LDMLPluralRule, string>>> = {
+  en: { one: 'month', other: 'months' },
+  ru: { few: 'месяца', many: 'месяцев', one: 'месяц' }
+}
+
 export const getMonthsText = (numMonths: number, locale: Locale): string => {
-  switch (true) {
-    case locale === 'en' && numMonths === 1:
-      return 'month'
-
-    case locale === 'en':
-      return 'months'
-
-    case locale === 'ru' && numMonths === 1:
-      return 'месяц'
-
-    case locale === 'ru' && numMonths <= 4:
-      return 'месяца'
-
-    default:
-      return 'месяцев'
-  }
+  return pluralize(numMonths, locale, forms[locale])
 }
