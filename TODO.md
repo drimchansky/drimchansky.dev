@@ -2,7 +2,6 @@
 
 - [ ] Update favicon
 - [ ] Fix scroll for webview
-- [ ] Fix desktop hover
 - [ ] Turn Astro config into ts
 - [ ] Fix avatar focus
 - [ ] Add readings page
