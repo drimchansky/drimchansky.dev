@@ -1,33 +1,33 @@
 :root {
   color-scheme: light dark;
 
-  --c-outline: oklch(67.06% 0.163 235.02);
-  --c-surface: light-dark(oklch(100% 0 0), oklch(22.21% 0 0));
+  --c-outline: oklch(50% 0.14 160);
+  --c-surface: light-dark(oklch(99.5% 0.004 80), oklch(22.21% 0.004 80));
   --c-highlight: oklch(0.9875 0.0654 107.54);
   --c-highlight-fg: oklch(51.03% 0 0);
-  --c-border: oklch(0.922 0 0);
-  --c-header: light-dark(oklch(97.52% 0.003 270.1), oklch(31.32% 0 0));
-  --c-header-border: light-dark(oklch(95% 0.006 270.07), oklch(61.67% 0 0));
-  --c-resume-separator: light-dark(oklch(0.5544 0.0099 270.07), oklch(61.67% 0 0));
-  --c-menu: light-dark(oklch(100% 0 0), oklch(21.06% 0.008 269.79));
-  --c-menu-hover-fg: light-dark(oklch(61.67% 0.189 252.84), oklch(77.05% 0.116 262.431));
-  --c-menu-hover: light-dark(oklch(61.67% 0.189 252.84 / 6.27%), oklch(77.05% 0.116 262.431 / 43.92%));
-  --c-switcher: light-dark(oklch(90.06% 0 0), oklch(32.11% 0 0));
-  --c-switcher-active: light-dark(oklch(100% 0 0), oklch(22.21% 0 0));
-  --c-switcher-fg: light-dark(oklch(28.46% 0.008 264.44), oklch(100% 0 0));
-  --c-switcher-border: light-dark(oklch(95% 0.006 270.07), oklch(61.67% 0 0));
+  --c-border: oklch(0.922 0.004 80);
+  --c-header: light-dark(oklch(97.52% 0.003 80), oklch(31.32% 0.003 80));
+  --c-header-border: light-dark(oklch(95% 0.004 80), oklch(61.67% 0 0));
+  --c-resume-separator: light-dark(oklch(0.5544 0.006 80), oklch(61.67% 0 0));
+  --c-menu: light-dark(oklch(100% 0 0), oklch(21.06% 0.004 80));
+  --c-menu-hover-fg: light-dark(oklch(61.67% 0.189 160), oklch(77.05% 0.116 160));
+  --c-menu-hover: light-dark(oklch(61.67% 0.189 160 / 6.27%), oklch(77.05% 0.116 160 / 43.92%));
+  --c-switcher: light-dark(oklch(90.06% 0.004 80), oklch(32.11% 0.004 80));
+  --c-switcher-active: light-dark(oklch(100% 0 0), oklch(22.21% 0.004 80));
+  --c-switcher-fg: light-dark(oklch(28.46% 0.005 80), oklch(100% 0 0));
+  --c-switcher-border: light-dark(oklch(95% 0.004 80), oklch(61.67% 0 0));
   --c-fg: light-dark(oklch(26.9% 0 0), oklch(95% 0 0));
   --c-fg-muted: light-dark(oklch(26.9% 0 0), oklch(90% 0 0));
-  --c-fg-subtle: light-dark(oklch(51.03% 0 0), oklch(81.63% 0 0.04));
+  --c-fg-subtle: light-dark(oklch(51.03% 0.005 80), oklch(81.63% 0.005 80));
   --c-btn: light-dark(oklch(22.21% 0 0), oklch(35% 0 0));
   --c-btn-hover: light-dark(oklch(52.08% 0 0), oklch(45% 0 0));
   --c-btn-active: oklch(69.93% 0 0);
   --c-btn-fg: light-dark(oklch(100% 0 0), oklch(95% 0 0));
-  --c-code: light-dark(oklch(0.97 0 0), oklch(0.269 0 0));
+  --c-code: light-dark(oklch(0.97 0.005 80), oklch(0.269 0.004 80));
   --c-code-fg: light-dark(oklch(26.9% 0 0), oklch(87% 0 0));
-  --c-alert: light-dark(oklch(1 0 0), oklch(0.205 0 0));
+  --c-alert: light-dark(oklch(0.99 0.004 80), oklch(0.205 0.004 80));
   --c-alert-fg: light-dark(oklch(0.145 0 0), oklch(0.985 0 0));
-  --c-alert-border: light-dark(oklch(0.922 0 0), oklch(1 0 0 / 10%));
+  --c-alert-border: light-dark(oklch(0.91 0.005 80), oklch(1 0 0 / 10%));
 }
 
 .is-light-theme {

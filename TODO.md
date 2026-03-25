@@ -1,10 +1,14 @@
 # Todo
 
 - [ ] Update favicon
-- [ ] Create readings page
-- [ ] Create watchings page
-- [ ] Create about page
-- [ ] Create video games page
+- [ ] Add readings page
+- [ ] Add watchings page
+- [ ] Add about page
+- [ ] Add video games page
 - [ ] Add position images in resume
-- [ ] Add image descriptions in notes
 - [ ] Add footnotes support in notes
+- [ ] Fix scroll for webview
+- [ ] Fix space between adjacent code blocks
+- [ ] Fix space between blockquote followed by a code block
+- [ ] Turn Astro config into ts
+- [ ] Fix avatar focus
