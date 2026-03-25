@@ -8,4 +8,4 @@ location:
 companyLink: https://www.p2p.org/
 ---
 
-**P2P.org** provides non-custodial staking infrastructure and technology for intermediaries such as Web3 Wallets, Exchanges and Custodians.
+**P2P.org** is a blockchain infrastructure company providing Staking-as-a-Business solutions across 40+ networks with $12B+ AUM – delivering white-label staking APIs, DeFi yield products, and validator tooling to exchanges, wallets, and banks.
