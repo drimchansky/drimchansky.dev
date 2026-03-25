@@ -1,6 +1,5 @@
 # Todo
 
-- [ ] Update favicon
 - [ ] Fix scroll for webview
 - [ ] Turn Astro config into ts
 - [ ] Fix avatar focus
