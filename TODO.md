@@ -1,6 +1,5 @@
 # Todo
 
-- [ ] Fix scroll for webview
 - [ ] Fix avatar focus
 - [ ] Add readings page
 - [ ] Add watchings page
