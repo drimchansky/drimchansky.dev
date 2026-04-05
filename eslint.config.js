@@ -71,6 +71,7 @@ export default [
     },
     rules: {
       ...eslintPluginTypeScript.configs.recommended.rules,
+      indent: 'off',
       'no-unused-vars': 'off',
       'space-before-function-paren': 'off'
     }

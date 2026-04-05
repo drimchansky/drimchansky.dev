@@ -5,9 +5,13 @@
     "source.fixAll": "always"
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "eslint.validate": ["typescript", "astro"],
-  "stylelint.validate": ["astro"]
+  "stylelint.validate": ["astro"],
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
 }

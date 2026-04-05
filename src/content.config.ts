@@ -43,7 +43,29 @@ const notesCollection = defineCollection({
   })
 })
 
+const booksCollection = defineCollection({
+  loader: glob({
+    base: './src/content/books',
+    pattern: '**/*.md'
+  }),
+  schema: z.object({
+    author: z.object({ en: z.string(), ru: z.string() }),
+    cover: z.string(),
+    dateFinished: z
+      .string()
+      .regex(/^\d{4}-\d{2}-\d{2}$/)
+      .nullable(),
+    fiction: z.boolean(),
+    isTestOnly: z.boolean().optional(),
+    language: z.enum(['en', 'ru']),
+    rating: z.number().min(0.5).max(5).nullable(),
+    skipped: z.boolean().optional(),
+    title: z.object({ en: z.string(), ru: z.string() })
+  })
+})
+
 export const collections = {
+  books: booksCollection,
   general: generalCollection,
   notes: notesCollection,
   resume: resumeCollection

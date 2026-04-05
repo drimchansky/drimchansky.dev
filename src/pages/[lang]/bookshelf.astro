@@ -1,0 +1,116 @@
+---
+import type { GetStaticPaths, ImageMetadata } from 'astro'
+
+import { getCollection, render } from 'astro:content'
+
+import { getLocale, supportedLocales, t } from '@/app/i18n'
+import BaseLayout from '@/app/layouts/base-layout.astro'
+import { BookFilter, BookItem, filterBooks, prepareBooksList } from '@/components/bookshelf'
+import { Header } from '@/components/header'
+import Container from '@/shared/ui/container.astro'
+import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
+import TypographyH2 from '@/shared/ui/typography/typography-h2.astro'
+
+export const getStaticPaths = (async () =>
+  supportedLocales.map(lang => ({ params: { lang } }))) satisfies GetStaticPaths
+
+const locale = getLocale(Astro.currentLocale)
+const books = filterBooks(await getCollection('books'))
+const { counts, currentlyReading, readByYear } = prepareBooksList(books)
+
+const covers = import.meta.glob<{ default: ImageMetadata }>('/src/assets/covers/*.jpg', {
+  eager: true
+})
+
+function getCover(filename: string): ImageMetadata {
+  const path = `/src/assets/covers/${filename}`
+  const entry = covers[path]
+  if (!entry) throw new Error(`Missing cover image: ${path}`)
+  return entry.default
+}
+
+const rendered = new Map<string, Awaited<ReturnType<typeof render>>>()
+for (const book of books) {
+  if (book.body?.trim()) {
+    rendered.set(book.id, await render(book))
+  }
+}
+---
+
+<BaseLayout title=`${t(Astro.currentLocale, 'bookshelf')} – ${t(Astro.currentLocale, 'fullName')}`>
+  <Header slot="header" />
+
+  <div>
+    <Container content class="py-12">
+      <TypographyH1>{t(Astro.currentLocale, 'bookshelf')}</TypographyH1>
+
+      <div class="mt-6">
+        <BookFilter locale={locale} counts={counts} />
+      </div>
+
+      {
+        currentlyReading.length > 0 && (
+          <section data-book-group>
+            <TypographyH2 class="border-header-border border-b-2 pt-8 pb-2">
+              {t(Astro.currentLocale, 'currentlyReading')}
+            </TypographyH2>
+            <ul class="mt-2 list-none">
+              {currentlyReading.map(book => {
+                const Content = rendered.get(book.id)?.Content
+                return (
+                  <BookItem
+                    title={book.data.title}
+                    author={book.data.author}
+                    cover={getCover(book.data.cover)}
+                    rating={book.data.rating}
+                    language={book.data.language}
+                    fiction={book.data.fiction}
+                    skipped={book.data.skipped}
+                    locale={locale}
+                  >
+                    {Content && (
+                      <p class="text-fg-muted mt-1 text-sm">
+                        <Content />
+                      </p>
+                    )}
+                  </BookItem>
+                )
+              })}
+            </ul>
+          </section>
+        )
+      }
+
+      {
+        readByYear.map(([year, books]) => (
+          <section data-book-group>
+            <TypographyH2 class="border-header-border border-b-2 pt-8 pb-2">{year}</TypographyH2>
+            <ul class="mt-2 list-none">
+              {books.map(book => {
+                const Content = rendered.get(book.id)?.Content
+                return (
+                  <BookItem
+                    title={book.data.title}
+                    author={book.data.author}
+                    cover={getCover(book.data.cover)}
+                    rating={book.data.rating}
+                    language={book.data.language}
+                    fiction={book.data.fiction}
+                    skipped={book.data.skipped}
+                    locale={locale}
+                  >
+                    {Content && (
+                      <p class="text-fg-muted mt-1 text-sm">
+                        <Content />
+                      </p>
+                    )}
+                  </BookItem>
+                )
+              })}
+            </ul>
+          </section>
+        ))
+      }
+    </Container>
+  </div>
+</BaseLayout>

@@ -1,0 +1,69 @@
+---
+import type { Locale } from '@/app/i18n'
+
+import { t } from '@/app/i18n'
+
+interface Props {
+  counts: { all: number; fiction: number; nonFiction: number }
+  locale: Locale
+}
+
+const { counts, locale } = Astro.props
+
+const filters = [
+  { count: counts.all, label: t(locale, 'all'), value: 'all' },
+  { count: counts.fiction, label: t(locale, 'fiction'), value: 'true' },
+  { count: counts.nonFiction, label: t(locale, 'nonFiction'), value: 'false' }
+] as const
+---
+
+<div class="flex flex-wrap gap-1" role="group" id="book-filter">
+  {
+    filters.map(({ count, label, value }) => (
+      <button
+        class:list={[
+          'focus-ring cursor-pointer rounded-full border px-3 py-1 text-sm whitespace-nowrap transition-colors',
+          'border-border text-fg-subtle',
+          'hoverable:not-aria-pressed:text-fg hoverable:not-aria-pressed:border-fg',
+          'aria-pressed:border-fg aria-pressed:bg-fg aria-pressed:text-surface aria-pressed:cursor-default'
+        ]}
+        type="button"
+        data-filter={value}
+        aria-pressed={value === 'all' ? 'true' : 'false'}
+      >
+        {label} ({count})
+      </button>
+    ))
+  }
+</div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const group = document.getElementById('book-filter')
+    if (!group) return
+
+    const buttons = group.querySelectorAll<HTMLButtonElement>('[data-filter]')
+    const items = document.querySelectorAll<HTMLElement>('[data-fiction]')
+
+    const groups = document.querySelectorAll<HTMLElement>('[data-book-group]')
+
+    function apply(filter: string) {
+      for (const btn of buttons) {
+        btn.setAttribute('aria-pressed', btn.dataset.filter === filter ? 'true' : 'false')
+      }
+      for (const item of items) {
+        const show = filter === 'all' || item.dataset.fiction === filter
+        item.classList.toggle('hidden', !show)
+      }
+      for (const group of groups) {
+        const hasVisible = group.querySelector<HTMLElement>('[data-fiction]:not(.hidden)')
+        group.classList.toggle('hidden', !hasVisible)
+      }
+    }
+
+    group.addEventListener('click', e => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-filter]')
+      if (btn?.dataset.filter) apply(btn.dataset.filter)
+    })
+  })
+</script>

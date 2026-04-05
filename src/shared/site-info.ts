@@ -22,7 +22,8 @@ const siteInfo: SiteInfo = {
   navigation: [
     { id: 'home', route: '/' },
     { id: 'resume', route: '/resume' },
-    { id: 'notes', route: '/notes' }
+    { id: 'notes', route: '/notes' },
+    { id: 'bookshelf', route: '/bookshelf' }
   ],
   socialLinks: [
     {
