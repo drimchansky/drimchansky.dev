@@ -6,7 +6,7 @@ export const filterNotes = (notes: CollectionEntry<'notes'>[]) => {
   return notes.filter(note => {
     if (note.data.isDraft) return false
     if (isTesting) return !!note.data.isTestOnly
-    if (note.data.isTestOnly) return !import.meta.env.PROD
+    if (note.data.isTestOnly) return false
     return true
   })
 }

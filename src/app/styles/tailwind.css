@@ -135,7 +135,6 @@
       color: var(--c-fg);
       font-family: var(--font-heading);
       font-weight: 600;
-      scroll-margin-top: calc(var(--header-height));
       text-wrap: balance;
     }
 

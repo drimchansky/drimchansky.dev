@@ -5,7 +5,7 @@ export const filterBooks = (books: CollectionEntry<'books'>[]) => {
 
   return books.filter(book => {
     if (isTesting) return !!book.data.isTestOnly
-    if (book.data.isTestOnly) return !import.meta.env.PROD
+    if (book.data.isTestOnly) return false
     return true
   })
 }

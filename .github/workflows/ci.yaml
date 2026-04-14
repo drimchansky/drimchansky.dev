@@ -30,7 +30,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      image: mcr.microsoft.com/playwright:v1.59.1-noble
 
     steps:
       - name: Install Git LFS
@@ -47,7 +47,7 @@ jobs:
       - name: Verify Playwright image version matches package.json
         run: |
           EXPECTED=$(node -p "require('./package.json').devDependencies['@playwright/test']")
-          ACTUAL="1.58.2"
+          ACTUAL="1.59.1"
           if [ "$EXPECTED" != "$ACTUAL" ]; then
             echo "::error::Playwright version mismatch! package.json has v$EXPECTED but CI uses v$ACTUAL. Update the container image in this workflow."
             exit 1

@@ -18,7 +18,7 @@ const stars = rating
 
 {
   rating !== null && rating > 0 && (
-    <div class:list={['flex gap-0.5', className]} aria-label={`${rating} out of 5`}>
+    <div class:list={['flex gap-0.5', className]} role="img" aria-label={`${rating} out of 5`}>
       {stars.map(type => (
         <svg
           width="14"

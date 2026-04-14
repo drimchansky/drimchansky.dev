@@ -34,6 +34,7 @@
 - `tests/e2e/` – Playwright end-to-end tests
 - `tests/visual/` – Playwright visual regression tests
 - `public/` – Static assets
+- `docs/` – Developer documentation
 
 ## Boundaries
 

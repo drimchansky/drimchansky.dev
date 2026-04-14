@@ -84,7 +84,9 @@ for (const book of books) {
       {
         readByYear.map(([year, books]) => (
           <section data-book-group>
-            <TypographyH2 class="border-header-border border-b-2 pt-8 pb-2">{year}</TypographyH2>
+            <TypographyH2 class="border-header-border border-b-2 pt-8 pb-2">
+              {year}&nbsp;<span class="text-sm font-normal">({books.length})</span>
+            </TypographyH2>
             <ul class="mt-2 list-none">
               {books.map(book => {
                 const Content = rendered.get(book.id)?.Content
