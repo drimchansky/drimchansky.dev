@@ -2,7 +2,7 @@
   color-scheme: light dark;
 
   --c-outline: oklch(50% 0.14 160);
-  --c-surface: light-dark(oklch(99.5% 0.004 80), oklch(22.21% 0.004 80));
+  --c-surface: light-dark(oklch(0.9851 0 0), oklch(22.21% 0.004 80));
   --c-highlight: oklch(0.9875 0.0654 107.54);
   --c-highlight-fg: oklch(51.03% 0 0);
   --c-border: oklch(0.922 0.004 80);
