@@ -6,8 +6,8 @@ author:
   en: 'Phil Knight'
   ru: 'Фил Найт'
 language: en
-rating: null
+rating: 5
 cover: 'shoe-dog-a-memoir-by-the-creator-of-nike--phil-knight.jpg'
 fiction: false
-dateFinished: null
+dateFinished: '2026-05-16'
 ---
