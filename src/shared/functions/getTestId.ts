@@ -1,3 +1,5 @@
+import { IS_TESTING } from './env'
+
 export const getTestId = (id: string): string | undefined => {
-  if (process.env.TESTING) return id
+  if (IS_TESTING) return id
 }

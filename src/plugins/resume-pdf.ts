@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url'
 
 import { supportedLocales } from '../app/i18n'
 import { RESUME_FILENAMES_BY_LOCALE } from '../components/resume/constants'
+import { IS_TESTING } from '../shared/functions/env'
 
 const MIME_TYPES: Record<string, string> = {
   '.css': 'text/css',
@@ -58,7 +59,7 @@ export default function resumePdf(): AstroIntegration {
   return {
     hooks: {
       'astro:build:done': async ({ dir, logger }) => {
-        if (process.env.TESTING) {
+        if (IS_TESTING) {
           logger.info('Skipping PDF generation in test mode')
           return
         }
