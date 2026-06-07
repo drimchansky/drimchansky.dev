@@ -1,0 +1,141 @@
+---
+title: 'MacOS Setup 2026'
+publishingDate: 2026-06-07
+---
+
+Last used with macOS Tahoe 26.5
+
+## 1. Onboarding
+
+- Keyboards: **British** and **Russian – PC**.
+- Location Services: ON.
+- Siri: OFF.
+- Apple Intelligence: OFF.
+- FileVault: ON.
+- Automatic updates: **only download**.
+
+## 2. Install Latest macOS Updates
+
+## 3. Update macOS Settings
+
+- **Speed up keyboard:** System Settings -> Keyboard -> Key repeat rate – Fast, Delay until repeat – Short.
+- **Wallpaper:** Set some nice nature landscape from default library.
+- **Appearance:**
+  - Liquid Glass – Tinted
+  - Show scroll bars – Always.
+- **Desktop & Dock:**
+  - Automatically hide and show the Dock – ON.
+  - Show suggested and recent apps in Dock – OFF.
+  - Dock: Size: 25%, Magnification: 50%.
+- **Notifications:**
+  - When screen is locked – OFF.
+- **Sound:**
+  - Play sound on startup – OFF.
+  - Play user interface sound effects – OFF.
+- **Network:**
+  - Firewall – ON.
+- **iCloud:**
+  - Drive -> Optimize mac storage -> OFF.
+- **Internet accounts:**
+  - Add personal and work emails (calendar sync only)
+
+## 4. Install Software
+
+- Browsers: [Chrome](https://www.google.com/chrome/), [Firefox](https://www.mozilla.org/en-US/firefox/new/). Set Chrome as a default browser.
+- Primary messenger: [Telegram](https://desktop.telegram.org/)
+  - Notifications and Sounds: Bounce the Dock icon - OFF, Allow sound – OFF, Include muted chats in unread count – OFF.
+  - Advanced: Download path – Tmp folder, update automatically – OFF.
+- The best media player: [VLC Player](https://www.videolan.org/vlc/index.en.html).
+- Handy images optimization: [ImageOptim](https://imageoptim.com/mac).
+- [Homebrew](https://brew.sh/) for packages management.
+- Password manager: `brew install bitwarden`.
+  - Allow browser integration - ON, show menu bar icon – OFF, unlock with Touch ID – ON, timeout – 5 min.
+  - Login into browser extension -> unlock with biometrics – ON, timeout – 5 min.
+- Code editor: [VS Code](https://code.visualstudio.com/).
+- For remembering stuff: [Anki](https://apps.ankiweb.net/).
+- [Things 3](https://apps.apple.com/ge/app/things-3/id904280696) the best task manager.
+  - Badge count – Deadlines Only.
+- [Scroll-Reverser](https://github.com/pilotmoon/Scroll-Reverser). Reverse Trackpad – OFF, Reverse Mouse – ON.
+- [Command X](https://sindresorhus.com/command-x) – cut and paste files in Finder.
+- [The Unarchiver](https://apps.apple.com/ge/app/the-unarchiver/id425424353).
+- [Transmission](https://transmissionbt.com/download) bittorrent client.
+- [nvm](https://github.com/nvm-sh/nvm).
+- [Claude](https://claude.ai/downloads) + [Claude Code CLI](https://code.claude.com/docs/en/overview) (Native Install).
+- [ChatGPT](https://chatgpt.com/) – Install Page as App, [Codex CLI](https://developers.openai.com/codex/cli)
+- [Docker](https://docs.docker.com/desktop/install/mac-install/).
+- [Postman](https://www.postman.com/downloads/).
+- `brew install cmake p7zip pnpm git git-lfs killport openssh gh`.
+  - `git lfs install`
+  - `brew link openssh`
+  - `gh auth login`
+- [Yubico Authenticator](https://apps.apple.com/ge/app/yubico-authenticator/id1497506650).
+- [Ledger Wallet](https://shop.ledger.com/pages/ledger-wallet#download).
+- [iTerm2](https://iterm2.com/).
+
+## 5. Update Configs and setup ssh with YubiKey
+
+- [configs](https://github.com/drimchansky/configs)
+
+Generate new ssh keys for each yubikey: `ssh-keygen -t ed25519-sk -f ~/.ssh/yubikey_x` -> and add them to GitHub.
+
+Set directory rights `chmod 600 ~/.ssh/*`.
+
+Apply [agents-kit](https://github.com/drimchansky/agents-kit).
+
+## 6. Install Fonts
+
+Download and install using Font Book.
+
+- [Fira Code](https://github.com/tonsky/FiraCode).
+- [Martian Mono](https://github.com/evilmartians/mono).
+
+## 7. Tweak UI
+
+- **Finder:**
+  - Settings: Show all filename extensions – ON.
+  - Favorites:
+    - [User directory]
+    - [Work directory]
+    - Documents
+    - Downloads
+    - Applications
+    - Desktop
+  - View:
+    - Show path bar.
+    - Show View Options -> Always show in list view – ON, Calculate all sizes – ON + "Use as Defaults"
+- Dock icons order, from left to right:
+  - Finder
+  - "Apps"
+  - AI chats (Claude, ChatGPT)
+  - IDE and editors (VSCode, Zed, ...)
+  - Default browser (Chrome)
+  - iTerm
+  - Activity Monitor
+  - Bitwarden
+  - Calendar
+  - Things
+  - Notes
+  - Clock
+  - Calculator
+  - Telegram
+- Widgets in notification center:
+  - Weather (med).
+  - Calendar (large).
+  - Calendar (small, month view).
+  - Batteries (small).
+
+## 8. Notifications
+
+Disable as many as possible. Leave badge application icon only for Telegram, Slack and Things.
+
+## 9. Menu bar and Controls
+
+Enabled menu bar buttons: Wi-Fi, Bluetooth, Battery, Sound (show always), Timer.
+
+Controls layout:
+
+- Row 1: Bluetooth / Wi-Fi
+- Row 2: AirDrop / Screen Mirroring
+- Row 3: Display
+- Row 4: Sound
+- Row 5: Currently playing
