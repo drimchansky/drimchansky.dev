@@ -32,7 +32,7 @@ export const getStaticPaths = (async () => {
     <article>
       <NoteHeader note={note} />
 
-      <div class="markdown pt-12">
+      <div class="markdown pt-12 [&_:is(p,li)]:leading-[1.7]">
         <Content />
       </div>
     </article>

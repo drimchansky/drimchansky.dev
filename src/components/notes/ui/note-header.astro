@@ -21,7 +21,7 @@ const locale = getLocale(Astro.currentLocale)
 const dateFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', year: 'numeric' })
 ---
 
-<header class:list={['flex flex-col items-start gap-2', className]} {...props}>
+<header class:list={['flex flex-col items-start gap-1', className]} {...props}>
   <a class="text-fg focus-ring flex items-center gap-0.75 no-underline" href={getRelativeLocaleUrl(locale, '/notes')}>
     <Icon name="arrow-left" aria-hidden="true" />
     <TypographySpan>{t(Astro.currentLocale, 'backToNotes')}</TypographySpan>

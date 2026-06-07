@@ -37,7 +37,9 @@
 
   --font-heading: 'EB Garamond SemiBold', Georgia, ui-serif, Cambria, 'Times New Roman', Times, serif;
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: monospace;
+  --font-mono:
+    ui-monospace, 'SF Mono', 'SFMono-Regular', Menlo, 'Cascadia Code', 'Source Code Pro', Consolas, 'Liberation Mono',
+    'DejaVu Sans Mono', monospace;
 
   --radius-DEFAULT: 0.625rem;
 
@@ -187,6 +189,7 @@
       font-size: var(--text-base);
       font-weight: 400;
       line-height: var(--text-base--line-height);
+      text-wrap: pretty;
     }
 
     & ul {
