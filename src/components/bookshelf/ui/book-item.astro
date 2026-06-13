@@ -27,7 +27,7 @@ const displayAuthor = author[locale] || author.en || author.ru
 const langLabels = { en: 'langEn', ru: 'langRu' } as const
 ---
 
-<li class:list={['flex items-start gap-4 py-3', skipped && 'opacity-50']} data-fiction={String(fiction)}>
+<li class="flex items-start gap-4 py-3" data-fiction={String(fiction)}>
   <Picture
     src={cover}
     formats={['avif', 'webp']}
@@ -47,7 +47,7 @@ const langLabels = { en: 'langEn', ru: 'langRu' } as const
       {displayAuthor}
     </span>
     <div class="mt-0.5 flex items-center gap-2">
-      <StarRating rating={rating} />
+      {!skipped && <StarRating rating={rating} />}
       <span class="text-fg-subtle bg-surface border-border rounded border px-1.5 py-0 text-xs leading-relaxed">
         {t(locale, langLabels[language])}
       </span>

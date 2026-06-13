@@ -33,7 +33,7 @@ export const en: LocaleCollection = {
   siteDescription: 'Personal website of Nikita Chernov',
   skillsAndLanguages: 'Skills & Languages',
   skipLink: 'Go to main content',
-  skipped: 'Skipped',
+  skipped: 'Did not finish',
   summary: 'Summary',
   theme: 'Color theme switcher',
   toLocale: 'Русский',
