@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'the-trial--franz-kafka.jpg'
-fiction: true
+type: fiction
 dateFinished: '2024-02-01'
 ---

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'a-wild-sheep-chase-dance-dance-dance--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2024-01-01'
 ---

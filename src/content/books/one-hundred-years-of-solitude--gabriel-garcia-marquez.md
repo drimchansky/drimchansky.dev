@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'one-hundred-years-of-solitude--gabriel-garcia-marquez.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-01-01'
 ---

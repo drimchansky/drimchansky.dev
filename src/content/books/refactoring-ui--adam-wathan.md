@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'refactoring-ui--adam-wathan.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2025-01-01'
 ---

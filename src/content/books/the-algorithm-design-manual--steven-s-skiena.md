@@ -8,7 +8,7 @@ author:
 language: ru
 rating: 3.5
 cover: 'the-algorithm-design-manual--steven-s-skiena.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2022-11-01'
 skipped: true
 ---

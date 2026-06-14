@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'to-kill-a-mockingbird--harper-lee.jpg'
-fiction: true
+type: fiction
 dateFinished: '2023-01-01'
 ---

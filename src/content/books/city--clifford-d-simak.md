@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'city--clifford-d-simak.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-06-01'
 ---

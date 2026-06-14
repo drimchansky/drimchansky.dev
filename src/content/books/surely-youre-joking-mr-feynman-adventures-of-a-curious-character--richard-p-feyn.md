@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'surely-youre-joking-mr-feynman-adventures-of-a-curious-character--richard-p-feyn.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2024-10-01'
 ---

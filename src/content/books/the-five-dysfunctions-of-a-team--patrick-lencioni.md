@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'the-five-dysfunctions-of-a-team--patrick-lencioni.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2024-11-01'
 ---

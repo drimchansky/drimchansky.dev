@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'the-picture-of-dorian-gray--oscar-wilde.jpg'
-fiction: true
+type: fiction
 dateFinished: '2019-07-01'
 ---

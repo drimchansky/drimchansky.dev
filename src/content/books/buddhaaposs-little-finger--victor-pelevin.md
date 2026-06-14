@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'buddhaaposs-little-finger--victor-pelevin.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-03-01'
 ---

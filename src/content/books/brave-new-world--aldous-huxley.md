@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'brave-new-world--aldous-huxley.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-08-01'
 ---

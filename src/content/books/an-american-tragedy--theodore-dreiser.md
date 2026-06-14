@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'an-american-tragedy--theodore-dreiser.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-01-01'
 ---

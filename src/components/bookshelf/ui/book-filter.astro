@@ -12,8 +12,8 @@ const { counts, locale } = Astro.props
 
 const filters = [
   { count: counts.all, label: t(locale, 'all'), value: 'all' },
-  { count: counts.fiction, label: t(locale, 'fiction'), value: 'true' },
-  { count: counts.nonFiction, label: t(locale, 'nonFiction'), value: 'false' }
+  { count: counts.fiction, label: t(locale, 'fiction'), value: 'fiction' },
+  { count: counts.nonFiction, label: t(locale, 'nonFiction'), value: 'non-fiction' }
 ] as const
 ---
 
@@ -37,28 +37,69 @@ const filters = [
   }
 </div>
 
+<script is:inline>
+  // Hydrate the filter from the URL before first paint, so a shared
+  // ?type= link renders already filtered with no flash of the full list.
+  // Item/section hiding is pure CSS keyed off html[data-type-filter]; this only
+  // sets that attribute (+ aria-pressed). Mirrors theme-segmented-control.astro's
+  // no-FOUC pattern: apply synchronously at parse, re-apply on astro:after-swap
+  // (the pre-paint hook ClientRouter fires on view-transition navs). All filter
+  // writes use replaceState, so no popstate listener is needed.
+  ;(() => {
+    function applyBookFilter() {
+      const raw = new URLSearchParams(window.location.search).get('type')
+      const filter = raw === 'fiction' || raw === 'non-fiction' ? raw : 'all'
+      const root = document.documentElement
+
+      if (filter === 'all') {
+        delete root.dataset.typeFilter
+      } else {
+        root.dataset.typeFilter = filter
+      }
+
+      const group = document.getElementById('book-filter')
+      if (!group) return
+      for (const btn of group.querySelectorAll('[data-filter]')) {
+        btn.setAttribute('aria-pressed', btn.dataset.filter === filter ? 'true' : 'false')
+      }
+    }
+
+    applyBookFilter()
+    document.addEventListener('astro:after-swap', applyBookFilter)
+  })()
+</script>
+
 <script>
+  // Click interactivity. Re-bound on every astro:page-load because ClientRouter
+  // swaps #book-filter on navigation. The pre-paint hydration above owns the
+  // initial/visual state; this reacts to user clicks and keeps the URL in sync.
   document.addEventListener('astro:page-load', () => {
     const group = document.getElementById('book-filter')
     if (!group) return
 
     const buttons = group.querySelectorAll<HTMLButtonElement>('[data-filter]')
-    const items = document.querySelectorAll<HTMLElement>('[data-fiction]')
-
-    const groups = document.querySelectorAll<HTMLElement>('[data-book-group]')
 
     function apply(filter: string) {
+      const root = document.documentElement
+      if (filter === 'all') {
+        delete root.dataset.typeFilter
+      } else {
+        root.dataset.typeFilter = filter
+      }
       for (const btn of buttons) {
         btn.setAttribute('aria-pressed', btn.dataset.filter === filter ? 'true' : 'false')
       }
-      for (const item of items) {
-        const show = filter === 'all' || item.dataset.fiction === filter
-        item.classList.toggle('hidden', !show)
+
+      // Sync to the URL without adding history entries (Back stays page-level);
+      // omit the param for "all" so the canonical URL stays clean, and preserve
+      // any other existing query params.
+      const url = new URL(window.location.href)
+      if (filter === 'all') {
+        url.searchParams.delete('type')
+      } else {
+        url.searchParams.set('type', filter)
       }
-      for (const group of groups) {
-        const hasVisible = group.querySelector<HTMLElement>('[data-fiction]:not(.hidden)')
-        group.classList.toggle('hidden', !hasVisible)
-      }
+      history.replaceState(history.state, '', url)
     }
 
     group.addEventListener('click', e => {

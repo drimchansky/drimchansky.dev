@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'fahrenheit-451--ray-bradbury.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-09-01'
 ---

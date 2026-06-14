@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'hard-boiled-wonderland-and-the-end-of-the-world--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2021-10-01'
 ---

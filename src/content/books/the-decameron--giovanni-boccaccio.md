@@ -8,7 +8,7 @@ author:
 language: ru
 rating: 1
 cover: 'the-decameron--giovanni-boccaccio.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-04-01'
 skipped: true
 ---

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'the-winners-beartown-3--fredrik-backman.jpg'
-fiction: true
+type: fiction
 dateFinished: '2025-01-01'
 ---

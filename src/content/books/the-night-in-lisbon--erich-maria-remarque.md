@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'the-night-in-lisbon--erich-maria-remarque.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-12-01'
 ---

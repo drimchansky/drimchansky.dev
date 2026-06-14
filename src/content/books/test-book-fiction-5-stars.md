@@ -8,7 +8,7 @@ author:
 language: ru
 rating: 5
 cover: 'norwegian-wood--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2025-01-15'
 isTestOnly: true
 ---

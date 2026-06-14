@@ -8,7 +8,7 @@ author:
 language: ru
 rating: 2
 cover: 'games-people-play--eric-berne.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2023-12-01'
 skipped: true
 ---

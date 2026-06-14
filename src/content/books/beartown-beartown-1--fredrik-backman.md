@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'beartown-beartown-1--fredrik-backman.jpg'
-fiction: true
+type: fiction
 dateFinished: '2024-11-01'
 ---

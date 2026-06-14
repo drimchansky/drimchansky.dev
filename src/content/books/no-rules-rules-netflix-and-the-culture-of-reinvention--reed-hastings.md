@@ -8,6 +8,6 @@ author:
 language: en
 rating: 4
 cover: 'no-rules-rules-netflix-and-the-culture-of-reinvention--reed-hastings.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2024-04-01'
 ---

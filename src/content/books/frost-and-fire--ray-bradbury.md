@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3
 cover: 'frost-and-fire--ray-bradbury.jpg'
-fiction: true
+type: fiction
 dateFinished: '2022-10-01'
 ---

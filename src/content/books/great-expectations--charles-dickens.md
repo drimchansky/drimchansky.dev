@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3.5
 cover: 'great-expectations--charles-dickens.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-11-01'
 ---

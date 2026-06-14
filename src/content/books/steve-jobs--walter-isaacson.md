@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'steve-jobs--walter-isaacson.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2020-01-01'
 ---

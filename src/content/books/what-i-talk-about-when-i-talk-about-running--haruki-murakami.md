@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'what-i-talk-about-when-i-talk-about-running--haruki-murakami.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2019-11-01'
 ---

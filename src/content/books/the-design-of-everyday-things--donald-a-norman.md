@@ -8,6 +8,6 @@ author:
 language: en
 rating: 5
 cover: 'the-design-of-everyday-things--donald-a-norman.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2025-10-01'
 ---

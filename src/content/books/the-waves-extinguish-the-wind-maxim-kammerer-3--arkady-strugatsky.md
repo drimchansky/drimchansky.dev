@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'the-waves-extinguish-the-wind-maxim-kammerer-3--arkady-strugatsky.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-01-01'
 ---

@@ -8,6 +8,6 @@ author:
 language: en
 rating: 4.5
 cover: 'never-split-the-difference-negotiating-as-if-your-life-depended-on-it--chris-voss.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2026-01-01'
 ---

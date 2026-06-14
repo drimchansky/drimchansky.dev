@@ -8,7 +8,7 @@ author:
 language: ru
 rating: null
 cover: 'grokking-algorithms--aditya-y-bhargava.jpg'
-fiction: true
+type: fiction
 dateFinished: '2024-11-01'
 skipped: true
 isTestOnly: true

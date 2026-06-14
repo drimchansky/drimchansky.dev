@@ -8,6 +8,6 @@ author:
 language: en
 rating: null
 cover: 'the-software-engineer-s-guidebook--gergely-orosz.jpg'
-fiction: false
+type: non-fiction
 dateFinished: null
 ---

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3
 cover: 'colorless-tsukuru-tazaki-and-his-years-of-pilgrimage--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2025-03-01'
 ---

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'the-idiot--fyodor-dostoevsky.jpg'
-fiction: true
+type: fiction
 dateFinished: '2023-01-01'
 ---

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'dive-into-design-patterns--alexander-shvets.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2021-03-01'
 ---

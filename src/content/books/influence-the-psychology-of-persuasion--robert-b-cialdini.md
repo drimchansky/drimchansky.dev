@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3
 cover: 'influence-the-psychology-of-persuasion--robert-b-cialdini.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2023-04-01'
 ---

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'the-voyage-of-the-heretique--alain-bombard.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2022-02-01'
 ---

@@ -55,12 +55,12 @@ const booksCollection = defineCollection({
       .string()
       .regex(/^\d{4}-\d{2}-\d{2}$/)
       .nullable(),
-    fiction: z.boolean(),
     isTestOnly: z.boolean().optional(),
     language: z.enum(['en', 'ru']),
     rating: z.number().min(0.5).max(5).nullable(),
     skipped: z.boolean().optional(),
-    title: z.object({ en: z.string(), ru: z.string() })
+    title: z.object({ en: z.string(), ru: z.string() }),
+    type: z.enum(['fiction', 'non-fiction'])
   })
 })
 

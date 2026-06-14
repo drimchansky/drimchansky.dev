@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'the-gambler--fyodor-dostoevsky.jpg'
-fiction: true
+type: fiction
 dateFinished: '2021-01-01'
 ---

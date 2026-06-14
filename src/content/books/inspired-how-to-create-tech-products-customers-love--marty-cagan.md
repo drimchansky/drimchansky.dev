@@ -8,6 +8,6 @@ author:
 language: en
 rating: 4.5
 cover: 'inspired-how-to-create-tech-products-customers-love--marty-cagan.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2025-05-01'
 ---

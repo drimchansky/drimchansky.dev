@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'start-with-nothe-negotiating-tools-that-the-pros-dont-want-you-to-know--jim-camp.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2022-05-01'
 ---

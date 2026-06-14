@@ -8,6 +8,6 @@ author:
 language: en
 rating: 4
 cover: 'the-hard-thing-about-hard-things-building-a-business-when-there-are-no-easy-answ.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2025-04-01'
 ---

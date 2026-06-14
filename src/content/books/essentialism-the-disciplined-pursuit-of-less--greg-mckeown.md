@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3
 cover: 'essentialism-the-disciplined-pursuit-of-less--greg-mckeown.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2020-03-01'
 ---

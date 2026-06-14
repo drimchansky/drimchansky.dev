@@ -8,7 +8,7 @@ author:
 language: ru
 rating: 1
 cover: 'telluria--vladimir-sorokin.jpg'
-fiction: true
+type: fiction
 dateFinished: '2025-06-01'
 skipped: true
 ---

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3.5
 cover: 'go-and-sin-no-more--valentin-pikul.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-01-01'
 ---

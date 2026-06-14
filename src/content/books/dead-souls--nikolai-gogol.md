@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'dead-souls--nikolai-gogol.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-09-01'
 ---

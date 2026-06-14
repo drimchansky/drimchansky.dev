@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'the-mysterious-island--jules-verne.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-04-01'
 ---

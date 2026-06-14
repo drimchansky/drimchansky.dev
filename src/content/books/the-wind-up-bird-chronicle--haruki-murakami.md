@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'the-wind-up-bird-chronicle--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2023-09-01'
 ---

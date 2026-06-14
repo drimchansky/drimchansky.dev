@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'no-more-mr-nice-guy--robert-a-glover.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2023-02-01'
 ---

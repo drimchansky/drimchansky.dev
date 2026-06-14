@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3.5
 cover: 'the-art-of-war--sun-tzu.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2020-09-01'
 ---

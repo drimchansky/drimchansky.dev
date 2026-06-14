@@ -347,3 +347,13 @@
     }
   }
 }
+
+[data-type-filter='fiction'] [data-type='non-fiction'],
+[data-type-filter='non-fiction'] [data-type='fiction'] {
+  display: none;
+}
+
+[data-type-filter='fiction'] [data-book-group]:not(:has([data-type='fiction'])),
+[data-type-filter='non-fiction'] [data-book-group]:not(:has([data-type='non-fiction'])) {
+  display: none;
+}

@@ -8,6 +8,6 @@ author:
 language: en
 rating: 4
 cover: 'continuous-discovery-habits-discover-products-that-create-customer-value-and-bus.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2026-03-01'
 ---

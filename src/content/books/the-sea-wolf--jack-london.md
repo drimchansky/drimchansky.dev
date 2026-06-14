@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'the-sea-wolf--jack-london.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-03-01'
 ---

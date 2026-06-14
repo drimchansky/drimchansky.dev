@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'slaughterhouse-five-or-the-childrens-crusade--kurt-vonnegut.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-06-01'
 ---

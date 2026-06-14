@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'center-of-gravity--alexey-polyarinov.jpg'
-fiction: true
+type: fiction
 dateFinished: '2026-04-13'
 ---

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'russian-problems-in-english-speech--lynn-visson.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2022-06-01'
 ---

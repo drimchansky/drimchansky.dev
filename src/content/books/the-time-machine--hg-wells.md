@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'the-time-machine--hg-wells.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-04-01'
 ---

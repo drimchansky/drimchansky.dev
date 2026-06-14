@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3
 cover: 'murakami-radio--haruki-murakami.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2023-07-01'
 ---

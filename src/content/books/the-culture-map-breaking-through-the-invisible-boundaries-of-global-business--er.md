@@ -8,6 +8,6 @@ author:
 language: en
 rating: 4
 cover: 'the-culture-map-breaking-through-the-invisible-boundaries-of-global-business--er.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2025-01-01'
 ---

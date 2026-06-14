@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 2
 cover: 'war-and-peace--leo-tolstoy.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-10-01'
 ---

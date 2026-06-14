@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3.5
 cover: 'keep-the-aspidistra-flying--george-orwell.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-06-01'
 ---

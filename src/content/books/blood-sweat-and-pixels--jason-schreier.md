@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'blood-sweat-and-pixels--jason-schreier.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2021-01-01'
 ---

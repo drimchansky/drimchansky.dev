@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 't--victor-pelevin.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-11-01'
 ---

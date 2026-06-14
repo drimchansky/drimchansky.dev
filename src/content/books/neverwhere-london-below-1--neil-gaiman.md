@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'neverwhere-london-below-1--neil-gaiman.jpg'
-fiction: true
+type: fiction
 dateFinished: '2025-12-01'
 ---

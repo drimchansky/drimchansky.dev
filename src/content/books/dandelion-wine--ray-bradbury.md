@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'dandelion-wine--ray-bradbury.jpg'
-fiction: true
+type: fiction
 dateFinished: '2019-06-01'
 ---

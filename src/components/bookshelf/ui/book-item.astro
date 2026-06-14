@@ -12,22 +12,22 @@ import StarRating from './star-rating.astro'
 interface Props {
   author: { en: string; ru: string }
   cover: ImageMetadata
-  fiction: boolean
   language: Locale
   locale: Locale
   rating: number | null
   skipped?: boolean
   title: { en: string; ru: string }
+  type: 'fiction' | 'non-fiction'
 }
 
-const { author, cover, fiction, language, locale, rating, skipped, title } = Astro.props
+const { author, cover, language, locale, rating, skipped, title, type } = Astro.props
 
 const displayTitle = title[locale] || title.en || title.ru
 const displayAuthor = author[locale] || author.en || author.ru
 const langLabels = { en: 'langEn', ru: 'langRu' } as const
 ---
 
-<li class="flex items-start gap-4 py-3" data-fiction={String(fiction)}>
+<li class="flex items-start gap-4 py-3" data-type={type}>
   <Picture
     src={cover}
     formats={['avif', 'webp']}

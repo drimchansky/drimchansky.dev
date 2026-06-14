@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'generation-p--victor-pelevin.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-07-01'
 ---

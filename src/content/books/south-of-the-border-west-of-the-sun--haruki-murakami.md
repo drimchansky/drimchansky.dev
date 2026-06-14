@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'south-of-the-border-west-of-the-sun--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2024-05-01'
 ---

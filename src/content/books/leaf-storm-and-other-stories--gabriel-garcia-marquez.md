@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'leaf-storm-and-other-stories--gabriel-garcia-marquez.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-05-01'
 ---

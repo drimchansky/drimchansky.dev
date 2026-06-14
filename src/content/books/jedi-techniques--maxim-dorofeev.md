@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'jedi-techniques--maxim-dorofeev.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2024-06-01'
 ---

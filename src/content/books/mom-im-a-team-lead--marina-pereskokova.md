@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3.5
 cover: 'mom-im-a-team-lead--marina-pereskokova.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2022-08-01'
 ---

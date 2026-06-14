@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3.5
 cover: 'men-without-women--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-01-01'
 ---

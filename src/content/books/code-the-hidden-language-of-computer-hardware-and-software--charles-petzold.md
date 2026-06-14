@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3.5
 cover: 'code-the-hidden-language-of-computer-hardware-and-software--charles-petzold.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2019-12-01'
 ---

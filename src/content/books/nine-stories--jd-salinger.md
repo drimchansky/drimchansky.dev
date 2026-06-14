@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3
 cover: 'nine-stories--jd-salinger.jpg'
-fiction: true
+type: fiction
 dateFinished: '2022-04-01'
 ---
