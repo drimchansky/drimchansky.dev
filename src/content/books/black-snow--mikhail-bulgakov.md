@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3
 cover: 'black-snow--mikhail-bulgakov.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-07-01'
 ---

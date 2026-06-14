@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'norwegian-wood--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2019-09-01'
 ---

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'vurt--jeff-noon.jpg'
-fiction: true
+type: fiction
 dateFinished: '2026-02-01'
 ---

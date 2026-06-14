@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'a-hero-of-our-time--mikhail-lermontov.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-08-01'
 ---

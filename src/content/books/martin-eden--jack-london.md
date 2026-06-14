@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'martin-eden--jack-london.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-02-01'
 ---

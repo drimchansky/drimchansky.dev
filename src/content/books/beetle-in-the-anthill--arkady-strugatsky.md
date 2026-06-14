@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'beetle-in-the-anthill--arkady-strugatsky.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-02-01'
 ---

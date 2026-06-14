@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'no-one-writes-to-the-colonel-and-other-stories--gabriel-garcia-marquez.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-08-01'
 ---

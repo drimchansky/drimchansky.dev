@@ -8,6 +8,6 @@ author:
 language: en
 rating: 4
 cover: 'the-goal-a-process-of-ongoing-improvement--eliyahu-m-goldratt.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2025-12-01'
 ---

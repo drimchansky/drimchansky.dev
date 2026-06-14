@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 1.5
 cover: 'jedi-techniques-of-constructive-communication--alexander-orlov.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2026-01-01'
 ---

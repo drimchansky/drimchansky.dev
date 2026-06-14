@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3
 cover: 'a-raw-youth-the-adolescent--fyodor-dostoevsky.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-05-01'
 ---

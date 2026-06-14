@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3
 cover: 'the-invisible-man--hg-wells.jpg'
-fiction: true
+type: fiction
 dateFinished: '2019-02-01'
 ---

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3
 cover: 'windpinball-two-novels--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2024-12-01'
 ---

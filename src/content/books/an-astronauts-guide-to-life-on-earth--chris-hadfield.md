@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'an-astronauts-guide-to-life-on-earth--chris-hadfield.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2020-01-01'
 ---

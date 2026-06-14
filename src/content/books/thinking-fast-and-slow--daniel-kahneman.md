@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'thinking-fast-and-slow--daniel-kahneman.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2022-03-01'
 ---

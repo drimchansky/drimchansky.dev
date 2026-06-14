@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'sputnik-sweetheart--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2025-04-01'
 ---

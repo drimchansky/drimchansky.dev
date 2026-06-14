@@ -8,7 +8,7 @@ author:
 language: ru
 rating: 2.5
 cover: 'thinking-in-systems-a-primer--donella-h-meadows.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2025-07-01'
 skipped: true
 ---

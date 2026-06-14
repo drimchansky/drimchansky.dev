@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'the-choice-embrace-the-possible--edith-eger.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2024-07-01'
 ---

@@ -8,6 +8,6 @@ author:
 language: en
 rating: 4.5
 cover: 'the-city-and-its-uncertain-walls--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2025-09-01'
 ---

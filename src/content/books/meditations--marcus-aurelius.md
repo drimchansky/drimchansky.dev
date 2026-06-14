@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'meditations--marcus-aurelius.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2024-11-01'
 ---

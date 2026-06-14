@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'heart-of-a-dog--mikhail-bulgakov.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-08-01'
 ---

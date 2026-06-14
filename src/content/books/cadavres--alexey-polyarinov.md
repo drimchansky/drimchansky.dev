@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'cadavres--alexey-polyarinov.jpg'
-fiction: true
+type: fiction
 dateFinished: '2026-01-01'
 ---

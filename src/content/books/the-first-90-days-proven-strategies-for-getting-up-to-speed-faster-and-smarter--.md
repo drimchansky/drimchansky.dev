@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 2
 cover: 'the-first-90-days-proven-strategies-for-getting-up-to-speed-faster-and-smarter--.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2024-04-01'
 ---

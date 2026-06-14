@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'prisoners-of-power--arkady-strugatsky.jpg'
-fiction: true
+type: fiction
 dateFinished: '2026-03-01'
 ---

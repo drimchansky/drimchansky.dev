@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'marabou-stork-nightmares--irvine-welsh.jpg'
-fiction: true
+type: fiction
 dateFinished: '2025-11-01'
 ---

@@ -8,6 +8,6 @@ author:
 language: en
 rating: 5
 cover: 'shoe-dog-a-memoir-by-the-creator-of-nike--phil-knight.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2026-05-16'
 ---

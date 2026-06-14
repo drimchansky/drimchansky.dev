@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: 'the-gadfly--ethel-lilian-voynich.jpg'
-fiction: true
+type: fiction
 dateFinished: '2025-05-01'
 ---

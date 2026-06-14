@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest'
 
 import { prepareBooksList } from './prepareBooksList'
 
-const mockBook = (data: Partial<{ dateFinished: string | null; fiction: boolean; skipped: boolean }>) =>
-  ({ data: { dateFinished: '2024-06-01', fiction: true, ...data } }) as any
+const mockBook = (data: Partial<{ dateFinished: string | null; skipped: boolean; type: 'fiction' | 'non-fiction' }>) =>
+  ({ data: { dateFinished: '2024-06-01', type: 'fiction', ...data } }) as any
 
 describe('prepareBooksList', () => {
   it('returns empty arrays for empty input', () => {
@@ -17,10 +17,10 @@ describe('prepareBooksList', () => {
 
   it('computes counts by fiction type', () => {
     const books = [
-      mockBook({ dateFinished: '2024-01-01', fiction: true }),
-      mockBook({ dateFinished: '2024-02-01', fiction: true }),
-      mockBook({ dateFinished: '2024-03-01', fiction: false }),
-      mockBook({ dateFinished: null, fiction: true })
+      mockBook({ dateFinished: '2024-01-01', type: 'fiction' }),
+      mockBook({ dateFinished: '2024-02-01', type: 'fiction' }),
+      mockBook({ dateFinished: '2024-03-01', type: 'non-fiction' }),
+      mockBook({ dateFinished: null, type: 'fiction' })
     ]
 
     const { counts } = prepareBooksList(books)
@@ -89,9 +89,9 @@ describe('prepareBooksList', () => {
 
   it('excludes skipped books from counts', () => {
     const books = [
-      mockBook({ fiction: true }),
-      mockBook({ fiction: false, skipped: true }),
-      mockBook({ fiction: true, skipped: true })
+      mockBook({ type: 'fiction' }),
+      mockBook({ skipped: true, type: 'non-fiction' }),
+      mockBook({ skipped: true, type: 'fiction' })
     ]
 
     const { counts } = prepareBooksList(books)

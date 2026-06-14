@@ -27,8 +27,8 @@ export const prepareBooksList = (books: Book[]) => {
   const counted = allBooks.filter(b => !b.data.skipped)
   const counts = {
     all: counted.length,
-    fiction: counted.filter(b => b.data.fiction === true).length,
-    nonFiction: counted.filter(b => b.data.fiction === false).length
+    fiction: counted.filter(b => b.data.type === 'fiction').length,
+    nonFiction: counted.filter(b => b.data.type === 'non-fiction').length
   }
 
   return { counts, currentlyReading, readByYear }

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3
 cover: 'after-dark--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2021-12-01'
 ---

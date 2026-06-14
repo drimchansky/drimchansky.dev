@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'css-the-missing-manual--david-sawyer-mcfarland.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2017-09-01'
 ---

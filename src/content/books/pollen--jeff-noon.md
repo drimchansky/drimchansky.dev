@@ -8,6 +8,6 @@ author:
 language: ru
 rating: null
 cover: 'pollen--jeff-noon.jpg'
-fiction: true
+type: fiction
 dateFinished: null
 ---

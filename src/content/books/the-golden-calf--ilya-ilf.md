@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'the-golden-calf--ilya-ilf.jpg'
-fiction: true
+type: fiction
 dateFinished: '2026-02-01'
 ---

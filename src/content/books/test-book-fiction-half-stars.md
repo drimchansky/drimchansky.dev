@@ -8,7 +8,7 @@ author:
 language: en
 rating: 3.5
 cover: 'the-master-and-margarita--mikhail-bulgakov.jpg'
-fiction: true
+type: fiction
 dateFinished: '2025-06-10'
 isTestOnly: true
 ---

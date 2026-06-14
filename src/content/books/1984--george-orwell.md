@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4.5
 cover: '1984--george-orwell.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-05-01'
 ---

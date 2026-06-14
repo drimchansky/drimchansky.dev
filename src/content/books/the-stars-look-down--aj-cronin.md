@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'the-stars-look-down--aj-cronin.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-12-01'
 ---

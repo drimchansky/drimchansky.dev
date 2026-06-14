@@ -8,6 +8,6 @@ author:
 language: en
 rating: 3
 cover: 'the-daily-stoic-366-meditations-on-wisdom-perseverance-and-the-art-of-living--ry.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2024-09-01'
 ---

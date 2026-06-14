@@ -8,6 +8,6 @@ author:
 language: en
 rating: 4
 cover: 'site-reliability-engineering-how-google-runs-production-systems--betsy-beyer.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2022-01-01'
 ---

@@ -8,7 +8,7 @@ author:
 language: en
 rating: 1
 cover: 'clean-architecture--robert-c-martin.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2024-03-20'
 isTestOnly: true
 ---

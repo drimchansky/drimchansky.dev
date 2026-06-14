@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3.5
 cover: 'we--yevgeny-zamyatin.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-07-01'
 ---

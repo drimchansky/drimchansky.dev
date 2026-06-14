@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3
 cover: 'island--aldous-huxley.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-08-01'
 ---

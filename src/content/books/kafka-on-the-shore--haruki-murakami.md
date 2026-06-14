@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'kafka-on-the-shore--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2024-03-01'
 ---

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'debt-the-first-5000-years--david-graeber.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2024-06-01'
 ---

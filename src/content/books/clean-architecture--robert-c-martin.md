@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 2.5
 cover: 'clean-architecture--robert-c-martin.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2021-08-01'
 ---

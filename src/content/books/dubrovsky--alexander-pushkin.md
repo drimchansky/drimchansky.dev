@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3
 cover: 'dubrovsky--alexander-pushkin.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-01-01'
 ---

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3.5
 cover: 'designing-data-intensive-applications--martin-kleppmann.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2022-09-01'
 ---

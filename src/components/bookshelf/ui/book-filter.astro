@@ -12,8 +12,8 @@ const { counts, locale } = Astro.props
 
 const filters = [
   { count: counts.all, label: t(locale, 'all'), value: 'all' },
-  { count: counts.fiction, label: t(locale, 'fiction'), value: 'true' },
-  { count: counts.nonFiction, label: t(locale, 'nonFiction'), value: 'false' }
+  { count: counts.fiction, label: t(locale, 'fiction'), value: 'fiction' },
+  { count: counts.nonFiction, label: t(locale, 'nonFiction'), value: 'non-fiction' }
 ] as const
 ---
 
@@ -43,7 +43,7 @@ const filters = [
     if (!group) return
 
     const buttons = group.querySelectorAll<HTMLButtonElement>('[data-filter]')
-    const items = document.querySelectorAll<HTMLElement>('[data-fiction]')
+    const items = document.querySelectorAll<HTMLElement>('[data-type]')
 
     const groups = document.querySelectorAll<HTMLElement>('[data-book-group]')
 
@@ -52,11 +52,11 @@ const filters = [
         btn.setAttribute('aria-pressed', btn.dataset.filter === filter ? 'true' : 'false')
       }
       for (const item of items) {
-        const show = filter === 'all' || item.dataset.fiction === filter
+        const show = filter === 'all' || item.dataset.type === filter
         item.classList.toggle('hidden', !show)
       }
       for (const group of groups) {
-        const hasVisible = group.querySelector<HTMLElement>('[data-fiction]:not(.hidden)')
+        const hasVisible = group.querySelector<HTMLElement>('[data-type]:not(.hidden)')
         group.classList.toggle('hidden', !hasVisible)
       }
     }

@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3.5
 cover: 'omon-ra--victor-pelevin.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-02-01'
 ---

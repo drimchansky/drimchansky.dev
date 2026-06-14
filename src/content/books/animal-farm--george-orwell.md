@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'animal-farm--george-orwell.jpg'
-fiction: true
+type: fiction
 dateFinished: '2019-04-01'
 ---

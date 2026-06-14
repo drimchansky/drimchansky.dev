@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3.5
 cover: 'the-metamorphosis--franz-kafka.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-11-01'
 ---

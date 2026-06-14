@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'the-twelve-chairs--ilya-ilf.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-05-01'
 ---

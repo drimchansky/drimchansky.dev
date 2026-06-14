@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 3.5
 cover: 'grokking-algorithms--aditya-y-bhargava.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2020-01-01'
 ---

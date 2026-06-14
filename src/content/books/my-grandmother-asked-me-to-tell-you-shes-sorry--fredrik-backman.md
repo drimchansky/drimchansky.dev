@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'my-grandmother-asked-me-to-tell-you-shes-sorry--fredrik-backman.jpg'
-fiction: true
+type: fiction
 dateFinished: '2023-06-01'
 ---

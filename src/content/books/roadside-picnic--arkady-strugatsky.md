@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'roadside-picnic--arkady-strugatsky.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-03-01'
 ---

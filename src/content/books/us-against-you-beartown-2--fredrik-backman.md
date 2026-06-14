@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'us-against-you-beartown-2--fredrik-backman.jpg'
-fiction: true
+type: fiction
 dateFinished: '2024-12-01'
 ---

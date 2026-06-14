@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'all-quiet-on-the-western-front--erich-maria-remarque.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-12-01'
 ---

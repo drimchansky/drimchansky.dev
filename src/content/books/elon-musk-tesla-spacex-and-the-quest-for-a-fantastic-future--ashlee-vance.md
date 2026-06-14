@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'elon-musk-tesla-spacex-and-the-quest-for-a-fantastic-future--ashlee-vance.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2020-01-01'
 ---

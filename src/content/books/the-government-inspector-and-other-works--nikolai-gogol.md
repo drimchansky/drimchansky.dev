@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'the-government-inspector-and-other-works--nikolai-gogol.jpg'
-fiction: true
+type: fiction
 dateFinished: '2018-01-01'
 ---

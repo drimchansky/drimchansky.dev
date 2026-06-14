@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: '1q84-1q84-1-3--haruki-murakami.jpg'
-fiction: true
+type: fiction
 dateFinished: '2023-11-01'
 ---

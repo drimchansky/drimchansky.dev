@@ -8,6 +8,6 @@ author:
 language: en
 rating: 5
 cover: 'the-mom-test--rob-fitzpatrick.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2025-06-01'
 ---

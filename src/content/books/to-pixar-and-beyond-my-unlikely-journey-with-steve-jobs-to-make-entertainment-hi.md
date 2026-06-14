@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 5
 cover: 'to-pixar-and-beyond-my-unlikely-journey-with-steve-jobs-to-make-entertainment-hi.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2020-01-01'
 ---

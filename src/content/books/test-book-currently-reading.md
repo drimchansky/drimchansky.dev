@@ -8,7 +8,7 @@ author:
 language: en
 rating: null
 cover: '1984--george-orwell.jpg'
-fiction: true
+type: fiction
 dateFinished: null
 isTestOnly: true
 ---

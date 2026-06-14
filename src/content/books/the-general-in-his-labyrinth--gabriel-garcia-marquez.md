@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 2
 cover: 'the-general-in-his-labyrinth--gabriel-garcia-marquez.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-04-01'
 ---

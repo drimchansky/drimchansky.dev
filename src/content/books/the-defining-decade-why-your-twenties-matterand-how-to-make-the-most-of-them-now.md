@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 2
 cover: 'the-defining-decade-why-your-twenties-matterand-how-to-make-the-most-of-them-now.jpg'
-fiction: false
+type: non-fiction
 dateFinished: '2020-06-01'
 ---

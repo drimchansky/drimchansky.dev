@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'lord-of-the-flies--william-golding.jpg'
-fiction: true
+type: fiction
 dateFinished: '2017-10-01'
 ---

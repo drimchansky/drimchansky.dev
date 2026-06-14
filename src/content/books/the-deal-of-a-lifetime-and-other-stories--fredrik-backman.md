@@ -8,6 +8,6 @@ author:
 language: ru
 rating: 4
 cover: 'the-deal-of-a-lifetime-and-other-stories--fredrik-backman.jpg'
-fiction: true
+type: fiction
 dateFinished: '2025-05-01'
 ---
