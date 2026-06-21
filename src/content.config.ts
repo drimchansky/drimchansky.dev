@@ -55,6 +55,7 @@ const booksCollection = defineCollection({
       .string()
       .regex(/^\d{4}-\d{2}-\d{2}$/)
       .nullable(),
+    description: z.object({ en: z.string().optional(), ru: z.string().optional() }).optional(),
     isTestOnly: z.boolean().optional(),
     language: z.enum(['en', 'ru']),
     rating: z.number().min(0.5).max(5).nullable(),

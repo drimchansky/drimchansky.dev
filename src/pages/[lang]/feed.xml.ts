@@ -1,13 +1,10 @@
 import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
-import MarkdownIt from 'markdown-it'
-import sanitizeHtml from 'sanitize-html'
 
 import { supportedLocales, type Locale } from '@/app/i18n'
 import { filterNotes } from '@/components/notes'
+import { renderMarkdown } from '@/shared/functions/renderMarkdown'
 import { siteInfo } from '@/shared/site-info'
-
-const mdParser = new MarkdownIt()
 
 export async function getStaticPaths() {
   return supportedLocales.map(lang => ({ params: { lang } }))
@@ -40,7 +37,7 @@ export async function GET({ params }: { params: { lang: Locale } }) {
     customData: `<language>${lang}</language>`,
     description: config.description,
     items: sortedNotes.map(note => ({
-      content: sanitizeHtml(mdParser.render(note.body ?? '')),
+      content: renderMarkdown(note.body),
       description: note.data.description,
       link: `/${lang}/notes/${note.id.replace(`${lang}/`, '')}/`,
       pubDate: note.data.publishingDate,

@@ -12,6 +12,7 @@ import StarRating from './star-rating.astro'
 interface Props {
   author: { en: string; ru: string }
   cover: ImageMetadata
+  descriptionHtml?: string
   language: Locale
   locale: Locale
   rating: number | null
@@ -20,7 +21,7 @@ interface Props {
   type: 'fiction' | 'non-fiction'
 }
 
-const { author, cover, language, locale, rating, skipped, title, type } = Astro.props
+const { author, cover, descriptionHtml, language, locale, rating, skipped, title, type } = Astro.props
 
 const displayTitle = title[locale] || title.en || title.ru
 const displayAuthor = author[locale] || author.en || author.ru
@@ -59,6 +60,13 @@ const langLabels = { en: 'langEn', ru: 'langRu' } as const
         )
       }
     </div>
-    <slot />
+    {
+      descriptionHtml && (
+        <div
+          class="text-fg-muted mt-2 max-w-prose text-sm leading-relaxed [&_a]:underline [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:mt-2 [&_ul]:list-disc [&_ul]:pl-5 [&>*:first-child]:mt-0"
+          set:html={descriptionHtml}
+        />
+      )
+    }
   </div>
 </li>

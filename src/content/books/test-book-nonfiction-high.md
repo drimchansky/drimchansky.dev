@@ -11,4 +11,8 @@ cover: 'thinking-fast-and-slow--daniel-kahneman.jpg'
 type: non-fiction
 dateFinished: '2025-09-05'
 isTestOnly: true
+description:
+  en: |
+    An English-only test description. It must appear on the English bookshelf and
+    be hidden on the Russian one.
 ---

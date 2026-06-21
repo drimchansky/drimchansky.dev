@@ -1,12 +1,13 @@
 ---
 import type { GetStaticPaths, ImageMetadata } from 'astro'
 
-import { getCollection, render } from 'astro:content'
+import { getCollection } from 'astro:content'
 
 import { getLocale, supportedLocales, t } from '@/app/i18n'
 import BaseLayout from '@/app/layouts/base-layout.astro'
 import { BookFilter, BookItem, filterBooks, prepareBooksList } from '@/components/bookshelf'
 import { Header } from '@/components/header'
+import { renderMarkdown } from '@/shared/functions/renderMarkdown'
 import Container from '@/shared/ui/container.astro'
 import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
 import TypographyH2 from '@/shared/ui/typography/typography-h2.astro'
@@ -28,13 +29,6 @@ function getCover(filename: string): ImageMetadata {
   if (!entry) throw new Error(`Missing cover image: ${path}`)
   return entry.default
 }
-
-const rendered = new Map<string, Awaited<ReturnType<typeof render>>>()
-for (const book of books) {
-  if (book.body?.trim()) {
-    rendered.set(book.id, await render(book))
-  }
-}
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'bookshelf')} – ${t(Astro.currentLocale, 'fullName')}`>
@@ -55,27 +49,19 @@ for (const book of books) {
               {t(Astro.currentLocale, 'currentlyReading')}
             </TypographyH2>
             <ul class="mt-2 list-none">
-              {currentlyReading.map(book => {
-                const Content = rendered.get(book.id)?.Content
-                return (
-                  <BookItem
-                    title={book.data.title}
-                    author={book.data.author}
-                    cover={getCover(book.data.cover)}
-                    rating={book.data.rating}
-                    language={book.data.language}
-                    type={book.data.type}
-                    skipped={book.data.skipped}
-                    locale={locale}
-                  >
-                    {Content && (
-                      <p class="text-fg-muted mt-1 text-sm">
-                        <Content />
-                      </p>
-                    )}
-                  </BookItem>
-                )
-              })}
+              {currentlyReading.map(book => (
+                <BookItem
+                  title={book.data.title}
+                  author={book.data.author}
+                  cover={getCover(book.data.cover)}
+                  rating={book.data.rating}
+                  language={book.data.language}
+                  type={book.data.type}
+                  skipped={book.data.skipped}
+                  locale={locale}
+                  descriptionHtml={renderMarkdown(book.data.description?.[locale])}
+                />
+              ))}
             </ul>
           </section>
         )
@@ -88,27 +74,19 @@ for (const book of books) {
               {year}&nbsp;<span class="text-sm font-normal">({books.length})</span>
             </TypographyH2>
             <ul class="mt-2 list-none">
-              {books.map(book => {
-                const Content = rendered.get(book.id)?.Content
-                return (
-                  <BookItem
-                    title={book.data.title}
-                    author={book.data.author}
-                    cover={getCover(book.data.cover)}
-                    rating={book.data.rating}
-                    language={book.data.language}
-                    type={book.data.type}
-                    skipped={book.data.skipped}
-                    locale={locale}
-                  >
-                    {Content && (
-                      <p class="text-fg-muted mt-1 text-sm">
-                        <Content />
-                      </p>
-                    )}
-                  </BookItem>
-                )
-              })}
+              {books.map(book => (
+                <BookItem
+                  title={book.data.title}
+                  author={book.data.author}
+                  cover={getCover(book.data.cover)}
+                  rating={book.data.rating}
+                  language={book.data.language}
+                  type={book.data.type}
+                  skipped={book.data.skipped}
+                  locale={locale}
+                  descriptionHtml={renderMarkdown(book.data.description?.[locale])}
+                />
+              ))}
             </ul>
           </section>
         ))
