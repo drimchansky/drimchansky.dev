@@ -9,6 +9,7 @@ import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from 'rehype-slug'
 
 import rehypeFigureCaption from './src/plugins/rehype-figure-caption'
+import rehypeHeadingId from './src/plugins/rehype-heading-id'
 import resumePdf from './src/plugins/resume-pdf'
 
 dotenv.config({
@@ -45,6 +46,7 @@ export default defineConfig({
       rehypePlugins: [
         rehypeFigureCaption,
         rehypeSlug,
+        rehypeHeadingId,
         [rehypeExternalLinks, { rel: ['noopener', 'noreferrer'], target: '_blank' }],
         [rehypeAutolinkHeadings, { behavior: 'append' }]
       ],
