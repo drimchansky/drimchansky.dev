@@ -3,9 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - main
-      - preview
-      - dev
+      - '**'
 jobs:
   lint:
     timeout-minutes: 5
@@ -85,7 +83,6 @@ jobs:
     timeout-minutes: 15
     name: Deploy
     needs: [lint, test]
-    if: github.ref_name == 'main' || github.ref_name == 'preview' || github.ref_name == 'dev'
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.60.0-noble
