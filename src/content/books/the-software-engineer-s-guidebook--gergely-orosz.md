@@ -6,8 +6,8 @@ author:
   en: 'Gergely Orosz'
   ru: 'Гергей Орос'
 language: en
-rating: null
+rating: 4
 cover: 'the-software-engineer-s-guidebook--gergely-orosz.jpg'
 type: non-fiction
-dateFinished: null
+dateFinished: '2026-06-28'
 ---
