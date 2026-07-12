@@ -29,7 +29,7 @@ const dateFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: '
 
   <TypographyH1>{note.data.title}</TypographyH1>
   <TypographySpan class="text-fg-subtle text-sm">
-    <time datetime={note.data.publishingDate.toISOString()}>{dateFormatter.format(note.data.publishingDate)}</time>
+    <time datetime={note.data.publishingDate.toISOString()}>{dateFormatter.format(note.data.publishingDate)}</time>{' '}
     {
       note.data.lastModified && (
         <span class="bg-highlight text-highlight-fg">

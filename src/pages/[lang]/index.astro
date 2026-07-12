@@ -22,7 +22,7 @@ export const getStaticPaths = (async () =>
     <div class="flex flex-col gap-2 portrait:mt-0 [@media(orientation:landscape)_and_(max-height:500px)]:flex-row">
       <Avatar />
       <TypographyH1 class="[&>span]:text-[4rem] [&>span]:leading-none">
-        <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>
+        <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>{' '}
         <span itemprop="familyName">{t(Astro.currentLocale, 'familyName')}</span>
       </TypographyH1>
 

@@ -1,3 +1,4 @@
+import { unified } from '@astrojs/markdown-remark'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
@@ -43,13 +44,15 @@ export default defineConfig({
       }
     }),
     mdx({
-      rehypePlugins: [
-        rehypeFigureCaption,
-        rehypeSlug,
-        rehypeHeadingId,
-        [rehypeExternalLinks, { rel: ['noopener', 'noreferrer'], target: '_blank' }],
-        [rehypeAutolinkHeadings, { behavior: 'append' }]
-      ],
+      processor: unified({
+        rehypePlugins: [
+          rehypeFigureCaption,
+          rehypeSlug,
+          rehypeHeadingId,
+          [rehypeExternalLinks, { rel: ['noopener', 'noreferrer'], target: '_blank' }],
+          [rehypeAutolinkHeadings, { behavior: 'append' }]
+        ]
+      }),
       shikiConfig: {
         theme: 'github-dark',
         wrap: true
@@ -58,6 +61,9 @@ export default defineConfig({
     }),
     resumePdf()
   ],
+  redirects: {
+    '/': '/en/'
+  },
   site: process.env.SITE_URL,
   vite: {
     plugins: [tailwindcss()]

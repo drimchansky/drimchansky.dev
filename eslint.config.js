@@ -1,5 +1,5 @@
 import { FlatCompat } from '@eslint/eslintrc'
-import eslintParserAstro from 'astro-eslint-parser'
+import * as eslintParserAstro from 'astro-eslint-parser'
 import eslintPluginAstro from 'eslint-plugin-astro'
 import eslintPluginPerfectionist from 'eslint-plugin-perfectionist'
 import eslintPluginTypeScript from 'typescript-eslint'

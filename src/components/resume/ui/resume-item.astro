@@ -48,7 +48,7 @@ const locale = getLocale(Astro.currentLocale)
     <div class="text-xs leading-(--text-xs--line-height) font-normal">
       <time datetime={dateStart.toISOString()}>{dateStartText}</time>
       {' - '}
-      <time datetime={dateEnd?.toISOString()}>{dateEndText}</time>
+      <time datetime={dateEnd?.toISOString()}>{dateEndText}</time>{' '}
       <span class="print:hidden" data-testid={getTestId('resume-item-duration')}>
         ({getTotalDurationText(dateStart, dateEnd, locale)})
       </span>

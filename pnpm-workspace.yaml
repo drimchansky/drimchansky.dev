@@ -1,5 +1,7 @@
 overrides:
-  sharp: 0.35.1
+  sharp: 0.35.3
+  encoding-sniffer@<1.0.2: '>=1.0.2'
+  stylelint-order@<8.1.1: '>=8.1.1'
   lodash@>=4.0.0 <=4.17.22: '>=4.17.23'
   tar@<=7.5.10: '>=7.5.11'
   devalue@<5.6.4: '>=5.6.4'
@@ -12,6 +14,8 @@ overrides:
 peerDependencyRules:
   allowAny:
     - eslint
+    - eslint-plugin-n
+    - eslint-plugin-promise
 
 allowBuilds:
   esbuild: false
