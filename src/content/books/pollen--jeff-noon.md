@@ -6,8 +6,8 @@ author:
   en: 'Jeff Noon'
   ru: 'Джефф Нун'
 language: ru
-rating: null
+rating: 4.5
 cover: 'pollen--jeff-noon.jpg'
 type: fiction
-dateFinished: null
+dateFinished: '2026-07-12'
 ---
