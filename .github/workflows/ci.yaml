@@ -5,6 +5,23 @@ on:
     branches:
       - '**'
 jobs:
+  version:
+    timeout-minutes: 5
+    name: Resolve Playwright version
+    runs-on: ubuntu-latest
+    outputs:
+      playwright: ${{ steps.read.outputs.playwright }}
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Read Playwright version from package.json
+        id: read
+        run: |
+          VERSION=$(node -p "require('./package.json').devDependencies['@playwright/test']")
+          echo "playwright=$VERSION" >> "$GITHUB_OUTPUT"
+
   lint:
     timeout-minutes: 5
     name: Lint
@@ -26,9 +43,10 @@ jobs:
   test:
     timeout-minutes: 20
     name: Test
+    needs: [version]
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.60.0-noble
+      image: mcr.microsoft.com/playwright:v${{ needs.version.outputs.playwright }}-noble
 
     steps:
       - name: Install Git LFS
@@ -41,15 +59,6 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           lfs: true
-
-      - name: Verify Playwright image version matches package.json
-        run: |
-          EXPECTED=$(node -p "require('./package.json').devDependencies['@playwright/test']")
-          ACTUAL="1.60.0"
-          if [ "$EXPECTED" != "$ACTUAL" ]; then
-            echo "::error::Playwright version mismatch! package.json has v$EXPECTED but CI uses v$ACTUAL. Update the container image in this workflow."
-            exit 1
-          fi
 
       - name: Setup
         uses: ./.github/actions/setup
@@ -82,10 +91,10 @@ jobs:
   deploy:
     timeout-minutes: 15
     name: Deploy
-    needs: [lint, test]
+    needs: [lint, test, version]
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.60.0-noble
+      image: mcr.microsoft.com/playwright:v${{ needs.version.outputs.playwright }}-noble
     permissions:
       contents: read
       deployments: write
