@@ -1,0 +1,37 @@
+---
+title: 'Organizing an agent-assisted development flow'
+publishingDate: 2026-07-26
+---
+
+Over the past year, software engineering has changed dramatically. Instead of writing code, we now write documents and delegate the implementation to AI agents, while we ourselves **focus on higher-level questions**:
+
+- Do the changes we're making line up well with the project's roadmap? With other projects? With other teams' projects?
+- What are the requirements for the feature, for the project? Do all stakeholders see those requirements the same way? Maybe there's something else we could build that would be far more valuable right now?
+- What should be delegated to agents, and when? Did the agents actually do what you asked them to do? Are the edge cases handled? Did anything break outside the scope of the changes?
+- And much more...
+
+When you start working in the AI-assisted paradigm, you inevitably get the urge to **spin up an infinite number of sessions in parallel** (after all, launching them often costs almost nothing) — productivity, **let the machine do the work**!
+
+**But it's a trap.** Yes, implementation has become many times cheaper, but human throughput has stayed the same — and in the end, **it's the human who has to make the final decisions and be accountable for the result**.
+
+The stretches of mechanical work — writing code — are gone. Meanwhile, the amount of mental work, context switching, and decision-making has multiplied. **Everyone copes as best they can.** Many of the people I've discussed this with come to the same conclusion: the work has become far more interesting, but fatigue now piles up at a whole new pace.
+
+Over the past few months, after plenty of learning things the hard way, I've found the way of organizing my workflow that suits me best. It comes down to a few unsophisticated rules that help me get less tired, get the most out of agent-assisted development, and deliver consistently.
+
+1. **I build my workflow around intervals of 25–40 minutes**: both for my job and for personal projects. Yep, that same 🍅. During the breaks, I try to get up from my desk for a couple of minutes and clear my head — stepping out onto the balcony, for example.
+2. **For each interval, I pick at most two tasks to work on.** I choose them based on a combination of factors: urgency, how much work is left, how much the task is blocking other people, and so on — there are plenty of factors, but in practice it's usually obvious right away what's priority #1, what's #2, and what can wait. In any new interval I might pick two different tasks, if priorities have shifted or one of them is still blocked.
+3. **I kick off asynchronous processes for both tasks.** Most often those processes involve either agents — sending them off to go do something — or communication with people.
+4. **I focus entirely on the #1 task.** Reviews, discussions, writing a spec or other documents — anything that can move the task closer to done.
+5. **I move on to the #2 task only if the first one is blocked**: agents are working, people are replying, documents are being signed off, that sort of thing.
+
+**Why two tasks specifically?** I don't know. Like any rules, they often don't hold, and 3 or 4 tasks end up running in parallel... But I can feel that once there are more than two, attention gets diffuse and context switching becomes many times more expensive.
+
+This set of rules definitely works for me, despite the occasional violations. That said, what I've figured out for myself is that if you blow them off entirely and stop keeping an eye on your own _context window_, everything gets much worse.
+
+I'd be glad if this note helps someone spot this problem in their own process and start thinking about how to solve it.
+
+## Related reading [#related-reading]
+
+[AI-assisted engineers are burning out, is this fine? – Evil Martians](https://evilmartians.com/chronicles/ai-assisted-engineers-are-burning-out-is-this-fine)
+
+[The reality of AI-Assisted software engineering productivity – Addy Osmani](https://addyo.substack.com/p/the-reality-of-ai-assisted-software)
