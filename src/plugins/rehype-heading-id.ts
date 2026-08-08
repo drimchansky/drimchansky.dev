@@ -9,7 +9,7 @@ interface HastNode {
 const HEADING = /^h[1-6]$/
 // Explicit, locale-independent id authored inline, e.g. `## Heading [#my-slug]`.
 // Braces (`{#id}`) can't be used here because MDX parses them as JS expressions.
-const MARKER = /\s*\[#([a-z0-9-]+)]\s*$/i
+export const MARKER = /\s*\[#([a-z0-9-]+)]\s*$/i
 
 export default function rehypeHeadingId() {
   return (tree: HastNode) => {

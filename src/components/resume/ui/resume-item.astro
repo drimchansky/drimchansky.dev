@@ -20,12 +20,14 @@ const { company, companyLink, dateEnd, dateStart, location, position } = Astro.p
 
 const dateStartText = dateStart.toLocaleDateString(getLocale(Astro.currentLocale), {
   month: 'short',
+  timeZone: 'UTC',
   year: 'numeric'
 })
 
 const dateEndText =
   dateEnd?.toLocaleDateString(getLocale(Astro.currentLocale), {
     month: 'short',
+    timeZone: 'UTC',
     year: 'numeric'
   }) || t(Astro.currentLocale, 'present')
 

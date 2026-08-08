@@ -20,7 +20,7 @@ const locale = getLocale(Astro.currentLocale)
 const notes = await getCollection('notes', entry => entry.id.startsWith(`${locale}/`))
 const notesGrouped = prepareNotesList(locale, filterNotes(notes))
 
-const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short' })
+const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', timeZone: 'UTC' })
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'notes')} – ${t(Astro.currentLocale, 'fullName')}`>

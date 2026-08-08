@@ -3,7 +3,7 @@ import type { CollectionEntry } from 'astro:content'
 import type { Locale } from '@/app/i18n'
 
 export const prepareNotesList = (locale: Locale, notes: CollectionEntry<'notes'>[]) => {
-  const yearFormatter = new Intl.DateTimeFormat(locale, { year: 'numeric' })
+  const yearFormatter = new Intl.DateTimeFormat(locale, { timeZone: 'UTC', year: 'numeric' })
 
   const notesRawSortedDesc = notes
     .sort((a, b) => new Date(b.data.publishingDate).getTime() - new Date(a.data.publishingDate).getTime())
