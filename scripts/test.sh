@@ -24,7 +24,7 @@ docker run --rm \
   -e TESTING=true \
   -e CI="${CI:-}" \
   "$IMAGE" \
-  sh -c 'corepack enable && corepack install && pnpm install --frozen-lockfile && pnpm build && pnpm exec playwright test "$@"' \
+  sh -c 'corepack enable && corepack install && pnpm install --frozen-lockfile && rm -f .astro/preview.json && pnpm build && pnpm exec playwright test "$@"' \
   -- "$@" || EXIT_CODE=$?
 
 if [ "$EXIT_CODE" -ne 0 ] && [ -z "${CI:-}" ]; then

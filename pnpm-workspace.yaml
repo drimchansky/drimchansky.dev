@@ -1,5 +1,5 @@
 overrides:
-  sharp: 0.35.3
+  sharp: 0.35.4
   encoding-sniffer@<1.0.2: '>=1.0.2'
   stylelint-order@<8.1.1: '>=8.1.1'
   lodash@>=4.0.0 <=4.17.22: '>=4.17.23'
