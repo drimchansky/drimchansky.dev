@@ -13,11 +13,11 @@ type Props = {
 const { description: customDescription, title } = Astro.props
 
 const locale = getLocale(Astro.currentLocale)
-const pathname = Astro.url.pathname.replace(`/${locale}`, '')
-const route = pathname.split('/')[1]
+const routePath = Astro.url.pathname.replace(`/${locale}`, '')
+const route = routePath.split('/')[1]
 
 const siteOrigin = Astro.site?.origin ?? ''
-const cleanUrl = siteOrigin + pathname
+const cleanUrl = siteOrigin + Astro.url.pathname
 const coverLink = `${siteOrigin}/covers/${CUSTOM_COVER_ROUTES.includes(route) ? route : 'main'}-${locale}.jpg`
 
 const siteDescription = t(Astro.currentLocale, 'siteDescription')
