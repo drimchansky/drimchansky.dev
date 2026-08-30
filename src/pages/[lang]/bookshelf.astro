@@ -45,7 +45,7 @@ function getCover(filename: string): ImageMetadata {
       {
         currentlyReading.length > 0 && (
           <section data-book-group class="mt-6">
-            <TypographyH2 class="bg-surface border-header-border sticky top-0 border-b-2 pt-2 pb-2">
+            <TypographyH2 class="bg-surface border-border sticky top-0 border-b-2 pt-2 pb-2">
               {t(Astro.currentLocale, 'currentlyReading')}
             </TypographyH2>
             <ul class="mt-2 list-none">
@@ -70,7 +70,7 @@ function getCover(filename: string): ImageMetadata {
       {
         readByYear.map(([year, books]) => (
           <section data-book-group class="mt-6">
-            <TypographyH2 class="bg-surface border-header-border sticky top-0 border-b-2 pt-2 pb-2">
+            <TypographyH2 class="bg-surface border-border sticky top-0 border-b-2 pt-2 pb-2">
               {year}&nbsp;<span class="text-sm font-normal">({books.length})</span>
             </TypographyH2>
             <ul class="mt-2 list-none">

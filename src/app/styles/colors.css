@@ -1,11 +1,12 @@
 :root {
   color-scheme: light dark;
 
-  --c-outline: oklch(50% 0.14 160);
+  --c-outline: light-dark(oklch(50% 0.14 160), oklch(77% 0.13 160));
   --c-surface: light-dark(oklch(0.9851 0 0), oklch(22.21% 0.004 80));
   --c-highlight: oklch(0.9875 0.0654 107.54);
   --c-highlight-fg: oklch(51.03% 0 0);
-  --c-border: oklch(0.922 0.004 80);
+  --c-border: light-dark(oklch(85% 0.004 80), oklch(38% 0.004 80));
+  --c-border-strong: light-dark(oklch(61% 0.004 80), oklch(55% 0.004 80));
   --c-header: light-dark(oklch(97.52% 0.003 80), oklch(31.32% 0.003 80));
   --c-header-border: light-dark(oklch(95% 0.004 80), oklch(61.67% 0 0));
   --c-resume-separator: light-dark(oklch(0.5544 0.006 80), oklch(61.67% 0 0));

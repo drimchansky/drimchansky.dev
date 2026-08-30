@@ -14,6 +14,7 @@
   --color-highlight: var(--c-highlight);
   --color-highlight-fg: var(--c-highlight-fg);
   --color-border: var(--c-border);
+  --color-border-strong: var(--c-border-strong);
   --color-header: var(--c-header);
   --color-header-border: var(--c-header-border);
   --color-resume-separator: var(--c-resume-separator);
@@ -52,6 +53,13 @@
   &:focus-visible {
     border-radius: 5px;
     box-shadow: 0 0 0 var(--outline-thickness) var(--c-outline);
+
+    /* Forced-colors mode strips the box-shadow ring above and this utility suppresses the UA outline that
+       would stand in for it, so focus would otherwise be invisible there. */
+    @media (forced-colors: active) {
+      outline: 3px solid;
+      outline-offset: 2px;
+    }
   }
 }
 
@@ -92,7 +100,7 @@
   }
 
   html {
-    --resume-gap: 1rem;
+    --resume-gap: 1.5rem;
     background-color: var(--c-surface);
   }
 
@@ -223,6 +231,13 @@
       &:focus-visible {
         border-radius: 5px;
         box-shadow: 0 0 0 var(--outline-thickness) var(--c-outline);
+
+        /* Forced-colors mode strips the box-shadow ring above and this rule suppresses the UA outline that
+           would stand in for it, so focus would otherwise be invisible there. */
+        @media (forced-colors: active) {
+          outline: 3px solid;
+          outline-offset: 2px;
+        }
       }
 
       @media (hover: hover) {

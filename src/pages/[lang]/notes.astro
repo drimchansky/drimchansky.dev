@@ -39,7 +39,7 @@ const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', mont
         notesGrouped.map(([year, notes]) => {
           return (
             <>
-              <TypographyH2 class="border-header-border border-b-2 pt-8 pb-2">{year}</TypographyH2>
+              <TypographyH2 class="border-border border-b-2 pt-8 pb-2">{year}</TypographyH2>
 
               <ul class="mt-2 list-none">
                 {notes.map(({ data, url }) => {
