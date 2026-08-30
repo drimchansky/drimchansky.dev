@@ -75,8 +75,8 @@ test.describe('Color theme change', () => {
     await setDarkThemeButton.click()
     await setAutoThemeButton.click()
 
-    await expect(html).not.toHaveClass('is-light-theme')
-    await expect(html).not.toHaveClass('is-dark-theme')
+    await expect(html).not.toContainClass('is-light-theme')
+    await expect(html).not.toContainClass('is-dark-theme')
     expect(await getFromLocalStorage(page, THEME_STORAGE_KEY)).toBe('auto')
   })
 
@@ -89,7 +89,7 @@ test.describe('Color theme change', () => {
     await setDarkThemeButton.click()
     await page.reload()
 
-    await expect(html).toHaveClass('is-dark-theme')
+    await expect(html).toContainClass('is-dark-theme')
     expect(await getFromLocalStorage(page, THEME_STORAGE_KEY)).toBe('dark')
   })
 
@@ -102,7 +102,12 @@ test.describe('Color theme change', () => {
     await setDarkThemeButton.click()
     await openResumeLink.click()
 
-    await expect(html).toHaveClass('is-dark-theme')
+    await expect(html).toContainClass('is-dark-theme')
+    // On mobile the link is reached with the menu open, so `clip` is holding the page
+    // scroll lock. Nothing in the header clears it on navigation; it survives only until
+    // Astro's swap strips every <html> attribute. Asserting its absence pins that release,
+    // which a scroll-locked page behind a dismissed overlay would otherwise fail silently.
+    await expect(html).not.toContainClass('clip')
     expect(await getFromLocalStorage(page, THEME_STORAGE_KEY)).toBe('dark')
   })
 })

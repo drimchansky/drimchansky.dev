@@ -2,27 +2,22 @@ import fs from 'node:fs/promises'
 import sharp from 'sharp'
 
 /**
- * @param absoluteImagePath It's not possible to use Astro's ImageMetadata just importing the image because it contains psocessed src name which isn't available diring the build time yet
+ * @param imagePath Resolved relative to the process working directory, i.e. the repository root. Astro's ImageMetadata can't stand in for it: importing the image yields a processed `src` name that isn't available during the build yet
  */
-export const getPlaceholderStyles = async (
-  absoluteImagePath: string,
-  size = 16,
-  blur = 4,
-  quality = 40
-): Promise<string> => {
-  const imageBuffer = await fs.readFile(absoluteImagePath)
+export const getPlaceholderStyles = async (imagePath: string, size = 16, blur = 4, quality = 40): Promise<string> => {
+  const imageBuffer = await fs.readFile(imagePath)
   const img = sharp(imageBuffer)
 
   const { height, width } = await img.metadata()
 
-  const smallestSide = Math.min(width!, height!)
+  const smallestSide = Math.min(width, height)
   const factor = size / smallestSide
 
   const lqipBuffer = await img
     .resize({
       fit: 'inside',
-      height: Math.round(height! * factor),
-      width: Math.round(width! * factor)
+      height: Math.round(height * factor),
+      width: Math.round(width * factor)
     })
     .blur(blur)
     .toFormat('jpeg', {
