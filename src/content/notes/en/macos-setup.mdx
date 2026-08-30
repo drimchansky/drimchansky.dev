@@ -1,6 +1,7 @@
 ---
 title: 'MacOS Setup (Tahoe 26.5)'
 publishingDate: 2026-06-07
+lastModified: 2026-08-30
 ---
 
 I am writing this after almost five years of using a MacBook for all my professional and personal things.
@@ -49,7 +50,12 @@ This guide is an artifact of a habit of reinstalling the system from scratch fro
 - **iCloud:**
   - Drive -> Optimize mac storage -> OFF.
 - **Internet accounts:**
-  - Add personal and work emails (calendar sync only)
+  - Add personal and work emails (calendar sync only).
+- **Accessibility:**
+  - Show window title icons – OFF.
+- **Lock Screen:**
+  - Turn display off ... (both) – 1h.
+  - Require password ... – 5 min.
 
 ## 4. Install Software [#install-software]
 
@@ -67,6 +73,7 @@ This guide is an artifact of a habit of reinstalling the system from scratch fro
 - For remembering stuff: [Anki](https://apps.ankiweb.net/).
 - [Things 3](https://apps.apple.com/ge/app/things-3/id904280696) the best task manager.
   - Badge count – Deadlines Only.
+- [Obsidian](https://obsidian.md/).
 - [Scroll-Reverser](https://github.com/pilotmoon/Scroll-Reverser). Reverse Trackpad – OFF, Reverse Mouse – ON.
 - [Command X](https://sindresorhus.com/command-x) – cut and paste files in Finder.
 - [The Unarchiver](https://apps.apple.com/ge/app/the-unarchiver/id425424353).
@@ -76,13 +83,14 @@ This guide is an artifact of a habit of reinstalling the system from scratch fro
 - [ChatGPT](https://chatgpt.com/) – Install Page as App, [Codex CLI](https://developers.openai.com/codex/cli)
 - [Docker](https://docs.docker.com/desktop/install/mac-install/).
 - [Postman](https://www.postman.com/downloads/).
-- `brew install cmake p7zip pnpm git git-lfs killport openssh gh`.
+- `brew install cmake p7zip pnpm git git-lfs killport openssh gh fzf zsh-autosuggestions zsh-syntax-highlighting`.
   - `git lfs install`
   - `brew link openssh`
   - `gh auth login`
 - [Yubico Authenticator](https://apps.apple.com/ge/app/yubico-authenticator/id1497506650).
 - [Ledger Wallet](https://shop.ledger.com/pages/ledger-wallet#download).
-- [iTerm2](https://iterm2.com/).
+- [agterm](https://agterm.com/) – the best terminal for agent management.
+- [Happ](https://www.happ.su/main).
 
 ## 5. Update Configs and setup ssh with YubiKey [#update-configs-and-setup-ssh-with-yubikey]
 
@@ -120,13 +128,14 @@ Download and install using Font Book.
   - "Apps"
   - AI chats (Claude, ChatGPT)
   - IDE and editors (VSCode, Zed, ...)
+  - Agterm
   - Default browser (Chrome)
-  - iTerm
+  - Things
+  - Obsidian
+  - Notes
   - Activity Monitor
   - Bitwarden
   - Calendar
-  - Things
-  - Notes
   - Clock
   - Calculator
   - Telegram
