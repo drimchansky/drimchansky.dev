@@ -20,6 +20,6 @@ const pathname = Astro.url.pathname.replace(`/${locale}`, '')
   rel="alternate"
   data-prefetch
 >
-  <GlobeIcon class="h-4 w-4" />
+  <GlobeIcon class="h-4 w-4" aria-hidden="true" />
   <TypographySpan>{t(Astro.currentLocale, 'toLocale')}</TypographySpan>
 </a>

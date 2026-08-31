@@ -23,6 +23,6 @@ const { class: className, ...props } = Astro.props
   {...props}
 >
   <TypographySpan>{t(Astro.currentLocale, 'menu')}</TypographySpan>
-  <HamburgerIcon class="ml-1 hidden h-6 w-6 group-aria-[expanded=false]:block" />
-  <CrossIcon class="ml-1 hidden h-6 w-6 group-aria-[expanded=true]:block" />
+  <HamburgerIcon class="ml-1 hidden h-6 w-6 group-aria-[expanded=false]:block" aria-hidden="true" />
+  <CrossIcon class="ml-1 hidden h-6 w-6 group-aria-[expanded=true]:block" aria-hidden="true" />
 </button>

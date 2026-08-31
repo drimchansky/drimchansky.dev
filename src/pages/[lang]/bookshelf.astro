@@ -48,7 +48,7 @@ function getCover(filename: string): ImageMetadata {
             <TypographyH2 class="bg-surface border-border sticky top-0 border-b-2 pt-2 pb-2">
               {t(Astro.currentLocale, 'currentlyReading')}
             </TypographyH2>
-            <ul class="mt-2 list-none">
+            <ul class="mt-2 list-none" role="list">
               {currentlyReading.map(book => (
                 <BookItem
                   title={book.data.title}
@@ -73,7 +73,7 @@ function getCover(filename: string): ImageMetadata {
             <TypographyH2 class="bg-surface border-border sticky top-0 border-b-2 pt-2 pb-2">
               {year}&nbsp;<span class="text-sm font-normal">({books.length})</span>
             </TypographyH2>
-            <ul class="mt-2 list-none">
+            <ul class="mt-2 list-none" role="list">
               {books.map(book => (
                 <BookItem
                   title={book.data.title}

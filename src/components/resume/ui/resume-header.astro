@@ -7,14 +7,18 @@ import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
 import TypographySpan from '@/shared/ui/typography/typography-span.astro'
 ---
 
-<header class="flex flex-col justify-between gap-1.5 pb-4 text-center [&_p]:max-w-none">
+<header
+  class="flex flex-col justify-between gap-1.5 pb-4 text-center [&_p]:max-w-none"
+  itemtype="https://schema.org/Person"
+  itemscope
+>
   <div>
-    <TypographyH1 class="text-3xl">{t(Astro.currentLocale, 'fullName')}</TypographyH1>
+    <TypographyH1 class="text-3xl" itemprop="name">{t(Astro.currentLocale, 'fullName')}</TypographyH1>
     <TypographySpan class="font-heading">{t(Astro.currentLocale, 'location')}</TypographySpan>
   </div>
 
   <div>
-    <ul class="mt-1 flex list-none flex-wrap justify-center gap-2">
+    <ul class="mt-1 flex list-none flex-wrap justify-center gap-2" role="list">
       {
         siteInfo.socialLinks.map(({ content, id, name, showOnResumePage, url }) => {
           return (

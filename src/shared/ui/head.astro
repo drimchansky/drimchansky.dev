@@ -3,6 +3,7 @@ import { ClientRouter } from 'astro:transitions'
 
 import { getLocale, t } from '@/app/i18n'
 import { CUSTOM_COVER_ROUTES } from '@/shared/constants'
+import { escapeJsonLd } from '@/shared/functions/escapeJsonLd'
 import { getRssUrl } from '@/shared/functions/getRssUrl'
 
 type Props = {
@@ -23,7 +24,7 @@ const coverLink = `${siteOrigin}/covers/${CUSTOM_COVER_ROUTES.includes(route) ? 
 const siteDescription = t(Astro.currentLocale, 'siteDescription')
 const description = customDescription || siteDescription
 
-const schema = JSON.stringify({
+const schema = escapeJsonLd({
   '@context': 'https://schema.org',
   '@type': 'Person',
   description,

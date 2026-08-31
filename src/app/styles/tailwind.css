@@ -112,6 +112,11 @@
 
   main {
     scroll-margin-top: 2rem;
+
+    &:focus-visible {
+      outline: 3px solid var(--c-outline);
+      outline-offset: -3px;
+    }
   }
 
   .clip {

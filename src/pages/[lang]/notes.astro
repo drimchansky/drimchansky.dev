@@ -41,7 +41,7 @@ const monthDayFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', mont
             <>
               <TypographyH2 class="border-border border-b-2 pt-8 pb-2">{year}</TypographyH2>
 
-              <ul class="mt-2 list-none">
+              <ul class="mt-2 list-none" role="list">
                 {notes.map(({ data, url }) => {
                   return (
                     <li class="flex items-center justify-between gap-4">

@@ -28,7 +28,10 @@ const currentRoute = pathname.slice(1).replace(`${locale}`, '').slice(0, -1) || 
   ]}
   {...props}
 >
-  <ul class="m-0 flex list-none flex-col items-center justify-center gap-2 p-0 sm:flex-row sm:justify-self-start">
+  <ul
+    class="m-0 flex list-none flex-col items-center justify-center gap-2 p-0 sm:flex-row sm:justify-self-start"
+    role="list"
+  >
     {
       siteInfo.navigation.map(({ id, route }) => (
         <li class="p-1">
@@ -36,6 +39,7 @@ const currentRoute = pathname.slice(1).replace(`${locale}`, '').slice(0, -1) || 
             data-testid={getTestId(`open-${id}-link`)}
             class={`text-fg focus-ring hoverable:bg-menu-hover hoverable:text-menu-hover-fg inline-flex rounded-md bg-transparent p-2 no-underline transition-colors duration-[var(--link-hover-duration)] ${currentRoute === route ? 'opacity-70' : ''}`}
             href={getRelativeLocaleUrl(locale, route)}
+            aria-current={currentRoute === route ? 'page' : undefined}
             data-prefetch
           >
             <TypographySpan>{t(Astro.currentLocale, id)}</TypographySpan>

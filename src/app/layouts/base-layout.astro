@@ -17,14 +17,14 @@ const locale = getLocale(Astro.currentLocale)
 ---
 
 <!doctype html>
-<html itemtype="https://schema.org/Person" lang={locale} itemscope transition:animate="none">
+<html lang={locale} transition:animate="none">
   <head>
     <Head title={title} description={description} />
   </head>
   <body>
     <slot name="header" />
 
-    <main id="main" transition:name="main">
+    <main id="main" tabindex="-1" transition:name="main">
       <slot />
     </main>
   </body>

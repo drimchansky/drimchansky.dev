@@ -19,7 +19,11 @@ export const getStaticPaths = (async () =>
   <Header slot="header" />
 
   <Container content class="flex min-h-[calc(100dvh-var(--header-height))] flex-col justify-center">
-    <div class="flex flex-col gap-2 portrait:mt-0 [@media(orientation:landscape)_and_(max-height:500px)]:flex-row">
+    <div
+      class="flex flex-col gap-2 portrait:mt-0 [@media(orientation:landscape)_and_(max-height:500px)]:flex-row"
+      itemtype="https://schema.org/Person"
+      itemscope
+    >
       <Avatar />
       <TypographyH1 class="[&>span]:text-[4rem] [&>span]:leading-none">
         <span itemprop="givenName">{t(Astro.currentLocale, 'givenName')}</span>{' '}
