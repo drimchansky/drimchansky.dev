@@ -1,34 +1,33 @@
 ---
 import { t, type LocaleCollection } from '@/app/i18n'
+import { colorThemeValues, THEME_STORAGE_KEY } from '@/shared/constants'
 import { getTestId } from '@/shared/functions/getTestId'
 import TypographySpan from '@/shared/ui/typography/typography-span.astro'
-
-import type { ColorTheme } from '../constants'
-
-const values: ColorTheme[] = ['light', 'auto', 'dark']
 ---
 
 <fieldset
   data-testid={getTestId('theme-segmented-control')}
   id="theme-segmented-control"
-  class="m-0 border-none p-0"
-  data-nosnippet
+  class="m-0 border-none p-0 disabled:opacity-60"
   disabled
 >
-  <legend class="visually-hidden">{t(Astro.currentLocale, 'theme')}</legend>
+  <legend class="visually-hidden"><span data-nosnippet>{t(Astro.currentLocale, 'theme')}</span></legend>
 
   <div class="border-switcher-border bg-switcher text-switcher-fg flex rounded-full border p-1" id="theme-options">
     {
-      values.map(value => (
+      colorThemeValues.map(value => (
         <label class="relative">
           <input
             data-testid={getTestId(`set-${value}-theme-button`)}
-            class="peer focus-ring absolute inset-0 z-1 m-0 box-border h-full w-full cursor-pointer appearance-none rounded-[20px] border-0 bg-transparent checked:cursor-default"
+            class="peer focus-ring absolute inset-0 z-1 m-0 box-border h-full w-full cursor-pointer appearance-none rounded-[20px] border-0 bg-transparent checked:cursor-default disabled:cursor-not-allowed checked:disabled:cursor-default"
             name="color-theme"
             type="radio"
             value={value}
           />
-          <TypographySpan class="peer-checked:bg-switcher-active can-hover:peer-hover:opacity-100 m-0 block appearance-none rounded-full border-0 bg-transparent px-3 py-1.5 leading-none text-inherit opacity-70 peer-checked:opacity-100">
+          <TypographySpan
+            data-nosnippet
+            class="peer-checked:bg-switcher-active can-hover:peer-hover:opacity-100 m-0 block appearance-none rounded-full border-0 bg-transparent px-3 py-1.5 leading-none text-inherit opacity-70 peer-checked:opacity-100"
+          >
             {t(Astro.currentLocale, value as keyof LocaleCollection)}
           </TypographySpan>
         </label>
@@ -37,45 +36,39 @@ const values: ColorTheme[] = ['light', 'auto', 'dark']
   </div>
 </fieldset>
 
-<script is:inline>
+<script is:inline define:vars={{ themeStorageKey: THEME_STORAGE_KEY, themeValues: colorThemeValues }}>
   ;(() => {
-    function applyPageTheme() {
-      const theme = localStorage.getItem('color-theme') || 'auto'
-      document.documentElement.classList.toggle('is-dark-theme', theme === 'dark')
-      document.documentElement.classList.toggle('is-light-theme', theme === 'light')
-    }
-
     function updateSwitcherStateAfterNavigation() {
       const themeOptionsElement = document.getElementById('theme-options')
-      const theme = localStorage.getItem('color-theme') || 'auto'
+      if (!themeOptionsElement) return
 
-      if (themeOptionsElement) {
-        const input = themeOptionsElement.querySelector(`[value="${theme}"]`)
-        input.checked = true
-      }
+      const stored = localStorage.getItem(themeStorageKey)
+      const theme = themeValues.includes(stored) ? stored : 'auto'
+
+      const input = themeOptionsElement.querySelector(`[value="${theme}"]`)
+      if (input) input.checked = true
     }
 
-    applyPageTheme()
     updateSwitcherStateAfterNavigation()
-    document.addEventListener('astro:after-swap', applyPageTheme)
     document.addEventListener('astro:after-swap', updateSwitcherStateAfterNavigation)
   })()
 </script>
 
 <script>
-  import { THEME_CLASSES, THEME_STORAGE_KEY, type ColorTheme } from '../constants'
+  import { colorThemeValues, THEME_CLASSES, THEME_STORAGE_KEY, type ColorTheme } from '@/shared/constants'
+
+  const isColorTheme = (value: string | null): value is ColorTheme =>
+    !!value && (colorThemeValues as readonly string[]).includes(value)
 
   const applyTheme = (theme: ColorTheme) => {
     const switcherElement = document.getElementById('theme-segmented-control')! as HTMLFieldSetElement
     const themeOptionsElement = switcherElement.querySelector('#theme-options')!
 
-    if (themeOptionsElement) {
-      const input = themeOptionsElement.querySelector(`[value="${theme}"]`)! as HTMLInputElement
-      input.checked = true
-    }
+    const input = themeOptionsElement.querySelector(`[value="${theme}"]`) as HTMLInputElement | null
+    if (input) input.checked = true
 
-    document.documentElement.classList.toggle(THEME_CLASSES['dark']!, theme === 'dark')
-    document.documentElement.classList.toggle(THEME_CLASSES['light']!, theme === 'light')
+    document.documentElement.classList.toggle(THEME_CLASSES['dark'], theme === 'dark')
+    document.documentElement.classList.toggle(THEME_CLASSES['light'], theme === 'light')
   }
 
   const onThemeChange = (event: Event) => {
@@ -91,8 +84,8 @@ const values: ColorTheme[] = ['light', 'auto', 'dark']
   const onStorageChange = (event: StorageEvent) => {
     if (event.key !== THEME_STORAGE_KEY) return
 
-    const newTheme = event.newValue as ColorTheme
-    if (!newTheme) return
+    const newTheme = event.newValue
+    if (!isColorTheme(newTheme)) return
 
     applyTheme(newTheme)
   }

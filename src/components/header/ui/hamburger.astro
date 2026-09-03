@@ -19,10 +19,9 @@ const { class: className, ...props } = Astro.props
     className
   ]}
   type="button"
-  data-nosnippet
   {...props}
 >
-  <TypographySpan>{t(Astro.currentLocale, 'menu')}</TypographySpan>
+  <TypographySpan data-nosnippet>{t(Astro.currentLocale, 'menu')}</TypographySpan>
   <HamburgerIcon class="ml-1 hidden h-6 w-6 group-aria-[expanded=false]:block" aria-hidden="true" />
   <CrossIcon class="ml-1 hidden h-6 w-6 group-aria-[expanded=true]:block" aria-hidden="true" />
 </button>

@@ -21,53 +21,82 @@ import Menu from './menu.astro'
 
 <script>
   import type { FocusTrap } from 'focus-trap'
-  import { createFocusTrap } from 'focus-trap'
   ;(() => {
-    let focusTrap: FocusTrap
+    let focusTrap: FocusTrap | undefined
+    let closeMenu: ((returnFocus?: boolean) => void) | undefined
+
+    const menuMedia = matchMedia('(max-width: 767px)')
+    menuMedia.addEventListener('change', event => {
+      const expanded = document.getElementById('hamburger-button')?.getAttribute('aria-expanded') === 'true'
+      if (!event.matches && expanded) {
+        closeMenu?.()
+      }
+    })
 
     const onPageLoaded = () => {
       const page = document.documentElement
       const header = document.getElementById('header')!
       const button = document.getElementById('hamburger-button')!
       const menu = document.getElementById('menu')!
+      const main = document.getElementById('main')
+      const skipLink = document.querySelector('a[href="#main"]')
 
-      const menuMedia = matchMedia('(max-width: 767px)')
-      focusTrap = createFocusTrap(header, { initialFocus: false })
+      let trapPromise: Promise<FocusTrap> | undefined
+      const getFocusTrap = () => {
+        trapPromise ??= import('focus-trap')
+          .then(({ createFocusTrap }) => {
+            focusTrap = createFocusTrap(header, { initialFocus: false, onDeactivate: () => closeMenu?.() })
+            return focusTrap
+          })
+          .catch((error: unknown) => {
+            // Clear the memo so a failed chunk load is not kept as a rejected promise, which would leave
+            // every later open untrapped with no retry.
+            trapPromise = undefined
+            throw error
+          })
+        return trapPromise
+      }
 
       function isMenuOpened() {
         return button.getAttribute('aria-expanded') === 'true'
       }
 
-      const openMenu = () => {
+      const openMenu = async () => {
         page.classList.add('clip')
+        main?.setAttribute('inert', '')
+        skipLink?.setAttribute('inert', '')
 
         button.setAttribute('aria-expanded', 'true')
 
         menu.classList.remove('menu--closed')
         menu.classList.add('menu--opened')
 
-        focusTrap.activate()
+        try {
+          const trap = await getFocusTrap()
+          if (isMenuOpened()) {
+            trap.activate()
+          }
+        } catch {
+          // The menu is already open and #main already inert here, so a failed focus-trap import degrades
+          // to an untrapped menu instead of rejecting and stranding the page mid-open.
+        }
       }
 
-      const closeMenu = () => {
+      closeMenu = (returnFocus = true) => {
         page.classList.remove('clip')
+        main?.removeAttribute('inert')
+        skipLink?.removeAttribute('inert')
 
         button.setAttribute('aria-expanded', 'false')
 
         menu.classList.remove('menu--opened')
         menu.classList.add('menu--closed')
 
-        focusTrap.deactivate()
+        focusTrap?.deactivate({ returnFocus })
       }
 
       button.addEventListener('click', () => {
-        isMenuOpened() ? closeMenu() : openMenu()
-      })
-
-      menuMedia.addEventListener('change', event => {
-        if (!event.matches && isMenuOpened()) {
-          closeMenu()
-        }
+        isMenuOpened() ? closeMenu?.() : void openMenu()
       })
     }
 
@@ -79,7 +108,7 @@ import Menu from './menu.astro'
     document.addEventListener('astro:after-swap', onPageLoaded)
 
     document.addEventListener('astro:before-swap', () => {
-      focusTrap?.deactivate()
+      closeMenu?.(false)
     })
   })()
 </script>

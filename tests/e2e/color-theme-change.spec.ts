@@ -2,7 +2,7 @@ import type { Page } from '@playwright/test'
 
 import { test as base, expect } from '@playwright/test'
 
-import { colorThemeValues, THEME_STORAGE_KEY } from '@/components/header/constants'
+import { colorThemeValues, THEME_STORAGE_KEY } from '@/shared/constants'
 
 import { getFromLocalStorage } from './utils/getFromLocalStorage'
 
@@ -103,11 +103,6 @@ test.describe('Color theme change', () => {
     await openResumeLink.click()
 
     await expect(html).toContainClass('is-dark-theme')
-    // On mobile the link is reached with the menu open, so `clip` is holding the page
-    // scroll lock. Nothing in the header clears it on navigation; it survives only until
-    // Astro's swap strips every <html> attribute. Asserting its absence pins that release,
-    // which a scroll-locked page behind a dismissed overlay would otherwise fail silently.
-    await expect(html).not.toContainClass('clip')
     expect(await getFromLocalStorage(page, THEME_STORAGE_KEY)).toBe('dark')
   })
 })

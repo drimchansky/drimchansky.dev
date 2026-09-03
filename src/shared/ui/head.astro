@@ -2,7 +2,7 @@
 import { ClientRouter } from 'astro:transitions'
 
 import { getLocale, t } from '@/app/i18n'
-import { CUSTOM_COVER_ROUTES } from '@/shared/constants'
+import { colorThemeValues, CUSTOM_COVER_ROUTES, THEME_CLASSES, THEME_STORAGE_KEY } from '@/shared/constants'
 import { escapeJsonLd } from '@/shared/functions/escapeJsonLd'
 import { getRssUrl } from '@/shared/functions/getRssUrl'
 
@@ -44,6 +44,23 @@ const schema = escapeJsonLd({
 <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
 <link href="/manifest.webmanifest" rel="manifest" />
 <meta content="#1B1B1B" name="theme-color" />
+
+<script
+  is:inline
+  define:vars={{ themeClasses: THEME_CLASSES, themeStorageKey: THEME_STORAGE_KEY, themeValues: colorThemeValues }}
+>
+  ;(() => {
+    function applyPageTheme() {
+      const stored = localStorage.getItem(themeStorageKey)
+      const theme = themeValues.includes(stored) ? stored : 'auto'
+      document.documentElement.classList.toggle(themeClasses.dark, theme === 'dark')
+      document.documentElement.classList.toggle(themeClasses.light, theme === 'light')
+    }
+
+    applyPageTheme()
+    document.addEventListener('astro:after-swap', applyPageTheme)
+  })()
+</script>
 
 <link href={cleanUrl} rel="canonical" />
 <link rel="alternate" type="application/rss+xml" title="Nikita's notes" href={getRssUrl(siteOrigin, locale)} />
