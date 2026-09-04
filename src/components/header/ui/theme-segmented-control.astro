@@ -8,7 +8,7 @@ import TypographySpan from '@/shared/ui/typography/typography-span.astro'
 <fieldset
   data-testid={getTestId('theme-segmented-control')}
   id="theme-segmented-control"
-  class="m-0 border-none p-0 disabled:opacity-60"
+  class="m-0 border-none p-0"
   disabled
 >
   <legend class="visually-hidden"><span data-nosnippet>{t(Astro.currentLocale, 'theme')}</span></legend>
@@ -73,9 +73,9 @@ import TypographySpan from '@/shared/ui/typography/typography-span.astro'
 
   const onThemeChange = (event: Event) => {
     const target = event.target as HTMLInputElement
-    const newTheme = target.value as ColorTheme
+    const newTheme = target.value
 
-    if (!newTheme) return
+    if (!isColorTheme(newTheme)) return
 
     localStorage.setItem(THEME_STORAGE_KEY, newTheme)
     applyTheme(newTheme)

@@ -31,19 +31,52 @@ test.describe('Header semantics', () => {
     // does not reach it; without its own inert it stays a live control pointing at a dead target.
     await expect(skipLink).toHaveAttribute('inert', '')
 
-    // The focus trap is imported on the first open and its Escape listener registers only once
-    // that chunk lands, so an early key press is dropped; retry until the menu actually closes.
-    await expect(async () => {
-      await page.keyboard.press('Escape')
-      await expect(button).toHaveAttribute('aria-expanded', 'false', { timeout: 1000 })
-    }).toPass()
+    await page.keyboard.press('Escape')
+    await expect(button).toHaveAttribute('aria-expanded', 'false')
 
     await expect(main).not.toHaveAttribute('inert')
     await expect(skipLink).not.toHaveAttribute('inert')
     await expect(button).toBeFocused()
   })
 
-  test('navigate with the menu open › should release the page lock before the swap', async ({ isMobile, page }) => {
+  test('press Escape with the focus-trap chunk unavailable › should still close the menu', async ({
+    isMobile,
+    page
+  }) => {
+    if (!isMobile) test.skip()
+
+    let abortedTrapRequests = 0
+    await page.route(/focus-trap/, async route => {
+      abortedTrapRequests += 1
+      await route.abort()
+    })
+
+    await page.goto('/en/')
+
+    const button = page.getByTestId('open-mobile-menu-button')
+    const main = page.locator('#main')
+    const skipLink = page.locator('a[href="#main"]')
+
+    await button.click()
+    await expect(main).toHaveAttribute('inert', '')
+
+    await page.keyboard.press('Escape')
+
+    await expect(button).toHaveAttribute('aria-expanded', 'false')
+    await expect(main).not.toHaveAttribute('inert')
+    await expect(skipLink).not.toHaveAttribute('inert')
+    await expect(button).toBeFocused()
+
+    // Every assertion above also holds on the trapped path, so the aborted chunk request is the
+    // only thing separating this test from the one before it. Without this check a bundler chunk
+    // rename would stop the pattern from matching and leave a silently duplicated test.
+    await expect.poll(() => abortedTrapRequests).toBeGreaterThan(0)
+  })
+
+  test('navigate with the menu open › should release the page lock and keep focus on the activated link before the swap', async ({
+    isMobile,
+    page
+  }) => {
     if (!isMobile) test.skip()
 
     await page.goto('/en/')
@@ -55,6 +88,7 @@ test.describe('Header semantics', () => {
       document.addEventListener('astro:before-swap', () => {
         Object.assign(window, {
           __atSwap: {
+            active: document.activeElement?.getAttribute('data-testid') ?? document.activeElement?.id,
             clip: document.documentElement.classList.contains('clip'),
             expanded: document.getElementById('hamburger-button')?.getAttribute('aria-expanded'),
             mainInert: document.getElementById('main')?.hasAttribute('inert')
@@ -69,7 +103,8 @@ test.describe('Header semantics', () => {
     await page.getByTestId('menu').getByTestId('open-resume-link').click()
     await page.waitForURL('**/resume/**')
 
-    expect(await page.evaluate(() => (window as never as { __atSwap: unknown }).__atSwap)).toEqual({
+    expect(await page.evaluate(() => (window as unknown as { __atSwap: unknown }).__atSwap)).toEqual({
+      active: 'open-resume-link',
       clip: false,
       expanded: 'false',
       mainInert: false

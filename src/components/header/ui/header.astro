@@ -22,18 +22,25 @@ import Menu from './menu.astro'
 <script>
   import type { FocusTrap } from 'focus-trap'
   ;(() => {
-    let focusTrap: FocusTrap | undefined
     let closeMenu: ((returnFocus?: boolean) => void) | undefined
+
+    const isMenuExpanded = () => document.getElementById('hamburger-button')?.getAttribute('aria-expanded') === 'true'
 
     const menuMedia = matchMedia('(max-width: 767px)')
     menuMedia.addEventListener('change', event => {
-      const expanded = document.getElementById('hamburger-button')?.getAttribute('aria-expanded') === 'true'
-      if (!event.matches && expanded) {
+      if (!event.matches && isMenuExpanded()) {
+        closeMenu?.()
+      }
+    })
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && isMenuExpanded()) {
         closeMenu?.()
       }
     })
 
     const onPageLoaded = () => {
+      let focusTrap: FocusTrap | undefined
       const page = document.documentElement
       const header = document.getElementById('header')!
       const button = document.getElementById('hamburger-button')!
@@ -45,7 +52,7 @@ import Menu from './menu.astro'
       const getFocusTrap = () => {
         trapPromise ??= import('focus-trap')
           .then(({ createFocusTrap }) => {
-            focusTrap = createFocusTrap(header, { initialFocus: false, onDeactivate: () => closeMenu?.() })
+            focusTrap = createFocusTrap(header, { escapeDeactivates: false, initialFocus: false })
             return focusTrap
           })
           .catch((error: unknown) => {
@@ -55,10 +62,6 @@ import Menu from './menu.astro'
             throw error
           })
         return trapPromise
-      }
-
-      function isMenuOpened() {
-        return button.getAttribute('aria-expanded') === 'true'
       }
 
       const openMenu = async () => {
@@ -71,14 +74,16 @@ import Menu from './menu.astro'
         menu.classList.remove('menu--closed')
         menu.classList.add('menu--opened')
 
+        let trap: FocusTrap | undefined
         try {
-          const trap = await getFocusTrap()
-          if (isMenuOpened()) {
-            trap.activate()
-          }
+          trap = await getFocusTrap()
         } catch {
           // The menu is already open and #main already inert here, so a failed focus-trap import degrades
           // to an untrapped menu instead of rejecting and stranding the page mid-open.
+        }
+
+        if (trap && isMenuExpanded()) {
+          trap.activate()
         }
       }
 
@@ -92,11 +97,15 @@ import Menu from './menu.astro'
         menu.classList.remove('menu--opened')
         menu.classList.add('menu--closed')
 
-        focusTrap?.deactivate({ returnFocus })
+        if (focusTrap) {
+          focusTrap.deactivate({ returnFocus })
+        } else if (returnFocus) {
+          button.focus()
+        }
       }
 
       button.addEventListener('click', () => {
-        isMenuOpened() ? closeMenu?.() : void openMenu()
+        isMenuExpanded() ? closeMenu?.() : void openMenu()
       })
     }
 
