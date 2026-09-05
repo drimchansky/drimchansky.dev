@@ -1,26 +1,12 @@
 ---
-import { getLocale, t } from '@/app/i18n'
+import { t } from '@/app/i18n'
 import BaseLayout from '@/app/layouts/base-layout.astro'
 import { Header } from '@/components/header'
-import ButtonLink from '@/shared/ui/button-link.astro'
-import Container from '@/shared/ui/container.astro'
-import TypographyH1 from '@/shared/ui/typography/typography-h1.astro'
-
-const locale = getLocale(Astro.currentLocale)
+import NotFound from '@/shared/ui/not-found.astro'
 ---
 
 <BaseLayout title=`${t(Astro.currentLocale, 'fullName')} – 404`>
   <Header slot="header" />
 
-  <Container content class="flex min-h-[calc(100dvh-var(--header-height))] flex-col items-center justify-center">
-    <div class="flex flex-col items-center text-center">
-      <p class="font-heading text-[8rem] leading-none font-semibold select-none" aria-hidden="true">404</p>
-
-      <TypographyH1>{t(Astro.currentLocale, 404)}</TypographyH1>
-
-      <ButtonLink class="mt-8" href=`/${locale}/`>
-        {t(Astro.currentLocale, 'home')}
-      </ButtonLink>
-    </div>
-  </Container>
+  <NotFound />
 </BaseLayout>

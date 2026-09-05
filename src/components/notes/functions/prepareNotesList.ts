@@ -2,6 +2,8 @@ import type { CollectionEntry } from 'astro:content'
 
 import type { Locale } from '@/app/i18n'
 
+import { getNoteUrl } from './getNoteUrl'
+
 export const prepareNotesList = (locale: Locale, notes: CollectionEntry<'notes'>[]) => {
   const yearFormatter = new Intl.DateTimeFormat(locale, { timeZone: 'UTC', year: 'numeric' })
 
@@ -11,7 +13,7 @@ export const prepareNotesList = (locale: Locale, notes: CollectionEntry<'notes'>
       return {
         data,
         id,
-        url: `/${locale}/notes/${id.split('/')[1]}`,
+        url: getNoteUrl(locale, id),
         year: yearFormatter.format(data.publishingDate)
       }
     })

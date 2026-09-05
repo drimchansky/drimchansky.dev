@@ -1,6 +1,6 @@
-/ /en 301
-/resume /en/resume 301
-/notes /en/notes 301
-/notes/* /en/notes/:splat 301
-/bookshelf /en/bookshelf 301
+/ /en/ 301
+/resume /en/resume/ 301
+/notes /en/notes/ 301
+/notes/* /en/notes/:splat/ 301
+/bookshelf /en/bookshelf/ 301
 /feed.xml /en/feed.xml 301

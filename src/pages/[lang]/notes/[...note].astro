@@ -3,14 +3,16 @@ import type { GetStaticPaths } from 'astro'
 
 import { getCollection, render } from 'astro:content'
 
-import { t } from '@/app/i18n'
+import { getLocale, t } from '@/app/i18n'
 import BaseLayout from '@/app/layouts/base-layout.astro'
 import { Header } from '@/components/header'
-import { filterNotes, NoteHeader } from '@/components/notes'
+import { filterNotes, getNoteContentLang, getNoteSlug, NoteHeader } from '@/components/notes'
 import Container from '@/shared/ui/container.astro'
 
 const { note } = Astro.props
 const { Content } = await render(note)
+
+const contentLang = getNoteContentLang(getLocale(Astro.currentLocale), note)
 
 const title = `${note.data.title} – ${t(Astro.currentLocale, 'fullName')}`
 const description = note.data.description
@@ -19,8 +21,8 @@ export const getStaticPaths = (async () => {
   const notes = await getCollection('notes')
 
   return filterNotes(notes).map(note => {
-    const [lang, slugWithoutLang] = note.id.split('/')
-    return { params: { lang, note: slugWithoutLang }, props: { note } }
+    const [lang] = note.id.split('/')
+    return { params: { lang, note: getNoteSlug(note.id) }, props: { note } }
   })
 }) satisfies GetStaticPaths
 ---
@@ -32,7 +34,7 @@ export const getStaticPaths = (async () => {
     <article>
       <NoteHeader note={note} />
 
-      <div class="markdown pt-12 [&_:is(p,li)]:leading-[1.7]">
+      <div class="markdown pt-12 [&_:is(p,li)]:leading-[1.7]" lang={contentLang}>
         <Content />
       </div>
     </article>

@@ -1,6 +1,7 @@
 ---
 import { Picture } from 'astro:assets'
 
+import { t } from '@/app/i18n'
 import avatar from '@/shared/assets/images/avatar.jpg'
 import { getPlaceholderStyles } from '@/shared/functions/getPlaceholderStyles'
 
@@ -18,7 +19,7 @@ const placeholderStyles = await getPlaceholderStyles('src/shared/assets/images/a
   <Picture
     src={avatar}
     formats={['avif', 'webp', 'jpg']}
-    alt="Nikita's photo"
+    alt={t(Astro.currentLocale, 'avatarAlt')}
     class="pointer-events-none h-full w-full rounded-full text-transparent"
     width={150}
     height={150}

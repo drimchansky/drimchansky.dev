@@ -7,6 +7,7 @@ export type LocaleCollection = {
   404: string
   all: string
   auto: string
+  avatarAlt: string
   backToNotes: string
   bookshelf: string
   currentlyReading: string
@@ -31,6 +32,7 @@ export type LocaleCollection = {
   occupation: string
   'on-site': string
   present: string
+  ratingLabel: string
   remote: string
   resume: string
   siteDescription: string

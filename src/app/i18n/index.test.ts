@@ -45,3 +45,10 @@ describe('t', () => {
     expect(t('fr', 'home')).toBe(en.home)
   })
 })
+
+describe('locale collections', () => {
+  it('keeps the {rating} placeholder that star-rating substitutes', () => {
+    expect(en.ratingLabel).toContain('{rating}')
+    expect(ru.ratingLabel).toContain('{rating}')
+  })
+})
