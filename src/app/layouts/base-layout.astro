@@ -4,7 +4,9 @@ import '@/app/styles/colors.css'
 import '@/app/styles/fonts.css'
 import '@/app/styles/properties.css'
 import '@/app/styles/syntax-highlight.css'
-import { getLocale } from '@/app/i18n'
+import { getLocale, t } from '@/app/i18n'
+import { getSiteOrigin } from '@/shared/functions/getSiteOrigin'
+import { getMarkdownPath } from '@/shared/functions/markdownAlternate'
 import Head from '@/shared/ui/head.astro'
 
 type Props = {
@@ -14,12 +16,15 @@ type Props = {
 
 const { description, title } = Astro.props
 const locale = getLocale(Astro.currentLocale)
+
+const markdownPath = getMarkdownPath(Astro.url.pathname)
+const markdownUrl = markdownPath ? `${getSiteOrigin(Astro.site)}${markdownPath}` : undefined
 ---
 
 <!doctype html>
 <html lang={locale} transition:animate="none">
   <head>
-    <Head title={title} description={description} />
+    <Head title={title} description={description} markdownUrl={markdownUrl} />
   </head>
   <body>
     <slot name="header" />
@@ -27,5 +32,13 @@ const locale = getLocale(Astro.currentLocale)
     <main id="main" tabindex="-1" transition:name="main">
       <slot />
     </main>
+
+    {
+      markdownUrl && (
+        <div class="sr-only" aria-hidden="true" data-nosnippet>
+          {t(locale, 'markdownPointer').replace('{url}', markdownUrl)}
+        </div>
+      )
+    }
   </body>
 </html>

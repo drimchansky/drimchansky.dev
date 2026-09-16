@@ -7,6 +7,7 @@ import type { Locale } from '@/app/i18n'
 
 import { t } from '@/app/i18n'
 
+import { getBookText } from '../functions/getBookText'
 import StarRating from './star-rating.astro'
 
 interface Props {
@@ -23,8 +24,8 @@ interface Props {
 
 const { author, cover, descriptionHtml, language, locale, rating, skipped, title, type } = Astro.props
 
-const displayTitle = title[locale] || title.en || title.ru
-const displayAuthor = author[locale] || author.en || author.ru
+const displayTitle = getBookText(title, locale)
+const displayAuthor = getBookText(author, locale)
 const langLabels = { en: 'langEn', ru: 'langRu' } as const
 ---
 

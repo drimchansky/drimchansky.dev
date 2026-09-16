@@ -7,6 +7,7 @@ const getRobotsTxt = (sitemapURL: URL, isProd: boolean) => {
     return `
       User-agent: *
       Allow: /
+      Content-Signal: search=yes, ai-input=yes
 
       Sitemap: ${sitemapURL.href}
     `

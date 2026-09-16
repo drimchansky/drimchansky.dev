@@ -18,7 +18,12 @@ interface Props extends HTMLAttributes<'header'> {
 const { class: className, note, ...props } = Astro.props
 
 const locale = getLocale(Astro.currentLocale)
-const dateFormatter = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'long', timeZone: 'UTC', year: 'numeric' })
+const dateFormatter = new Intl.DateTimeFormat(locale, {
+  day: 'numeric',
+  month: 'long',
+  timeZone: 'UTC',
+  year: 'numeric'
+})
 ---
 
 <header class:list={['flex flex-col items-start gap-1', className]} {...props}>
