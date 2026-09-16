@@ -1,4 +1,8 @@
 / /en 301
+/index.md /en/index.md 301
+/resume.md /en/resume.md 301
+/notes.md /en/notes.md 301
+/bookshelf.md /en/bookshelf.md 301
 /resume /en/resume 301
 /notes /en/notes 301
 /notes/* /en/notes/:splat 301

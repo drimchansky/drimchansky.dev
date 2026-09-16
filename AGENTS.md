@@ -33,7 +33,8 @@
 - `src/plugins/` – Custom Astro/rehype plugins (figure-caption, resume-pdf)
 - `tests/e2e/` – Playwright end-to-end tests
 - `tests/visual/` – Playwright visual regression tests
-- `public/` – Static assets
+- `public/` – Static assets, Cloudflare `_headers`, `_redirects` and `_routes.json`
+- `functions/` – Cloudflare Pages Functions
 - `docs/` – Developer documentation
 
 ## Boundaries

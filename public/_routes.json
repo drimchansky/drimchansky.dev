@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "include": ["/en", "/en/*", "/ru", "/ru/*"],
+  "exclude": ["/en/feed.xml", "/ru/feed.xml"]
+}

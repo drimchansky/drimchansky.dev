@@ -2,7 +2,7 @@ import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
 
 import { supportedLocales, type Locale } from '@/app/i18n'
-import { filterNotes } from '@/components/notes'
+import { filterNotes, getNoteUrl, newestNoteFirst } from '@/components/notes'
 import { renderMarkdown } from '@/shared/functions/renderMarkdown'
 import { siteInfo } from '@/shared/site-info'
 
@@ -16,9 +16,7 @@ export async function GET({ params }: { params: { lang: Locale } }) {
     return id.startsWith(`${lang}/`)
   })
 
-  const sortedNotes = filterNotes(notes).sort(
-    (a, b) => new Date(b.data.publishingDate).getTime() - new Date(a.data.publishingDate).getTime()
-  )
+  const sortedNotes = filterNotes(notes).sort(newestNoteFirst)
 
   const feedConfig = {
     en: {
@@ -39,7 +37,7 @@ export async function GET({ params }: { params: { lang: Locale } }) {
     items: sortedNotes.map(note => ({
       content: renderMarkdown(note.body),
       description: note.data.description,
-      link: `/${lang}/notes/${note.id.replace(`${lang}/`, '')}/`,
+      link: getNoteUrl(lang, note.id),
       pubDate: note.data.publishingDate,
       title: note.data.title
     })),

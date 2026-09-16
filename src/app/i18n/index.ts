@@ -25,12 +25,14 @@ export type LocaleCollection = {
   lastUpdated: string
   light: string
   location: string
+  markdownPointer: string
   menu: string
   nonFiction: string
   notes: string
   occupation: string
   'on-site': string
   present: string
+  ratingLabel: string
   remote: string
   resume: string
   siteDescription: string

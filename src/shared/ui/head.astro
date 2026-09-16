@@ -5,19 +5,21 @@ import { getLocale, t } from '@/app/i18n'
 import { colorThemeValues, CUSTOM_COVER_ROUTES, THEME_CLASSES, THEME_STORAGE_KEY } from '@/shared/constants'
 import { escapeJsonLd } from '@/shared/functions/escapeJsonLd'
 import { getRssUrl } from '@/shared/functions/getRssUrl'
+import { getSiteOrigin } from '@/shared/functions/getSiteOrigin'
 
 type Props = {
   description?: string
+  markdownUrl?: string
   title: string
 }
 
-const { description: customDescription, title } = Astro.props
+const { description: customDescription, markdownUrl, title } = Astro.props
 
 const locale = getLocale(Astro.currentLocale)
 const routePath = Astro.url.pathname.replace(`/${locale}`, '')
 const route = routePath.split('/')[1]
 
-const siteOrigin = Astro.site?.origin ?? ''
+const siteOrigin = getSiteOrigin(Astro.site)
 const cleanUrl = siteOrigin + Astro.url.pathname
 const coverLink = `${siteOrigin}/covers/${CUSTOM_COVER_ROUTES.includes(route) ? route : 'main'}-${locale}.jpg`
 
@@ -64,6 +66,7 @@ const schema = escapeJsonLd({
 
 <link href={cleanUrl} rel="canonical" />
 <link rel="alternate" type="application/rss+xml" title="Nikita's notes" href={getRssUrl(siteOrigin, locale)} />
+{markdownUrl && <link rel="alternate" type="text/markdown" href={markdownUrl} />}
 
 <meta content="website" property="og:type" />
 <meta content={title} property="og:title" />

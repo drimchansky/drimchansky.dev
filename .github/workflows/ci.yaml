@@ -69,6 +69,40 @@ jobs:
           SITE_URL: http://localhost:4321
           TESTING: 'true'
 
+      - name: Smoke test Pages middleware
+        shell: bash
+        run: |
+          set -euo pipefail
+          smoke_dir=$(mktemp -d)
+          pnpm dlx --allow-build=esbuild --allow-build=workerd wrangler@4.132.0 pages dev dist --ip 127.0.0.1 --port 8788 --compatibility-date 2026-09-16 > "$smoke_dir/wrangler.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true; cat "$smoke_dir/wrangler.log"; rm -rf "$smoke_dir"' EXIT
+          for attempt in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:8788/llms.txt > /dev/null 2>&1; then break; fi
+            kill -0 "$server_pid"
+            sleep 1
+          done
+          base=http://127.0.0.1:8788
+          curl -fsS -D "$smoke_dir/html" -o /dev/null -H 'Accept: text/html' "$base/en/resume/"
+          grep -qi '^link: .*text/markdown' "$smoke_dir/html"
+          grep -qi '^vary: .*Accept' "$smoke_dir/html"
+          curl -fsS -D "$smoke_dir/md" -o "$smoke_dir/body" -H 'Accept: text/markdown' "$base/en/resume/"
+          grep -qi '^content-type: text/markdown' "$smoke_dir/md"
+          grep -qi '^content-location: /en/resume.md' "$smoke_dir/md"
+          grep -qi '^link: .*rel="canonical"' "$smoke_dir/md"
+          grep -qi '^vary: .*Accept' "$smoke_dir/md"
+          grep -q '^# ' "$smoke_dir/body"
+          etag=$(sed -n 's/^[Ee][Tt][Aa][Gg]:[[:space:]]*//p' "$smoke_dir/md" | tr -d '\r')
+          test -n "$etag"
+          status=$(curl -sS -D "$smoke_dir/conditional" -o /dev/null -w '%{http_code}' -H "If-None-Match: $etag" "$base/en/resume.md")
+          test "$status" = 304
+          grep -qi '^link: .*rel="canonical"' "$smoke_dir/conditional"
+          if grep -Eqi '^vary:([[:space:]]*[^,]+,)*[[:space:]]*Accept([[:space:]]*,|[[:space:]]*$)' "$smoke_dir/conditional"; then exit 1; fi
+          status=$(curl -sS -D "$smoke_dir/rejected" -o /dev/null -w '%{http_code}' -H 'Accept: text/html;q=0,text/markdown;q=0' "$base/en/resume/")
+          test "$status" = 406
+          grep -qi '^x-frame-options: DENY' "$smoke_dir/rejected"
+          grep -qi '^x-content-type-options: nosniff' "$smoke_dir/rejected"
+
       - name: Run Playwright e2e tests
         run: pnpm exec playwright test tests/e2e
         env:

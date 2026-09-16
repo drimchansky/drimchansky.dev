@@ -1,10 +1,19 @@
 ---
+import { getLocale, t } from '@/app/i18n'
+
 interface Props {
   rating: number | null
   class?: string
 }
 
 const { class: className, rating } = Astro.props
+const ratingLabel =
+  rating === null
+    ? ''
+    : t(Astro.currentLocale, 'ratingLabel').replace(
+        '{rating}',
+        new Intl.NumberFormat(getLocale(Astro.currentLocale)).format(rating)
+      )
 
 const stars = rating
   ? Array.from({ length: 5 }, (_, i) => {
@@ -18,7 +27,7 @@ const stars = rating
 
 {
   rating !== null && rating > 0 && (
-    <div class:list={['flex gap-0.5', className]} role="img" aria-label={`${rating} out of 5`}>
+    <div class:list={['flex gap-0.5', className]} role="img" aria-label={ratingLabel}>
       {stars.map(type => (
         <svg
           width="14"

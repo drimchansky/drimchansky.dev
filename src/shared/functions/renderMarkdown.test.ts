@@ -8,9 +8,7 @@ describe('renderMarkdown', () => {
   })
 
   it('strips the marker from a non-latin heading', () => {
-    expect(renderMarkdown('## Другие статьи по теме [#related-reading]')).toBe(
-      '<h2>Другие статьи по теме</h2>\n'
-    )
+    expect(renderMarkdown('## Другие статьи по теме [#related-reading]')).toBe('<h2>Другие статьи по теме</h2>\n')
   })
 
   it('strips the marker from a heading with inline formatting', () => {
@@ -18,9 +16,7 @@ describe('renderMarkdown', () => {
   })
 
   it('strips the marker from a blockquoted heading', () => {
-    expect(renderMarkdown('> ## Quoted heading [#slug]')).toBe(
-      '<blockquote>\n<h2>Quoted heading</h2>\n</blockquote>\n'
-    )
+    expect(renderMarkdown('> ## Quoted heading [#slug]')).toBe('<blockquote>\n<h2>Quoted heading</h2>\n</blockquote>\n')
   })
 
   it('strips the marker from a heading inside a list item', () => {
@@ -32,15 +28,11 @@ describe('renderMarkdown', () => {
   })
 
   it('leaves a marker inside a fenced code block untouched', () => {
-    expect(renderMarkdown('```md\n## Heading [#slug]\n```')).toBe(
-      '<pre><code>## Heading [#slug]\n</code></pre>\n'
-    )
+    expect(renderMarkdown('```md\n## Heading [#slug]\n```')).toBe('<pre><code>## Heading [#slug]\n</code></pre>\n')
   })
 
   it('keeps the block after a marked heading separate', () => {
-    expect(renderMarkdown('## Heading [#slug]\n\nBody paragraph')).toBe(
-      '<h2>Heading</h2>\n<p>Body paragraph</p>\n'
-    )
+    expect(renderMarkdown('## Heading [#slug]\n\nBody paragraph')).toBe('<h2>Heading</h2>\n<p>Body paragraph</p>\n')
   })
 
   it('keeps a marker-shaped string that is not a heading suffix', () => {
