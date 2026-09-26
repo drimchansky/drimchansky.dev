@@ -1,11 +1,15 @@
-**Технологии:** TypeScript / JavaScript • React • Redux Toolkit • React Router • Vite / Webpack • Tailwind CSS • SCSS / SASS • Socket.IO • Astro • Next.js
+**Фронтенд:** TypeScript / JavaScript • React • Redux Toolkit • React Router • Vite / Webpack • Tailwind CSS • SCSS / SASS • Socket.IO • Astro • Next.js
 
-**Тестирование:** Jest • Storybook (visual/interaction tests) • Playwright (E2E) • React Testing Library
+**Бэкенд:** Node.js • REST API • JWT-аутентификация • Google OAuth • RabbitMQ
+
+**Инфраструктура и эксплуатация:** Nx • Docker • Kubernetes • GitHub Actions • HashiCorp Vault • Sentry
+
+**Тестирование:** Jest • встроенный тестовый раннер Node.js • Storybook (визуальные тесты и тесты взаимодействия) • Playwright (E2E) • React Testing Library
 
 **Качество кода:** ESLint • Prettier • Stylelint • Husky + lint-staged
 
-**Производительность и доступность:** WCAG • Web Vitals • ARIA roles • semantic HTML
+**Производительность и доступность:** WCAG • Web Vitals • роли ARIA • семантический HTML
 
-**Языковые навыки:** English – Upper-Intermediate (B2) • Русский – родной
+**Организация разработки:** Анализ требований • Техническое планирование • Документирование архитектурных решений • Межкомандная координация • Взаимодействие с заинтересованными сторонами
 
-**Другое:** Figma • Agile Scrum • Gitflow
+**Языковые навыки:** Английский – Upper-Intermediate (B2) • Русский – родной

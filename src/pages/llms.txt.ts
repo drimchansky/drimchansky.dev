@@ -24,7 +24,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   const body = `# ${t('en', 'fullName')}
 
-> ${t('en', 'siteDescription')}. ${t('en', 'intro')}, based in ${t('en', 'location')}. The site holds his resume, notes on web development and working with AI tools, and a bookshelf with ratings. Every page is available in English and Russian, and every page has a Markdown twin: replace the trailing slash with \`.md\` (\`/en/resume/\` becomes \`/en/resume.md\`); the locale roots are \`/en/index.md\` and \`/ru/index.md\`.
+> ${t('en', 'siteDescription')}. ${t('en', 'intro')}, based in ${t('en', 'location')}. The site holds my resume, notes on web development and working with AI tools, and a bookshelf with ratings. Every page is available in English and Russian, and every page has a Markdown twin: replace the trailing slash with \`.md\` (\`/en/resume/\` becomes \`/en/resume.md\`); the locale roots are \`/en/index.md\` and \`/ru/index.md\`.
 
 ## Pages
 

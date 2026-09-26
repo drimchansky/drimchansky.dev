@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
+import { t } from '@/app/i18n'
+
 import { renderResumeMarkdown } from './renderResumeMarkdown'
 
 const position = (company: string, dateStart: string, dateEnd?: string) => ({
@@ -26,10 +28,10 @@ describe('renderResumeMarkdown', () => {
     })
 
     expect(result).toContain(
-      '# Resume – Nikita Chernov\n\n**Nikita Chernov** — Frontend engineer, Tbilisi, Georgia\n\n'
+      `# Resume – Nikita Chernov\n\n**Nikita Chernov** — ${t('en', 'occupation')}, Tbilisi, Georgia\n\n`
     )
     expect(result).toContain('- Canonical: https://example.com/en/resume/\n')
-    expect(result).toContain('- PDF: https://example.com/files/Nikita_Chernov_Frontend_Resume.pdf\n')
+    expect(result).toContain('- PDF: https://example.com/files/Nikita_Chernov_Software_Engineer_Resume.pdf\n')
     expect(result).toContain('- Email: [drimchansky@gmail.com](mailto:drimchansky@gmail.com)')
     expect(result).toContain('## Summary\n\nSummary text.\n\n## Experience\n\n')
     expect(result).toContain(
@@ -48,7 +50,7 @@ describe('renderResumeMarkdown', () => {
     expect(result).toContain('# Резюме – Никита Чернов')
     expect(result).toMatch(/янв\. 2020 г\. – на данный момент \(.+\) · Cyprus · Удалённо/)
     expect(result).toContain(
-      `- PDF: https://example.com/files/${encodeURIComponent('Никита_Чернов_Фронтенд_Резюме')}.pdf`
+      `- PDF: https://example.com/files/${encodeURIComponent('Никита_Чернов_Инженер_ПО_Резюме')}.pdf`
     )
   })
 })
