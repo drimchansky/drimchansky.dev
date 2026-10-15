@@ -6,8 +6,8 @@ author:
   en: 'Barack Obama'
   ru: 'Барак Обама'
 language: en
-rating: null
+rating: 4.5
 cover: 'a-promised-land--barack-obama.jpg'
 type: non-fiction
-dateFinished: null
+dateFinished: '2026-10-15'
 ---
