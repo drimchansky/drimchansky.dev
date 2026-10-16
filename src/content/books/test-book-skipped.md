@@ -12,4 +12,8 @@ type: fiction
 dateFinished: '2024-11-01'
 skipped: true
 isTestOnly: true
+pageEstimate: 3
+pageEstimateMethod:
+  en: 'Synthetic full-book count at 300 words/page, including the unread remainder.'
+  ru: 'Синтетический подсчёт полной книги при 300 слов/стр., включая непрочитанную часть.'
 ---

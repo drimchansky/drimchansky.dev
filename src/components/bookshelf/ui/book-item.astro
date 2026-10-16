@@ -7,29 +7,48 @@ import type { Locale } from '@/app/i18n'
 
 import { t } from '@/app/i18n'
 
+import type { PageEstimateMethod } from '../functions/pageEstimateSchema'
+
 import { getBookText } from '../functions/getBookText'
+import BookPageEstimate from './book-page-estimate.astro'
 import StarRating from './star-rating.astro'
 
 interface Props {
   author: { en: string; ru: string }
   cover: ImageMetadata
   descriptionHtml?: string
+  id: string
   language: Locale
   locale: Locale
+  pageEstimate?: number
+  pageEstimateMethod?: PageEstimateMethod
   rating: number | null
   skipped?: boolean
   title: { en: string; ru: string }
   type: 'fiction' | 'non-fiction'
 }
 
-const { author, cover, descriptionHtml, language, locale, rating, skipped, title, type } = Astro.props
+const {
+  author,
+  cover,
+  descriptionHtml,
+  id,
+  language,
+  locale,
+  pageEstimate,
+  pageEstimateMethod,
+  rating,
+  skipped,
+  title,
+  type
+} = Astro.props
 
 const displayTitle = getBookText(title, locale)
 const displayAuthor = getBookText(author, locale)
 const langLabels = { en: 'langEn', ru: 'langRu' } as const
 ---
 
-<li class="flex items-start gap-4 py-3" data-type={type}>
+<li class="flex items-start gap-4 py-3" data-type={type} data-book-id={id}>
   <Picture
     src={cover}
     formats={['avif', 'webp']}
@@ -48,7 +67,7 @@ const langLabels = { en: 'langEn', ru: 'langRu' } as const
     <span class="text-fg-subtle text-sm">
       {displayAuthor}
     </span>
-    <div class="mt-0.5 flex items-center gap-2">
+    <div class="mt-0.5 flex flex-wrap items-center gap-2">
       {!skipped && <StarRating rating={rating} />}
       <span class="text-fg-subtle bg-surface border-border-strong rounded border px-1.5 py-0 text-xs leading-relaxed">
         {t(locale, langLabels[language])}
@@ -60,6 +79,13 @@ const langLabels = { en: 'langEn', ru: 'langRu' } as const
           </span>
         )
       }
+      <BookPageEstimate
+        id={id}
+        locale={locale}
+        pageEstimate={pageEstimate}
+        pageEstimateMethod={pageEstimateMethod}
+        title={displayTitle}
+      />
     </div>
     {
       descriptionHtml && (

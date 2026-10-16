@@ -11,4 +11,8 @@ cover: 'the-master-and-margarita--mikhail-bulgakov.jpg'
 type: fiction
 dateFinished: '2025-06-10'
 isTestOnly: true
+pageEstimate: 1030
+pageEstimateMethod:
+  en: 'Synthetic full-text word count ÷ 300, rounded to 10 pages.'
+  ru: 'Синтетический подсчёт слов полного текста ÷ 300, округление до 10 страниц.'
 ---

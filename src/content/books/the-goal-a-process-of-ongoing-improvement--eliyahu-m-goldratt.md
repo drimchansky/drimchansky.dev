@@ -10,4 +10,8 @@ rating: 4
 cover: 'the-goal-a-process-of-ongoing-improvement--eliyahu-m-goldratt.jpg'
 type: non-fiction
 dateFinished: '2025-12-01'
+pageEstimate: 450
+pageEstimateMethod:
+  en: 'Reported word count ÷ 300, rounded to 10 pages.'
+  ru: 'Заявленное число слов ÷ 300, округление до 10 страниц.'
 ---

@@ -10,4 +10,8 @@ rating: 4.5
 cover: 'inspired-how-to-create-tech-products-customers-love--marty-cagan.jpg'
 type: non-fiction
 dateFinished: '2025-05-01'
+pageEstimate: 260
+pageEstimateMethod:
+  en: 'Reported word count ÷ 300, rounded to 10 pages.'
+  ru: 'Заявленное число слов ÷ 300, округление до 10 страниц.'
 ---

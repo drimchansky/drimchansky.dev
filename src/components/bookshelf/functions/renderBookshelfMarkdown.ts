@@ -4,16 +4,23 @@ import type { Locale } from '@/app/i18n'
 
 import { t } from '@/app/i18n'
 
+import { formatPageEstimate } from './formatPageEstimate'
 import { getBookText } from './getBookText'
 import { prepareBooksList } from './prepareBooksList'
 
 type Book = CollectionEntry<'books'>
 
 const langLabels = { en: 'langEn', ru: 'langRu' } as const
+const escapeMarkdownText = (value: string) =>
+  value
+    .replace(/[\r\n]+/g, ' ')
+    .replace(/&/g, '&amp;')
+    .replace(/([\\`*_[\]<>])/g, '\\$1')
 
 const renderBook = ({ data }: Book, locale: Locale, numberFormatter: Intl.NumberFormat) => {
   const title = getBookText(data.title, locale)
   const author = getBookText(data.author, locale)
+  const estimate = formatPageEstimate(data.pageEstimate, data.pageEstimateMethod?.[locale], locale)
 
   const rating =
     data.rating !== null && data.rating > 0 && !data.skipped
@@ -24,15 +31,17 @@ const renderBook = ({ data }: Book, locale: Locale, numberFormatter: Intl.Number
     `**${title}** — ${author}`,
     rating,
     data.skipped && t(locale, 'skipped'),
-    t(locale, langLabels[data.language])
+    t(locale, langLabels[data.language]),
+    estimate && escapeMarkdownText(estimate.label)
   ]
     .filter(Boolean)
     .join(' · ')
 
   const description = data.description?.[locale]?.trim()
-  if (!description) return `- ${line}`
-
-  return `- ${line}\n\n${description.replace(/^(?=.)/gm, '  ')}`
+  const estimateText = estimate && escapeMarkdownText(estimate.explanation)
+  return [`- ${line}`, estimateText && `  ${estimateText}`, description?.replace(/^(?=.)/gm, '  ')]
+    .filter(Boolean)
+    .join('\n\n')
 }
 
 export const renderBookshelfMarkdown = (locale: Locale, siteOrigin: string, books: Book[]) => {

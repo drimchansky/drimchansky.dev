@@ -51,6 +51,9 @@ function getCover(filename: string): ImageMetadata {
             <ul class="mt-2 list-none" role="list">
               {currentlyReading.map(book => (
                 <BookItem
+                  id={book.id}
+                  pageEstimate={book.data.pageEstimate}
+                  pageEstimateMethod={book.data.pageEstimateMethod}
                   title={book.data.title}
                   author={book.data.author}
                   cover={getCover(book.data.cover)}
@@ -76,6 +79,9 @@ function getCover(filename: string): ImageMetadata {
             <ul class="mt-2 list-none" role="list">
               {books.map(book => (
                 <BookItem
+                  id={book.id}
+                  pageEstimate={book.data.pageEstimate}
+                  pageEstimateMethod={book.data.pageEstimateMethod}
                   title={book.data.title}
                   author={book.data.author}
                   cover={getCover(book.data.cover)}

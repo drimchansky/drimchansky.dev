@@ -13,6 +13,18 @@ for (const locale of supportedLocales) {
       fullPage: true
     })
   })
+
+  for (const theme of ['light', 'dark'] as const) {
+    test(`Bookshelf sampled explanation (${locale}, ${theme})`, async ({ page }) => {
+      await page.goto(`/${locale}/bookshelf/`)
+      await page.waitForLoadState('networkidle')
+      if (theme === 'dark') await enableDarkTheme(page)
+      const trigger = page.locator('[data-book-id="test-book-fiction-5-stars"] button[popovertarget]')
+      await trigger.click()
+      await expect(page.locator('[popover]:popover-open')).toBeVisible()
+      await expect(page).toHaveScreenshot()
+    })
+  }
 }
 
 test('Bookshelf page (dark theme)', async ({ page }) => {

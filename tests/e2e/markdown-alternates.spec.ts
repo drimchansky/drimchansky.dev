@@ -3,6 +3,37 @@ import { expect, test } from '@playwright/test'
 import { t } from '@/app/i18n'
 
 test.describe('Markdown alternates', () => {
+  test('bookshelf estimates appear in both Markdown exports and the English full-content file', async ({
+    page,
+    request
+  }) => {
+    let english = ''
+    for (const locale of ['en', 'ru'] as const) {
+      const response = await request.get(`/${locale}/bookshelf.md`)
+      expect(response.ok()).toBe(true)
+      const text = await response.text()
+      await page.goto(`/${locale}/bookshelf/`)
+      const estimates = await page.locator('[data-page-estimate]').evaluateAll(elements =>
+        elements.map(element => ({
+          hint: element.querySelector('[popover] p:last-child')?.textContent?.trim(),
+          label: element.querySelector('button')?.textContent?.trim()
+        }))
+      )
+      expect(estimates).toHaveLength(5)
+      for (const { hint, label } of estimates) {
+        expect(hint).toBeTruthy()
+        expect(label).toBeTruthy()
+        expect(text).toContain(`  ${hint}`)
+        expect(text).toContain(label?.replace(/</g, '\\<') ?? '')
+      }
+      expect(text).not.toContain('[Synthetic fixture source]')
+      if (locale === 'en') english = text
+    }
+    const full = await request.get('/llms-full.txt')
+    expect(full.ok()).toBe(true)
+    expect(await full.text()).toContain(english.trim())
+  })
+
   test('every sitemap page advertises a working Markdown twin', async ({ page, request }) => {
     const sitemap = await request.get('/sitemap-0.xml')
     expect(sitemap.ok()).toBe(true)

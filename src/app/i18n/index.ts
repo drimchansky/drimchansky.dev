@@ -1,5 +1,5 @@
-import { en } from './locales/en'
-import { ru } from './locales/ru'
+import { en } from './locales/en.ts'
+import { ru } from './locales/ru.ts'
 
 export type Locale = 'en' | 'ru'
 
@@ -31,6 +31,10 @@ export type LocaleCollection = {
   notes: string
   occupation: string
   'on-site': string
+  pageEstimateAction: string
+  pageEstimateLabel: string
+  pageEstimateScrollHint: string
+  pageEstimateShort: string
   present: string
   ratingLabel: string
   remote: string

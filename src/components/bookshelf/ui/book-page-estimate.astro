@@ -1,0 +1,70 @@
+---
+import type { Locale } from '@/app/i18n'
+
+import { t } from '@/app/i18n'
+
+import type { PageEstimateMethod } from '../functions/pageEstimateSchema'
+
+import { formatPageEstimate } from '../functions/formatPageEstimate'
+
+interface Props {
+  id: string
+  locale: Locale
+  pageEstimate?: number
+  pageEstimateMethod?: PageEstimateMethod
+  title: string
+}
+
+const { id, locale, pageEstimate, pageEstimateMethod, title } = Astro.props
+const estimate = formatPageEstimate(pageEstimate, pageEstimateMethod?.[locale], locale)
+const baseId = `book-estimate-${encodeURIComponent(id)}`
+---
+
+{
+  estimate && (
+    <span data-page-estimate>
+      <button
+        id={`${baseId}-trigger`}
+        type="button"
+        class="focus-ring text-fg-subtle bg-surface border-border-strong inline-flex min-h-6 cursor-pointer items-center rounded border px-1.5 text-xs"
+        aria-label={t(locale, 'pageEstimateAction').replace('{estimate}', estimate.label).replace('{title}', title)}
+        aria-describedby={`${baseId}-description`}
+        popovertarget={`${baseId}-description`}
+      >
+        {estimate.label}
+      </button>
+      <div
+        id={`${baseId}-description`}
+        popover="auto"
+        role="tooltip"
+        class="estimate-tooltip bg-surface text-fg-muted border-border-strong rounded border p-4 text-sm leading-relaxed shadow-lg"
+      >
+        <p class="scroll-hint text-fg-subtle mb-2 text-xs">{t(locale, 'pageEstimateScrollHint')}</p>
+        <p>{estimate.explanation}</p>
+      </div>
+    </span>
+  )
+}
+
+<script>
+  import './page-estimate-interactions'
+</script>
+
+<style>
+  .estimate-tooltip {
+    overflow: auto;
+    width: 32rem;
+    margin: auto;
+    max-block-size: calc(100dvh - 2rem);
+    max-inline-size: calc(100vw - 2rem);
+    overflow-wrap: anywhere;
+  }
+
+  .scroll-hint {
+    display: none;
+  }
+
+  [data-scrollable] .scroll-hint {
+    display: block;
+  }
+</style>

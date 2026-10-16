@@ -2,6 +2,8 @@ import { defineCollection } from 'astro:content'
 import { glob } from 'astro/loaders'
 import { z } from 'astro/zod'
 
+import { bookPageEstimateSchema } from './components/bookshelf/functions/pageEstimateSchema.ts'
+
 const resumeCollection = defineCollection({
   loader: glob({
     base: './src/content/resume',
@@ -48,7 +50,7 @@ const booksCollection = defineCollection({
     base: './src/content/books',
     pattern: '**/*.md'
   }),
-  schema: z.object({
+  schema: bookPageEstimateSchema.safeExtend({
     author: z.object({ en: z.string(), ru: z.string() }),
     cover: z.string(),
     dateFinished: z
@@ -57,7 +59,6 @@ const booksCollection = defineCollection({
       .nullable(),
     description: z.object({ en: z.string().optional(), ru: z.string().optional() }).optional(),
     isTestOnly: z.boolean().optional(),
-    language: z.enum(['en', 'ru']),
     rating: z.number().min(0.5).max(5).nullable(),
     skipped: z.boolean().optional(),
     title: z.object({ en: z.string(), ru: z.string() }),
