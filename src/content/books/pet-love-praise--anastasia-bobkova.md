@@ -9,5 +9,6 @@ language: ru
 rating: null
 cover: 'pet-love-praise--anastasia-bobkova.jpg'
 type: non-fiction
-dateFinished: null
+dateFinished: '2026-10-21'
+skipped: true
 ---
