@@ -6,6 +6,7 @@ import { colorThemeValues, CUSTOM_COVER_ROUTES, THEME_CLASSES, THEME_STORAGE_KEY
 import { escapeJsonLd } from '@/shared/functions/escapeJsonLd'
 import { getRssUrl } from '@/shared/functions/getRssUrl'
 import { getSiteOrigin } from '@/shared/functions/getSiteOrigin'
+import { SITE_ICON_URLS, THEME_COLOR } from '@/shared/site-icons'
 
 type Props = {
   description?: string
@@ -41,11 +42,11 @@ const schema = escapeJsonLd({
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <meta content={Astro.generator} name="generator" />
 
-<link href="/favicon.ico" rel="icon" sizes="32x32" />
-<link href="/icon.svg" rel="icon" type="image/svg+xml" />
-<link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+<link href={SITE_ICON_URLS.favicon} rel="icon" sizes="32x32" />
+<link href={SITE_ICON_URLS.svg} rel="icon" type="image/svg+xml" />
+<link href={SITE_ICON_URLS.appleTouchIcon} rel="apple-touch-icon" />
 <link href="/manifest.webmanifest" rel="manifest" />
-<meta content="#1B1B1B" name="theme-color" />
+<meta content={THEME_COLOR} name="theme-color" />
 
 <script
   is:inline
