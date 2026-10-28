@@ -3,12 +3,22 @@ name: CI
 on:
   push:
     branches:
-      - '**'
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
 jobs:
   version:
     timeout-minutes: 5
     name: Resolve Playwright version
     runs-on: ubuntu-latest
+    concurrency:
+      group: ci-version-${{ github.event.pull_request.number || github.run_id }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
     outputs:
       playwright: ${{ steps.read.outputs.playwright }}
 
@@ -26,6 +36,9 @@ jobs:
     timeout-minutes: 5
     name: Lint
     runs-on: ubuntu-latest
+    concurrency:
+      group: ci-lint-${{ github.event.pull_request.number || github.run_id }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
     steps:
       - name: Checkout the repository
@@ -45,6 +58,9 @@ jobs:
     name: Test
     needs: [version]
     runs-on: ubuntu-latest
+    concurrency:
+      group: ci-test-${{ github.event.pull_request.number || github.run_id }}
+      cancel-in-progress: ${{ github.event_name == 'pull_request' }}
     container:
       image: mcr.microsoft.com/playwright:v${{ needs.version.outputs.playwright }}-noble
 
@@ -123,10 +139,15 @@ jobs:
           retention-days: 7
 
   deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     timeout-minutes: 15
     name: Deploy
     needs: [lint, test, version]
     runs-on: ubuntu-latest
+    concurrency:
+      group: pages-production
+      cancel-in-progress: false
+      queue: max
     container:
       image: mcr.microsoft.com/playwright:v${{ needs.version.outputs.playwright }}-noble
     permissions:
@@ -152,11 +173,116 @@ jobs:
         run: pnpm build
         env:
           SITE_URL: https://drimchansky.dev
-          IS_PRODUCTION: ${{ github.ref_name == 'main' && '1' || '' }}
+          IS_PRODUCTION: '1'
+
+      - name: Check that main still points at this commit
+        id: head
+        run: |
+          head="$(curl -fsS -H "Authorization: Bearer $GITHUB_TOKEN" \
+            -H 'Accept: application/vnd.github.sha' \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/commits/main")"
+          if [ "$head" = "$GITHUB_SHA" ]; then
+            echo 'current=true' >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::Skipped the production deploy: main has moved to $head"
+            echo 'current=false' >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
       - name: Deploy to Cloudflare Pages
+        if: steps.head.outputs.current == 'true'
         uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3.14.1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=drimchansky-dev --branch=${{ github.ref_name }}
+          wranglerVersion: '4.132.0'
+          command: pages deploy dist --project-name=drimchansky-dev --branch=main
+
+  preview:
+    if: >-
+      github.event_name == 'pull_request'
+      && github.event.pull_request.head.repo.full_name == github.repository
+      && github.actor != 'dependabot[bot]'
+    timeout-minutes: 15
+    name: Deploy PR preview
+    needs: [lint, test, version]
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v${{ needs.version.outputs.playwright }}-noble
+    permissions:
+      actions: read
+      contents: read
+      pull-requests: write
+    concurrency:
+      group: pages-preview-pr-${{ github.event.pull_request.number }}
+      cancel-in-progress: false
+      queue: max
+
+    steps:
+      - name: Install Git LFS
+        run: |
+          apt-get update
+          apt-get install -y git-lfs
+          git lfs install
+
+      - name: Checkout the validated merge revision
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.sha }}
+          lfs: true
+          persist-credentials: false
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Check the PR before building
+        id: current
+        run: node scripts/pages-preview.ts check
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Build
+        if: steps.current.outputs.eligible == 'true'
+        run: pnpm build
+        env:
+          SITE_URL: https://drimchansky.dev
+
+      - name: Check current PR and Pages configuration
+        if: steps.current.outputs.eligible == 'true'
+        id: eligible
+        run: node scripts/pages-preview.ts check
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Deploy PR preview to Cloudflare Pages
+        if: steps.eligible.outputs.eligible == 'true'
+        id: deploy
+        uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3.14.1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: '4.132.0'
+          command: pages deploy dist --project-name=drimchansky-dev --branch=pr-${{ github.event.pull_request.number }} --commit-hash=${{ github.sha }}
+
+      - name: Publish preview link
+        if: steps.deploy.outcome == 'success'
+        run: node scripts/pages-preview.ts comment
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_MERGE_SHA: ${{ github.sha }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          DEPLOYMENT_ID: ${{ steps.deploy.outputs.pages-deployment-id }}
+          DEPLOYMENT_ENVIRONMENT: ${{ steps.deploy.outputs.pages-environment }}
+          PREVIEW_URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
