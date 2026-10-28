@@ -36,8 +36,7 @@
 - `tests/visual/` – Playwright visual regression tests
 - `public/` – Static assets, Cloudflare `_headers`, `_redirects` and `_routes.json`
 - `functions/` – Cloudflare Pages Functions
-- `scripts/` – Icon generator and the Docker-based Playwright runner
-- `docs/` – Developer documentation
+- `scripts/` – Icon generator, the Docker-based Playwright runner and the Pages preview helper
 
 ## Icons
 
@@ -54,6 +53,23 @@ Commit all generated outputs and never edit them by hand.
   `head.astro` reads them from `src/shared/site-icons.ts`
 - The generator only accepts `svg` and `path` elements, `xmlns`/`viewBox` on the root, `d` and a six-digit hex `fill`
   on each path, and a square viewBox
+
+## PR previews
+
+Same-repository PRs into `main` deploy to the Cloudflare Pages `pr-<number>` alias after lint and tests pass (the
+`preview` job in `.github/workflows/ci.yaml`). `scripts/pages-preview.ts` checks eligibility, posts the preview comment
+and deletes the PR's preview deployments when it closes (`.github/workflows/preview-cleanup.yaml`).
+
+- `check` requires the Pages project's production branch to be `main` and its Git preview deployments to be off
+- The Cloudflare API token must be able to read the Pages project and create and delete its deployments
+- Cleanup runs the default branch's copy of the helper (`pull_request_target`), so changes to it apply only after merge
+- Push CI runs only on `main`; other branches are checked only through a PR into `main`, so branches without one, and
+  PRs into other bases, run no CI
+- `check` skips a run once a newer run exists for the same PR branch and head commit, so re-run the newest run to
+  redeploy
+- Retargeting a PR to `main` starts no run; push again, or close and reopen it, to get CI and a preview
+- Runs triggered by Dependabot (PRs it opens or rebases) deploy no preview because they receive no Actions secrets;
+  a re-run keeps Dependabot as the actor, so push to the branch yourself, or close and reopen the PR, to deploy one
 
 ## Boundaries
 
