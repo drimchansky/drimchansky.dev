@@ -6,8 +6,10 @@ author:
   en: 'Dmitry Glukhovsky'
   ru: 'Дмитрий Глуховский'
 language: ru
-rating: null
+rating: 4.5
 cover: 'registration--dmitry-glukhovsky.jpg'
 type: fiction
-dateFinished: null
+dateFinished: '2026-10-30'
+description:
+  ru: 'Пугающе живой слепок ужасной эпохи'
 ---
